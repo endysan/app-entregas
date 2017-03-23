@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS remetente (
     dt_nasc_remetente date,
     telefone_remetente varchar(11),
     whatsapp_remetente varchar(11),
-    endereco_remetente varchar(50),
-    constraint fk_endereco foreign key(id_endereco)
+    endereco_remetente varchar(50)
 );
 
 CREATE TABLE IF NOT EXISTS endereco (
@@ -21,6 +20,8 @@ CREATE TABLE IF NOT EXISTS endereco (
     cidade_endereco varchar(50),
     bairro_endereco varchar(50)
 );
+
+ALTER TABLE `remetente` ADD CONSTRAINT `fk_endereco` FOREIGN KEY(`id_endereco`) REFERENCES `endereco` (`id_endereco`);
 
 CREATE TABLE IF NOT EXISTS entregador (
     id_entregador int not null primary key auto_increment,
@@ -33,8 +34,7 @@ CREATE TABLE IF NOT EXISTS entregador (
     dt_nasc_entregador date,
     telefone_entregador varchar(11),
     whatsapp_entregador varchar(11),
-    endereco_entregador varchar(50),
-    constraint fk_veiculo foreign key(id_veiculo)
+    endereco_entregador varchar(50)
 );
 
 CREATE TABLE IF NOT EXISTS veiculo (
@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS veiculo (
     categoria_veiculo varchar(20),
     descricao_veiculo varchar(140)
 );
+
+ALTER TABLE `entregador` ADD CONSTRAINT `fk_veiculo` FOREIGN KEY(`id_veiculo`) REFERENCES `veiculo` (`id_veiculo`);
 
 CREATE TABLE IF NOT EXISTS produto (
     id_produto int not null primary key auto_increment,
@@ -54,19 +56,24 @@ CREATE TABLE IF NOT EXISTS produto (
 CREATE TABLE IF NOT EXISTS entrega (
     id_entrega int not null primary key auto_increment,
     id_produto int not null,
-    constraint fk_produto foreign key(id_produto),
     dt_entrega date,
     endereco_retirada varchar(50),
     endereco_entrega varchar(50)
 );
 
+ALTER TABLE `entrega` ADD CONSTRAINT `fk_produto` FOREIGN KEY(`id_produto`) REFERENCES `produto` (`id_produto`);
+    
 CREATE TABLE IF NOT EXISTS pedido (
     id_pedidos int not null primary key auto_increment,
     id_remetente int not null,
     id_entrega int not null,
     id_entregador int not null,
-    status_pedidos varchar(20),
-    constraint fk_remetente foreign key(id_remetente),
-    constraint fk_entrega foreign key(id_entrega),
-    constraint fk_entregador foreign key(id_entregador)
+    status_pedidos varchar(20)
+    FOREIGN KEY(`id_remetente`) REFERENCES `remetente` (`id_remetente`)
+    FOREIGN KEY(`id_entrega`) REFERENCES `entrega` (`id_entrega`)
+    FOREIGN KEY(`id_entregador`) REFERENCES `entregador` (`id_entregador`)
 );
+
+ALTER TABLE `pedido` ADD CONSTRAINT `fk_remetente` ;
+ALTER TABLE `pedido` ADD CONSTRAINT `fk_entrega` ;
+ALTER TABLE `pedido` ADD CONSTRAINT `fk_entregador` ;
