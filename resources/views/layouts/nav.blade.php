@@ -1,4 +1,3 @@
-@section('navbar')
 <nav class="nav-container">
 
     <div class="nav-left">
@@ -19,4 +18,3 @@
     </div>
 
 </nav>
-@endsection
