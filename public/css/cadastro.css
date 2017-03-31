@@ -1,29 +1,45 @@
-.container-cadastro, form {
-    display:flex;
-}
-.bloco1 {
-    margin-left: 50px;
-    flex: 1;
-    width: 33%;
-}
-.bloco1 .form-item, .bloco1 .form-label {
-    width: 80%;
-}
+@media (min-width: 900px) {
+    .container-cadastro, form {
+        display:flex;
+    }
+    .bloco1 {
+        margin-left: 50px;
+        flex: 1;
+        width: 33%;
+    }
+    .bloco1 .form-item, .bloco1 .form-label {
+        width: 80%;
+    }
+    .bloco2 {
+        flex: 1;
+        width: 33%;
+    }
+    .bloco2 .form-item, .bloco2 .form-label {
+        width: 80%;
+    }
+    .bloco3 {
+        flex: 1;
+        width: 33%;
+    }
+    .bloco3 .form-item, .bloco3 .form-label {
+        width: 80%;
+    }
+    .form-item {
+        min-width: 320px;
+    }
+} /* FIM MEDIA QUERY */
 
-.bloco2 {
-    flex: 1;
-    width: 33%;
-}
-.bloco2 .form-item, .bloco2 .form-label {
-    width: 80%;
-}
 
-.bloco3 {
-    flex: 1;
-    width: 33%;
-}
-.bloco3 .form-item, .bloco3 .form-label {
-    width: 80%;
+@media (max-width: 898px) {
+    .container-cadastro, form {
+        
+    }
+    .form-group {
+        width: 100%;
+    }
+    .form-item, .form-label {
+        width: 80%;
+    }
 }
 
 .form-label {
@@ -34,12 +50,9 @@
     border: 1px solid rgb(200, 200, 200);
     border-radius: 3px;
     margin: 0 0 0 14;
-    padding: 14px;
-    width: 380px;
+    padding: 14px;   
 }
-
 #btn-cadastro {
-    display: block;
     background-color: rgb(213, 68, 68);
     border: 1px solid rgb(255, 255, 255);
     border-radius: 3px;
