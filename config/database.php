@@ -47,10 +47,10 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => 'localhost', //$host
+            'host' => 'br-cdbr-azure-south-b.cloudapp.net', //$host
             'database' => 'db_app_entrega',  //$database
-            'username' => 'root', //$username
-            'password' => '', //$password
+            'username' => 'b919f2a62ef7b9', //$username
+            'password' => 'ff7c071a', //$password
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
