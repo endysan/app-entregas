@@ -17,8 +17,10 @@
 |--------------------------
  */
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'LoginController@index');
+Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
 
-Route::post('/cadastro/store', 'CadastroController@store');
+Route::post('/cadastro', 'CadastroController@store');
+Route::post('/login', 'LoginController@enter');

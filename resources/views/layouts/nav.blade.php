@@ -6,15 +6,20 @@
         </li>
     </div>
 
-
-    <div class="nav-right">
+    @if(Auth::check())
         <li class="nav-item">
-            <a class="nav-link" href="login">Login</a>
+            <a class="nav-link" href="logout">{{ Auth::user()->name}}</a>
         </li>
+    @else
+      <div class="nav-right">
+            <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+            </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="cadastro">Cadastrar</a>
-        </li>
-    </div>
-
+            <li class="nav-item">
+                <a class="nav-link" href="cadastro">Cadastrar</a>
+            </li>
+        </div>
+    @endif
+    
 </nav>

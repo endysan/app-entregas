@@ -8,18 +8,21 @@
 
         <div class="container-cadastro">
 
-            <form method="POST" action="cadastro/store">
+            <form method="POST" action="cadastro">
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
                 <div class="bloco1">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input id="nome" name="txt_nome" class="form-item" type="text">
+                    <label for="name" class="form-label">Nome</label>
+                    <input id="name" name="name" class="form-item" type="text">
 
                     <label for="email" class="form-label">Email</label>
-                    <input id="email" name="txt_email" class="form-item" type="email">
+                    <input id="email" name="email" class="form-item" type="email">
 
-                    <label for="senha" class="form-label">Senha</label>
-                    <input id="senha" name="txt_senha" class="form-item" type="password">
+                    <label for="password" class="form-label">Senha</label>
+                    <input id="password" name="password" class="form-item" type="password">
+
+                    <label for="password_confirmation" class="form-label">Confirmar Senha</label>
+                    <input id="password_confirmation" name="password_confirmation" class="form-item" type="password">
                 </div>
 
                 <div class="bloco2">

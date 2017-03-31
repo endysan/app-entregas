@@ -7,14 +7,15 @@
     <div class="container-login">
         <div class="signin">
             <h2>Comece agora!</h2>
-            <form action="/login" method="POST" class="login-form">
+
+            <form action="login" method="POST" class="login-form">
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
                 <label for="email" class="form-label">Email</label>
-                <input id="email" class="form-item" type="text" name="txt_email">
+                <input id="email" class="form-item" type="email" name="email">
                 
-                <label for="senha" class="form-label">Senha</label>
-                <input id="senha" class="form-item" type="password" name="txt_senha">
+                <label for="password" class="form-label">Senha</label>
+                <input id="password" class="form-item" type="password" name="password">
                 
                 <button class="btn-form" type="submit">Entrar</button>
 

@@ -6,8 +6,12 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/cadastro.css">
-    
+    @if ($title == 'Login')
+    	<link rel="stylesheet" href="css/login.css">
+	@endif
+    @if ($title == 'Cadastrar')
+    	<link rel="stylesheet" href="css/cadastro.css">
+	@endif
+
     <title>{{ $title }} | AppEntrega</title>
 </head>

@@ -51,7 +51,7 @@ return [
             'database' => 'db_app_entrega',  //$database
             'username' => 'root', //$username
             'password' => '', //$password
-            'charset' => 'utf8',
+            'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'strict' => true,

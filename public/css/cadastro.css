@@ -26,6 +26,28 @@
     width: 80%;
 }
 
+.form-label {
+    color: rgb(116, 124, 129);
+    text-align: left;
+}
+.form-item { 
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px;
+    margin: 0 0 0 14;
+    padding: 14px;
+    width: 380px;
+}
+
 #btn-cadastro {
     display: block;
+    background-color: rgb(213, 68, 68);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    margin-top: 20px;
+    text-transform: uppercase;
+    height: 50px;
+    min-width: 180px;
 }
