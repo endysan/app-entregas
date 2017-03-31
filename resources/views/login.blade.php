@@ -7,7 +7,7 @@
     <div class="container-login">
         <div class="signin">
             <h2>Comece agora!</h2>
-            <form action="/login" method="POST">
+            <form action="/login" method="POST" class="login-form">
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
                 <label for="email" class="form-label">Email</label>

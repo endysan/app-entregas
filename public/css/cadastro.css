@@ -1,0 +1,31 @@
+.container-cadastro, form {
+    display:flex;
+}
+.bloco1 {
+    margin-left: 50px;
+    flex: 1;
+    width: 33%;
+}
+.bloco1 .form-item, .bloco1 .form-label {
+    width: 80%;
+}
+
+.bloco2 {
+    flex: 1;
+    width: 33%;
+}
+.bloco2 .form-item, .bloco2 .form-label {
+    width: 80%;
+}
+
+.bloco3 {
+    flex: 1;
+    width: 33%;
+}
+.bloco3 .form-item, .bloco3 .form-label {
+    width: 80%;
+}
+
+#btn-cadastro {
+    display: block;
+}

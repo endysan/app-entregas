@@ -6,7 +6,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="styleshett" href="css/login.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastro.css">
     
     <title>{{ $title }} | AppEntrega</title>
 </head>

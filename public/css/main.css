@@ -4,7 +4,12 @@
 html {
     box-sizing: border-box;
 }
- 
+.container-fluid{
+    margin-top: 20px;
+    padding-top: 40px;
+    background-color: rgb(255, 255, 255);
+    min-height: 400px;
+}
 .nav-container {
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -33,4 +38,10 @@ a, a:hover, .nav-link:hover {
 .nav-link:hover {
     color: rgb(230, 100, 100);
     text-decoration: none;
+}
+
+footer {
+    margin-top: 70px;
+    padding: 10px;
+    width: 100%;
 }

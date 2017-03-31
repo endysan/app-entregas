@@ -2,7 +2,7 @@
 
     <div class="nav-left">
         <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="home">Home</a>
         </li>
     </div>
 
@@ -13,7 +13,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">Cadastrar</a>
+            <a class="nav-link" href="cadastro">Cadastrar</a>
         </li>
     </div>
 

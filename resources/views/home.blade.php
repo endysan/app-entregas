@@ -5,7 +5,7 @@
     
     @include('layouts.nav')
 
-    <div class="container">
+    <div class="container-fluid">
         <h2>Home App Entrega</h2>
 
         <a href="#">Login</a>
@@ -13,7 +13,8 @@
 
         <p class="dangan">{{ $content }}</p>
 
-        @include('layouts.footer')
+        
     </div>
+    @include('layouts.footer')
 </body>
 </html>

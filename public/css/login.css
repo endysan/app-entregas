@@ -6,14 +6,15 @@ body {
     margin: 10px;
     display: flex;
     justify-content: center;
+    height: 100vh;
 }
 .signin {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255); 
     margin: 42px 0 0 0;
-    max-width: 450px;
+    max-width: 500px;
     padding: 42px;
     line-height: 20px;
-    height: 350px;
+    height: 400px;
 }
 h2 {
     font-size: 28px;
@@ -22,11 +23,11 @@ h2 {
     padding: 0;
     text-align: center;
 }
-form {
+.login-form {
     margin-top: 40px;
 }
 
-form * {
+.login-form * {
     display: block;
     font-size: 15px;
     margin: 5px;
@@ -36,7 +37,7 @@ form * {
     text-align: left;
 }
 .form-item { 
-    border: 1px solid rgb(238, 238, 238);
+    border: 1px solid rgb(200, 200, 200);
     border-radius: 3px;
     margin: 0 0 0 14;
     padding: 14px;
