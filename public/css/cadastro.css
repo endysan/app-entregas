@@ -1,4 +1,4 @@
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
     .container-cadastro, form {
         display:flex;
     }
@@ -27,10 +27,13 @@
     .form-item {
         min-width: 320px;
     }
+    #btn-cadastro {
+        display: block;
+    }
 } /* FIM MEDIA QUERY */
 
 
-@media (max-width: 898px) {
+@media (max-width: 1199px) {
     .container-cadastro, form {
         
     }

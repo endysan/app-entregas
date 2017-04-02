@@ -11,7 +11,9 @@ body {
 .signin {
     background-color: rgb(255, 255, 255); 
     margin: 42px 0 0 0;
+    width: 50%;
     max-width: 500px;
+    min-width: 330px;
     padding: 42px;
     line-height: 20px;
     height: 450px;
@@ -41,7 +43,7 @@ h2 {
     border-radius: 3px;
     margin: 0 0 0 14;
     padding: 14px;
-    width: 380px;
+    width: 90%;
 }
 .btn-form {
     background-color: rgb(213, 68, 68);
@@ -53,5 +55,6 @@ h2 {
     margin-top: 20px;
     text-transform: uppercase;
     height: 50px;
-    min-width: 180px;
+    min-width: 125px;
+    width: 40%;
 }

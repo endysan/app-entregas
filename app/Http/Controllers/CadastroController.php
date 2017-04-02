@@ -27,6 +27,8 @@ class CadastroController extends Controller
 			'password' => bcrypt(request('password'))
 		]);
 
+		
+
     	return redirect()->home();
 	}
 }
