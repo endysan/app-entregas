@@ -21,6 +21,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
+Route::get('/checkout', 'CheckoutController@index');
 
-Route::post('/cadastro', 'CadastroController@store');
 Route::post('/login', 'LoginController@enter');
+Route::post('/cadastro', 'CadastroController@store');
+Route::post('/checkout', 'CheckoutController@create');
+
+
+// PAGSEGURO
+Route::post('/pagseguro/redirect', [
+    'uses' => 'CheckoutController@redirect',
+    'as' => 'pagseguro.redirect',
+]);
+Route::post('/pagseguro/notification', [
+    'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
+    'as' => 'pagseguro.notification',
+]);

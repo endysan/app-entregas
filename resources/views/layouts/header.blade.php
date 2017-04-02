@@ -6,7 +6,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/main.css">
-    @if ($title == 'Login')
+    @if ($title == 'Login' || $title == 'Comprar Serviço')
     	<link rel="stylesheet" href="css/login.css">
 	@endif
     @if ($title == 'Cadastrar')

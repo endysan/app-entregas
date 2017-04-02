@@ -1,3 +1,20 @@
+# AppEntrega
+App destinado a encontrar pessoas que podem entregar coisas para você,
+torne-se um entregador e ganha uma renda extra.
+
+## Linguagem
+Esse aplicativo é desenvolvido usando PHP.
+Com a framework [Laravel 5.4](https://laravel.com) 
+
+## Bibliotecas
+O método de pagamento atual é feito pelo PagSeguro
+Utilizando a biblioteca Open-source [Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro) desenvolvido por Michael Douglas.
+
+### Utilitários
+Carbon
+
+--- 
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
