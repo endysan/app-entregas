@@ -51,7 +51,7 @@ return [
 		    |
 	*/
 
-	'url' => env('APP_URL', 'http://localhost/entrega/public'),
+	'url' => env('APP_URL', 'http://localhost/app-entregas/public'),
 	//'url' => env('APP_URL', 'http://appentrega.herokuapp.com/'),
 
 	/*
