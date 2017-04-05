@@ -1,17 +1,10 @@
-
-# Created by https://www.gitignore.io/api/sass,visualstudiocode
-# C9
-.c9/*
-
-### Sass ###
-.sass-cache/
-*.css.map
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# End of https://www.gitignore.io/api/sass,visualstudiocode
+/node_modules
+/public/storage
+/public/hot
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+.env

@@ -1,53 +1,71 @@
-# App-entregas
-## Encontrando pessoas que possam entregar suas coisas
+# AppEntrega
+App destinado a encontrar pessoas que podem entregar coisas para você,
+torne-se um entregador e ganha uma renda extra.
 
-Projeto desenvolvido web desenvolvido com Bootstrap-alpha-4
-  download em [Getbootstrap](https://v4-alpha.getbootstrap.com/getting-started/download/)
+## Linguagem
+Esse aplicativo é desenvolvido usando PHP.
+Com a framework [Laravel 5.4](https://laravel.com) 
 
-### Hosts e servidores
-- O site em questão é hospedado em (http://app-entrega.azurewebsites.net)
-- O banco de dados será armazeado também no Azure, porém é necessário um aplicativo SGBD para realizar as transações.
- 
-### Mais sobre MySQL
-* Conectar MySQL no C9 - https://community.c9.io/t/connecting-php-to-mysql/1606
+## Bibliotecas
+1. O método de pagamento atual é feito pelo PagSeguro
+Utilizando a solução Open-source [Michael Douglas/Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro).
 
-* Para usar MySQL na linha de comando, digitar no terminal:
- ```sh
-mysql-ctl cli
-```
-* https://www.binpress.com/tutorial/using-php-with-mysql-the-right-way/17
+2. Para facilitar o uso da API do Google Maps com o Laravel, usamos a seguinte solução Open-source
+[Alex Pechkarev/Google-maps](https://github.com/alexpechkarev/google-maps).
 
-* Um SGBD leve e simples [SQLEctron](https://github.com/sqlectron/sqlectron-gui/releases/tag/v1.20.2)
+### Utilitários
 
 
-### Frameworks, bibliotecas e APIs
-JQuery - adicione ao fim do body
-```html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-```
+--- 
 
-JQuery Mask - adicione ao fim do body, depois do jquery
-```html
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
-```
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-Sass
-1. No terminal do C9 instale o Ruby
- ```bash
- sudo apt-get install ruby
- ```
-2. Agora instale o Sass
-```bash
- gem install sass
-```
-3. Agora vá até sua pasta onde guardará os arquivos CSS
-```bash 
-cd app/view/assets/css
-```
-4. Criando um arquivo .scss ou .sass e o arquivo css
-```bash
-sass --watch entrada.scss:saida.css
-```
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
+## About Laravel
 
-https://www.binpress.com/tutorial/php-bootstrapping-crash-course/146
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+
+## Learning Laravel
+
+Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+
+## Laravel Sponsors
+
+We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+
+- **[Vehikl](http://vehikl.com)**
+- **[Tighten Co.](https://tighten.co)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- **[Styde](https://styde.net)**
+- **[Codecourse](https://www.codecourse.com)**
+- [Fragrantica](https://www.fragrantica.com)
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
