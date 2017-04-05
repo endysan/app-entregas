@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 @include('layouts.header')
-
 <body>
+
     @include('layouts.nav')
     <div class="container-fluid">
 
@@ -67,17 +67,19 @@
                         <input id="" class="form-item" type="text">
                     </div>
                 </div>
+
                 <div class="form-group-btn">
                     <button id="btn-cadastro" class="btn-form" type="submit">Cadastrar</button>
                 </div>
+
                 @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
             </form>
         </div>

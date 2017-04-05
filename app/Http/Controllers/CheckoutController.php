@@ -10,9 +10,7 @@ class CheckoutController extends Controller
     //
     public function index() 
     {
-        $data = [
-            'title' => 'Comprar Serviço'
-        ];
+        $data = ['title' => 'Comprar Serviço'];
         return view('checkout.index', $data);
     }
 

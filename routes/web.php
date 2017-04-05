@@ -22,7 +22,15 @@ Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
 Route::get('/checkout', 'CheckoutController@index');
+Route::get('/maps', 'MapsController@index');
+Route::get('maps/distance', 'MapsController@calculateDistance');
 
+//GOOGLE MAPS
+Route::get('/googled7bc6b7efc8f1591.html', function(){
+    return view('googled7bc6b7efc8f1591.html');
+});
+
+//POST REQUESTS
 Route::post('/login', 'LoginController@enter');
 Route::post('/cadastro', 'CadastroController@store');
 Route::post('/checkout', 'CheckoutController@create');

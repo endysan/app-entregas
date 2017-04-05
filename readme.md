@@ -7,11 +7,14 @@ Esse aplicativo é desenvolvido usando PHP.
 Com a framework [Laravel 5.4](https://laravel.com) 
 
 ## Bibliotecas
-O método de pagamento atual é feito pelo PagSeguro
-Utilizando a biblioteca Open-source [Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro) desenvolvido por Michael Douglas.
+1. O método de pagamento atual é feito pelo PagSeguro
+Utilizando a solução Open-source [Michael Douglas/Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro).
+
+2. Para facilitar o uso da API do Google Maps com o Laravel, usamos a seguinte solução Open-source
+[Alex Pechkarev/Google-maps](https://github.com/alexpechkarev/google-maps).
 
 ### Utilitários
-Carbon
+
 
 --- 
 

@@ -6,14 +6,10 @@
     @include('layouts.nav')
 
     <div class="container">
-        <h2>Checkout App Entrega</h2>
-        <hr/>
+       <h2>Alguns testes com mapas</h2>
 
-        <a href="{{ $link }}">
-            <img src="img/209x48-pagar-assina.gif"/>
-        </a>
+       <a id="calcular-btn" href="maps/distance">Calcular distancia</a>
     </div>
     @include('layouts.footer')
-
 </body>
 </html>

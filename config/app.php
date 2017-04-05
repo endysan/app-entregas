@@ -179,9 +179,10 @@ return [
 		App\Providers\RouteServiceProvider::class,
 
 		/*
-					* EXTERNALS PAGSEGURO ServiceProvider
+					* EXTERNALS PAGSEGURO ServiceProvider | GOOGLE MAPS
 		*/
-		laravel\pagseguro\Platform\Laravel5\ServiceProvider::class
+		laravel\pagseguro\Platform\Laravel5\ServiceProvider::class,
+		GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
 
 	],
 
@@ -213,6 +214,7 @@ return [
 		'Event' => Illuminate\Support\Facades\Event::class,
 		'File' => Illuminate\Support\Facades\File::class,
 		'Gate' => Illuminate\Support\Facades\Gate::class,
+		'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
 		'Hash' => Illuminate\Support\Facades\Hash::class,
 		'Lang' => Illuminate\Support\Facades\Lang::class,
 		'Log' => Illuminate\Support\Facades\Log::class,

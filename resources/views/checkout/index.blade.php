@@ -5,25 +5,32 @@
     
     @include('layouts.nav')
 
-    <div class="container-fluid">
-        <h2>Pagar pelo seu pedido</h2>
-        <hr/>
-
-        <form action="checkout" method="post">
-            {{ csrf_field() }}
-
-            <label for="nome" class="form-label">Nome</label>
-            <input type="type" id="nome" name="nome" class="form-item">
-
-            <label for="produto" class="form-label">Nome produto</label>
-            <input type="type" id="produto" name="produto" class="form-item">
-
-            <label for="valor" class="form-label">Valor</label>
-            <input type="number" id="valor" name="valor" class="form-item">
-
-            <button type="submit" class="btn">Comprar</button>
-        </form>
+    <div class="container">
         
+        <div class="checkout-container">
+            <h2>Pagar pelo seu pedido</h2>
+            <hr/>
+            <form action="checkout" method="post">
+                {{ csrf_field() }}
+
+                <div class="form-group">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="type" id="nome" name="nome" class="form-item">
+                </div>
+
+                <div class="form-group">
+                    <label for="produto" class="form-label">Nome produto</label>
+                    <input type="type" id="produto" name="produto" class="form-item">
+                </div>
+
+                <div class="form-group">
+                    <label for="valor" class="form-label">Valor</label>
+                    <input type="number" id="valor" name="valor" class="form-item">
+                </div>
+
+                <button type="submit" class="btn-form">Comprar</button>
+            </form>
+        </div>
     </div>
     @include('layouts.footer')
 

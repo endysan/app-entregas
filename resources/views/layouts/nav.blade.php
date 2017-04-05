@@ -7,6 +7,7 @@
         @if(Auth::check())
         <li class="nav-item">
             <a class="nav-link" href="checkout">Realizar Compra</a>
+            <a class="nav-link" href="maps">Teste Maps</a>
         </li>
         @endif
     </div>

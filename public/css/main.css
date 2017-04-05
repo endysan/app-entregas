@@ -4,9 +4,9 @@
 html {
     box-sizing: border-box;
 }
-.container-fluid{
+.container, .container-fluid{
     margin-top: 20px;
-    padding-top: 40px;
+    padding-top: 20px;
     background-color: rgb(255, 255, 255);
     min-height: 400px;
 }
