@@ -1,0 +1,58 @@
+html {
+  font-family: 'Roboto', sans-serif; }
+
+body {
+  height: 100vh;
+  background-color: #eee; }
+
+header {
+  height: 45px;
+  background-color: white; }
+  header nav {
+    display: flex;
+    display: -webkit-flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    header nav a {
+      border-radius: 3px;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.5);
+      margin-right: 10px; }
+      header nav a:hover {
+        color: white;
+        background-color: #D54444; }
+
+main {
+  height: 100vh;
+  margin: 0 100px;
+  padding: 25px 50px;
+  background-color: white; }
+
+.box {
+  background-color: white;
+  height: 500px;
+  width: 600px; }
+
+.form-item {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 5px; }
+
+.btn {
+  border: 1px solid #D54444;
+  cursor: pointer;
+  box-shadow: none;
+  border-radius: 3px;
+  padding: 7px 40px;
+  background-color: white;
+  color: #D54444;
+  font-weight: 700;
+  font-size: 16px; }
+  .btn:hover {
+    background-color: #D54444;
+    color: white; }
+
+/*# sourceMappingURL=style.css.map */

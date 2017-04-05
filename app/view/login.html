@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login - App-entrega</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
+    <link rel="stylesheet" href="./assets/css/blaze.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="cadastrar.html">Cadastrar</a>
+            <a href="#">Pedidos</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <div class="u-absolute-center box">
+        <form action="../login_auth.php" method="POST">
+            <label class="form-item">
+                Email
+                <input id="email" type="text" name="txt_email">
+            </label>
+            <label class="form-item">
+                Senha
+                <input id="senha" type="password" name="txt_senha">
+            </label>
+
+            <button class="btn" type="submit">Entrar</button>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
