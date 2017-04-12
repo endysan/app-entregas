@@ -23,7 +23,7 @@ Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
-Route::get('maps/distance', 'MapsController@calculateDistance');
+Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
 
 //GOOGLE MAPS
 Route::get('/googled7bc6b7efc8f1591.html', function(){

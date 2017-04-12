@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use laravel\pagseguro\Platform\Laravel5;
+use \Illuminate\Support\Facades\Validator;
 
 class CheckoutController extends Controller
 {
@@ -16,15 +17,26 @@ class CheckoutController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'valor' => 'required',
-        ]);
+        $messages = [
+            'min' => 'O :attribute deve ser completo.',
+            'required' => 'O :attribute é obrigatório',
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'nome' => 'required|min:10|max:100',
+            'produto' => 'required|min:10',
+            'valor' => 'required'
+        ], $messages);
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
 
         $venda = [
             'items' => [
                 [
                     'id' => '18',
-                    'description' => request('produto'),
+                    'description' => strval(request('produto')),
                     'quantity' => '1',
                     'amount' => request('valor'),
                     'shippingCost' => '3.10',
@@ -45,7 +57,7 @@ class CheckoutController extends Controller
             ],
             'sender' => [
                 'email' => 'c76686060164578186366@sandbox.pagseguro.com.br',
-                'name' => request('nome'),
+                'name' => strval(request('nome')),
             ]
         ];
 
@@ -59,6 +71,8 @@ class CheckoutController extends Controller
             'title' => 'Checkout',
             'link' => $information->getLink()
         ];
+
+        
         return view('checkout.checkout', $data);
     }
 }

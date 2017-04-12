@@ -12,18 +12,18 @@ class MapsController extends Controller
         $data = ['title' => 'Mapa'];
         return view('maps.index', $data);
     }
-    public function calculateDistance()
+    public function calculateDistance($origin, $destination)
     {
         $distance = \GoogleMaps::load('distancematrix')
-            ->setParamByKey('origins', 'rua+oswaldo+cruz+39+boqueirao+santos')
-            ->setParamByKey('destinations', 'rua+fernandes+onofre+trizzini+546+itaoca+mongagua')                      
-            ->getParamByKey('rows.elements');
+            ->setParamByKey('origins', $origin)
+            ->setParamByKey('destinations', $destination)                      
+            ->get();
 
         $data = [ 
             'title' => 'Distancia',
             'distancia' => $distance,
         ];
 
-        return view('maps.distancia', $data);
+        return $data['distancia'];
     }
 }
