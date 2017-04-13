@@ -6,27 +6,71 @@ torne-se um entregador e ganha uma renda extra.
 Esse aplicativo é desenvolvido usando PHP.
 Com a framework [Laravel 5.4](https://laravel.com) 
 
+## Instalação
+
+No cloud9 será feito da seguinte forma
+```bash
+sudo apt-get update
+sudo apt-get install libmcrypt-dev
+```
+
+Fazendo o download do phpbrew
+
+```bash
+curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+chmod +x phpbrew
+sudo mv phpbrew /usr/local/bin/
+phpbrew init
+
+# add this to your ~/.bashrc:
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+phpbrew lookup-prefix ubuntu
+```
+
+Quando terminar, hora de instalar o php, pode demorar um pouco
+
+```bash
+phpbrew install 7.0 +default
+phpbrew switch php-7.0.17
+phpbrew use php-7.0.17
+php -v
+
+PHP 7.0.17 (cli) (built: Apr  6 2017 12:43:11) ( NTS )
+Copyright (c) 1997-2017 The PHP Group
+Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
+```
+E finalmente instale a extensão cURL, necessária para outras bibliotecas
+
+```bash
+phpbrew ext install curl
+```
+
 ## Bibliotecas
 1. O método de pagamento atual é feito pelo PagSeguro
-Utilizando a solução Open-source [Michael Douglas/Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro).
+Utilizando a solução Open-source [Michael Douglas/Laravel-pagseguro](https://github.com/michaeldouglas/laravel-pagseguro), 
+seguir os passos de instalação no github.
 
 2. Para facilitar o uso da API do Google Maps com o Laravel, usamos a seguinte solução Open-source
-[Alex Pechkarev/Google-maps](https://github.com/alexpechkarev/google-maps).
+[Alex Pechkarev/Google-maps](https://github.com/alexpechkarev/google-maps), seguir os passos de instalação presentes no github.
 
-### Utilitários
-
+>Hey Adilson é o Furukawa, então existe o GetNinjas, você pode se basear nele pra fazer as coisas (doc e funcionalidades), enfim (é só uma dica, exclui essa reposta depois :p )
 
 --- 
-# App-entregas
-## Encontrando pessoas que possam entregar suas coisas
 
-Projeto desenvolvido web desenvolvido com Bootstrap-alpha-4
-  download em [Getbootstrap](https://v4-alpha.getbootstrap.com/getting-started/download/)
-
-### Hosts e servidores
-- O site em questão é hospedado em (http://app-entrega.azurewebsites.net)
-- O banco de dados será armazeado também no Azure, porém é necessário um aplicativo SGBD para realizar as transações.
+## Hosts e servidores
+- O site em questão é hospedado em (http://appentrega.herokuapp.com)
+- Para fazer o deploy das atualizações, basta realizar os seguintes passos no terminal: 
+```bash
+git add .
+git commit -m "mensagem do commit"
+git push heroku master
+```
  
+## Banco de dados
+A linguagem de banco de dados usada é MySQL, servidor de banco de dados usado é o Azure.
+informações de conexão estão disponíveis no arquivo `.env` na raiz do projeto.
+
 ### Mais sobre MySQL
 * Conectar MySQL no C9 - https://community.c9.io/t/connecting-php-to-mysql/1606
 
@@ -49,27 +93,6 @@ JQuery Mask - adicione ao fim do body, depois do jquery
 ```html
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
 ```
-
-Sass
-1. No terminal do C9 instale o Ruby
- ```bash
- sudo apt-get install ruby
- ```
-2. Agora instale o Sass
-```bash
- gem install sass
-```
-3. Agora vá até sua pasta onde guardará os arquivos CSS
-```bash 
-cd app/view/assets/css
-```
-4. Criando um arquivo .scss ou .sass e o arquivo css
-```bash
-sass --watch entrada.scss:saida.css
-```
-
-
-https://www.binpress.com/tutorial/php-bootstrapping-crash-course/146
 
 --- 
 

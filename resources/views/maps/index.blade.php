@@ -11,7 +11,7 @@
     @include('layouts.nav')
 
     <div class="container">
-       <h2>Saiba a distance entre você e seu destino</h2>
+       <h2>Saiba a distância entre você e seu destino</h2>
         <div id="app">
             
             

@@ -31,4 +31,8 @@ class CadastroController extends Controller
 
     	return redirect()->home();
 	}
+	public function editar() 
+	{
+		return view('usuario.editar');
+	}
 }

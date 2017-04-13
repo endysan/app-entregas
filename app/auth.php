@@ -10,7 +10,7 @@
     $real_nasc = str_replace('/', '-', $_POST['txt_dt_nasc']); //Troca para o formato padrao de data no MySQL
     $dt_nasc = DateTime::createFromFormat('d-m-Y', $real_nasc);
     $dt_nasc = $dt_nasc->format('Y-m-d');
-    // http://stackoverflow.com/questions/12120433/php-mysql-insert-date-format
+    
     $telefone = $_POST['txt_telefone'];
     $whatsapp = $_POST['txt_whastapp'];
     
