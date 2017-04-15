@@ -12,6 +12,7 @@ class LoginController extends Controller
         $data = ['title' => 'Login'];
         return view('login', $data);
     }
+    
     public function enter(Request $request) 
     {
         if( auth()->attempt(request(['email', 'password'])) )

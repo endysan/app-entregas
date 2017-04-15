@@ -15,7 +15,7 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'Home',
-            'content' => 'Danganronpa 2'
+            'content' => 'AppEntrega'
         ];
         return view('home', $data);
     }

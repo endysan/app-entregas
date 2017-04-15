@@ -10,8 +10,9 @@ class CadastroController extends Controller
 	public function index() 
 	{
 		$data = ['title' => 'Cadastrar'];
-		return view('cadastro', $data);
+		return view('usuario.cadastro', $data);
 	}
+	
 	public function store(Request $request) 
 	{
 		// Validando 
@@ -27,12 +28,15 @@ class CadastroController extends Controller
 			'password' => bcrypt(request('password'))
 		]);
 
-		
 
     	return redirect()->home();
 	}
+	
 	public function editar() 
 	{
-		return view('usuario.editar');
+		$data = [
+			'title' => 'Editar Perfil'	
+		];
+		return view('usuario.editar', $data);
 	}
 }
