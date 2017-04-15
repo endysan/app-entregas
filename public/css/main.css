@@ -1,4 +1,4 @@
-*, *:before, *:after {
+*, *::before, *::after {
     box-sizing: inherit;
 }
 html {
@@ -44,4 +44,65 @@ footer {
     margin-top: 70px;
     padding: 10px;
     width: 100%;
+}
+.form-label {
+    color: rgb(116, 124, 129);
+    text-align: left;
+}
+.form-item {
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 3px;
+    margin: 0 0 0 14;
+    padding: 14px;
+    width: 350px;
+}
+.button {
+    background-color: rgb(255,255,255);
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: rgb(213, 68, 68);
+    cursor: pointer;
+    font-weight: 700;
+    outline: none;
+    text-transform: uppercase;
+    height: 45px;
+    min-width: 125px;
+    width: 15%;
+    max-width: 250px;
+    margin-top: 20px;
+}
+.button-white {
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(213, 68, 68);
+    color: rgb(213, 68, 68);
+    padding: 10px 20px;
+}
+.button-white {
+    text-decoration: none;
+}
+.button-green {
+    background-color: rgb(100, 200, 70);
+    color: white;
+}
+.button-green:hover {
+    color: white;
+    background-color: rgb(90, 190, 60);
+}
+
+.button-red {
+    background-color: rgb(213, 68, 68);
+    color: white;
+}
+.button-red:hover {
+    background-color: rgb(203, 58, 58);
+    color: white;
+}
+
+.button-blue {
+    background-color: rgb(68, 68, 213);
+    color: white;
+}
+.button-blue:hover {
+    background-color: rgb(58, 58, 203);
+    color: white;
 }

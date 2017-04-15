@@ -6,6 +6,7 @@
         </li>
         @if(Auth::check())
         <li class="nav-item">
+            <a class="nav-link" href="pedidos">Pedidos</a>
             <a class="nav-link" href="checkout">Realizar Compra</a>
             <a class="nav-link" href="maps">Calcular distância</a>
         </li>

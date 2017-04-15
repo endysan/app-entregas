@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group-btn">
-                    <button id="btn-cadastro" class="btn-form" type="submit">Cadastrar</button>
+                    <button id="btn" class="button button-red" type="submit">Cadastrar</button>
                 </div>
 
                 @if (count($errors) > 0)

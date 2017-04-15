@@ -25,7 +25,7 @@ Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
 Route::get('/editar', 'CadastroController@editar');
-
+Route::get('/pedidos', 'PedidosController@index');
 //GOOGLE MAPS
 Route::get('/googled7bc6b7efc8f1591.html', function(){
     return view('googled7bc6b7efc8f1591.html');

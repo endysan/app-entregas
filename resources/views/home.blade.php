@@ -19,7 +19,7 @@
             
             @else
             <p class="no-pedidos">Você não fez nenhum pedido</p>
-            <a class="btn" href="#">Criar Agora</a>
+            <a class="button button-white" href="#">Criar Agora</a>
             @endif
 
         @else

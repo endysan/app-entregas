@@ -10,7 +10,8 @@
 
 @section('content')
 <div class="container-pedido">
-
+    <h2>Criar um pedido</h2>
+    
     <form method="POST" action="pedido">
         {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
@@ -56,7 +57,7 @@
         </div>
 
         <div class="form-group-btn">
-            <button id="btn-cadastro" class="btn-form" type="submit">Criar Pedido</button>
+            <button id="btn-cadastro" class="button button-red" type="submit">Criar Pedido</button>
         </div>
 
         @if (count($errors) > 0)

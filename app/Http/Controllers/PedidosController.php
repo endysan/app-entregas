@@ -9,8 +9,8 @@ class PedidosController extends Controller
 {
     public function index()
     {
-        $data ['title' => 'Pedidos']
-        return view('pedidos.criar', $data);
+        $data = ['title' => 'Pedidos'];
+        return view('pedidos.index', $data);
     }
     
     public function criar(Request $request)

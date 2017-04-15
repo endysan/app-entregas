@@ -17,7 +17,7 @@
                 <label for="password" class="form-label">Senha</label>
                 <input id="password" class="form-item" type="password" name="password">
                 
-                <button class="btn-form" type="submit">Entrar</button>
+                <button class="btn btn-red" type="submit">Entrar</button>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">

@@ -28,7 +28,7 @@
                     <input type="number" id="valor" name="valor" class="form-item">
                 </div>
 
-                <button type="submit" class="btn-form">Comprar</button>
+                <button type="submit" class="button button-green">Comprar</button>
 
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">

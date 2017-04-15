@@ -18,13 +18,14 @@ class CheckoutController extends Controller
     public function create(Request $request)
     {
         $messages = [
-            'min' => 'O :attribute deve ser completo.',
+            'regex' => 'O :attribute deve ser completo',
+            'min' => 'O :attribute deve ter no minimo :min.',
             'required' => 'O :attribute é obrigatório',
         ];
 
         $validator = Validator::make($request->all(), [
-            'nome' => 'required|min:10|max:100',
-            'produto' => 'required|min:10',
+            'nome' => "required|min:5|max:100|regex:^[\\p{L} .'-]+$^",
+            'produto' => 'required|min:5',
             'valor' => 'required'
         ], $messages);
         
