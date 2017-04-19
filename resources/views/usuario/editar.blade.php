@@ -17,11 +17,11 @@
                 <a class="_barra" href="editar/senha">Alterar senha</a>
             </li>
             <li>
-                <a class="_barra" href="editar/endereco.html">Editar endereço</a>
+                <a class="_barra" href="editar/endereco">Editar endereço</a>
             </li>
         </ul>
 
-        <form method="POST" action="cadastro" >
+        <form method="POST" action="cadastro">
 
             <div class="form-group">
                 <aside>

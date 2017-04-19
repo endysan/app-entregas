@@ -2,7 +2,7 @@
 @section('title', 'Editar Perfil')
 
 @section('css')
-    <link rel='stylesheet' href='editar.css'>
+    <link rel="stylesheet" href="css/editar.css">
 @endsection
 
 
@@ -13,13 +13,13 @@
 
     <ul class="lista">
         <li>
-            <a class="_barra is-active" href="/editar.html">Editar perfil</a>
+            <a class="_barra is-active" href="editar">Editar perfil</a>
         </li>
         <li>
-            <a class="_barra" href="/editarsenha.html">Alterar senha</a>
+            <a class="_barra" href="editar/senha">Alterar senha</a>
         </li>
         <li>
-            <a class="_barra" href="/editarendereco.html">Editar endereço</a>
+            <a class="_barra" href="editar/endereco">Editar endereço</a>
         </li>
     </ul>
 

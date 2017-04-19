@@ -33,6 +33,7 @@
 	border-left: 2px solid black;
 }
 .container-cadastro{
+	background-color: white;
     border: 1px solid #dbdbdb;
     display: flex;
     flex-direction: row;
