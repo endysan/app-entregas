@@ -21,11 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
+Route::get('/editar', 'CadastroController@editar');
+Route::get('/editar/endereco', 'CadastroController@editarEndereco');
+Route::get('/editar/senha', 'CadastroController@passwordReset');
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
-Route::get('/editar', 'CadastroController@editar');
 Route::get('/pedidos', 'PedidosController@index');
+
+
 //GOOGLE MAPS
 Route::get('/googled7bc6b7efc8f1591.html', function(){
     return view('googled7bc6b7efc8f1591.html');

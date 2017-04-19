@@ -1,0 +1,69 @@
+.container-cadastro .lista {
+	border-right: 1px solid #dbdbdb;
+	flex-basis: 236px;
+}
+
+.container-cadastro ul {
+	list-style: none;
+}
+
+.container-cadastro a {
+	text-decoration: none;
+	padding: 5px 10px;
+	color: black;
+}
+
+.container-cadastro ._barra{
+	border-left: 2px solid transparent;
+	display: block;
+	font-size: 16px;
+	height: 100%;
+	line-height: 20px;
+	padding: 16px 16px 16px 30px;
+
+}
+.container-cadastro ._barra:hover {
+	border-left: 2px solid rgb(230, 230, 230);
+}
+.container-cadastro .is-active {
+	font-weight: 600;
+	border-left: 2px solid black;
+}
+.container-cadastro .is-active:hover {
+	border-left: 2px solid black;
+}
+.container-cadastro{
+    border: 1px solid #dbdbdb;
+    display: flex;
+    flex-direction: row;
+    margin: 60px 159px 0;
+}
+
+.container-cadastro form{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin: 15px 0;
+	font-size: 17px;
+}
+
+.container-cadastro input{
+	margin: 5px 5px;
+	flex-grow: 1;
+}
+.container-cadastro .form-group{
+	flex-direction: row;
+	display: flex;
+}
+.container-cadastro aside{
+	text-align: right;
+	padding: 5px 35px;
+	flex-grow: 1;
+}
+
+.container-cadastro input[type='text'], .container-cadastro input[type='password']{
+	width: 330px;
+	padding: 5px;
+	border: 1px solid rgb(200,200,200);
+	outline: none;
+}

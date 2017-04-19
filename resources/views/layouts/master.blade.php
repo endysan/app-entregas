@@ -16,13 +16,10 @@
     
 <body>
     @include('layouts.nav')
-    <div class="container">
         
         @yield('content')  
         
         
         @include('layouts.footer')
-    </div>
-    
 </body>
 </html>

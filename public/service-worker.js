@@ -11,12 +11,12 @@
 
 // cacheName é para dizer a versão do cache, quando tiver novo conteúdo voce 
 //   vai querer que seja atualizado.
-var cacheName = 'v1';
+var cacheName = 'v10';
 
 // Todos os arquivos que desejamos que o serviceWorker guarde para nós.
 var cacheFiles = [
-    './css/app.css',
-    './css/main.css',
+    //'./css/app.css',
+    //'./css/main.css',
     'https://fonts.googleapis.com/css?family=Raleway:300,400,600',
     'https://fonts.gstatic.com/s/raleway/v11/0dTEPzkLWceF7z0koJaX1A.woff2',
     'https://fonts.gstatic.com/s/raleway/v11/xkvoNo9fC8O2RDydKj12b_k_vArhqVIZ0nv9q090hN8.woff2',

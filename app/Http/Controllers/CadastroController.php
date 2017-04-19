@@ -39,4 +39,14 @@ class CadastroController extends Controller
 		];
 		return view('usuario.editar', $data);
 	}
+	
+	public function editarEndereco()
+	{
+		return view('usuario.editar-endereco');
+	}
+
+	public function passwordReset()
+	{
+		return view('usuario.editar-senha');
+	}
 }

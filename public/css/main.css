@@ -7,7 +7,7 @@ html {
 .container, .container-fluid{
     margin-top: 20px;
     padding-top: 20px;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     min-height: 400px;
 }
 .nav-container {
@@ -26,7 +26,7 @@ html {
     list-style: none;
 }
 a, a:hover, .nav-link:hover {
-    color: rgb(230, 100, 100);   
+    color: rgb(255, 60, 60);   
 }
 .nav-link {
     color: rgb(130, 130, 130);
@@ -36,7 +36,7 @@ a, a:hover, .nav-link:hover {
     padding: 15px;
 }
 .nav-link:hover {
-    color: rgb(230, 100, 100);
+    color: rgb(255, 60, 60);
     text-decoration: none;
 }
 
@@ -53,18 +53,19 @@ footer {
     border: 1px solid rgb(200, 200, 200);
     border-radius: 3px;
     margin: 0 0 0 14;
-    padding: 14px;
+    padding: 10px 15px;
     width: 350px;
 }
 .button {
     background-color: rgb(255,255,255);
     border: 1px solid transparent;
     border-radius: 3px;
-    color: rgb(213, 68, 68);
+    color: rgb(215, 70, 70);
     cursor: pointer;
     font-weight: 700;
+    font-size: 16px;
     outline: none;
-    text-transform: uppercase;
+
     height: 45px;
     min-width: 125px;
     width: 15%;
@@ -73,8 +74,8 @@ footer {
 }
 .button-white {
     background-color: rgb(255,255,255);
-    border: 1px solid rgb(213, 68, 68);
-    color: rgb(213, 68, 68);
+    border: 1px solid rgb(215, 70, 70);
+    color: rgb(215, 70, 70);
     padding: 10px 20px;
 }
 .button-white {
@@ -86,23 +87,23 @@ footer {
 }
 .button-green:hover {
     color: white;
-    background-color: rgb(90, 190, 60);
+    background-color: rgb(105, 205, 80);
 }
 
 .button-red {
-    background-color: rgb(213, 68, 68);
+    background-color: rgb(215, 70, 70);
     color: white;
 }
 .button-red:hover {
-    background-color: rgb(203, 58, 58);
+    background-color: rgb(220, 75, 75);
     color: white;
 }
 
 .button-blue {
-    background-color: rgb(68, 68, 213);
+    background-color: rgb(70, 70, 215);
     color: white;
 }
 .button-blue:hover {
-    background-color: rgb(58, 58, 203);
+    background-color: rgb(75, 75, 220);
     color: white;
 }

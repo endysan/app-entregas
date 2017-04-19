@@ -16,7 +16,8 @@
     <div class="nav-right">
         @if(Auth::check())
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ Auth::user()->name}}</a>
+                <!-- NOME DO USUARIO | LINK EDITAR PERFIL -->
+                <a class="nav-link" href="editar">{{ Auth::user()->name}}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="logout">Sair</a>
