@@ -17,16 +17,16 @@ html {
     width: 100%;
     padding: 20px;
     justify-content: space-between;
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(99, 35, 188, 0.3);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(99, 35, 188, 0.3);;
+    box-shadow: 0px 1px 1px 0px rgba(99, 35, 188, 0.3);;
 }
 .nav-item {
     display: inline-block;
     list-style: none;
 }
 a, a:hover, .nav-link:hover {
-    color: rgb(255, 60, 60);   
+    color: rgb(100, 35, 190);   
 }
 .nav-link {
     color: rgb(130, 130, 130);
@@ -36,7 +36,7 @@ a, a:hover, .nav-link:hover {
     padding: 15px;
 }
 .nav-link:hover {
-    color: rgb(255, 60, 60);
+    color: rgb(100, 35, 190);
     text-decoration: none;
 }
 
@@ -106,4 +106,11 @@ footer {
 .button-blue:hover {
     background-color: rgb(75, 75, 220);
     color: white;
+}
+.button-purple {
+    background-color: rgb(100, 35, 190);
+    color: white;
+}
+.button-purple:hover {
+    background-color: rgb(105, 40, 195);
 }
