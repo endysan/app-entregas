@@ -21,3 +21,8 @@
 #btn-cadastro {
     min-width: 180px;
 }
+
+.form-group aside {
+    text-align: right;
+    padding: 2px 15px;
+}

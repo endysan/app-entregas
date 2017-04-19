@@ -22,6 +22,7 @@ class LoginController extends Controller
         return back()->withErrors([
             'message' => 'Por favor verifique seu Email ou Senha'
         ]);
+        
     }
 
     public function destroy()

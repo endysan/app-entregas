@@ -64,7 +64,7 @@
             </div>
 
         <div class="form-group-btn">
-            <button id="btn-cadastro" class="button button-red" type="submit">Cadastrar</button>
+            <button id="btn-cadastro" class="button button-purple" type="submit">Cadastrar</button>
         </div>
     </form>
     </div>

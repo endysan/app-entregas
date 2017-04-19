@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group-btn">
-            <button id="btn-cadastro" class="button button-red" type="submit">Criar Pedido</button>
+            <button id="btn-cadastro" class="button button-purple" type="submit">Criar Pedido</button>
         </div>
 
         @if (count($errors) > 0)

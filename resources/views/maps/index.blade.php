@@ -18,7 +18,7 @@
             <input class="form-item" type="text" v-model="origin">
             <input class="form-item" type="text" v-model="destination">
 
-            <button class="button button-blue" v-on:click="onClick">Calcular</button>
+            <button class="button button-purple" v-on:click="onClick">Calcular</button>
             
             <h3 v-if="calculated">Local de origem: @{{gOrigin}}</h3>
             <h3 v-if="calculated">Local de destino: @{{gDestination}}</h3>
