@@ -29,7 +29,7 @@
                 </aside>
 
                 <div>
-                    <input id="name" name="name" class="form-item" type="text">
+                    <input id="name" name="name" class="form-item" type="text" value="{{ Auth::user()->name }}">
                 </div>
             </div>
             
@@ -39,7 +39,7 @@
                 </aside>
 
                 <div>
-                    <input id="dt_nasc" name="txt_dt_nasc" class="form-item" type="text">
+                    <input id="dt_nasc" name="txt_dt_nasc" class="form-item" type="text" value="{{ Auth::user()->dt_nasc }}">
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 </aside>
                 
                 <div>
-                    <input id="telefone" name="txt_telefone" class="form-item" type="text">
+                    <input id="telefone" name="txt_telefone" class="form-item" type="text" value="{{ Auth::user()->telefone }}">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 </aside>
                 
                 <div>
-                    <input id="whatsapp" name="txt_whatsapp" class="form-item"  type="text">
+                    <input id="whatsapp" name="txt_whatsapp" class="form-item"  type="text" value="{{ Auth::user()->whatsapp }}">
                 </div>
             </div>
 
