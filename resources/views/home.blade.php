@@ -13,7 +13,7 @@
             @if(isset($pedidos))
             <ul class="lista-pedidos">
                 @foreach($pedidos as $pedido)
-                    <li class="item-pedido">{{ $pedido->item }}</li>
+                    <li class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
                 @endforeach
             </ul>
             
