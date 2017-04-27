@@ -43,8 +43,10 @@ class CadastroController extends Controller
 			$usuario->name = $request->name;
 		}
 		if ( request('txt_dt_nasc') != null){
-			$format= $request->txt_dt_nasc->format('Y-m-a');
-			$usuario->dt_nasc = $format;
+
+			Carbon::createFromDate(request('txt_dt_nasc'));
+			
+			$usuario->dt_nasc = $request->txt_dt_nasc;
 		}
 		if ( request('txt_telefone') != null){
 			$usuario->telefone = $request->txt_telefone;
@@ -66,6 +68,25 @@ class CadastroController extends Controller
 	
 	public function editarEndereco()
 	{
+		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
+		
+		$usuario = User::findOrFail($id); //Encontre no Model User, o id
+
+		if ( request('estado') != null){
+			$usuario->estado = $request->estado;
+		}
+		if ( request('cidade') != null){
+
+			$usuario->cidade = $request->cidade; //usuario = date.format?
+		}
+		if ( request('bairro') != null){
+			$usuario->bairro = $request->estado;
+		}
+		$usuario->save();
+		
+		auth()->logout(); //Não funcionou =/
+		auth()->loginUsingId($id);
+		
 		return view('usuario.editar-endereco');
 	}
 

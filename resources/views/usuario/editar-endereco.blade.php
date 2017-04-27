@@ -27,7 +27,7 @@
         {{ csrf_field() }}
         <div class="form-group">
             <aside>
-                <label for="name" class="form-label">Estado</label>
+                <label for="estado" class="form-label">Estado</label>
             </aside>
 
             <div>
@@ -37,7 +37,7 @@
             
         <div class="form-group">
             <aside>
-                <label for="dt_nasc" class="form-label">Cidade</label>
+                <label for="cidade" class="form-label">Cidade</label>
             </aside>
 
             <div>
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <aside>
-                <label for="telefone" class="form-label">Bairro</label>
+                <label for="bairro" class="form-label">Bairro</label>
             </aside>
             
             <div>
