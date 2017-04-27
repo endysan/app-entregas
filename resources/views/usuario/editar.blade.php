@@ -14,10 +14,10 @@
                 <a class="_barra is-active" href="editar">Editar perfil</a>
             </li>
             <li>
-                <a class="_barra" href="editar/senha">Alterar senha</a>
+                <a class="_barra" href="editarsenha">Alterar senha</a>
             </li>
             <li>
-                <a class="_barra" href="editar/endereco">Editar endereço</a>
+                <a class="_barra" href="editarendereco">Editar endereço</a>
             </li>
         </ul>
 
