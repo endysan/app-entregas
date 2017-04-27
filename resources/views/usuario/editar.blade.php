@@ -22,14 +22,14 @@
         </ul>
 
         <form method="POST" action="cadastro">
-
+            {{ csrf_field() }}
             <div class="form-group">
                 <aside>
                     <label for="name" class="form-label">Nome</label>
                 </aside>
 
                 <div>
-                    <input id="name" name="name" class="form-item" type="text" value="{{ Auth::user()->name }}">
+                    <input id="name" name="name" class="form-item" type="text" placeholder="{{ Auth::user()->name }}">
                 </div>
             </div>
             
@@ -39,7 +39,7 @@
                 </aside>
 
                 <div>
-                    <input id="dt_nasc" name="txt_dt_nasc" class="form-item" type="text" value="{{ Auth::user()->dt_nasc }}">
+                    <input id="dt_nasc" name="txt_dt_nasc" class="form-item" type="text" placeholder="{{ Auth::user()->dt_nasc }}">
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                 </aside>
                 
                 <div>
-                    <input id="telefone" name="txt_telefone" class="form-item" type="text" value="{{ Auth::user()->telefone }}">
+                    <input id="telefone" name="txt_telefone" class="form-item" type="text" placeholder="{{ Auth::user()->telefone }}">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 </aside>
                 
                 <div>
-                    <input id="whatsapp" name="txt_whatsapp" class="form-item"  type="text" value="{{ Auth::user()->whatsapp }}">
+                    <input id="whatsapp" name="txt_whatsapp" class="form-item"  type="text" placeholder="{{ Auth::user()->whatsapp }}">
                 </div>
             </div>
 
