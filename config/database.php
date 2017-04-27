@@ -46,11 +46,11 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
-            'host' => 'br-cdbr-azure-south-b.cloudapp.net', //$host
-            'database' => 'db_app_entrega',  //$database
-            'username' => 'b919f2a62ef7b9', //$username
-            'password' => 'ff7c071a', //$password
+            'driver' => env('DB_CONNECTION'),
+            'host' => env('DB_HOST'), //$host
+            'database' => env('DB_DATABASE'),  //$database
+            'username' => env('DB_USERNAME'), //$username
+            'password' => env('DB_PASSWORD'), //$password
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

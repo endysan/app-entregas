@@ -13,7 +13,7 @@ class Pedidos extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos_entrega', function (Blueprint $table) {
+        Schema::create('Pedidos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('produto');
             $table->text('descricao');

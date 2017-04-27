@@ -24,35 +24,27 @@
 
             <div class="form-group">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea id="descricao" name="descricao" class="form-item">
-                </textarea>
+                <textarea id="descricao" name="descricao" class="form-item"></textarea>
             </div>  
-
-            <div class="form-group">
-                <label for="password" class="form-label">Senha</label>
-                <input id="password" name="password" class="form-item" type="password">
-            </div>
-
-            
+           
         </div>
-
 
         <div class="bloco2">
             <hr/>
             <p class="muted">Informações de entrega</p>
             <div class="form-group">
-                <label for="" class="form-label">Estado</label>
-                <input id="" class="form-item" type="text">
+                <label for="estado" class="form-label">Estado</label>
+                <input id="estado" name="estado" class="form-item" type="text">
             </div>
 
             <div class="form-group">
-                <label for="" class="form-label">Cidade</label>
-                <input id="" class="form-item" type="text">
+                <label for="cidade" class="form-label">Cidade</label>
+                <input id="cidade" name="cidade" class="form-item" type="text">
             </div>
 
             <div class="form-group">
-                <label for="" class="form-label">Bairro</label>
-                <input id="" class="form-item" type="text">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input id="bairro" name="bairro" class="form-item" type="text">
             </div>
         </div>
 

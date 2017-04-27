@@ -39,7 +39,7 @@ Route::get('/googled7bc6b7efc8f1591.html', function(){
 Route::post('/login', 'LoginController@enter');
 Route::post('/cadastro', 'CadastroController@store');
 Route::post('/checkout', 'CheckoutController@create');
-
+Route::post('/pedido', 'PedidosController@criar');
 
 // PAGSEGURO
 Route::post('/pagseguro/redirect', [

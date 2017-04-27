@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pedido;
 
 class HomeController extends Controller
 {
@@ -13,9 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $pedidos = Pedido::all();
         $data = [
             'title' => 'Home',
-            'content' => 'AppEntrega'
+            'content' => 'AppEntrega',
+            'pedidos' => $pedidos
         ];
         return view('home', $data);
     }
