@@ -41,7 +41,7 @@ Route::post('/cadastro', 'CadastroController@store');
 Route::post('/checkout', 'CheckoutController@create');
 Route::post('/pedido', 'PedidosController@criar');
 Route::post('/editar', 'CadastroController@editar');
-
+Route::post('/editarendereco', 'CadastroController@editarEndereco');
 
 // PAGSEGURO
 Route::post('/pagseguro/redirect', [
