@@ -68,7 +68,7 @@ class CadastroController extends Controller
 		return view('usuario.editar', $data);
 	}
 	
-	public function editarEndereco()
+	public function editarEndereco(Request $request)
 	{
 		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
 		
@@ -78,7 +78,6 @@ class CadastroController extends Controller
 			$usuario->estado = $request->estado;
 		}
 		if ( request('cidade') != null){
-
 			$usuario->cidade = $request->cidade; 
 		}
 		if ( request('bairro') != null){
@@ -86,7 +85,7 @@ class CadastroController extends Controller
 		}
 		$usuario->save();
 		
-		auth()->logout(); //Não funcionou =/
+		auth()->logout(); //funcionou =D
 		auth()->loginUsingId($id);
 		
 		return view('usuario.editar-endereco');
