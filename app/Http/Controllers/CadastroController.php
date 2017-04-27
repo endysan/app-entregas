@@ -32,8 +32,26 @@ class CadastroController extends Controller
     	return redirect()->home();
 	}
 	
-	public function editar() 
+	public function editar(Request $request) 
 	{
+
+		$teste= User::find(Auth::user()->id)
+
+		if ( request('name') != null){
+		$teste->name = request('name');
+		}
+		if ( request('txt_dt_nasc') != null){
+		$teste->dt_nasc = request('txt_dt_nasc');
+		}
+		if ( request('txt_telefone') != null){
+		$teste->telefone = request('txt_telefone');
+		}
+		if ( request('tct_whatsapp') != null){
+		$teste->whatsapp = request('txt_whatsapp');
+		}
+		
+		$teste->save();
+
 		$data = [
 			'title' => 'Editar Perfil'	
 		];
