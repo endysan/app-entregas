@@ -23,7 +23,7 @@
         </li>
     </ul>
 
-    <form method="POST" action="cadastro" >
+    <form method="POST" action="editarendereco" >
         {{ csrf_field() }}
         <div class="form-group">
             <aside>

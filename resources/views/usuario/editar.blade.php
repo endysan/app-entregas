@@ -21,7 +21,7 @@
             </li>
         </ul>
 
-        <form method="POST" action="cadastro">
+        <form method="POST" action="editar">
             {{ csrf_field() }}
             <div class="form-group">
                 <aside>
