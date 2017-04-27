@@ -7,6 +7,11 @@ use App\Pedido;
 
 class PedidosController extends Controller 
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data = ['title' => 'Pedidos'];

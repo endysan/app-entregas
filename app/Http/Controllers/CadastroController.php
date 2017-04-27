@@ -7,6 +7,11 @@ use App\User;
 
 class CadastroController extends Controller 
 {
+	public function __construct()
+	{
+			
+	}
+	
 	public function index() 
 	{
 		$data = ['title' => 'Cadastrar'];
@@ -45,10 +50,8 @@ class CadastroController extends Controller
 		if ( request('txt_dt_nasc') != null){
 
 			$date_format = Carbon::createFromDate($request->txt_dt_nasc);
-			$date_format;
 			
 			$usuario->dt_nasc = $date_format;
-			Date('g:i:s');
 		}
 		if ( request('txt_telefone') != null){
 			$usuario->telefone = $request->txt_telefone;
@@ -81,7 +84,7 @@ class CadastroController extends Controller
 			$usuario->cidade = $request->cidade; 
 		}
 		if ( request('bairro') != null){
-			$usuario->bairro = $request->estado;
+			$usuario->bairro = $request->bairro;
 		}
 		$usuario->save();
 		
@@ -93,6 +96,19 @@ class CadastroController extends Controller
 
 	public function passwordReset()
 	{
+		$this->validate($request, [
+			'oldpassword' => 'required',
+			'password' => 'required|confirmed'
+		]);
+		
+		$old = bcrypt(request('oldpassword'));
+		
+		//Tenta logar, com email do usuario logado
+		//
+		if (auth()->attemp(['email' => auth()-user()-email, 'password' => $old))
+		{
+			
+		}
 		return view('usuario.editar-senha');
 	}
 }
