@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('telefone')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('password');
-            $table->string('estado');
-            $table->string('cidade');
-            $table->string('bairro');
+            $table->string('estado')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('bairro')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

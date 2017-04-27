@@ -31,7 +31,7 @@
             </aside>
 
             <div>
-                <input id="name" name="name" class="form-item" type="text">
+                <input id="estado" name="estado" class="form-item" type="text" placeholder="{{ Auth::user()->estado }}">
             </div>
         </div>
             
@@ -41,7 +41,7 @@
             </aside>
 
             <div>
-                <input id="dt_nasc" name="txt_dt_nasc" type="text">
+                <input id="cidade" name="cidade" type="text"  placeholder="{{ Auth::user()->cidade }}">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             </aside>
             
             <div>
-                <input id="telefone" name="txt_telefone" class="form-item" type="text">
+                <input id="bairro" name="bairro" class="form-item" type="text"  placeholder="{{ Auth::user()->bairro }}">
             </div>
         </div>
 

@@ -44,9 +44,11 @@ class CadastroController extends Controller
 		}
 		if ( request('txt_dt_nasc') != null){
 
-			Carbon::createFromDate(request('txt_dt_nasc'));
+			$date_format = Carbon::createFromDate($request->txt_dt_nasc);
+			$date_format;
 			
-			$usuario->dt_nasc = $request->txt_dt_nasc;
+			$usuario->dt_nasc = $date_format;
+			Date('g:i:s');
 		}
 		if ( request('txt_telefone') != null){
 			$usuario->telefone = $request->txt_telefone;
@@ -57,7 +59,7 @@ class CadastroController extends Controller
 		
 		$usuario->save();
 		
-		auth()->logout(); //Não funcionou =/
+		auth()->logout(); 
 		auth()->loginUsingId($id);
 		
 		$data = [
@@ -77,7 +79,7 @@ class CadastroController extends Controller
 		}
 		if ( request('cidade') != null){
 
-			$usuario->cidade = $request->cidade; //usuario = date.format?
+			$usuario->cidade = $request->cidade; 
 		}
 		if ( request('bairro') != null){
 			$usuario->bairro = $request->estado;
