@@ -39,7 +39,14 @@
                 </aside>
 
                 <div>
-                    <input id="dt_nasc" name="txt_dt_nasc" class="form-item" type="text" placeholder="{{ Auth::user()->dt_nasc }}">
+                    <input type="text" name="dt_nasc" placeholder="dd/mm/yyyy" maxlength="10"
+                     onkeyup="
+                        var v = this.value;
+                        if (v.match(/^\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        }">
                 </div>
             </div>
 
@@ -49,7 +56,7 @@
                 </aside>
                 
                 <div>
-                    <input id="telefone" name="txt_telefone" class="form-item" type="text" placeholder="{{ Auth::user()->telefone }}">
+                    <input id="telefone" name="telefone" class="form-item" type="text" placeholder="{{ Auth::user()->telefone }}">
                 </div>
             </div>
 
@@ -59,7 +66,7 @@
                 </aside>
                 
                 <div>
-                    <input id="whatsapp" name="txt_whatsapp" class="form-item"  type="text" placeholder="{{ Auth::user()->whatsapp }}">
+                    <input id="whatsapp" name="whatsapp" class="form-item"  type="text" placeholder="{{ Auth::user()->whatsapp }}">
                 </div>
             </div>
 

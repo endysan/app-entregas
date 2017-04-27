@@ -28,10 +28,10 @@
         
         <div class="form-group">
             <aside>
-                <label for="newpassword" class="form-label">Senha Atual</label>
+                <label for="oldpassword" class="form-label">Senha Atual</label>
             </aside>
             <div>
-                <input id="newpassword" name="newpassword" class="form-item" type="password">
+                <input id="oldpassword" name="oldpassword" class="form-item" type="password">
             </div>
         </div>
         

@@ -47,17 +47,19 @@ class CadastroController extends Controller
 		if ( request('name') != null){
 			$usuario->name = $request->name;
 		}
-		if ( request('txt_dt_nasc') != null){
+		if ( request('dt_nasc') != null){
 
-			$date_format = Carbon::createFromDate($request->txt_dt_nasc);
+			$date = $request->dt_nasc;
 			
-			$usuario->dt_nasc = $date_format;
+			$formated_date = str_replace('/', '-', $date);
+			
+			$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
 		}
-		if ( request('txt_telefone') != null){
-			$usuario->telefone = $request->txt_telefone;
+		if ( request('telefone') != null){
+			$usuario->telefone = $request->telefone;
 		}
-		if ( request('txt_whatsapp') != null){
-			$usuario->whatsapp = $request->txt_whatsapp;
+		if ( request('whatsapp') != null){
+			$usuario->whatsapp = $request->whatsapp;
 		}
 		
 		$usuario->save();
@@ -94,7 +96,7 @@ class CadastroController extends Controller
 		return view('usuario.editar-endereco');
 	}
 
-	public function passwordReset()
+	public function passwordReset(Request $request)
 	{
 		$this->validate($request, [
 			'oldpassword' => 'required',
