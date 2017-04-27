@@ -43,7 +43,8 @@ class CadastroController extends Controller
 			$usuario->name = $request->name;
 		}
 		if ( request('txt_dt_nasc') != null){
-			$usuario->dt_nasc = $request->txt_dt_nasc;
+			$format= $request->txt_dt_nasc->format('Y-m-a');
+			$usuario->dt_nasc = $format;
 		}
 		if ( request('txt_telefone') != null){
 			$usuario->telefone = $request->txt_telefone;
@@ -54,7 +55,7 @@ class CadastroController extends Controller
 		
 		$usuario->save();
 		
-		auth()->logout();
+		auth()->logout(); //Não funcionou =/
 		auth()->loginUsingId($id);
 		
 		$data = [
