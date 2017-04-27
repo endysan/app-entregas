@@ -96,7 +96,7 @@ class CadastroController extends Controller
 		return view('usuario.editar-endereco');
 	}
 
-	public function passwordReset(Request $request)
+	public function editarSenha(Request $request)
 	{
 		$this->validate($request, [
 			'oldpassword' => 'required',

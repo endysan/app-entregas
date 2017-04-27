@@ -23,7 +23,7 @@ Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
 Route::get('/editar', 'CadastroController@editar');
 Route::get('/editarendereco', 'CadastroController@editarEndereco');
-Route::get('/editarsenha', 'CadastroController@passwordReset');
+Route::get('/editarsenha', 'CadastroController@editarSenha');
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
@@ -42,6 +42,7 @@ Route::post('/checkout', 'CheckoutController@create');
 Route::post('/pedido', 'PedidosController@criar');
 Route::post('/editar', 'CadastroController@editar');
 Route::post('/editarendereco', 'CadastroController@editarEndereco');
+Route::post('/editarsenha', 'CadastroController@editarSenha');
 
 // PAGSEGURO
 Route::post('/pagseguro/redirect', [
