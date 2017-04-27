@@ -35,8 +35,9 @@ class CadastroController extends Controller
 	public function editar(Request $request) 
 	{
 
-		$id = auth()->user()->id;
-		$usuario = User::findOrFail($id);
+		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
+		
+		$usuario = User::findOrFail($id); //Encontre no Model User, o id
 
 		if ( request('name') != null){
 			$usuario->name = $request->name;
@@ -52,7 +53,10 @@ class CadastroController extends Controller
 		}
 		
 		$usuario->save();
-
+		
+		auth()->logout();
+		auth()->loginUsingId($id);
+		
 		$data = [
 			'title' => 'Editar Perfil'	
 		];
