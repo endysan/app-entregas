@@ -103,14 +103,18 @@ class CadastroController extends Controller
 			'password' => 'required|confirmed'
 		]);
 		
+		$id = auth()->user()->id;
+		
+		$usuario = User::findOrFail($id);
 		$old = bcrypt(request('oldpassword'));
 		
 		//Tenta logar, com email do usuario logado
 		//
 		if (auth()->attemp(['email' => auth()->user()->email, 'password' => $old]))
 		{
-			//atualiza o password
+			$newPass = bcrypt($request->password);
 			
+			$usuario->password = $newPass;
 		}
 		return view('usuario.editar-senha');
 	}
