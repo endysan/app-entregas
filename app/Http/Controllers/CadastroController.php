@@ -105,8 +105,9 @@ class CadastroController extends Controller
 		
 		//Tenta logar, com email do usuario logado
 		//
-		if (auth()->attemp(['email' => auth()-user()-email, 'password' => $old))
+		if (auth()->attemp(['email' => auth()->user()->email, 'password' => $old))
 		{
+			//atualiza o password
 			
 		}
 		return view('usuario.editar-senha');
