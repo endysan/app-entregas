@@ -13,10 +13,10 @@
 
     <ul class="lista">
         <li>
-            <a class="_barra is-active" href="editar">Editar perfil</a>
+            <a class="_barra" href="editar">Editar perfil</a>
         </li>
         <li>
-            <a class="_barra" href="editarsenha">Alterar senha</a>
+            <a class="_barra is-active" href="editarsenha">Alterar senha</a>
         </li>
         <li>
             <a class="_barra" href="editarendereco">Editar endereço</a>
@@ -29,7 +29,7 @@
             <aside>
                 <label for="password" class="form-label">Senha</label>
             </aside>
-            <div class="form-item">
+            <div>
                 <input id="password" name="password" class="form-item" type="password">
             </div>
         </div>
@@ -38,7 +38,7 @@
             <aside>
                 <label for="password_confirmation" class="form-label">Confirmar Senha</label>
             </aside>
-            <div class="form-item">
+            <div>
                 <input id="password_confirmation" name="password_confirmation" class="form-item" type="password">
             </div>
         </div> 

@@ -13,13 +13,13 @@
 
     <ul class="lista">
         <li>
-            <a class="_barra is-active" href="editar">Editar perfil</a>
+            <a class="_barra" href="editar">Editar perfil</a>
         </li>
         <li>
             <a class="_barra" href="editarsenha">Alterar senha</a>
         </li>
         <li>
-            <a class="_barra" href="editarendereco">Editar endereço</a>
+            <a class="_barra is-active" href="editarendereco">Editar endereço</a>
         </li>
     </ul>
 
@@ -30,7 +30,7 @@
                 <label for="name" class="form-label">Estado</label>
             </aside>
 
-            <div class="form-item">
+            <div>
                 <input id="name" name="name" class="form-item" type="text">
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <label for="dt_nasc" class="form-label">Cidade</label>
             </aside>
 
-            <div class="form-item">
+            <div>
                 <input id="dt_nasc" name="txt_dt_nasc" type="text">
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <label for="telefone" class="form-label">Bairro</label>
             </aside>
             
-            <div class="form-item">
+            <div>
                 <input id="telefone" name="txt_telefone" class="form-item" type="text">
             </div>
         </div>
