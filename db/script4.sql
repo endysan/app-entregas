@@ -23,19 +23,6 @@ CREATE TABLE IF NOT EXISTS entregadores (
     status varchar(191)/* Aprovado, pode dirigir | Reprovado, não pode */
 )
 
-CREATE TABLE IF NOT EXISTS entregadores (
-    id_entregador int not null primary key auto_increment,
-    id_endereco int,
-    id_veiculo int,
-    nm_entregador varchar(50),
-    email_entregador varchar(50),
-    senha_entregador varchar(255),
-    dt_nasc_entregador date,
-    telefone_entregador varchar(11),
-    whatsapp_entregador varchar(11),
-    endereco_entregador varchar(50)
-) auto_increment=1;
-
 CREATE TABLE IF NOT EXISTS veiculos (
     id_veiculo int not null primary key auto_increment,
     categoria_veiculo varchar(20),

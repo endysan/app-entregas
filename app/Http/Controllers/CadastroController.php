@@ -67,10 +67,7 @@ class CadastroController extends Controller
 		auth()->logout(); 
 		auth()->loginUsingId($id);
 		
-		$data = [
-			'title' => 'Editar Perfil'	
-		];
-		return view('usuario.editar', $data);
+		return view('usuario.editar');
 	}
 	
 	public function editarEndereco(Request $request)
@@ -96,11 +93,17 @@ class CadastroController extends Controller
 		return view('usuario.editar-endereco');
 	}
 
+	public function editarSenhaView() //SOMENTE PARA ABRIR PAGINA
+	{
+		return view('usuario.editar-senha');
+	}
+
+	//SOMENTE QUANDO CHAMAR POST
 	public function editarSenha(Request $request)
 	{
 		$this->validate($request, [
-			'oldpassword' => 'required',
-			'password' => 'required|confirmed'
+			'oldpassword' => 'required|min:6',
+			'password' => 'required|confirmed|min:6'
 		]);
 		
 		$id = auth()->user()->id;
@@ -115,7 +118,13 @@ class CadastroController extends Controller
 			$newPass = bcrypt($request->password);
 			
 			$usuario->password = $newPass;
+
+			$usuario->save();
 		}
-		return view('usuario.editar-senha');
+	}
+
+	public function areaEntregador()
+	{
+		return view('usuario.area-entregador');
 	}
 }

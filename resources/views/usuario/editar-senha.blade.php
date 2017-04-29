@@ -21,6 +21,9 @@
         <li>
             <a class="_barra" href="editarendereco">Editar endereço</a>
         </li>
+        <li>
+            <a class="_barra" href="areaentregador">Área do entregador</a>
+        </li>
     </ul>
 
     <form method="POST" action="editarsenha" >
@@ -54,7 +57,7 @@
         </div> 
 
         <div class="form-group-btn">
-            <button id="btn-cadastro" class="button button-purple" type="submit">Cadastrar</button>
+            <button id="btn-cadastro" class="button button-purple" type="submit">Salvar</button>
         </div>
 
     </form>

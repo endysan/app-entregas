@@ -16,18 +16,29 @@
 | Rotas de páginas (Views)
 |--------------------------
  */
+
+//Criar sessão, usuário, logout
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
+
+//Editar usuario
 Route::get('/editar', 'CadastroController@editar');
 Route::get('/editarendereco', 'CadastroController@editarEndereco');
-Route::get('/editarsenha', 'CadastroController@editarSenha');
+Route::get('/editarsenha', 'CadastroController@editarSenhaView');
+Route::get('/areaentregador', 'CadastroController@areaEntregador');
+
+//APIs: Maps e PagSeguro
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
+
+//Criar pedidos
 Route::get('/pedidos', 'PedidosController@index');
+
+//CRUDs
 
 
 //GOOGLE MAPS
@@ -43,6 +54,7 @@ Route::post('/pedido', 'PedidosController@criar');
 Route::post('/editar', 'CadastroController@editar');
 Route::post('/editarendereco', 'CadastroController@editarEndereco');
 Route::post('/editarsenha', 'CadastroController@editarSenha');
+Route::post('/areaentregador', 'CadastroController@areaEntregador'); //TEMPORARIO, MUDAR
 
 // PAGSEGURO
 Route::post('/pagseguro/redirect', [

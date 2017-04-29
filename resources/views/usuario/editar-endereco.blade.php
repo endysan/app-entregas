@@ -21,6 +21,9 @@
         <li>
             <a class="_barra is-active" href="editarendereco">Editar endereço</a>
         </li>
+        <li>
+            <a class="_barra" href="areaentregador">Área do entregador</a>
+        </li>
     </ul>
 
     <form method="POST" action="editarendereco" >
@@ -31,7 +34,9 @@
             </aside>
 
             <div>
-                <input id="estado" name="estado" class="form-item" type="text" placeholder="{{ Auth::user()->estado }}">
+                <input id="estado" name="estado" class="form-item" type="text" 
+                 placeholder="Estado"
+                 value="{{ Auth::user()->estado }}">
             </div>
         </div>
             
@@ -41,7 +46,9 @@
             </aside>
 
             <div>
-                <input id="cidade" name="cidade" type="text"  placeholder="{{ Auth::user()->cidade }}">
+                <input id="cidade" name="cidade" type="text"  
+                 placeholder="Cidade"
+                 value="{{ Auth::user()->cidade }}">
             </div>
         </div>
 
@@ -51,14 +58,16 @@
             </aside>
             
             <div>
-                <input id="bairro" name="bairro" class="form-item" type="text"  placeholder="{{ Auth::user()->bairro }}">
+                <input id="bairro" name="bairro" class="form-item" type="text" 
+                 placeholder="Bairro"
+                 value="{{ Auth::user()->bairro }}">
             </div>
         </div>
 
         
 
         <div class="form-group-btn">
-            <button id="btn-cadastro" class="button button-purple" type="submit">Cadastrar</button>
+            <button id="btn-cadastro" class="button button-purple" type="submit">Salvar</button>
         </div>
     </form>
     </div>

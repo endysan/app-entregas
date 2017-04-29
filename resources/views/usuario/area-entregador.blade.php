@@ -11,7 +11,7 @@
 
         <ul class="lista">
             <li>
-                <a class="_barra is-active" href="editar">Editar perfil</a>
+                <a class="_barra" href="editar">Editar perfil</a>
             </li>
             <li>
                 <a class="_barra" href="editarsenha">Alterar senha</a>
@@ -20,11 +20,11 @@
                 <a class="_barra" href="editarendereco">Editar endereço</a>
             </li>
             <li>
-                <a class="_barra" href="areaentregador">Área do entregador</a>
+                <a class="_barra is-active" href="areaentregador">Área do entregador</a>
             </li>
         </ul>
 
-        <form method="POST" action="editar">
+        <form method="POST" action="areaentregador">
             {{ csrf_field() }}
             <div class="form-group">
                 <aside>
@@ -32,9 +32,8 @@
                 </aside>
 
                 <div>
-                    <input id="name" name="name" class="form-item" type="text"
-                     placeholder="João da Silva"
-                     value="{{Auth::user()->name}}">
+                    <input id="name" class="form-item" type="text" 
+                     value="{{ Auth::user()->name }}" disabled>
                 </div>
             </div>
             
@@ -44,15 +43,8 @@
                 </aside>
 
                 <div>
-                    <input type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
-                     value="{{ Auth::user()->dt_nasc }}" maxlength="10"
-                     onkeyup="
-                        var v = this.value;
-                        if (v.match(/^\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        }">
+                    <input type="text" class="form-item" maxlength="10"
+                     value="{{ Auth::user()->dt_nasc }}" disabled>
                 </div>
             </div>
 
@@ -62,9 +54,8 @@
                 </aside>
                 
                 <div>
-                    <input id="telefone" name="telefone" class="form-item" type="text" 
-                     placeholder="(00) 0000-0000"
-                     value="{{ Auth::user()->telefone }}">
+                    <input id="telefone" class="form-item" type="text" 
+                     value="{{ Auth::user()->telefone }}" disabled>
                 </div>
             </div>
 
@@ -74,9 +65,17 @@
                 </aside>
                 
                 <div>
-                    <input id="whatsapp" name="whatsapp" class="form-item"  type="text"
-                     placeholder="(00) 00000-0000"
-                     value="{{ Auth::user()->whatsapp }}">
+                    <input id="whatsapp" class="form-item" type="text"
+                     value="{{ Auth::user()->whatsapp }}" disabled>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <aside>
+                    <label for="cnh" class="form-label">CNH</label>
+                </aside>
+                <div>
+                    <input type="file">
                 </div>
             </div>
 
