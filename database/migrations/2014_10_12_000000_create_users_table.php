@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('cidade')->nullable();
             $table->string('bairro')->nullable();
             $table->integer('id_entregador')->nullable();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
