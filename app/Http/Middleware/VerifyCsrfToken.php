@@ -13,5 +13,9 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
+        '/list-usuario',
+        '/get-usuario/{id}',
+        '/edit-usuario/{id}',
+        '/delete-usuario/{id}',
     ];
 }
