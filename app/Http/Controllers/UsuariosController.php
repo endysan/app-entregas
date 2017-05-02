@@ -49,18 +49,18 @@ class UsuariosController extends Controller
         
         if($request->name != null)
             $user->name = $request->name;
-            
+    
         if($request->dt_nasc != null)
             $user->name = $request->dt_nasc;
-        
+    
         if($request->telefone != null)
             $user->telefone = $request->telefone;
-            
+    
         if($request->whatsapp != null)
             $user->whatsapp = $request->whatsapp;
         
         $user->save();
-        return redirect(url('/list-usuario')); //->action('UsuariosController@listUsuario');
+        return redirect('/list-usuario'); //->action('UsuariosController@listUsuario');
     }
     
     public function deleteUsuario($id)
@@ -68,7 +68,7 @@ class UsuariosController extends Controller
         $user = User::findOrFail($id);
         
         $user->where('id', $id)->delete();
-
-        return redirect(url('/list-usuario')); //->action('UsuariosController@listUsuario');
+        
+        return redirect('/list-usuario'); //->action('UsuariosController@listUsuario');
     }
 }
