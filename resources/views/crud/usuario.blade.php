@@ -63,7 +63,7 @@
                 console.log(xhttp);
             }
         };
-        xhttp.open("put", 'edit-usuario/'+id, true);
+        xhttp.open("post", 'edit-usuario/'+id, true);
         xhttp.send(data);
     }
     function deleteById(id)
@@ -76,7 +76,7 @@
                 console.log(xhttp);
             }
         };
-        xhttp.open("delete", 'delete-usuario/'+id, true);
+        xhttp.open("post", 'delete-usuario/'+id, true);
         xhttp.send(null);
     }
 </script>
@@ -164,7 +164,6 @@
             
     @section('modal-editar')
         <form class="form-crud" method="POST" action="edit-usuario">
-            <input type="hidden" name="_method" value="PUT">
             
             <input type="hidden" id="edId" name="id">
             <div class="form-group">
