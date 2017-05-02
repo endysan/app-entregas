@@ -47,7 +47,6 @@
     }
     function editById(id)
     {
-        var token = document.querySelector("#token_editar").getAttribute('content');
         var xhttp = new XMLHttpRequest();
         
         var data = {
@@ -65,7 +64,6 @@
             }
         };
         xhttp.open("put", 'edit-usuario/'+id, true);
-        xhttp.setRequestHeader("CSRF-TOKEN", token);
         xhttp.send(data);
     }
     function deleteById(id)
@@ -129,7 +127,7 @@
     </table>
     @section('modal-cadastro')
         <form class="form-crud" method="POST" action="create-usuario">
-            <input type="hidden" id="token_cadastrar" name="_token" value="{{ csrf_token() }}">
+            
             <input type="hidden" name="edId">
             <div class="form-group">
                 <input type="text" class="form-control" name="nome" placeholder="Nome">
@@ -167,7 +165,7 @@
     @section('modal-editar')
         <form class="form-crud" method="POST" action="edit-usuario">
             <input type="hidden" name="_method" value="PUT">
-            <input type="hidden" id="token_editar" name="_token" value="{{ csrf_token() }}">
+            
             <input type="hidden" id="edId" name="id">
             <div class="form-group">
                 <input type="text" id="edNome" class="form-control" name="nome" placeholder="Nome">

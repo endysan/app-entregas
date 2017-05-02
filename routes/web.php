@@ -49,7 +49,7 @@ Route::delete('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
 Route::get('/list-pedido', 'PedidosController@listPedido');
 Route::post('/create-pedido', 'PedidosController@createPedido');
 Route::get('/get-pedido/{id}', 'PedidosController@getPedidoById');
-Route::put('/edit-usuario/{id}', 'PedidosController@editPedido');
+Route::put('/edit-pedido/{id}', 'PedidosController@editPedido');
 Route::delete('/delete-pedido/{id}', 'PedidosController@deletePedido');
 
 //-------------------------------------------------------------------------
