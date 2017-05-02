@@ -40,7 +40,7 @@ class UsuariosController extends Controller
             'cidade' => request('cidade'),
             'bairro' => request('bairro')
 		]);
-        return redirect()->action('UsuariosController@listUsuario');
+        return redirect('list-usuarios'); //->action('UsuariosController@listUsuario');
     }
 
     public function editUsuario(Request $request, $id)
@@ -60,7 +60,7 @@ class UsuariosController extends Controller
             $user->whatsapp = $request->whatsapp;
         
         $user->save();
-        return redirect()->action('UsuariosController@listUsuario');
+        return redirect('/list-usuarios'); //->action('UsuariosController@listUsuario');
     }
     
     public function deleteUsuario($id)
@@ -69,6 +69,6 @@ class UsuariosController extends Controller
         
         $user->where('id', $id)->delete();
 
-        return redirect()->action('UsuariosController@listUsuario');
+        return redirect('/list-usuarios'); //->action('UsuariosController@listUsuario');
     }
 }
