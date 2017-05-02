@@ -38,7 +38,21 @@ Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDist
 //Criar pedidos
 Route::get('/pedidos', 'PedidosController@index');
 
-//CRUDs
+//CRUDs-------------------------------------------------------------------
+Route::get('/list-usuario', 'UsuariosController@listUsuario');
+Route::post('/create-usuario', 'UsuariosController@createUsuario');
+Route::get('/get-usuario/{id}', 'UsuariosController@getUsuarioById');
+Route::put('/edit-usuario/{id}', 'UsuariosController@editUsuario');
+Route::delete('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
+
+
+Route::get('/list-pedido', 'PedidosController@listPedido');
+Route::post('/create-pedido', 'PedidosController@createPedido');
+Route::get('/get-pedido/{id}', 'PedidosController@getPedidoById');
+Route::put('/edit-usuario/{id}', 'PedidosController@editPedido');
+Route::delete('/delete-pedido/{id}', 'PedidosController@deletePedido');
+
+//-------------------------------------------------------------------------
 
 
 //GOOGLE MAPS

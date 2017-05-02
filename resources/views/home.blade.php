@@ -26,9 +26,8 @@
             <h2>Home App Entrega</h2>
             <hr/>
             
-            <a href="#">Login</a>
-            <a href="#">Cadastre-se</a>
-
+            <a href="{{ url('list-usuario') }}">Usuario</a>
+            <a href="{{ url('list-pedido') }}">Pedido</a>
             <p class="content">{{ $content }}</p>
         @endif
     </div>
