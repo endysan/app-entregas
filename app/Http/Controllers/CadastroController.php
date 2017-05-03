@@ -127,8 +127,10 @@ class CadastroController extends Controller
 
 	public function areaEntregador()
 	{
+		$id = auth()->user()->id;
+		$entregador = DB::table('entregadores')->where('id', $id)->first();
 		$data = [
-			'entregador' => DB::table('entregadores')->where('id', auth()->user()->id)->get()
+			'entregador' => $entregador
 		];
 		return view('usuario.area-entregador', $data);
 	}
