@@ -31,12 +31,17 @@ class UsuariosController extends Controller
 			'email' => 'required',
 			'senha' => 'required'
 		]);
-
+        $date = $request->dt_nasc;
+			
+		$formated_date = str_replace('/', '-', $date);
+		
+		$date = date('Y-m-d', strtotime($formated_date));
+		
 		$user = User::create([
 			'name' => request('nome'),
 			'email' => request('email'),
 			'password' => bcrypt(request('senha')),
-            'dt_nasc' => request('dt_nasc'),
+            'dt_nasc' => $date,
             'estado' => request('estado'),
             'cidade' => request('cidade'),
             'bairro' => request('bairro')

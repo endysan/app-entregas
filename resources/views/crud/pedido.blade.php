@@ -17,7 +17,7 @@
         <tr>
             <th>ID</th>
             <th>Produto</th>
-            <th>Email</th>
+            <th>Descrição</th>
             <th>Data de Nascimento</th>
             <th>Estado</th>
             <th>Cidade</th>
@@ -79,6 +79,16 @@
         <form id="form-editar" class="form-crud" method="POST" action="edit-pedido">
             
             <input type="hidden" id="edId" name="id">
+            
+            <div class="form-group">
+                <select name="email_id">
+                    <option selected>Entregadores</option>
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->email }}</option>
+                    @endforeach
+                </select>
+            </div>
+            
             <div class="form-group">
                 <input type="text" id="edProduto" class="form-control" name="produto" placeholder="Produto">
             </div>
