@@ -28,6 +28,7 @@
         @foreach($pedidos as $pedido)
         <tr>
             <td>{{ $pedido->id }}</td>
+            <td>{{ $pedido->id_usuario }}</td>
             <td>{{ $pedido->produto }}</td>
             <td>{{ $pedido->descricao }}</td>
             <td>{{ $pedido->estado }}</td>
