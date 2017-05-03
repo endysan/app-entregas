@@ -8,6 +8,11 @@ use App\Pedido;
 
 class PedidosController extends Controller 
 {
+    public function index()
+    {
+        return view('pedidos.index');   
+    }
+    
     public function listPedido()
     {
         $pedidos = Pedido::all();

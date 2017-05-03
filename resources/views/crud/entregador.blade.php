@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <select id="edStatus" name="status">
-                    <option selected></option>
+                    <option selected>Status</option>
                     <option value="1">Reprovado</option>
                     <option value="2">Andamento</option>
                     <option value="3">Aprovado</option>

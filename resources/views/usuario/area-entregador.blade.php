@@ -28,23 +28,34 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <aside>
-                    <label for="name" class="form-label">Nome</label>
+                    <label for="veiculo" class="form-label">Veículo</label>
                 </aside>
 
-                <div>
-                    <input id="name" class="form-item" type="text" 
-                     value="{{ Auth::user()->name }}" disabled>
+                <div class="form-group">
+                    @if($entregador->veiculo == null)
+                    <select name="veiculo" id="veiculo">
+                        <option selected>Escolha</option>
+                        <option value="carro">Carro</option>
+                        <option value="caminhao">Caminhão</option>
+                        <option value="moto">Moto</option>
+                    </select>
+                    
+                    @else 
+                    <input type="text" class="form-item"
+                        value="{{ $entregador->veiculo }}" disabled>
+                    @endif
                 </div>
             </div>
             
             <div class="form-group">
                 <aside>
-                    <label for="dt_nasc" class="form-label">Data de Nascimento</label>
+                    <label for="cnh" class="form-label">CNH</label>
                 </aside>
 
                 <div>
+                    @if
                     <input type="text" class="form-item" maxlength="10"
-                     value="{{ Auth::user()->dt_nasc }}" disabled>
+                     value="{{ $entregador->cnh }}" disabled>
                 </div>
             </div>
 
@@ -75,7 +86,7 @@
                     <label for="cnh" class="form-label">CNH</label>
                 </aside>
                 <div>
-                    <input type="file">
+                    <input type="text" class="form-item" name="cnh" placeholder="CNH">
                 </div>
             </div>
 

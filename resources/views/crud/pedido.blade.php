@@ -55,19 +55,19 @@
             
             <input type="hidden" name="edId">
             <div class="form-group">
-                <input type="text" class="form-control" name="produto" placeholder="Produto">
+                <input type="text" class="form-control" name="produto" placeholder="Produto" required>
             </div>
             <div class="form-group">
                 <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado">
+                <input type="text" class="form-control" name="estado" placeholder="Estado" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade">
+                <input type="text" class="form-control" name="cidade" placeholder="Cidade" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" required>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
