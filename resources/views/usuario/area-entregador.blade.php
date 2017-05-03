@@ -53,7 +53,6 @@
                 </aside>
 
                 <div>
-                    @if
                     <input type="text" class="form-item" maxlength="10"
                      value="{{ $entregador->cnh }}" disabled>
                 </div>
