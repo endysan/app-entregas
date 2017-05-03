@@ -41,6 +41,8 @@ class EntregadoresController extends Controller
 			'id_usuario' => request('email_id'),
 			'cnh' => request('cnh'),
 		]);
+		
+		dd($request->all());
         return redirect('list-entregadores');
     }
 

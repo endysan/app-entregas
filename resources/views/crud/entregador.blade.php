@@ -24,7 +24,7 @@
         @foreach($entregadores as $entregador)
         <tr>
             <td>{{ $entregador->id }}</td>
-            <td>{{ $entregador->user_id }}</td>
+            <td>{{ $entregador->id_usuario }}</td>
             <td>{{ $entregador->cnh }}</td>
             <td>{{ $entregador->status }}</td>
             <td>

@@ -27,7 +27,7 @@
         </tr>
         @foreach($pedidos as $pedido)
         <tr>
-            <td>{{ $pedido->id_pedido }}</td>
+            <td>{{ $pedido->id }}</td>
             <td>{{ $pedido->produto }}</td>
             <td>{{ $pedido->descricao }}</td>
             <td>{{ $pedido->estado }}</td>
@@ -36,13 +36,13 @@
             <td>
                 <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
                 <button class="btn btn-success" type="button"
-                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $pedido->id_pedido }}; 
+                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $pedido->id }}; 
                     getById(editId);">
                     Editar
                 </button>
 
                 <button class="btn btn-danger" type="button"
-                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $pedido->id_pedido}}">
+                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $pedido->id }}">
                     Excluir
                 </button>
             </td>
