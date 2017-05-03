@@ -57,13 +57,13 @@
             
             <input type="hidden" name="edId">
             <div class="form-group">
-                <input type="text" class="form-control" name="nome" placeholder="Nome">
+                <input type="text" class="form-control" name="nome" placeholder="Nome" required>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="senha" placeholder="Senha">
+                <input type="password" class="form-control" name="senha" placeholder="Senha" required>
             </div>
             <div class="form-group">
                 <input type="text" name="dt_nasc" class="form-control"  placeholder="Data de nascimento" 

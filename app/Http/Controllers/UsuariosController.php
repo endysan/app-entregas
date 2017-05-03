@@ -38,13 +38,13 @@ class UsuariosController extends Controller
 		$date = date('Y-m-d', strtotime($formated_date));
 		
 		$user = User::create([
-			'name' => request('nome'),
-			'email' => request('email'),
-			'password' => bcrypt(request('senha')),
+			'name' => $request->nome,
+			'email' => $request->email,
+			'password' => bcrypt($request->senha),
             'dt_nasc' => $date,
-            'estado' => request('estado'),
-            'cidade' => request('cidade'),
-            'bairro' => request('bairro')
+            'estado' => $request->estado,
+            'cidade' => $request->cidade,
+            'bairro' => $request->bairro
 		]);
         return redirect('list-usuario');
     }
