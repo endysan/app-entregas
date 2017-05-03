@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Entregador;
+use App\User;
 
 class EntregadoresController extends Controller
 {
-    public function getEntregadores()
+    public function getEntregador()
     {
         return Entregador::all();
     }
@@ -15,59 +18,47 @@ class EntregadoresController extends Controller
         return Entregador::findOrFail($id);
     }
     
-    public function listEntregadores()
+    public function listEntregador()
     {
-        $entregadores = $this->getEntregadores();
+        $entregadores = $this->getEntregador();
+        $users = DB::table('users')->select('id', 'email')->get();
         //$deletedUsers = User::onlyTrashed()->get();
-        return view('crud.entregador')->with('entregadores', $entregadores);
+        $data = [
+            'entregadores' => $entregadores,
+            'users' => $users,
+        ];
+        return view('crud.entregador', $data);
     }
     
     public function createEntregador(Request $request)
     {
         $this->validate($request, [
-			'nome' => 'required',
-			'email' => 'required',
-			'senha' => 'required'
+			'id_usuario' => 'required',
+			'cnh' => 'required|min:10|max:10',
 		]);
 
 		$entregador = Entregador::create([
-			'name' => request('nome'),
-			'email' => request('email'),
-			'password' => bcrypt(request('senha')),
-            'dt_nasc' => request('dt_nasc'),
-            'estado' => request('estado'),
-            'cidade' => request('cidade'),
-            'bairro' => request('bairro')
+			'id_usuario' => request('email_id'),
+			'cnh' => request('cnh'),
 		]);
-        return redirect()->action('EntregadoresController@listEntregadores');
+        return redirect('list-entregadores');
     }
 
-    public function editUsuario(Request $request, $id)
+    public function editEntregador(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        
-        if($request->name != null)
-            $user->name = $request->name;
-            
-        if($request->dt_nasc != null)
-            $user->name = $request->dt_nasc;
-        
-        if($request->telefone != null)
-            $user->telefone = $request->telefone;
-            
-        if($request->whatsapp != null)
-            $user->whatsapp = $request->whatsapp;
-        
-        $user->save();
-        return redirect()->action('EntregadoresController@listEntregadores');
+        DB::table('entregadores')
+            ->where('id', $id)
+            ->update([
+                'cnh' => $request->cnh,
+                'status' => $request->status
+            ]);
+        return "ok";
     }
     
     public function deleteEntregador($id)
     {
-        $entregador = Entregador::findOrFail($id);
-        
-        $entregador->where('id', $id)->delete();
+        DB::table('entregadores')->where('id', '=', $id)->delete();
 
-        return redirect()->action('EntregadoresController@listEntregadores');
+        return "ok";
     }
 }

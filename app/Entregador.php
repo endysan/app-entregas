@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Entregador extends Model
 {
     //
+    protected $table = 'entregadores';
 }

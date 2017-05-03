@@ -13,13 +13,16 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('pedidos');
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->increments('id_pedido');
+            $table->engine = "InnoDB";
+            $table->increments('id');
             $table->string('produto');
             $table->text('descricao');
             $table->string('estado');
             $table->string('cidade');
             $table->string('bairro');
+            $table->integer('id_entregador')->unsigned()->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +34,8 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('pedidos');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

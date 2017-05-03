@@ -13,11 +13,13 @@ class CreateEntregadoresTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('entregadores');
         Schema::create('entregadores', function (Blueprint $table) {
-            $table->increments('id_entregador');
-            $table->integer('id_user');
-            $table->string('cnh')->nullable(); //link para foto
-            $table->enum('status', ['aprovado', 'andamento', 'reprovado'])->default('reprovado');
+            $table->engine = "InnoDB";
+            $table->increments('id');
+            $table->integer('id_usuario')->unsigned()->nullable();
+            $table->string('cnh');
+            $table->enum('status', ['Reprovado', 'Andamento', 'Aprovado'])->default('Reprovado');
             $table->timestamps();
         });
     }
@@ -29,6 +31,8 @@ class CreateEntregadoresTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('entregadores');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

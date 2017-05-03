@@ -37,33 +37,42 @@ class PedidosController extends Controller
 
     public function editPedido(Request $request, $id)
     {
-        $pedido = Pedido::findOrFail($id);
-        
-        if($request->produto != null)
-            $pedido->produto = $request->produto;
-            
-        if($request->descricao != null)
-            $pedido->descricao = $request->descricao;
-        
-        if($request->estado != null)
-            $pedido->estado = $request->estado;
-            
-        if($request->cidade != null)
-            $pedido->cidade = $request->cidade;
+        DB::table('users')
+            ->where('id_pedido', $id)
+            ->update([
+                'produto' => $request->nome,
+                'descricao' => $request->email,
+                'estado' => $request->estado,
+                'cidade' => $request->cidade,
+                'bairro' => $request->bairro
+        ]);
 
-        if($request->bairro != null)
-            $pedido->bairro = $request->bairro;
+        return "ok";
+        // $pedido = Pedido::findOrFail($id);
+        
+        // if($request->produto != null)
+        //     $pedido->produto = $request->produto;
+            
+        // if($request->descricao != null)
+        //     $pedido->descricao = $request->descricao;
+        
+        // if($request->estado != null)
+        //     $pedido->estado = $request->estado;
+            
+        // if($request->cidade != null)
+        //     $pedido->cidade = $request->cidade;
 
-        $pedido->save();
-        return redirect()->action('PedidosController@listPedido');
+        // if($request->bairro != null)
+        //     $pedido->bairro = $request->bairro;
+
+        // $pedido->save();
+        // return redirect()->action('PedidosController@listPedido');
     }
     
     public function deletePedido($id)
     {
-        $pedido = Pedido::findOrFail($id);
+        DB::table('pedidos')->where('id_pedido','=', $id)->delete();
         
-        $pedido->where('id', $id)->delete();
-
-        return redirect()->action('PedidosController@listPedido');
+        return "ok";
     }
 }

@@ -1,122 +1,42 @@
 @extends ('crud.master')
 
-@section('title', 'pedidos')
+@section('title', 'entregadors')
 
 @section('css')
     <link rel="stylesheet" href="css/crud.css">
 @endsection
 
 @section('content')
-<script>
-
-    var deleteId = null;
-    var editId = null;
-
-    function clearEditText()
-    {
-        document.querySelector('#edentregador').value = null;
-        document.querySelector('#edDescricao').value = null;
-        document.querySelector('#edEstado').value = null;
-        document.querySelector('#edCidade').value = null;
-        document.querySelector('#edBairro').value = null;
-    }
-
-    function getById(id)
-    {
-        clearEditText();
-        var xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
-            if(xhttp.readyState == 4 && xhttp.status == 200) {
-                var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edEntregador').value = dados.entregador;
-                document.querySelector('#edDescricao').value = dados.descricao;
-                document.querySelector('#edEstado').value = dados.estado;
-                document.querySelector('#edCidade').value = dados.cidade;
-                document.querySelector('#edBairro').value = dados.bairro;
-                document.querySelector('#edId').value = id;
-                console.log(dados);
-            }
-            else {
-                console.log("Resposta ainda não chegou ou houve um erro");
-            }
-        }
-        xhttp.open('get', 'get-pedido/'+id, true);
-        xhttp.send();    
-    }
-    function editById(id)
-    {
-        var token = document.querySelector("#token_editar").getAttribute('content');
-        var xhttp = new XMLHttpRequest();
-        
-        var data = {
-            name : document.querySelector('#edentregador').value,
-            email : document.querySelector('#edDescricao').value,
-            estado : document.querySelector('#edEstado').value,
-            cidade : document.querySelector('#edCidade').value,
-            bairro : document.querySelector('#edBairro').value
-        }
-        xhttp.onload = function(){
-            if(xhttp.readyState == 4) {
-                console.log("provavelmente editou");
-                console.log(xhttp);
-            }
-        };
-        xhttp.open("put", 'edit-pedido/'+id, true);
-        xhttp.setRequestHeader("CSRF-TOKEN", token);
-        xhttp.send(data);
-    }
-    function deleteById(id)
-    {
-        var xhttp = new XMLHttpRequest();
-        
-        xhttp.onreadystatechange = function(){
-            if(xhttp.readyState == 4) {
-                console.log("provavelmente deletou");
-                console.log(xhttp);
-            }
-        };
-        xhttp.open("delete", 'delete-pedido/'+id, true);
-        xhttp.send(null);
-    }
-</script>
 
    <div class="container-fluid" style="background-color: white;">
-    <h3>pedidos</h3>
+    <h3>entregadors</h3>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">
         Cadastrar
     </button>
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>entregador</th>
-            <th>Email</th>
-            <th>Data de Nascimento</th>
-            <th>Estado</th>
-            <th>Cidade</th>
-            <th>Bairro</th>
-            <th>Entregador</th>
+            <th>ID Usuario</th>
+            <th>CNH</th>
+            <th>Status</th>
             <th></th>
         </tr>
-        @foreach($users as $user)
+        @foreach($entregadores as $entregador)
         <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->dt_nasc }}</td>
-            <td>{{ $user->estado }}</td>
-            <td>{{ $user->cidade }}</td>
-            <td>{{ $user->bairro }}</td>
-            <td></td>
+            <td>{{ $entregador->id }}</td>
+            <td>{{ $entregador->user_id }}</td>
+            <td>{{ $entregador->cnh }}</td>
+            <td>{{ $entregador->status }}</td>
             <td>
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="entregador_id" value="{{ $entregador->id }}">
                 <button class="btn btn-success" type="button"
-                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $user->id }}; 
+                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $entregador->id }}; 
                     getById(editId);">
                     Editar
                 </button>
 
                 <button class="btn btn-danger" type="button"
-                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $user->id}}">
+                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $entregador->id}}">
                     Excluir
                 </button>
             </td>
@@ -124,23 +44,20 @@
         @endforeach
 
     </table>
-    @section('modal-cadastro')
-        <form class="form-crud" method="POST" action="create-pedido">
-            <input type="hidden" id="token_cadastrar" name="_token" value="{{ csrf_token() }}">
+    @section('modal-cadastrar')
+        <form id="form-cadastrar" class="form-crud" method="POST" action="create-entregador">
+            
+            <input type="hidden" name="edId">
             <div class="form-group">
-                <input type="text" class="form-control" name="entregador" placeholder="entregador">
+                <select name="email_id">
+                    <option selected>Entregadores</option>
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}">{{ $user->email }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlenght="10">
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -149,27 +66,22 @@
     @endsection
             
     @section('modal-editar')
-        <form class="form-crud" method="POST" action="edit-pedido">
-            <input type="hidden" name="_method" value="PUT">
-            <input type="hidden" id="token_editar" name="_token" value="{{ csrf_token() }}">
+        <form id="form-editar" class="form-crud" method="POST" action="edit-entregador">
+            
             <input type="hidden" id="edId" name="id">
             <div class="form-group">
-                <input type="text" id="edEntregador" class="form-control" name="entregador" placeholder="entregador">
+                <input type="text" id="edCnh" class="form-control" name="cnh" placeholder="CNH">
             </div>
             <div class="form-group">
-                <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edEstado" class="form-control" name="estado" placeholder="Estado">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edCidade" class="form-control" name="cidade" placeholder="Cidade">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
+                <select id="edStatus" name="status">
+                    <option selected></option>
+                    <option value="1">Reprovado</option>
+                    <option value="2">Andamento</option>
+                    <option value="3">Aprovado</option>
+                </select>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success" onclick="editById(editId)">Editar</button>
+            <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>
             
         </form>
     @endsection
@@ -184,6 +96,86 @@
     @section('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+    var deleteId = null;
+    var editId = null;
+
+    $(document).ready(function(){
+        
+        $('#form-editar').on('submit', function(event){
+            var entregador = $('#form-editar').serialize();
+            $.ajax({
+                type: 'PUT',
+                url: 'edit-entregador/'+editId,
+                data: entregador,
+                success: function(response){
+                    console.log(response);
+                    console.log(entregador);
+
+                    setTimeout(location.reload(), 500);
+                },
+                error: function (response){
+                    console.log("ERROR");
+                    console.log(response);
+                    console.log(entregador);
+                }
+            });
+            event.preventDefault();
+        });
+
+        $('#btn_delete').on('click', function(event){
+            $.ajax({
+                type: "DELETE",
+                url: 'delete-entregador/'+deleteId,
+                success: function(response){
+                    console.log("SUCESSO");
+                    console.log(response);
+
+                    setTimeout(location.reload(), 500);
+                },
+                error: function(response){
+                    console.log("ERRO");
+                    console.log(response);
+                }
+            });
+        });
+    });
+
+    function clearEditText()
+    {
+        document.querySelector('#edNome').value = null;
+        document.querySelector('#edEmail').value = null;
+        document.querySelector('#edDt_nasc').value = null;
+        document.querySelector('#edEstado').value = null;
+        document.querySelector('#edCidade').value = null;
+        document.querySelector('#edBairro').value = null;
+    }
+
+    function getById(id)
+    {
+        clearEditText();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            if(xhttp.readyState == 4 && xhttp.status == 200) {
+                var dados = JSON.parse(xhttp.responseText);
+                document.querySelector('#edNome').value = dados.name;
+                document.querySelector('#edEmail').value = dados.email;
+                document.querySelector('#edDt_nasc').value = dados.dt_nasc;
+                document.querySelector('#edEstado').value = dados.estado;
+                document.querySelector('#edCidade').value = dados.cidade;
+                document.querySelector('#edBairro').value = dados.bairro;
+                document.querySelector('#edId').value = id;
+                console.log(dados);
+            }
+            else {
+                console.log("Resposta ainda não chegou ou houve um erro");
+            }
+        }
+        xhttp.open('get', 'get-entregador/'+id, true);
+        xhttp.send();    
+    }
+</script>
+
     @endsection
 
 @endsection

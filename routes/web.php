@@ -52,6 +52,12 @@ Route::get('/get-pedido/{id}', 'PedidosController@getPedidoById');
 Route::put('/edit-pedido/{id}', 'PedidosController@editPedido');
 Route::delete('/delete-pedido/{id}', 'PedidosController@deletePedido');
 
+
+Route::get('/list-entregador', 'EntregadoresController@listEntregador');
+Route::post('/create-entregador', 'EntregadoresController@createEntregador');
+Route::get('/get-entregador/{id}', 'EntregadoresController@getEntregadorById');
+Route::put('/edit-entregador/{id}', 'EntregadoresController@editEntregador');
+Route::delete('/delete-entregador/{id}', 'EntregadoresController@deleteEntregador');
 //-------------------------------------------------------------------------
 
 

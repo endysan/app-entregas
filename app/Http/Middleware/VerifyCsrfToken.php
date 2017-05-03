@@ -17,5 +17,15 @@ class VerifyCsrfToken extends BaseVerifier
         '/get-usuario/*',
         '/edit-usuario/*',
         '/delete-usuario/*',
+        '/list-pedido',
+        '/create-pedido',
+        '/get-pedido/*',
+        '/edit-pedido/*',
+        '/delete-pedido/*',
+        '/list-entregador',
+        '/create-entregador',
+        '/get-entregador/*',
+        '/edit-entregador/*',
+        '/delete-entregador/*',
     ];
 }
