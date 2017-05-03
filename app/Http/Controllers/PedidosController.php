@@ -64,8 +64,9 @@ class PedidosController extends Controller
         DB::table('pedidos')
             ->where('id', $id)
             ->update([
-                'produto' => $request->nome,
-                'descricao' => $request->email,
+                'produto' => $request->produto,
+                'id_usuario' => $request->email_id,
+                'descricao' => $request->descricao,
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,
                 'bairro' => $request->bairro
