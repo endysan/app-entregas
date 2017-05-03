@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -40,35 +41,51 @@ class UsuariosController extends Controller
             'cidade' => request('cidade'),
             'bairro' => request('bairro')
 		]);
-        return redirect()->action('UsuariosController@listUsuario');
+        return redirect('list-usuario');
     }
 
     public function editUsuario(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        //$user = User::findOrFail($id);
+        $date = null;
+        if($request->dt_nasc != null){
+            $date = $request->dt_nasc;	
+            $formated_date = str_replace('/', '-', $date);
+            $date = date('Y-m-d', strtotime($formated_date));
+        }
         
-        if($request->name != null)
-            $user->name = $request->name;
+        DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'name' => $request->nome,
+                'email' => $request->email,
+                'dt_nasc' => $date,
+                'estado' => $request->estado,
+                'cidade' => $request->cidade,
+                'bairro' => $request->bairro
+            ]);
+        // if($request->nome != null)
+        //     $user->name = $request->nome;
     
-        if($request->dt_nasc != null)
-            $user->name = $request->dt_nasc;
+        // if($request->dt_nasc != null)
+        //     $user->name = $request->dt_nasc;
     
-        if($request->telefone != null)
-            $user->telefone = $request->telefone;
+        // if($request->telefone != null)
+        //     $user->telefone = $request->telefone;
     
-        if($request->whatsapp != null)
-            $user->whatsapp = $request->whatsapp;
+        // if($request->whatsapp != null)
+        //     $user->whatsapp = $request->whatsapp;
         
-        $user->save();
-        return redirect()->action('UsuariosController@listUsuario');
+        //$user->save();
+        //dd($user);
+        //dd($request->all());
+        return "ok";
     }
     
     public function deleteUsuario($id)
     {
-        $user = User::findOrFail($id);
+        DB::table('users')->where('id','=', $id)->delete();
         
-        $user->where('id', $id)->delete();
-        
-        return redirect()->action('UsuariosController@listUsuario');
+        return "ok";
     }
 }

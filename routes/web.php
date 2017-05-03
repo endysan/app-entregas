@@ -42,8 +42,8 @@ Route::get('/pedidos', 'PedidosController@index');
 Route::get('/list-usuario', 'UsuariosController@listUsuario');
 Route::post('/create-usuario', 'UsuariosController@createUsuario');
 Route::get('/get-usuario/{id}', 'UsuariosController@getUsuarioById');
-Route::post('/edit-usuario/{id}', 'UsuariosController@editUsuario');
-Route::post('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
+Route::put('/edit-usuario/{id}', 'UsuariosController@editUsuario');
+Route::delete('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
 
 
 Route::get('/list-pedido', 'PedidosController@listPedido');

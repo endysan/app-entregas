@@ -14,20 +14,21 @@
 
     function clearEditText()
     {
-        document.querySelector('#edproduto').value = null;
+        document.querySelector('#edentregador').value = null;
         document.querySelector('#edDescricao').value = null;
         document.querySelector('#edEstado').value = null;
         document.querySelector('#edCidade').value = null;
         document.querySelector('#edBairro').value = null;
     }
 
-    function getById(id) {
+    function getById(id)
+    {
         clearEditText();
         var xhttp = new XMLHttpRequest();
         xhttp.onload = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
                 var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edProduto').value = dados.produto;
+                document.querySelector('#edEntregador').value = dados.entregador;
                 document.querySelector('#edDescricao').value = dados.descricao;
                 document.querySelector('#edEstado').value = dados.estado;
                 document.querySelector('#edCidade').value = dados.cidade;
@@ -37,7 +38,6 @@
             }
             else {
                 console.log("Resposta ainda não chegou ou houve um erro");
-                console.log(xhttp);
             }
         }
         xhttp.open('get', 'get-pedido/'+id, true);
@@ -49,7 +49,7 @@
         var xhttp = new XMLHttpRequest();
         
         var data = {
-            name : document.querySelector('#edproduto').value,
+            name : document.querySelector('#edentregador').value,
             email : document.querySelector('#edDescricao').value,
             estado : document.querySelector('#edEstado').value,
             cidade : document.querySelector('#edCidade').value,
@@ -88,7 +88,7 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>produto</th>
+            <th>entregador</th>
             <th>Email</th>
             <th>Data de Nascimento</th>
             <th>Estado</th>
@@ -97,26 +97,26 @@
             <th>Entregador</th>
             <th></th>
         </tr>
-        @foreach($pedidos as $pedido)
+        @foreach($users as $user)
         <tr>
-            <td>{{ $pedido->id }}</td>
-            <td>{{ $pedido->name }}</td>
-            <td>{{ $pedido->email }}</td>
-            <td>{{ $pedido->dt_nasc }}</td>
-            <td>{{ $pedido->estado }}</td>
-            <td>{{ $pedido->cidade }}</td>
-            <td>{{ $pedido->bairro }}</td>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->dt_nasc }}</td>
+            <td>{{ $user->estado }}</td>
+            <td>{{ $user->cidade }}</td>
+            <td>{{ $user->bairro }}</td>
             <td></td>
             <td>
-                <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <button class="btn btn-success" type="button"
-                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $pedido->id }}; 
+                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $user->id }}; 
                     getById(editId);">
                     Editar
                 </button>
 
                 <button class="btn btn-danger" type="button"
-                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $pedido->id}}">
+                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $user->id}}">
                     Excluir
                 </button>
             </td>
@@ -128,7 +128,7 @@
         <form class="form-crud" method="POST" action="create-pedido">
             <input type="hidden" id="token_cadastrar" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
-                <input type="text" class="form-control" name="produto" placeholder="produto">
+                <input type="text" class="form-control" name="entregador" placeholder="entregador">
             </div>
             <div class="form-group">
                 <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
@@ -154,7 +154,7 @@
             <input type="hidden" id="token_editar" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" id="edId" name="id">
             <div class="form-group">
-                <input type="text" id="edProduto" class="form-control" name="produto" placeholder="produto">
+                <input type="text" id="edEntregador" class="form-control" name="entregador" placeholder="entregador">
             </div>
             <div class="form-group">
                 <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição">

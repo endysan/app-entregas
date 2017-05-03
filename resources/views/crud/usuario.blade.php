@@ -7,79 +7,6 @@
 @endsection
 
 @section('content')
-<script>
-
-    var deleteId = null;
-    var editId = null;
-
-    function clearEditText()
-    {
-        document.querySelector('#edNome').value = null;
-        document.querySelector('#edEmail').value = null;
-        document.querySelector('#edDt_nasc').value = null;
-        document.querySelector('#edEstado').value = null;
-        document.querySelector('#edCidade').value = null;
-        document.querySelector('#edBairro').value = null;
-    }
-
-    function getById(id)
-    {
-        clearEditText();
-        var xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
-            if(xhttp.readyState == 4 && xhttp.status == 200) {
-                var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edNome').value = dados.name;
-                document.querySelector('#edEmail').value = dados.email;
-                document.querySelector('#edDt_nasc').value = dados.dt_nasc;
-                document.querySelector('#edEstado').value = dados.estado;
-                document.querySelector('#edCidade').value = dados.cidade;
-                document.querySelector('#edBairro').value = dados.bairro;
-                document.querySelector('#edId').value = id;
-                console.log(dados);
-            }
-            else {
-                console.log("Resposta ainda não chegou ou houve um erro");
-            }
-        }
-        xhttp.open('get', 'get-usuario/'+id, true);
-        xhttp.send();    
-    }
-    function editById(id)
-    {
-        var xhttp = new XMLHttpRequest();
-        
-        var data = {
-            name : document.querySelector('#edNome').value,
-            email : document.querySelector('#edEmail').value,
-            dt_nasc : document.querySelector('#edDt_nasc').value,
-            estado : document.querySelector('#edEstado').value,
-            cidade : document.querySelector('#edCidade').value,
-            bairro : document.querySelector('#edBairro').value
-        }
-        xhttp.onload = function(){
-            if(xhttp.readyState == 4) {
-                console.log("provavelmente editou");
-                console.log(xhttp);
-            }
-        };
-        xhttp.open("post", 'edit-usuario/'+id, true);
-        xhttp.send(data);
-    }
-    function deleteById(id)
-    {
-        var xhttp = new XMLHttpRequest();
-        
-        xhttp.onreadystatechange = function(){
-            if(xhttp.readyState == 4) {
-                console.log("provavelmente deletou");
-                console.log(xhttp);
-            }
-        };
-        xhttp.open("post", 'delete-usuario/'+id, true);
-        xhttp.send(null);
-    }
-</script>
 
    <div class="container-fluid" style="background-color: white;">
     <h3>Usuarios</h3>
@@ -125,8 +52,8 @@
         @endforeach
 
     </table>
-    @section('modal-cadastro')
-        <form class="form-crud" method="POST" action="create-usuario">
+    @section('modal-cadastrar')
+        <form id="form-cadastrar" class="form-crud" method="POST" action="create-usuario">
             
             <input type="hidden" name="edId">
             <div class="form-group">
@@ -163,7 +90,7 @@
     @endsection
             
     @section('modal-editar')
-        <form class="form-crud" method="POST" action="edit-usuario">
+        <form id="form-editar" class="form-crud" method="POST" action="edit-usuario">
             
             <input type="hidden" id="edId" name="id">
             <div class="form-group">
@@ -191,7 +118,7 @@
                 <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success" onclick="editById(editId)">Editar</button>
+            <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>
             
         </form>
     @endsection
@@ -206,6 +133,86 @@
     @section('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+    var deleteId = null;
+    var editId = null;
+
+    $(document).ready(function(){
+        
+        $('#form-editar').on('submit', function(event){
+            var user = $('#form-editar').serialize();
+            $.ajax({
+                type: 'PUT',
+                url: 'edit-usuario/'+editId,
+                data: user,
+                success: function(response){
+                    console.log(response);
+                    console.log(user);
+
+                    setTimeout(location.reload(), 500);
+                },
+                error: function (response){
+                    console.log("ERROR");
+                    console.log(response);
+                    console.log(user);
+                }
+            });
+            event.preventDefault();
+        });
+
+        $('#btn_delete').on('click', function(event){
+            $.ajax({
+                type: "DELETE",
+                url: 'delete-usuario/'+deleteId,
+                success: function(response){
+                    console.log("SUCESSO");
+                    console.log(response);
+
+                    setTimeout(location.reload(), 500);
+                },
+                error: function(response){
+                    console.log("ERRO");
+                    console.log(response);
+                }
+            });
+        });
+    });
+
+    function clearEditText()
+    {
+        document.querySelector('#edNome').value = null;
+        document.querySelector('#edEmail').value = null;
+        document.querySelector('#edDt_nasc').value = null;
+        document.querySelector('#edEstado').value = null;
+        document.querySelector('#edCidade').value = null;
+        document.querySelector('#edBairro').value = null;
+    }
+
+    function getById(id)
+    {
+        clearEditText();
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            if(xhttp.readyState == 4 && xhttp.status == 200) {
+                var dados = JSON.parse(xhttp.responseText);
+                document.querySelector('#edNome').value = dados.name;
+                document.querySelector('#edEmail').value = dados.email;
+                document.querySelector('#edDt_nasc').value = dados.dt_nasc;
+                document.querySelector('#edEstado').value = dados.estado;
+                document.querySelector('#edCidade').value = dados.cidade;
+                document.querySelector('#edBairro').value = dados.bairro;
+                document.querySelector('#edId').value = id;
+                console.log(dados);
+            }
+            else {
+                console.log("Resposta ainda não chegou ou houve um erro");
+            }
+        }
+        xhttp.open('get', 'get-usuario/'+id, true);
+        xhttp.send();    
+    }
+</script>
+
     @endsection
 
 @endsection
