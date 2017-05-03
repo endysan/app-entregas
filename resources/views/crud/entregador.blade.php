@@ -17,6 +17,7 @@
         <tr>
             <th>ID</th>
             <th>ID Usuario</th>
+            <th>Veículo</th>
             <th>CNH</th>
             <th>Status</th>
             <th></th>
@@ -59,8 +60,10 @@
             </div>
             
             <div class="form-group">
-                <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlenght="10">
+                <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlength="10">
             </div>
+            
+            
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             
@@ -71,6 +74,14 @@
         <form id="form-editar" class="form-crud" method="POST" action="edit-entregador">
             
             <input type="hidden" id="edId" name="id">
+            <div class='form-group'> 
+             <select id="edVeiculo" name="veiculo">
+                    <option selected>Veículo</option>
+                    <option value="1">Carro</option>
+                    <option value="2">Caminhão</option>
+                    <option value="3">Moto</option>
+                </select>
+            </div>
             <div class="form-group">
                 <input type="text" id="edCnh" class="form-control" name="cnh" placeholder="CNH">
             </div>

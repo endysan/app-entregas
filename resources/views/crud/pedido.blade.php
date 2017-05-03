@@ -173,6 +173,11 @@
         document.querySelector('#edCidade').value = null;
         document.querySelector('#edBairro').value = null;
     }
+    /*
+        heroku login
+        
+        git remote 
+    */
 
     function getById(id)
     {
