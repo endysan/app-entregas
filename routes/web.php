@@ -35,8 +35,9 @@ Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
 
-//Criar pedidos
+//Pedidos
 Route::get('/pedidos', 'PedidosController@index');
+Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
 //CRUDs-------------------------------------------------------------------
 Route::get('/list-usuario', 'UsuariosController@listUsuario');

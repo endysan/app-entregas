@@ -12,10 +12,22 @@ class PedidosController extends Controller
     {
         return view('pedidos.index');   
     }
-    
+    public function getPedidoByUser($userId)
+    {
+        $pedidosUsuario = DB::table('pedido')->where('id_usuario', $userId)-get();
+        
+        dd($pedidosUsuario);
+    }
     public function listPedido()
     {
         $pedidos = Pedido::all();
+        $users = DB::table('users')->select('id', 'email')->get();
+        $data = [
+            'pedidos' => $pedidos,
+            'users' => $users
+        ];
+        
+        
         //$deletedUsers = User::onlyTrashed()->get();
         return view('crud.pedido')->with('pedidos', $pedidos);
     }
