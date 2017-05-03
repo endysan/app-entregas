@@ -29,7 +29,7 @@ class PedidosController extends Controller
         
         
         //$deletedUsers = User::onlyTrashed()->get();
-        return view('crud.pedido')->with('pedidos', $pedidos);
+        return view('crud.pedido', $data);
     }
     
     public function createPedido(Request $request)
