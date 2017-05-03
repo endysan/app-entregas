@@ -10,10 +10,11 @@ class CrudController extends Controller
     public function loginView(){
       return view('crud.login');
     }
+    
     public function login(Request $request){
         $email=$request->email;
         $senha=$request->senha;
-        if (email=='admin' && senha=='admin'){
+        if ($email=='admin' && $senha=='admin'){
             return view('crud.links');
             
         }

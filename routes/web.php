@@ -40,6 +40,8 @@ Route::get('/pedidos', 'PedidosController@index');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
 //CRUDs-------------------------------------------------------------------
+Route::get('/login-admin','CrudController@loginView');
+
 Route::get('/list-usuario', 'UsuariosController@listUsuario');
 Route::post('/create-usuario', 'UsuariosController@createUsuario');
 Route::get('/get-usuario/{id}', 'UsuariosController@getUsuarioById');
