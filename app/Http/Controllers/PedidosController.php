@@ -39,7 +39,7 @@ class PedidosController extends Controller
     public function editPedido(Request $request, $id)
     {
         DB::table('users')
-            ->where('id_pedido', $id)
+            ->where('id', $id)
             ->update([
                 'produto' => $request->nome,
                 'descricao' => $request->email,
@@ -72,7 +72,7 @@ class PedidosController extends Controller
     
     public function deletePedido($id)
     {
-        DB::table('pedidos')->where('id_pedido','=', $id)->delete();
+        DB::table('pedidos')->where('id', $id)->delete();
         
         return "ok";
     }
