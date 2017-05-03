@@ -33,7 +33,7 @@ class EntregadoresController extends Controller
     public function createEntregador(Request $request)
     {
         $this->validate($request, [
-			'id_usuario' => 'required',
+			'email_id' => 'required',
 			'cnh' => 'required|min:10|max:10',
 		]);
 

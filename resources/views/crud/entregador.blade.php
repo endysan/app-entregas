@@ -48,6 +48,7 @@
         <form id="form-cadastrar" class="form-crud" method="POST" action="create-entregador">
             
             <input type="hidden" name="edId">
+            
             <div class="form-group">
                 <select name="email_id">
                     <option selected>Entregadores</option>
@@ -56,6 +57,7 @@
                     @endforeach
                 </select>
             </div>
+            
             <div class="form-group">
                 <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlenght="10">
             </div>
