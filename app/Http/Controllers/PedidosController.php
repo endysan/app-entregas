@@ -12,6 +12,11 @@ class PedidosController extends Controller
     {
         return view('pedidos.index');   
     }
+    public function getPedidoById($id)
+    {
+        return Pedido::findOrFail($id);
+        
+    }
     public function getPedidoByUser($userId)
     {
         $pedidosUsuario = DB::table('pedido')->where('id_usuario', $userId)-get();
