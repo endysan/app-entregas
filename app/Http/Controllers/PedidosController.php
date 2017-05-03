@@ -47,20 +47,21 @@ class PedidosController extends Controller
             'bairro' => 'required'
 		]);
 
-		$pedido = Pedido::create([
-			'produto' => request('produto'),
-			'descricao' => request('descricao'),
-			'estado' => request('estado'),
-            'cidade' => request('cidade'),
-            'bairro' => request('bairro')
-		]);
+
+        DB::table('pedidos')->insert([
+            'produto' => $request->produto,
+            'descricao' => $request->descricao,
+            'estado' => $request->estado,
+            'cidade' => $request->cidade,
+            'bairro' => $request->bairro
+        ]);
 
         return redirect('/list-pedido');
     }
 
     public function editPedido(Request $request, $id)
     {
-        DB::table('users')
+        DB::table('pedidos')
             ->where('id', $id)
             ->update([
                 'produto' => $request->nome,

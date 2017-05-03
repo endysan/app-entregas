@@ -14,6 +14,7 @@ class CreatePedidosTable extends Migration
     public function up()
     {
         Schema::dropIfExists('pedidos');
+        
         Schema::create('pedidos', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
