@@ -33,7 +33,9 @@ class CadastroController extends Controller
 			'password' => bcrypt(request('password'))
 		]);
 
-
+		if($request->ajax()){
+			return "ok";
+		}
     	return redirect()->home();
 	}
 	

@@ -21,8 +21,11 @@ class EntregadoresController extends Controller
     public function listEntregador()
     {
         $entregadores = $this->getEntregador();
+        
         $users = DB::table('users')->select('id', 'email')->get();
+        
         //$deletedUsers = User::onlyTrashed()->get();
+        
         $data = [
             'entregadores' => $entregadores,
             'users' => $users,
@@ -37,10 +40,9 @@ class EntregadoresController extends Controller
 			'cnh' => 'required|min:10|max:10',
 		]);
 
-		$entregador = Entregador::create([
-			'id_usuario' => request('email_id'),
-			'cnh' => request('cnh'),
-		]);
+        DB::table('entregadores')->insert(
+            ['id_usuario' => $request->email_id, 'cnh' => $request->cnh]
+        );
 		
 		dd($request->all());
         //return redirect('list-entregador');
