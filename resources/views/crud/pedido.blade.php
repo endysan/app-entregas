@@ -16,13 +16,12 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
+            <th>ID Usuario</th>
             <th>Produto</th>
             <th>Descrição</th>
-            <th>Data de Nascimento</th>
             <th>Estado</th>
             <th>Cidade</th>
             <th>Bairro</th>
-            <th>Entregador</th>
             <th></th>
         </tr>
         @foreach($pedidos as $pedido)
@@ -182,8 +181,8 @@
         xhttp.onload = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
                 var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edProduto').value = dados.name;
-                document.querySelector('#edDescricao').value = dados.email;
+                document.querySelector('#edProduto').value = dados.produto;
+                document.querySelector('#edDescricao').value = dados.descricao;
                 document.querySelector('#edEstado').value = dados.estado;
                 document.querySelector('#edCidade').value = dados.cidade;
                 document.querySelector('#edBairro').value = dados.bairro;

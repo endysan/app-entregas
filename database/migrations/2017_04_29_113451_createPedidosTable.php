@@ -18,6 +18,7 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
+            $table->integer('id_usuario');
             $table->string('produto');
             $table->text('descricao');
             $table->string('estado');
