@@ -33,7 +33,7 @@ class PedidosController extends Controller
             'bairro' => request('bairro')
 		]);
 
-        return redirect()->action('PedidosController@listPedido');
+        return redirect('/list-pedido');
     }
 
     public function editPedido(Request $request, $id)

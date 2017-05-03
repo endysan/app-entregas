@@ -43,7 +43,7 @@ class EntregadoresController extends Controller
 		]);
 		
 		dd($request->all());
-        return redirect('list-entregadores');
+        //return redirect('list-entregador');
     }
 
     public function editEntregador(Request $request, $id)
