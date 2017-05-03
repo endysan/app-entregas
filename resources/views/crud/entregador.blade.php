@@ -1,6 +1,6 @@
 @extends ('crud.master')
 
-@section('title', 'entregadors')
+@section('title', 'Entregadores')
 
 @section('css')
     <link rel="stylesheet" href="css/crud.css">
@@ -9,7 +9,7 @@
 @section('content')
 
    <div class="container-fluid" style="background-color: white;">
-    <h3>entregadors</h3>
+    <h3>Entregadores</h3>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">
         Cadastrar
     </button>
