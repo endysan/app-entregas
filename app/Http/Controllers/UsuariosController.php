@@ -31,6 +31,7 @@ class UsuariosController extends Controller
 			'email' => 'required',
 			'senha' => 'required'
 		]);
+		
         $date = $request->dt_nasc;
 			
 		$formated_date = str_replace('/', '-', $date);
