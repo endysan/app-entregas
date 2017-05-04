@@ -3,3 +3,7 @@
     padding: 25px 50px;
     margin: 10px 20px;
 }
+
+textarea{
+resize:none;
+}
