@@ -7,6 +7,11 @@
 
 
 @section('content')
+<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script> 
+ $('#telefone').mask('(00) 0000-0000');
+ $('#whatsapp').mask('(00) 00000-0000');
+</script>
     <div class="container container-cadastro">
 
         <ul class="lista">
@@ -44,7 +49,7 @@
                 </aside>
 
                 <div>
-                    <input type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
+                    <input id="data" type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
                      value="{{ Auth::user()->dt_nasc }}" maxlength="10"
                      onkeyup="
                         var v = this.value;
