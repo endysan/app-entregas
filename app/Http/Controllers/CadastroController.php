@@ -122,7 +122,7 @@ class CadastroController extends Controller
 		{
 			$newPass = bcrypt($request->password);
 
-			$usuario->where('id', $id)->update('password' => $newPass);
+			User::where('id', $id)->update(['password' => $newPass]);
 		}
 	}
 

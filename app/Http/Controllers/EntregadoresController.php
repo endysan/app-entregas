@@ -58,6 +58,7 @@ class EntregadoresController extends Controller
 
     public function editEntregador(Request $request, $id)
     {
+        
         DB::table('entregadores')
             ->where('id', $id)
             ->update([
@@ -70,7 +71,7 @@ class EntregadoresController extends Controller
     
     public function deleteEntregador($id)
     {
-        DB::table('entregadores')->where('id', '=', $id)->delete();
+        DB::table('entregadores')->where('id', $id)->delete();
 
         return "ok";
     }
