@@ -34,7 +34,7 @@
             <td>{{ $user->estado }}</td>
             <td>{{ $user->cidade }}</td>
             <td>{{ $user->bairro }}</td>
-            <td></td>
+            <td>{{ $user->id_entregador }}</td>
             <td>
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <button class="btn btn-success" type="button"

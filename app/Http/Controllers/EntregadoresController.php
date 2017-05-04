@@ -41,12 +41,17 @@ class EntregadoresController extends Controller
             'veiculo' => 'required'
 		]);
 
-        DB::table('entregadores')->insert([
+        $id_entregador = DB::table('entregadores')->insertGetId([
             'id_usuario' => $request->id_usuario,
             'cnh' => $request->cnh,
             'veiculo' => $request->veiculo
         ]);
-		
+
+		DB::table('users')
+            ->where('id', $request->id_usuario)
+            ->update([
+                'id_entregador' => $id_entregador
+            ]);
 		//dd($request->all());
         return redirect('list-entregador');
     }

@@ -17,6 +17,9 @@ class LoginController extends Controller
     {
         if( auth()->attempt(request(['email', 'password'])) )
         {
+            if(session()->has('admin')) {
+                session()->forget('admin');
+            }
             return redirect()->home();    
         }
         return back()->withErrors([
