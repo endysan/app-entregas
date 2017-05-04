@@ -40,7 +40,12 @@ class EntregadoresController extends Controller
 			'cnh' => 'required|min:10|max:10',
             'veiculo' => 'required'
 		]);
-
+		
+        $cnh = $request->cnh;
+        
+        if($this->validaCnh($cnh))
+            //echo "ok";
+ 
         $id_entregador = DB::table('entregadores')->insertGetId([
             'id_usuario' => $request->id_usuario,
             'cnh' => $request->cnh,
@@ -74,5 +79,29 @@ class EntregadoresController extends Controller
         DB::table('entregadores')->where('id', $id)->delete();
 
         return "ok";
+    }
+    public function validaCnh($cnh)
+    {
+        $ret = false;
+        if ( is_string( $cnh ) ) {
+	        if ( ( strlen( $cnh = preg_replace( '/[^\d]/' , '' , $cnh ) ) == 11 ) && ( str_repeat( $cnh{ 1 } , 11 ) != $cnh ) ) {
+		        $dsc = 0;
+
+        		for ($i = 0 , $j = 9 , $v = 0 ; $i < 9 ; ++$i , --$j )
+        			$v += (int) $cnh{ $i } * $j;
+        
+        		if (($vl1 = $v % 11) >= 10) {
+        			$vl1 = 0;
+        			$dsc = 2;
+        		}
+        
+        		for ($i = 0 , $j = 1 , $v = 0 ; $i < 9 ; ++$i , ++$j)
+        			$v += (int) $cnh{ $i } * $j;
+        
+        		$vl2 = ( $x = ( $v % 11 ) ) >= 10 ? 0 : $x - $dsc;
+        		$ret = sprintf( '%d%d' , $vl1 , $vl2 ) == substr( $cnh , -2 );
+        	}
+        }
+        return $ret;
     }
 }
