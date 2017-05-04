@@ -32,32 +32,32 @@
                 </aside>
 
                 <div class="form-group">
-                    @if($entregador->veiculo == null)
-                    <select name="veiculo" id="veiculo">
-                        <option selected>Escolha</option>
+                
+                    @if($entregador == null)
+                    <select name="veiculo" id="veiculo" class="form-item">
+                        <option selected hidden>Escolha</option>
                         <option value="carro">Carro</option>
                         <option value="caminhao">Caminhão</option>
                         <option value="moto">Moto</option>
                     </select>
-                    
                     @else 
                     <input type="text" class="form-item"
-                        value="{{ $entregador->veiculo }}" disabled>
+                        value="{{ ucwords($entregador->veiculo) }}" disabled>
                     @endif
                 </div>
             </div>
             
             <div class="form-group">
+                @if($entregador != null)
                 <aside>
                     <label for="cnh" class="form-label">CNH</label>
                 </aside>
-
                 <div>
                     <input type="text" class="form-item" maxlength="10"
                      value="{{ $entregador->cnh }}" disabled>
                 </div>
+                @endif
             </div>
-
             <div class="form-group">
                 <aside>
                     <label for="telefone" class="form-label">Telefone</label>
@@ -80,14 +80,16 @@
                 </div>
             </div>
             
+            @if($entregador == null || $entregador->cnh == null)
             <div class="form-group">
                 <aside>
                     <label for="cnh" class="form-label">CNH</label>
                 </aside>
                 <div>
-                    <input type="text" class="form-item" name="cnh" placeholder="CNH">
+                    <input type="text" class="form-item" name="cnh" placeholder="CNH" maxlength="10">
                 </div>
             </div>
+            @endif
 
         <div class="form-group-btn">
             <button id="btn-cadastro" class="button button-purple" type="submit">Salvar</button>

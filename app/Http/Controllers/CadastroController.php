@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Entregador;
 use App\User;
 
 class CadastroController extends Controller 
 {
 	public function __construct()
-	{	
+	{
+		if(!auth()->check()){
+			return redirect('/');
+		}
 	}
 	
 	public function index() 
@@ -128,11 +132,25 @@ class CadastroController extends Controller
 	{
 		$id = auth()->user()->id;
 		
-		$entregador = DB::table('entregadores')->where('id', $id)->get();
-		
+		$entregador = DB::table('entregadores')->where('id_usuario', $id)->first();
+
 		$data = [
 			'entregador' => $entregador
 		];
-		return view('usuario.area-entregador', $data);
+		//dd($data);
+		return view('usuario.area-entregador')->with(['entregador' => $entregador]);
+	}
+
+	public function createEntregador(Request $request)
+	{
+		$id = auth()->user()->id;
+
+		$entregador = DB::table('entregadores')->insert([
+			'id_usuario' => $id,
+			'veiculo' => $request->veiculo,
+			'cnh' => $request->cnh
+		]);
+
+		return redirect('/areaentregador');
 	}
 }

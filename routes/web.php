@@ -85,7 +85,7 @@ Route::post('/pedido', 'PedidosController@createPedido');
 Route::post('/editar', 'CadastroController@editar');
 Route::post('/editarendereco', 'CadastroController@editarEndereco');
 Route::post('/editarsenha', 'CadastroController@editarSenha');
-Route::post('/areaentregador', 'CadastroController@areaEntregador'); //TEMPORARIO, MUDAR
+Route::post('/areaentregador', 'CadastroController@createEntregador'); //TEMPORARIO, MUDAR
 
 // PAGSEGURO
 Route::post('/pagseguro/redirect', [
