@@ -108,8 +108,8 @@ class CadastroController extends Controller
 	public function editarSenha(Request $request)
 	{
 		$this->validate($request, [
-			'oldpassword' => 'required|min:6',
-			'password' => 'required|confirmed|min:6'
+			'oldpassword' => 'required',
+			'password' => 'required|confirmed'
 		]);
 		
 		$id = auth()->user()->id;
@@ -120,6 +120,7 @@ class CadastroController extends Controller
 		
 		if (auth()->attemp(['email' => auth()->user()->email, 'password' => $old]))
 		{
+			
 			$newPass = bcrypt($request->password);
 
 			User::where('id', $id)->update(['password' => $newPass]);
