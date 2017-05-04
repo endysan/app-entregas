@@ -121,10 +121,8 @@ class CadastroController extends Controller
 		if (auth()->attemp(['email' => auth()->user()->email, 'password' => $old]))
 		{
 			$newPass = bcrypt($request->password);
-			
-			$usuario->password = $newPass;
 
-			$usuario->save();
+			$usuario->where('id', $id)->update('password' => $newPass);
 		}
 	}
 

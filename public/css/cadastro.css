@@ -18,7 +18,7 @@
     height: 450px;
 }
 .signup h2 {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 #btn-cadastro {
     min-width: 180px;
@@ -37,5 +37,9 @@
 }
 
 aside {
-    max-width: 120px;
+    max-width: 150px;
+}
+
+.button{
+    margin-left: 150px;
 }
