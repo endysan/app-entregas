@@ -57,6 +57,7 @@ class EntregadoresController extends Controller
             ->where('id', $id)
             ->update([
                 'cnh' => $request->cnh,
+                'veiculo' => $request->veiculo,
                 'status' => $request->status
             ]);
         return "ok";

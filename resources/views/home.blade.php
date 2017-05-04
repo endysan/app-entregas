@@ -8,13 +8,23 @@
     <div class="container">
         
         @if (Auth::check())
-            <h2>Pedidos feitos</h2>
+            
             
             @if(isset($pedidos))
             <ul class="lista-pedidos">
-                @foreach($pedidos as $pedido)
+            @if(auth()->user()->id_entregador == null)
+            <h2>Seus pedidos feitos</h2>
+            @foreach($pedidos as $pedido)                    
+                @if($pedido->id_usuario == auth()->user()->id)
                     <li class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
+                @endif
+            @endforeach
+            @else
+            <h2>Pedidos disponíveis</h2>
+                @foreach($pedidos as $pedido)                    
+                        <li class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
                 @endforeach
+            @endif
             </ul>
             
             @else

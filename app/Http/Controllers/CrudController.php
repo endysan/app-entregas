@@ -31,5 +31,6 @@ class CrudController extends Controller
     public function logout()
     {
         session()->forget('admin');
+        return redirect()->home();
     }
 }
