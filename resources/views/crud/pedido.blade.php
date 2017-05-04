@@ -55,7 +55,7 @@
             
             <input type="hidden" name="edId">
             <div class="form-group">
-                <select name="id_usuario">
+                <select name="id_usuario" class="form-control">
                     <option selected>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -89,7 +89,7 @@
             <input type="hidden" id="edId" name="id">
             
             <div class="form-group">
-                <select name="id_usuario">
+                <select name="id_usuario" class="form-control">
                     <option selected>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>

@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlength="10">
             </div>
             <div class="form-group">
-                <select name="id_usuario">
+                <select name="id_usuario" class="form-control">
                     <option selected>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -63,7 +63,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <select id="edVeiculo" name="veiculo">
+                <select id="veiculo" name="veiculo" class="form-control">
                     <option selected>Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
@@ -85,7 +85,7 @@
                 <input type="text" id="edCnh" class="form-control" name="cnh" placeholder="CNH" maxlength="10">
             </div>
             <div class='form-group'> 
-                <select id="edVeiculo" name="veiculo">
+                <select id="edVeiculo" name="veiculo" class="form-control">
                     <option selected>Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
@@ -93,7 +93,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <select id="edStatus" name="status">
+                <select id="edStatus" name="status" class="form-control">
                     <option selected>Status</option>
                     <option value="1">Reprovado</option>
                     <option value="2">Andamento</option>
