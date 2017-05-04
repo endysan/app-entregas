@@ -7,13 +7,13 @@
 
 
 @section('content')
-<script type="text/javascript" src="js/jquery.mask.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mask.min.js"></script>
 <script> 
 $(document).ready(function(){
     $('#telefone').mask('(00) 0000-0000');
     $('#whatsapp').mask('(00) 00000-0000');   
 });
- 
 </script>
     <div class="container container-cadastro">
 
