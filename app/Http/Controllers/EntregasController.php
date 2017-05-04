@@ -25,7 +25,7 @@ class EntregasController extends Controller
 
         $entregadores = DB::table('entregadores')
             ->join('users', 'users.id', '=', 'entregadores.id_usuario')
-            ->select('entregadores.id_usuario', 'users.email')->get();
+            ->select('entregadores.id', 'entregadores.id_usuario', 'users.email')->get();
         
         $data = [
             'entregas' => $entregas,
@@ -48,7 +48,6 @@ class EntregasController extends Controller
 		$formated_date = str_replace('/', '-', $date);
 		
 		$date = date('Y-m-d', strtotime($formated_date));
-		
         DB::table('entregas')->insert([
             'id_pedido' => $request->id_pedido,
             'id_entregador' => $request->id_entregador,

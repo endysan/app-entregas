@@ -1,6 +1,6 @@
 @extends ('crud.master')
 
-@section('title', 'EntregaS')
+@section('title', 'Entregas')
 
 @section('css')
     <link rel="stylesheet" href="css/crud.css">
@@ -62,7 +62,7 @@
                 <select id="entregador" name="id_entregador" class="form-control">
                     <option selected hidden>Entregador</option>
                     @foreach($entregadores as $entregador)
-                        <option value="{{ $entregador->id_usuario }}">{{ $entregador->email }}</option>                
+                        <option value="{{ $entregador->id }}">{{ $entregador->email }}</option>                
                     @endforeach
                 </select>
             </div>
@@ -97,7 +97,7 @@
                 <select id="edEntregador" name="id_entregador" class="form-control">
                     <option selected hidden>Entregador</option>
                     @foreach($entregadores as $entregador)
-                        <option value="{{ $entregador->id_usuario }}">{{ $entregador->email }}</option>                
+                        <option value="{{ $entregador->id }}">{{ $entregador->email }}</option>                
                     @endforeach
                 </select>
             </div>
