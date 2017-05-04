@@ -115,10 +115,10 @@ class CadastroController extends Controller
 		$id = auth()->user()->id;
 		
 		$usuario = User::findOrFail($id);
-		$old = bcrypt(request('oldpassword'));
+		$old = request('oldpassword');
 		
 		
-		if (auth()->attemp(['email' => auth()->user()->email, 'password' => $old]))
+		if (auth()->attempt(['email' => auth()->user()->email, 'password' => $old]))
 		{
 			
 			$newPass = bcrypt($request->password);
