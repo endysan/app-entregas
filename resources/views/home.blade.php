@@ -35,7 +35,7 @@
         @else
             <h2>Home App Entrega</h2>
             <hr/>
-
+            <img src="https://unsplash.it/1200/720">
             <p class="content">{{ $content }}</p>
         @endif
     </div>

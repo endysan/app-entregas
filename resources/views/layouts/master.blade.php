@@ -21,5 +21,8 @@
         
         
         @include('layouts.footer')
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.mask.min.js"></script>
+    @yield('scripts')
 </body>
 </html>
