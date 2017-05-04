@@ -40,6 +40,7 @@ class PedidosController extends Controller
     public function createPedido(Request $request)
     {
         $this->validate($request, [
+            'id_usuario' => 'required',
 			'produto' => 'required',
 			'descricao' => 'required',
 			'estado' => 'required',
@@ -49,6 +50,7 @@ class PedidosController extends Controller
 
 
         DB::table('pedidos')->insert([
+            'id_usuario' => $request->id_usuario,
             'produto' => $request->produto,
             'descricao' => $request->descricao,
             'estado' => $request->estado,
@@ -65,7 +67,7 @@ class PedidosController extends Controller
             ->where('id', $id)
             ->update([
                 'produto' => $request->produto,
-                'id_usuario' => $request->email_id,
+                'id_usuario' => $request->id_usuario,
                 'descricao' => $request->descricao,
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,

@@ -36,13 +36,16 @@ class EntregadoresController extends Controller
     public function createEntregador(Request $request)
     {
         $this->validate($request, [
-			'email_id' => 'required',
+			'id_usuario' => 'required',
 			'cnh' => 'required|min:10|max:10',
+            'veiculo' => 'required'
 		]);
 
-        DB::table('entregadores')->insert(
-            ['id_usuario' => $request->email_id, 'cnh' => $request->cnh]
-        );
+        DB::table('entregadores')->insert([
+            'id_usuario' => $request->id_usuario,
+            'cnh' => $request->cnh,
+            'veiculo' => $request->veiculo
+        ]);
 		
 		//dd($request->all());
         return redirect('list-entregador');

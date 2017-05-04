@@ -26,6 +26,7 @@
         <tr>
             <td>{{ $entregador->id }}</td>
             <td>{{ $entregador->id_usuario }}</td>
+            <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>
             <td>{{ $entregador->status }}</td>
             <td>
@@ -54,7 +55,7 @@
                 <input type="text" class="form-control" name="cnh" placeholder="CNH" maxlength="10">
             </div>
             <div class="form-group">
-                <select name="email_id">
+                <select name="id_usuario">
                     <option selected>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -64,9 +65,9 @@
             <div class="form-group">
                 <select id="edVeiculo" name="veiculo">
                     <option selected>Veículo</option>
-                    <option value="1">Carro</option>
-                    <option value="2">Caminhão</option>
-                    <option value="3">Moto</option>
+                    <option value="carro">Carro</option>
+                    <option value="caminhao">Caminhão</option>
+                    <option value="moto">Moto</option>
                 </select>
             </div>
             
@@ -86,9 +87,9 @@
             <div class='form-group'> 
                 <select id="edVeiculo" name="veiculo">
                     <option selected>Veículo</option>
-                    <option value="1">Carro</option>
-                    <option value="2">Caminhão</option>
-                    <option value="3">Moto</option>
+                    <option value="carro">Carro</option>
+                    <option value="caminhao">Caminhão</option>
+                    <option value="moto">Moto</option>
                 </select>
             </div>
             <div class="form-group">
@@ -131,7 +132,7 @@
                     console.log(response);
                     console.log(entregador);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function (response){
                     console.log("ERROR");
@@ -150,7 +151,7 @@
                     console.log("SUCESSO");
                     console.log(response);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function(response){
                     console.log("ERRO");
@@ -162,36 +163,44 @@
 
     function clearEditText()
     {
-        document.querySelector('#edNome').value = null;
-        document.querySelector('#edEmail').value = null;
-        document.querySelector('#edDt_nasc').value = null;
-        document.querySelector('#edEstado').value = null;
-        document.querySelector('#edCidade').value = null;
-        document.querySelector('#edBairro').value = null;
+        document.querySelector('#edCnh').value = null;
+        document.querySelector('#edVeiculo').value = null;
+        document.querySelector('#edStatus').value = null;
     }
 
     function getById(id)
     {
-        clearEditText();
-        var xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
-            if(xhttp.readyState == 4 && xhttp.status == 200) {
-                var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edNome').value = dados.name;
-                document.querySelector('#edEmail').value = dados.email;
-                document.querySelector('#edDt_nasc').value = dados.dt_nasc;
-                document.querySelector('#edEstado').value = dados.estado;
-                document.querySelector('#edCidade').value = dados.cidade;
-                document.querySelector('#edBairro').value = dados.bairro;
-                document.querySelector('#edId').value = id;
-                console.log(dados);
-            }
-            else {
-                console.log("Resposta ainda não chegou ou houve um erro");
-            }
-        }
-        xhttp.open('get', 'get-entregador/'+id, true);
-        xhttp.send();    
+        $.ajax({
+                type: "GET",
+                url: 'get-entregador/'+id,
+                success: function(dados){
+                    console.log("{GET entregador} Sucesso");
+                    $('#edCnh').val(dados.cnh);
+                    $('#edVeiculo[value="'+dados.veiculo+'"').prop('selected', 'selected');
+                    $('#edStatus[value="'+dados.status+'"').prop('selected', 'selected');
+                },
+                error: function(error){
+                    console.log("{GET entregador} Erro");
+                    console.log(error);
+                }
+            });
+    //     clearEditText();
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onload = function() {
+    //         if(xhttp.readyState == 4 && xhttp.status == 200) {
+    //             var dados = JSON.parse(xhttp.responseText);
+    //             document.querySelector('#edCnh').value = dados.cnh;
+    //             document.querySelector('#edVeiculo').value = dados.veiculo;
+    //             document.querySelector('#edStatus').value = dados.status;
+    //             document.querySelector('#edId').value = id;
+    //             console.log(dados);
+    //         }
+    //         else {
+    //             console.log("Resposta ainda não chegou ou houve um erro");
+    //         }
+    //     }
+    //     xhttp.open('get', 'get-entregador/'+id, true);
+    //     xhttp.send();    
     }
 </script>
 

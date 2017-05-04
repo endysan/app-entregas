@@ -25,10 +25,7 @@
         @else
             <h2>Home App Entrega</h2>
             <hr/>
-            
-            <a href="{{ url('list-usuario') }}">Usuario</a>
-            <a href="{{ url('list-pedido') }}">Pedido</a>
-            <a href="{{ url('list-entregador') }}">Entregador</a>
+
             <p class="content">{{ $content }}</p>
         @endif
     </div>

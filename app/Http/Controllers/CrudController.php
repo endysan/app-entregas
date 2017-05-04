@@ -11,16 +11,20 @@ class CrudController extends Controller
       return view('crud.login');
     }
     
-    public function login(Request $request){
-        $email=$request->email;
-        $senha=$request->senha;
-        if ($email=='admin' && $senha=='admin'){
-            return view('crud.links');
-            
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $senha = $request->senha;
+        if ($email=="admin@email.com" && $senha=="admin"){
+            return redirect()->action('CrudController@list');
         }
-        return back()->withError([
-            'message'=> 'Email ou senha incorreto'    
+        return back()->withErrors([
+            'message'=> 'Email ou senha incorreto'
         ]);
-        
+    }
+
+    public function list()
+    {
+        return view('crud.link');
     }
 }

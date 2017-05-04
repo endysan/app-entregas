@@ -18,9 +18,9 @@ class CreateEntregadoresTable extends Migration
         Schema::create('entregadores', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
-            $table->integer('id_usuario')->unsigned()->nullable();
-            $table->string('cnh');
+            $table->integer('id_usuario')->unsigned();
             $table->string('veiculo');
+            $table->string('cnh');
             $table->enum('status', ['Reprovado', 'Andamento', 'Aprovado'])->default('Reprovado');
             $table->timestamps();
         });

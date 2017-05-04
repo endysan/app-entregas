@@ -9,8 +9,7 @@ use App\User;
 class CadastroController extends Controller 
 {
 	public function __construct()
-	{
-			
+	{	
 	}
 	
 	public function index() 

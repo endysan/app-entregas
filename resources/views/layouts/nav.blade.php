@@ -22,6 +22,9 @@
             </li>
         @else
             <li class="nav-item">
+                <a class="nav-link" href="login-admin">Admin</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="login">Login</a>
             </li>
 
