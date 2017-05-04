@@ -18,13 +18,12 @@ class CreatePedidosTable extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
-            $table->integer('id_usuario');
+            $table->integer('id_usuario')->unsigned();
             $table->string('produto');
             $table->text('descricao');
             $table->string('estado');
             $table->string('cidade');
             $table->string('bairro');
-            $table->integer('id_entregador')->unsigned()->nullable();
             $table->timestamps();
         });
     }

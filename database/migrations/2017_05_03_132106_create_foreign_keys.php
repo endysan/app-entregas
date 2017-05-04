@@ -19,9 +19,6 @@ class CreateForeignKeys extends Migration
         Schema::table('entregadores', function($table) {
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
-        Schema::table('pedidos', function($table){
-            $table->foreign('id_entregador')->references('id')->on('entregadores')->onDelete('cascade');
-        });
         Schema::table('entregas', function($table) {
             $table->foreign('id_pedido')->references('id')->on('pedidos')->onDelete('cascade');
             $table->foreign('id_entregador')->references('id')->on('entregadores')->onDelete('cascade');

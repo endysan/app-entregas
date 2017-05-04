@@ -16,6 +16,7 @@ class CrudController extends Controller
         $email = $request->email;
         $senha = $request->senha;
         if ($email=="admin@email.com" && $senha=="admin"){
+            session(['admin' => 'logado']);
             return redirect()->action('CrudController@list');
         }
         return back()->withErrors([
@@ -26,5 +27,9 @@ class CrudController extends Controller
     public function list()
     {
         return view('crud.link');
+    }
+    public function logout()
+    {
+        session()->forget('admin');
     }
 }

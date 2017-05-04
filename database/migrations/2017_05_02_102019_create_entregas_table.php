@@ -18,8 +18,8 @@ class CreateEntregasTable extends Migration
         Schema::create('entregas', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
-            $table->integer('id_pedido')->unsigned()->nullable();
-            $table->integer('id_entregador')->unsigned()->nullable();
+            $table->integer('id_pedido')->unsigned();
+            $table->integer('id_entregador')->unsigned();
             $table->date('dt_entrega');
             $table->enum('status', ['Iniciado', 'Aceito', 'Finalizado'])->default('Iniciado');
             $table->timestamps();

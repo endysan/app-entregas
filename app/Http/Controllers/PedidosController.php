@@ -12,6 +12,7 @@ class PedidosController extends Controller
     {
         return view('pedidos.index');   
     }
+    
     public function getPedidoById($id)
     {
         return Pedido::findOrFail($id);
@@ -31,8 +32,6 @@ class PedidosController extends Controller
             'pedidos' => $pedidos,
             'users' => $users
         ];
-        
-        
         //$deletedUsers = User::onlyTrashed()->get();
         return view('crud.pedido', $data);
     }
