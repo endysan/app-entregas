@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <select name="id_usuario" class="form-control">
-                    <option selected>Entregadores</option>
+                    <option selected hidden>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <select id="veiculo" name="veiculo" class="form-control">
-                    <option selected>Veículo</option>
+                    <option selected hidden>Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
                     <option value="moto">Moto</option>
@@ -86,7 +86,7 @@
             </div>
             <div class='form-group'> 
                 <select id="edVeiculo" name="veiculo" class="form-control">
-                    <option selected>Veículo</option>
+                    <option selected hidden>Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
                     <option value="moto">Moto</option>
@@ -94,7 +94,7 @@
             </div>
             <div class="form-group">
                 <select id="edStatus" name="status" class="form-control">
-                    <option selected>Status</option>
+                    <option selected hidden>Status</option>
                     <option value="1">Reprovado</option>
                     <option value="2">Andamento</option>
                     <option value="3">Aprovado</option>
@@ -176,8 +176,8 @@
                 success: function(dados){
                     console.log("{GET entregador} Sucesso");
                     $('#edCnh').val(dados.cnh);
-                    $('#edVeiculo[value="'+dados.veiculo+'"').prop('selected', 'selected');
-                    $('#edStatus[value="'+dados.status+'"').prop('selected', 'selected');
+                    // $('#edVeiculo[value="'+dados.veiculo+'"').prop('selected', 'selected');
+                    // $('#edStatus[value="'+dados.status+'"').prop('selected', 'selected');
                 },
                 error: function(error){
                     console.log("{GET entregador} Erro");

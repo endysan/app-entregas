@@ -1,6 +1,6 @@
 @extends ('crud.master')
 
-@section('title', 'pedidos')
+@section('title', 'Pedidos')
 
 @section('css')
     <link rel="stylesheet" href="css/crud.css">
@@ -56,7 +56,7 @@
             <input type="hidden" name="edId">
             <div class="form-group">
                 <select name="id_usuario" class="form-control">
-                    <option selected>Entregadores</option>
+                    <option selected hidden>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -90,7 +90,7 @@
             
             <div class="form-group">
                 <select name="id_usuario" class="form-control">
-                    <option selected>Entregadores</option>
+                    <option selected hidden>Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -181,11 +181,6 @@
         document.querySelector('#edCidade').value = null;
         document.querySelector('#edBairro').value = null;
     }
-    /*
-        heroku login
-        
-        git remote 
-    */
 
     function getById(id)
     {

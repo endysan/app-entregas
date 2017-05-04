@@ -51,19 +51,23 @@ Route::get('/get-usuario/{id}', 'UsuariosController@getUsuarioById');
 Route::put('/edit-usuario/{id}', 'UsuariosController@editUsuario');
 Route::delete('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
 
-
 Route::get('/list-pedido', 'PedidosController@listPedido');
 Route::post('/create-pedido', 'PedidosController@createPedido');
 Route::get('/get-pedido/{id}', 'PedidosController@getPedidoById');
 Route::put('/edit-pedido/{id}', 'PedidosController@editPedido');
 Route::delete('/delete-pedido/{id}', 'PedidosController@deletePedido');
 
-
 Route::get('/list-entregador', 'EntregadoresController@listEntregador');
 Route::post('/create-entregador', 'EntregadoresController@createEntregador');
 Route::get('/get-entregador/{id}', 'EntregadoresController@getEntregadorById');
 Route::put('/edit-entregador/{id}', 'EntregadoresController@editEntregador');
 Route::delete('/delete-entregador/{id}', 'EntregadoresController@deleteEntregador');
+
+Route::get('/list-entrega', 'EntregasController@listEntrega');
+Route::post('/create-entrega', 'EntregasController@createEntrega');
+Route::get('/get-entrega/{id}', 'EntregasController@getEntregaById');
+Route::put('/edit-entrega/{id}', 'EntregasController@editEntrega');
+Route::delete('/delete-entrega/{id}', 'EntregasController@deleteEntrega');
 //-------------------------------------------------------------------------
 
 

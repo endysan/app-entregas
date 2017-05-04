@@ -27,5 +27,10 @@ class VerifyCsrfToken extends BaseVerifier
         '/get-entregador/*',
         '/edit-entregador/*',
         '/delete-entregador/*',
+        '/list-entrega',
+        '/create-entrega',
+        '/get-entrega/*',
+        '/edit-entrega/*',
+        '/delete-entrega/*',
     ];
 }
