@@ -7,13 +7,7 @@
 
 
 @section('content')
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.mask.min.js"></script>
-<script> 
-$(document).ready(function(){
-    $('#telefone').mask('(00) 0000-0000');
-    $('#whatsapp').mask('(00) 00000-0000');   
-});
+
 </script>
     <div class="container container-cadastro">
 
@@ -53,14 +47,7 @@ $(document).ready(function(){
 
                 <div>
                     <input id="data" type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
-                     value="{{ Auth::user()->dt_nasc }}" maxlength="10"
-                     onkeyup="
-                        var v = this.value;
-                        if (v.match(/^\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        }">
+                     value="{{ Auth::user()->dt_nasc }}" maxlength="10">
                 </div>
             </div>
 
@@ -71,7 +58,7 @@ $(document).ready(function(){
                 
                 <div>
                     <input id="telefone" name="telefone" class="form-item" type="text" 
-                     placeholder="(00) 0000-0000"
+                     placeholder="(00) 0000-0000" maxlength="14"
                      value="{{ Auth::user()->telefone }}">
                 </div>
             </div>
@@ -83,7 +70,7 @@ $(document).ready(function(){
                 
                 <div>
                     <input id="whatsapp" name="whatsapp" class="form-item"  type="text"
-                     placeholder="(00) 00000-0000"
+                     placeholder="(00) 00000-0000" maxlength="15"
                      value="{{ Auth::user()->whatsapp }}">
                 </div>
             </div>
@@ -93,4 +80,14 @@ $(document).ready(function(){
         </div>
     </form>
     </div>
+    
+    @section('scripts')
+        <script>
+            $(document).ready(function(){
+                $('#dt_nasc').mask('00/00/0000');
+                $('#telefone').mask('(00) 0000=0000');
+                $('#whastapp').mask('(00) 00000=0000');
+            });
+        </script>
+    @endsection
 @endsection

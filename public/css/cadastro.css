@@ -35,3 +35,7 @@
 .form-group input {
     flex-grow: 1;
 }
+
+aside {
+    max-width: 120px;
+}
