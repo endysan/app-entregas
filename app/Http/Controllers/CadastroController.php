@@ -124,6 +124,8 @@ class CadastroController extends Controller
 			$newPass = bcrypt($request->password);
 
 			User::where('id', $id)->update(['password' => $newPass]);
+			
+			return redirect('/editar');
 		}
 	}
 
