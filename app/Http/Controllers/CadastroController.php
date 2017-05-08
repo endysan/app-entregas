@@ -75,8 +75,10 @@ class CadastroController extends Controller
 			
 			auth()->logout(); 
 			auth()->loginUsingId($id);
+			return view('usuario.editar');
 		}
-		return view('usuario.editar');
+		return redirect('/login');
+		
 	}
 	
 	public function editarEndereco(Request $request)
