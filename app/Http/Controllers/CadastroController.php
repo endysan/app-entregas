@@ -12,12 +12,10 @@ class CadastroController extends Controller
 	public function __construct()
 	{	
 		if(!request()->is('cadastro')) { // se a pagina não é de cadastro
-			if(!session()->has('admin')) {
-				if(!auth()->check()) {
-					return redirect('/login');
-				}
-            return redirect('/login-admin');
-        	}
+			
+			if(!auth()->check()) {
+				return redirect('/login');
+			}
 		}
 	}
 	
@@ -48,36 +46,36 @@ class CadastroController extends Controller
     	return redirect()->home();
 	}
 	
-	public function editar(Request $request) 
+	public function editar(Request $request = null) 
 	{
-
-		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
-		
-		$usuario = User::findOrFail($id); //Encontre no Model User, o id
-
-		if ( request('name') != null){
-			$usuario->name = $request->name;
-		}
-		if ( request('dt_nasc') != null){
-
-			$date = $request->dt_nasc;
+		if ($request != null) {
+			$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
 			
-			$formated_date = str_replace('/', '-', $date);
+			$usuario = User::findOrFail($id); //Encontre no Model User, o id
+
+			if ( request('name') != null){
+				$usuario->name = $request->name;
+			}
+			if ( request('dt_nasc') != null){
+
+				$date = $request->dt_nasc;
+				
+				$formated_date = str_replace('/', '-', $date);
+				
+				$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
+			}
+			if ( request('telefone') != null){
+				$usuario->telefone = $request->telefone;
+			}
+			if ( request('whatsapp') != null){
+				$usuario->whatsapp = $request->whatsapp;
+			}
 			
-			$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
+			$usuario->save();
+			
+			auth()->logout(); 
+			auth()->loginUsingId($id);
 		}
-		if ( request('telefone') != null){
-			$usuario->telefone = $request->telefone;
-		}
-		if ( request('whatsapp') != null){
-			$usuario->whatsapp = $request->whatsapp;
-		}
-		
-		$usuario->save();
-		
-		auth()->logout(); 
-		auth()->loginUsingId($id);
-		
 		return view('usuario.editar');
 	}
 	
