@@ -8,6 +8,15 @@ use App\User;
 
 class UsuariosController extends Controller 
 {
+    public function __construct()
+    {
+        if(!session()->has('admin')) {
+            if(!auth()->check()) {
+                return redirect('/login');
+            }
+            return redirect('/login-admin');
+        }
+    }
     public function getUsuarios()
     {
         return User::all();

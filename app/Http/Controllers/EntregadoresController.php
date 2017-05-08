@@ -9,6 +9,16 @@ use App\User;
 
 class EntregadoresController extends Controller
 {
+    public function __construct()
+    {
+        if(!session()->has('admin')) {
+            if(!auth()->check()) {
+                return redirect('/login');
+            }
+            return redirect('/login-admin');
+        }
+    }
+
     public function getEntregador()
     {
         return Entregador::all();

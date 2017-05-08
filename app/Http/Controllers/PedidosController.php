@@ -8,6 +8,16 @@ use App\Pedido;
 
 class PedidosController extends Controller 
 {
+    public function __construct()
+    {
+        if(!session()->has('admin')) {
+            if(!auth()->check()) {
+                return redirect('/login');
+            }
+            return redirect('/login-admin');
+        }
+    }
+
     public function index()
     {
         return view('pedidos.index');   

@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class EntregasController extends Controller
 {
     //
+    public function __construct()
+    {
+        if(!session()->has('admin')) {
+            if(!auth()->check()) {
+                return redirect('/login');
+            }
+            return redirect('/login-admin');
+        }
+    }
     public function getEntrega()
     {
         return DB::table('entregas')->get();

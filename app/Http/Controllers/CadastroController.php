@@ -10,9 +10,14 @@ use App\User;
 class CadastroController extends Controller 
 {
 	public function __construct()
-	{
-		if(!auth()->check()){
-			return redirect('/');
+	{	
+		if(!request()->is('cadastro')) { // se a pagina não é de cadastro
+			if(!session()->has('admin')) {
+				if(!auth()->check()) {
+					return redirect('/login');
+				}
+            return redirect('/login-admin');
+        	}
 		}
 	}
 	
