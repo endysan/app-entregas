@@ -84,6 +84,13 @@ class CadastroController extends Controller
 			return redirect('/editar');
 	}
 	
+	public function editarEnderecoView()
+	{
+		if(auth()->check())
+			return view('usuario.editar-endereco');
+		
+		return redirect('/login');
+	}
 	public function editarEndereco(Request $request)
 	{
 		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
@@ -104,12 +111,15 @@ class CadastroController extends Controller
 		auth()->logout(); //funcionou =D
 		auth()->loginUsingId($id);
 		
-		return view('usuario.editar-endereco');
+		return redirect('/editarendereco');
 	}
 
 	public function editarSenhaView() //SOMENTE PARA ABRIR PAGINA
 	{
-		return view('usuario.editar-senha');
+		if(auth()->check())
+			return view('usuario.editar-senha');
+		
+		return redirect('/login');
 	}
 
 	//SOMENTE QUANDO CHAMAR POST
@@ -125,29 +135,29 @@ class CadastroController extends Controller
 		$usuario = User::findOrFail($id);
 		$old = request('oldpassword');
 		
-		
 		if (auth()->attempt(['email' => auth()->user()->email, 'password' => $old]))
 		{
-			
 			$newPass = bcrypt($request->password);
 
 			User::where('id', $id)->update(['password' => $newPass]);
 			
-			return redirect('/editar');
+			return redirect('/editarsenha');
 		}
 	}
 
 	public function areaEntregador()
 	{
-		$id = auth()->user()->id;
-		
-		$entregador = DB::table('entregadores')->where('id_usuario', $id)->first();
+		if(auth()->check()){
+			$id = auth()->user()->id;
+			
+			$entregador = DB::table('entregadores')->where('id_usuario', $id)->first();
 
-		$data = [
-			'entregador' => $entregador
-		];
-		//dd($data);
-		return view('usuario.area-entregador')->with(['entregador' => $entregador]);
+			$data = [
+				'entregador' => $entregador
+			];
+			return view('usuario.area-entregador')->with(['entregador' => $entregador]);
+		}
+		return redirect('/login');
 	}
 
 	public function createEntregador(Request $request)

@@ -67,6 +67,9 @@ class PedidosController extends Controller
             'bairro' => $request->bairro
         ]);
 
+        if(auth()->check())
+            return redirect('/');
+
         return redirect('/list-pedido');
     }
 

@@ -26,7 +26,7 @@ Route::get('/cadastro', 'CadastroController@index');
 
 //Editar usuario
 Route::get('/editar', 'CadastroController@editarIndex');
-Route::get('/editarendereco', 'CadastroController@editarEndereco');
+Route::get('/editarendereco', 'CadastroController@editarEnderecoView');
 Route::get('/editarsenha', 'CadastroController@editarSenhaView');
 Route::get('/areaentregador', 'CadastroController@areaEntregador');
 

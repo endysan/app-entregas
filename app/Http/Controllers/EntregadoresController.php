@@ -9,14 +9,10 @@ use App\User;
 
 class EntregadoresController extends Controller
 {
-    public function __construct()
+    public function checkAdm()
     {
-        if(!session()->has('admin')) {
-            if(!auth()->check()) {
-                return redirect('/login');
-            }
+        if(!session()->has('admin'))
             return redirect('/login-admin');
-        }
     }
 
     public function getEntregador()
@@ -30,6 +26,7 @@ class EntregadoresController extends Controller
     
     public function listEntregador()
     {
+
         $entregadores = $this->getEntregador();
         
         $users = DB::table('users')->select('id', 'email')->get();
