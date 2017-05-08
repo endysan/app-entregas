@@ -45,10 +45,15 @@ class CadastroController extends Controller
 		}
     	return redirect()->home();
 	}
-	
+	public function editarIndex()
+	{
+		if(auth()->check())
+			return view('usuario.editar');
+		
+		return redirect('/login');
+	}
 	public function editar(Request $request = null) 
 	{
-		if ($request != null) {
 			$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
 			
 			$usuario = User::findOrFail($id); //Encontre no Model User, o id
@@ -75,10 +80,8 @@ class CadastroController extends Controller
 			
 			auth()->logout(); 
 			auth()->loginUsingId($id);
-			return view('usuario.editar');
-		}
-		return redirect('/login');
-		
+
+			return redirect('/editar');
 	}
 	
 	public function editarEndereco(Request $request)

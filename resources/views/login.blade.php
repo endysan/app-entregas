@@ -1,9 +1,11 @@
-<!DOCTYPE>
-<html>
-@include('layouts.header')
+@extends('layouts.master')
+@section('title', 'Login')
 
-<body>
-    @include('layouts.nav')
+@section('css')
+<link rel="stylesheet" href="css/login.css">
+@endsection
+
+@section('content')
     <div class="container-login">
         <div class="signin">
             <h2>Comece agora!</h2>
@@ -34,6 +36,4 @@
         </div>
         
     </div>
-    @include('layouts.footer')
-</body>
-</html>
+@endsection

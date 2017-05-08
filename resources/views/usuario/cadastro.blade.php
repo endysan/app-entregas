@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-@include('layouts.header')
-<body>
+@extends('layouts.master')
 
-    @include('layouts.nav')
-    <div class="container-fluid">
+@section('title', 'Cadastrar')
 
+@section('css')
+<link rel="stylesheet" href="css/cadastro.css">
+@endsection
+
+@section('content')
         <div class="container-cadastro">
 
             <form method="POST" action="cadastro">
@@ -67,8 +68,5 @@
 
                 </div>
             </form>
-        </div>
     </div>
-    @include('layouts.footer')
-</body>
-</html>
+   @endsection

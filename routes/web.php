@@ -25,7 +25,7 @@ Route::get('/logout', 'LoginController@destroy');
 Route::get('/cadastro', 'CadastroController@index');
 
 //Editar usuario
-Route::get('/editar', 'CadastroController@editar');
+Route::get('/editar', 'CadastroController@editarIndex');
 Route::get('/editarendereco', 'CadastroController@editarEndereco');
 Route::get('/editarsenha', 'CadastroController@editarSenhaView');
 Route::get('/areaentregador', 'CadastroController@areaEntregador');

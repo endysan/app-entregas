@@ -17,9 +17,9 @@
 <body>
     @include('layouts.nav')
         
+        <div class="container-fluid">
         @yield('content')  
-        
-        
+        </div>
         @include('layouts.footer')
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.mask.min.js"></script>
