@@ -66,22 +66,8 @@
                 <input type="password" class="form-control" name="senha" placeholder="Senha" required>
             </div>
             <div class="form-group">
-                <input type="text" name="dt_nasc" class="form-control"  placeholder="Data de nascimento" 
-                maxlength="10" onkeyup="var v = this.value;
-                    if (v.match(/^\d{2}$/) !== null) {
-                        this.value = v + '/';
-                    } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                        this.value = v + '/';
-                    }">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                <input type="text" id="dt_nasc" name="dt_nasc" class="form-control" 
+                placeholder="Data de nascimento" maxlength="10">
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -101,22 +87,9 @@
             </div>
             <div class="form-group">
                 <input type="text" id="edDt_nasc" name="dt_nasc" class="form-control"  placeholder="Data de nascimento" 
-                maxlength="10" onkeyup="var v = this.value;
-                    if (v.match(/^\d{2}$/) !== null) {
-                        this.value = v + '/';
-                    } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                        this.value = v + '/';
-                    }">
+                maxlength="10">
             </div>
-            <div class="form-group">
-                <input type="text" id="edEstado" class="form-control" name="estado" placeholder="Estado">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edCidade" class="form-control" name="cidade" placeholder="Cidade">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
-            </div>
+
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>
             
@@ -131,14 +104,14 @@
 </div> <!--CONTAINER-->
 
     @section('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
     var deleteId = null;
     var editId = null;
 
     $(document).ready(function(){
-        
+        $('#dt_nasc, #edDt_nasc').mask('00/00/0000');
+
         $('#form-editar').on('submit', function(event){
             var user = $('#form-editar').serialize();
             $.ajax({
@@ -183,9 +156,6 @@
         document.querySelector('#edNome').value = null;
         document.querySelector('#edEmail').value = null;
         document.querySelector('#edDt_nasc').value = null;
-        document.querySelector('#edEstado').value = null;
-        document.querySelector('#edCidade').value = null;
-        document.querySelector('#edBairro').value = null;
     }
 
     function getById(id)
@@ -198,9 +168,6 @@
                 document.querySelector('#edNome').value = dados.name;
                 document.querySelector('#edEmail').value = dados.email;
                 document.querySelector('#edDt_nasc').value = dados.dt_nasc;
-                document.querySelector('#edEstado').value = dados.estado;
-                document.querySelector('#edCidade').value = dados.cidade;
-                document.querySelector('#edBairro').value = dados.bairro;
                 document.querySelector('#edId').value = id;
                 console.log(dados);
             }
@@ -211,7 +178,7 @@
         xhttp.open('get', 'get-usuario/'+id, true);
         xhttp.send();    
     }
-</script>
+    </script>
 
     @endsection
 

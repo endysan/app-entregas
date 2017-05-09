@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForeignKeys extends Migration
+class CreateForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,14 @@ class CreateForeignKeys extends Migration
     public function up()
     {
        Schema::table('users', function($table){
-            $table->foreign('id_entregador')->references('id')->on('entregadores')->onDelete('cascade');
+            $table->foreign('id_entregador')->references('id')->on('entregadores')->onDelete('set null');
         });
+        
         Schema::table('entregadores', function($table) {
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+        });
+        
+        Schema::table('enderecos', function($table) {
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
         

@@ -114,3 +114,6 @@ footer {
 .button-purple:hover {
     background-color: rgb(105, 40, 195);
 }
+textarea {
+    resize: none;
+}

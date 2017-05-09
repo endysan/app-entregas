@@ -51,11 +51,8 @@ class UsuariosController extends Controller
 			'name' => $request->nome,
 			'email' => $request->email,
 			'password' => bcrypt($request->senha),
-            'dt_nasc' => $date,
-            'estado' => $request->estado,
-            'cidade' => $request->cidade,
-            'bairro' => $request->bairro
-		]);
+            'dt_nasc' => $date
+        ]);
         return redirect('list-usuario');
     }
 
@@ -74,7 +71,11 @@ class UsuariosController extends Controller
             ->update([
                 'name' => $request->nome,
                 'email' => $request->email,
-                'dt_nasc' => $date,
+                'dt_nasc' => $date
+            ]);
+        DB::table('enderecos')
+            ->where('id_usuario', $id)
+            ->update([
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,
                 'bairro' => $request->bairro
@@ -99,7 +100,10 @@ class UsuariosController extends Controller
     
     public function deleteUsuario($id)
     {
-        DB::table('users')->where('id','=', $id)->delete();
+        $user = User::findOrFail($id);
+
+        $user->delete();
+        //DB::table('users')->where('id', $id)->delete();
         
         return "ok";
     }

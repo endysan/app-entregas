@@ -48,9 +48,9 @@ class EntregadoresController extends Controller
             'veiculo' => 'required'
 		]);
 		
-        $cnh = $request->cnh;
+        //$cnh = $request->cnh;
         
-        if($this->validaCnh($cnh))
+        //if($this->validaCnh($cnh))
             //echo "ok";
  
         $id_entregador = DB::table('entregadores')->insertGetId([

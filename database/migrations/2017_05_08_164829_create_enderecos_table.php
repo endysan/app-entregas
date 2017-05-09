@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePedidosTable extends Migration
+class CreateEnderecosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->engine = "InnoDB";
+        Schema::create('enderecos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('identificacao')->nullable();
             $table->integer('id_usuario')->unsigned();
-            $table->string('produto');
-            $table->text('descricao');
             $table->string('estado');
             $table->string('cidade');
             $table->string('bairro');
-            $table->enum('status', ['iniciado', 'finalizado', 'cancelado'])->default('iniciado');
             $table->timestamps();
         });
     }
@@ -35,7 +32,7 @@ class CreatePedidosTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('enderecos');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

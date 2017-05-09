@@ -69,6 +69,12 @@ Route::post('/create-entrega', 'EntregasController@createEntrega');
 Route::get('/get-entrega/{id}', 'EntregasController@getEntregaById');
 Route::put('/edit-entrega/{id}', 'EntregasController@editEntrega');
 Route::delete('/delete-entrega/{id}', 'EntregasController@deleteEntrega');
+
+Route::get('/list-endereco', 'EnderecosController@listEnderecos');
+Route::post('/create-endereco', 'EnderecosController@createEndereco');
+Route::get('/get-endereco/{id}', 'EntregasController@getEntregaById');
+Route::put('/edit-endereco/{id}', 'EntregasController@editEntrega');
+Route::delete('/delete-endereco/{id}', 'EntregasController@deleteEntrega');
 //-------------------------------------------------------------------------
 
 

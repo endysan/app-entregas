@@ -13,15 +13,13 @@ class CreateEntregadoresTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('entregadores');
-        
         Schema::create('entregadores', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('id_usuario')->unsigned();
             $table->string('veiculo');
             $table->string('cnh');
-            $table->enum('status', ['Reprovado', 'Andamento', 'Aprovado'])->default('Reprovado');
+            $table->enum('status', ['reprovado', 'andamento', 'aprovado'])->default('andamento');
             $table->timestamps();
         });
     }

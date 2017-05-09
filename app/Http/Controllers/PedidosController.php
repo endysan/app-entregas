@@ -110,8 +110,12 @@ class PedidosController extends Controller
     
     public function deletePedido($id)
     {
-        DB::table('pedidos')->where('id', $id)->delete();
-        
+        //DB::table('pedidos')->where('id', $id)->delete();
+
+        DB::table('pedidos')->where('id', $id)->update([
+            'status' => 'Cancelado'
+        ]);
+        //return "[PedidosController] Delete - OK";
         return "ok";
     }
 }

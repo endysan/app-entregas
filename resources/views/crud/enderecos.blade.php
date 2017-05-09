@@ -1,15 +1,11 @@
 @extends ('crud.master')
 
-@section('title', 'Pedidos')
-
-@section('css')
-    <link rel="stylesheet" href="css/crud.css">
-@endsection
+@section('title', 'Endereços')
 
 @section('content')
 
    <div class="container-fluid" style="background-color: white;">
-    <h3>pedidos</h3>
+    <h3>enderecos</h3>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastro">
         Cadastrar
     </button>
@@ -17,32 +13,30 @@
         <tr>
             <th>ID</th>
             <th>ID Usuario</th>
-            <th>Produto</th>
-            <th>Descrição</th>
+            <th>Identificação</th>
             <th>Estado</th>
             <th>Cidade</th>
             <th>Bairro</th>
             <th></th>
         </tr>
-        @foreach($pedidos as $pedido)
+        @foreach($enderecos as $endereco)
         <tr>
-            <td>{{ $pedido->id }}</td>
-            <td>{{ $pedido->id_usuario }}</td>
-            <td>{{ $pedido->produto }}</td>
-            <td>{{ $pedido->descricao }}</td>
-            <td>{{ $pedido->estado }}</td>
-            <td>{{ $pedido->cidade }}</td>
-            <td>{{ $pedido->bairro }}</td>
+            <td>{{ $endereco->id }}</td>
+            <td>{{ $endereco->id_usuario }}</td>
+            <td>{{ $endereco->identificacao }}</td>
+            <td>{{ $endereco->estado }}</td>
+            <td>{{ $endereco->cidade }}</td>
+            <td>{{ $endereco->bairro }}</td>
             <td>
-                <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                <input type="hidden" name="id_endereco" value="{{ $endereco->id }}">
                 <button class="btn btn-success" type="button"
-                    data-toggle="modal" data-target="#modalEditar" onclick="editId = {{ $pedido->id }}; 
+                    data-toggle="modal" data-target="#modalEditar" onclick="id = {{ $endereco->id }}; 
                     getById(editId);">
                     Editar
                 </button>
 
                 <button class="btn btn-danger" type="button"
-                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $pedido->id }}">
+                data-toggle="modal" data-target="#modalDeletar" onclick="id = {{ $endereco->id }}">
                     Excluir
                 </button>
             </td>
@@ -51,9 +45,10 @@
 
     </table>
     @section('modal-cadastrar')
-        <form id="form-cadastrar" class="form-crud" method="POST" action="create-pedido">
+        <form id="form-cadastrar" class="form-crud" method="POST" action="create-endereco">
             
             <input type="hidden" name="edId">
+
             <div class="form-group">
                 <select name="id_usuario" class="form-control">
                     <option selected hidden>Usuario</option>
@@ -63,20 +58,21 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="produto" placeholder="Produto" required>
+                <input type="text" class="form-control" name="identificacao"
+                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
             </div>
             <div class="form-group">
-                <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
+                <select name="estado" id="estados" class="form-control select-estado" required>
+                </select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado" required>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade" required>
+                <select name="cidade" id="cidades" class="form-control select-cidade" required>
+                </select>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="bairro" placeholder="Bairro" required>
             </div>
+
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             
@@ -84,7 +80,7 @@
     @endsection
             
     @section('modal-editar')
-        <form id="form-editar" class="form-crud" method="POST" action="edit-pedido">
+        <form id="form-editar" class="form-crud" method="POST" action="edit-endereco">
             
             <input type="hidden" id="edId" name="id">
             
@@ -98,16 +94,16 @@
             </div>
             
             <div class="form-group">
-                <input type="text" id="edProduto" class="form-control" name="produto" placeholder="Produto">
+                <input type="text" id="edIdentificacao" class="form-control" name="identificacao"
+                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho">
             </div>
             <div class="form-group">
-                <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição"></textarea>
+                <select name="estado" id="edEstados" class="form-control select-estado" required>
+                </select>
             </div>
             <div class="form-group">
-                <input type="text" id="edEstado" class="form-control" name="estado" placeholder="Estado">
-            </div>
-            <div class="form-group">
-                <input type="text" id="edCidade" class="form-control" name="cidade" placeholder="Cidade">
+                <select name="cidade" id="edCidades" class="form-control select-cidade" required>
+                </select>
             </div>
             <div class="form-group">
                 <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
@@ -132,23 +128,59 @@
     var editId = null;
 
     $(document).ready(function(){
+        var itensEstados;
+        var itensCidades;
+        var temp;
+        var id = this.id;
+
+        $.getJSON('js/dados/estados-cidades.json', function (data) {
+				var items = [];
+				//var options = '<option value="">escolha um estado</option>';	
+                var options = '<option selected hidden>Estado</option>';
+				$.each(data, function (key, val) {
+					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+				});					
+				$("#estados, #edEstados").html(options);				
+				
+				$("#estados, #edEstados").change(function () {				
+				
+                    var options_cidades = '';
+					var str = "";					
+					
+					$("#estados option:selected, #edDstados option:selected").each(function () {
+						str += $(this).text();
+					});
+					
+					$.each(data, function (key, val) {
+						if(val.nome == str) {							
+							$.each(val.cidades, function (key_city, val_city) {
+								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+							});							
+						}
+					});
+					$("#cidades, #edCidades").html(options_cidades);
+					
+				}).change();	
+			
+			});
+        
         
         $('#form-editar').on('submit', function(event){
-            var pedido = $('#form-editar').serialize();
+            var endereco = $('#form-editar').serialize();
             $.ajax({
                 type: 'PUT',
-                url: 'edit-pedido/'+editId,
-                data: pedido,
+                url: 'edit-endereco/'+editId,
+                data: endereco,
                 success: function(response){
                     console.log(response);
-                    console.log(pedido);
+                    console.log(endereco);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 200);
                 },
                 error: function (response){
                     console.log("ERROR");
                     console.log(response);
-                    console.log(pedido);
+                    console.log(endereco);
                 }
             });
             event.preventDefault();
@@ -157,12 +189,12 @@
         $('#btn_delete').on('click', function(event){
             $.ajax({
                 type: "DELETE",
-                url: 'delete-pedido/'+deleteId,
+                url: 'delete-endereco/'+deleteId,
                 success: function(response){
                     console.log("SUCESSO");
                     console.log(response);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 200);
                 },
                 error: function(response){
                     console.log("ERRO");
@@ -174,8 +206,7 @@
 
     function clearEditText()
     {
-        document.querySelector('#edProduto').value = null;
-        document.querySelector('#edDescricao').value = null;
+        document.querySelector('#edIdentificacao').value = null;
         document.querySelector('#edEstado').value = null;
         document.querySelector('#edCidade').value = null;
         document.querySelector('#edBairro').value = null;
@@ -188,8 +219,7 @@
         xhttp.onload = function() {
             if(xhttp.readyState == 4 && xhttp.status == 200) {
                 var dados = JSON.parse(xhttp.responseText);
-                document.querySelector('#edProduto').value = dados.produto;
-                document.querySelector('#edDescricao').value = dados.descricao;
+                document.querySelector('#edIdentificacao').value = dados.identificacao;
                 document.querySelector('#edEstado').value = dados.estado;
                 document.querySelector('#edCidade').value = dados.cidade;
                 document.querySelector('#edBairro').value = dados.bairro;
@@ -200,7 +230,7 @@
                 console.log("Resposta ainda não chegou ou houve um erro");
             }
         }
-        xhttp.open('get', 'get-pedido/'+id, true);
+        xhttp.open('get', 'get-endereco/'+id, true);
         xhttp.send();    
     }
 </script>

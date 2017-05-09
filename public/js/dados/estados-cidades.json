@@ -1,6 +1,4 @@
-{
-  "estados": [
-    {
+[{
       "sigla": "AC",
       "nome": "Acre",
       "cidades": [
@@ -5721,6 +5719,4 @@
         "Wanderlândia",
         "Xambioá"
       ]
-    }
-  ]
-}
+}]
