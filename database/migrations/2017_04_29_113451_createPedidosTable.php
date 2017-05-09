@@ -22,6 +22,7 @@ class CreatePedidosTable extends Migration
             $table->string('estado');
             $table->string('cidade');
             $table->string('bairro');
+            $table->date('dt_entrega');
             $table->enum('status', ['iniciado', 'finalizado', 'cancelado'])->default('iniciado');
             $table->timestamps();
         });

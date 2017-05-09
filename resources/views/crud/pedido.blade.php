@@ -19,6 +19,7 @@
             <th>ID Usuario</th>
             <th>Produto</th>
             <th>Descrição</th>
+            <th>Data de entrega</th>
             <th>Estado</th>
             <th>Cidade</th>
             <th>Bairro</th>
@@ -30,6 +31,7 @@
             <td>{{ $pedido->id_usuario }}</td>
             <td>{{ $pedido->produto }}</td>
             <td>{{ $pedido->descricao }}</td>
+            <td>{{ $pedido->dt_entrega }}</td>
             <td>{{ $pedido->estado }}</td>
             <td>{{ $pedido->cidade }}</td>
             <td>{{ $pedido->bairro }}</td>
@@ -68,6 +70,12 @@
             <div class="form-group">
                 <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
             </div>
+
+            <hr/>
+            <p>Informações de entrega</p>
+            <div class="form-group">
+                <input type="text" id="dt_entrega" class="form-control" name="dt_entrega" placeholder="dd/mm/aaaa">
+            </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="estado" placeholder="Estado" required>
             </div>
@@ -103,6 +111,12 @@
             <div class="form-group">
                 <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição"></textarea>
             </div>
+            
+            <hr/>
+            <p>Informações de entrega</p>
+            <div class="form-group">
+                <input type="text" id="edDt_entrega" class="form-control" name="dt_entrega" placeholder="dd/mm/aaaa">
+            </div>
             <div class="form-group">
                 <input type="text" id="edEstado" class="form-control" name="estado" placeholder="Estado">
             </div>
@@ -132,7 +146,8 @@
     var editId = null;
 
     $(document).ready(function(){
-        
+        $('#dt_entrega, #edDt_entrega').mask('00/00/0000');
+
         $('#form-editar').on('submit', function(event){
             var pedido = $('#form-editar').serialize();
             $.ajax({

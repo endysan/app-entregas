@@ -50,7 +50,7 @@
             <input type="hidden" name="edId">
 
             <div class="form-group">
-                <select name="id_usuario" class="form-control">
+                <select name="id_usuario" class="form-control" required>
                     <option selected hidden>Usuario</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -85,7 +85,7 @@
             <input type="hidden" id="edId" name="id">
             
             <div class="form-group">
-                <select name="id_usuario" class="form-control">
+                <select name="id_usuario" class="form-control" required>
                     <option selected hidden>Usuario</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -95,7 +95,7 @@
             
             <div class="form-group">
                 <input type="text" id="edIdentificacao" class="form-control" name="identificacao"
-                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho">
+                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
             </div>
             <div class="form-group">
                 <select name="estado" id="edEstados" class="form-control select-estado" required>
@@ -106,7 +106,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
+                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro" required>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>

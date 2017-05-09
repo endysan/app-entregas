@@ -18,7 +18,11 @@
             @else
                 <h2>Pedidos disponíveis</h2>
                 @foreach($pedidos as $pedido)                    
-                        <li class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
+                        <li class="item-pedido">
+                            {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
+                            {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
+                        </li>
+                        
                 @endforeach
             @endif
         </ul>

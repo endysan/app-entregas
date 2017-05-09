@@ -49,18 +49,11 @@ class EntregasController extends Controller
         $this->validate($request, [
 			'id_pedido' => 'required',
 			'id_entregador' => 'required',
-            'dt_entrega' => 'required|min:10|max:10'
 		]);
         
-        $date = $request->dt_entrega;
-			
-		$formated_date = str_replace('/', '-', $date);
-		
-		$date = date('Y-m-d', strtotime($formated_date));
         DB::table('entregas')->insert([
             'id_pedido' => $request->id_pedido,
             'id_entregador' => $request->id_entregador,
-            'dt_entrega' => $date
         ]);
 		
 		//dd($request->all());
@@ -74,7 +67,6 @@ class EntregasController extends Controller
             ->update([
                 'id_pedido' => $request->id_pedido,
                 'id_entregador' => $request->id_entregador,
-                'dt_entrega' => $request->dt_entrega
             ]);
         return "ok";
     }

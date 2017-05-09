@@ -54,9 +54,15 @@ class PedidosController extends Controller
 			'descricao' => 'required',
 			'estado' => 'required',
             'cidade' => 'required',
-            'bairro' => 'required'
+            'bairro' => 'required',
+            'dt_entrega' => 'required' // ?
 		]);
 
+        $date = $request->dt_nasc;
+			
+		$formated_date = str_replace('/', '-', $date);
+		
+		$date = date('Y-m-d', strtotime($formated_date));
 
         DB::table('pedidos')->insert([
             'id_usuario' => $request->id_usuario,
@@ -64,7 +70,8 @@ class PedidosController extends Controller
             'descricao' => $request->descricao,
             'estado' => $request->estado,
             'cidade' => $request->cidade,
-            'bairro' => $request->bairro
+            'bairro' => $request->bairro,
+            'dt_entrega' => $date
         ]);
 
         if(auth()->check())
@@ -75,6 +82,12 @@ class PedidosController extends Controller
 
     public function editPedido(Request $request, $id)
     {
+        $date = $request->dt_nasc;
+			
+		$formated_date = str_replace('/', '-', $date);
+		
+		$date = date('Y-m-d', strtotime($formated_date));
+
         DB::table('pedidos')
             ->where('id', $id)
             ->update([
@@ -83,7 +96,8 @@ class PedidosController extends Controller
                 'descricao' => $request->descricao,
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,
-                'bairro' => $request->bairro
+                'bairro' => $request->bairro,
+                'dt_entrega' => $date
         ]);
 
         return "ok";

@@ -34,16 +34,22 @@ class CadastroController extends Controller
 			'password' => 'required|confirmed'
 		]);
 
-		$user = User::create([
-			'name' => request('name'),
-			'email' => request('email'),
-			'password' => bcrypt(request('password'))
-		]);
+		try {
+			$user = User::create([
+				'name' => request('name'),
+				'email' => request('email'),
+				'password' => bcrypt(request('password'))
+			]);
 
-		if($request->ajax()){
-			return "ok";
+			return redirect()->home();
 		}
-    	return redirect()->home();
+		catch(Exception $ex)
+		{
+			return back()->withErrors([
+				'message' => 'Erro ao realizar o cadastro',
+				'error' => $ex
+			]);
+		}
 	}
 	public function editarIndex()
 	{

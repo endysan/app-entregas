@@ -18,7 +18,6 @@
             <th>ID</th>
             <th>ID Pedido</th>
             <th>ID Entregador</th>
-            <th>Data de entrega</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -27,7 +26,6 @@
             <td>{{ $entrega->id }}</td>
             <td>{{ $entrega->id_pedido }}</td>
             <td>{{ $entrega->id_entregador }}</td>
-            <td>{{ $entrega->dt_entrega }}</td>
             <td>{{ $entrega->status }}</td>
             <td>
                 <input type="hidden" name="entrega_id" value="{{ $entrega->id }}">
