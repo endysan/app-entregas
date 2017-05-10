@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Entregador;
+use Validator;
 use App\User;
 
 class CadastroController extends Controller 

@@ -34,7 +34,7 @@
                 <div class="form-group">
                 
                     @if($entregador == null)
-                    <select name="veiculo" id="veiculo" class="form-item">
+                    <select name="veiculo" id="veiculo" class="form-item" required>
                         <option selected hidden>Escolha</option>
                         <option value="carro">Carro</option>
                         <option value="caminhao">Caminhão</option>
@@ -86,7 +86,7 @@
                     <label for="cnh" class="form-label">CNH</label>
                 </aside>
                 <div>
-                    <input type="text" class="form-item" name="cnh" placeholder="CNH" maxlength="10">
+                    <input type="text" class="form-item" name="cnh" placeholder="CNH" maxlength="10" required>
                 </div>
             </div>
             @endif
@@ -111,4 +111,5 @@
             $('#dt_nasc').mask('00/00/0000');
         });
     </script>
+    @endsection
 @endsection
