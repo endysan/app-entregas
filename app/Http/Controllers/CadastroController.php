@@ -61,21 +61,21 @@ class CadastroController extends Controller
 			
 			$usuario = User::findOrFail($id); //Encontre no Model User, o id
 
-			if ( request('name') != null){
+			if ( $request->name != null){
 				$usuario->name = $request->name;
 			}
-			if ( request('dt_nasc') != null){
-
+			if ( $request->dt_nasc != null && strlen($request->dt_nasc) == 10){
 				$date = $request->dt_nasc;
 				
 				$formated_date = str_replace('/', '-', $date);
 				
 				$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
+
 			}
-			if ( request('telefone') != null){
+			if ( $request->telefone != null && strlen($request->telefone) == 14){
 				$usuario->telefone = $request->telefone;
 			}
-			if ( request('whatsapp') != null){
+			if ( $request->whatsapp != null && strlen($request->whatsapp) == 15){
 				$usuario->whatsapp = $request->whatsapp;
 			}
 			
@@ -165,7 +165,6 @@ class CadastroController extends Controller
 
 	public function createEntregador(Request $request)
 	{
-		$id = auth()->user()->id;
 		 $validator = Validator::make($request->all(), [
 			 //Regras
             'veiculo' => 'required',
@@ -181,6 +180,7 @@ class CadastroController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
+		$id = auth()->user()->id;
 		$entregador = DB::table('entregadores')->insert([
 			'id_usuario' => $id,
 			'veiculo' => $request->veiculo,

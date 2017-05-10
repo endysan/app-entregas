@@ -38,7 +38,8 @@ class UsuariosController extends Controller
         $this->validate($request, [
 			'nome' => 'required',
 			'email' => 'required',
-			'senha' => 'required'
+			'senha' => 'required',
+            'dt_nasc' => 'required|size:10'
 		]);
 		
         $date = $request->dt_nasc;

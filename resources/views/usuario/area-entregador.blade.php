@@ -104,4 +104,11 @@
         </div>
     </form>
     </div>
+
+    @section('script')
+    <script>
+        $(document).ready(function(){
+            $('#dt_nasc').mask('00/00/0000');
+        });
+    </script>
 @endsection
