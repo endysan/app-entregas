@@ -117,3 +117,10 @@ footer {
 textarea {
     resize: none;
 }
+.title-home {
+    display: flex;
+    justify-content: center;
+}
+.img-home {
+    width: 100%;
+}

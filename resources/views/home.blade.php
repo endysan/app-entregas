@@ -33,9 +33,18 @@
         @endif
 
     @else
-        <h2>Home App Entrega</h2>
+
+            @if (session()->has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{{ session()->get('success') }}</li>
+                </ul>
+            </div>
+            @endif
+
+        <h2 class="title-home">Home App Entrega</h2>
         <hr/>
-        <img src="https://unsplash.it/1200/720">
+        <img class="img-home" src="https://unsplash.it/1280/380?image=20">
         <p class="content">{{ $content }}</p>
     @endif
 @endsection

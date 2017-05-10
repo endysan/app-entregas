@@ -21,7 +21,7 @@
                         </aside>
                         
                         <div>
-                            <input id="name" name="name" class="form-item" type="text">
+                            <input id="name" name="name" class="form-item" type="text" required>
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@
                             <label for="email" class="form-label">Email</label>
                         </aside>
                         <div>
-                            <input id="email" name="email" class="form-item" type="email">
+                            <input id="email" name="email" class="form-item" type="email" required>
                         </div>
                     </div>  
 
@@ -39,7 +39,7 @@
                             <label for="password" class="form-label">Senha</label>
                         </aside>
                         <div>
-                            <input id="password" name="password" class="form-item" type="password">
+                            <input id="password" name="password" class="form-item" type="password" required>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                             <label for="password_confirmation" class="form-label">Confirmar Senha</label>
                         </aside>
                         <div>
-                            <input id="password_confirmation" name="password_confirmation" class="form-item" type="password">
+                            <input id="password_confirmation" name="password_confirmation" class="form-item" type="password" required>
                         </div>
                     </div>
                 

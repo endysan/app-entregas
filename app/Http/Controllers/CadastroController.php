@@ -33,6 +33,7 @@ class CadastroController extends Controller
 		]);
 		
 		$checkUser = User::where('email', $request->email)->get();
+
 		if(!$checkUser->isEmpty())
 		{
 			session()->flash('errorMessage', 'Email já cadastrado');
@@ -44,6 +45,7 @@ class CadastroController extends Controller
 			'email' => request('email'),
 			'password' => bcrypt(request('password'))
 		]);
+		session()->flash('success', 'Cadastrado com sucesso');
 		return redirect()->home();
 	}
 	public function editarIndex()
