@@ -110,17 +110,22 @@ class CadastroController extends Controller
 			$endereco->bairro = $request->bairro;
 		}
 		
-		DB::table('enderecos')
-			->where('id_usuario', $usuario->id)
-			->update([
-				'estado' => $endereco->estado,
-				'cidade' => $endereco->cidade,
-				'bairro' => $endereco->bairro
-			]);
+		try{
+			DB::table('enderecos')
+				->where('id_usuario', $usuario->id)
+				->update([
+					'estado' => $endereco->estado,
+					'cidade' => $endereco->cidade,
+					'bairro' => $endereco->bairro
+				]);
+		} catch(PDOException $ex) {
+			return redirect()->back()->withErrors(['errors' => 'Erro inesperado ao editar']);
+		}
 		
 		auth()->logout(); 
 		auth()->loginUsingId($id);
 		
+		session()->flash('success', 'Editado com sucesso!');
 		return redirect('/editarendereco');
 	}
 
@@ -156,7 +161,7 @@ class CadastroController extends Controller
 		if (auth()->attempt(['email' => auth()->user()->email, 'password' => $old]))
 		{
 			$newPass = bcrypt($request->password);
-
+			
 			User::where('id', $id)->update(['password' => $newPass]);
 			
 			session()->flash('success', 'Senha modificada com sucesso!');
