@@ -135,7 +135,7 @@ class CadastroController extends Controller
 		
 		$id = auth()->user()->id;
 		
-		$usuario = User::findOrFail($id);
+		$usuario = User::find($id);
 		$old = request('oldpassword');
 		
 		if (auth()->attempt(['email' => auth()->user()->email, 'password' => $old]))

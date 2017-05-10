@@ -18,6 +18,7 @@
         <div class="bloco1">
             <p class="muted">Informações do seu produto</p>
             <input type="hidden" name="id_usuario" value="{{ auth()->user()->id }}">
+
             <div class="form-group">
                 <label for="produto" class="form-label">Seu produto</label>
                 <input id="produto" name="produto" class="form-item" type="text" required>
@@ -25,7 +26,7 @@
 
             <div class="form-group">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea id="descricao" name="descricao" class="form-item"></textarea>
+                <textarea id="descricao" name="descricao" class="form-item" required></textarea>
             </div>  
            
         </div>

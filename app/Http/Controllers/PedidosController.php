@@ -48,16 +48,19 @@ class PedidosController extends Controller
     
     public function createPedido(Request $request)
     {
-        $this->validate($request, [
-            'id_usuario' => 'required',
+        $validator = Validator::make($request->all(), [
+			'id_usuario' => 'required',
 			'produto' => 'required',
 			'descricao' => 'required',
 			'estado' => 'required',
             'cidade' => 'required',
             'bairro' => 'required',
             'dt_entrega' => 'required' // ?
-		]);
+        ],['required' => ':attribute é um campo obrigatório']);
 
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
         $date = $request->dt_nasc;
 			
 		$formated_date = str_replace('/', '-', $date);
