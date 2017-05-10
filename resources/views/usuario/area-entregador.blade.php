@@ -90,7 +90,15 @@
                 </div>
             </div>
             @endif
-
+            @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
         <div class="form-group-btn">
             <button id="btn-cadastro" class="button button-purple" type="submit">Salvar</button>
         </div>

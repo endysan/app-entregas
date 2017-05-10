@@ -33,23 +33,20 @@ class CadastroController extends Controller
 			'email' => 'required',
 			'password' => 'required|confirmed'
 		]);
-
-		try {
-			$user = User::create([
-				'name' => request('name'),
-				'email' => request('email'),
-				'password' => bcrypt(request('password'))
-			]);
-
-			return redirect()->home();
-		}
-		catch(Exception $ex)
+		
+		$checkUser = User::where('email', $request->email)->get();
+		if(!$checkUser->isEmpty())
 		{
-			return back()->withErrors([
-				'message' => 'Erro ao realizar o cadastro',
-				'error' => $ex
-			]);
+			session()->flash('errorMessage', 'Email já cadastrado');
+			return redirect()->back();
 		}
+
+		$user = User::create([
+			'name' => request('name'),
+			'email' => request('email'),
+			'password' => bcrypt(request('password'))
+		]);
+		return redirect()->home();
 	}
 	public function editarIndex()
 	{
@@ -169,6 +166,20 @@ class CadastroController extends Controller
 	public function createEntregador(Request $request)
 	{
 		$id = auth()->user()->id;
+		 $validator = Validator::make($request->all(), [
+			 //Regras
+            'veiculo' => 'required',
+			'cnh' => 'required|size:10'
+        ],
+		[
+			//Mensagens
+			'required' => ':attribute é um campo obrigatório',
+			'size' => ':attribute deve ter o tamanho de :size'
+		]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
 
 		$entregador = DB::table('entregadores')->insert([
 			'id_usuario' => $id,

@@ -65,7 +65,13 @@
                         </ul>
                     </div>
                     @endif
-
+                    @if (session()->has('errorMessage'))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ session()->get('errorMessage') }}</li>
+                        </ul>
+                    </div>
+                    @endif
                 </div>
             </form>
     </div>
