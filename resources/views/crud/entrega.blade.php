@@ -50,7 +50,7 @@
         <input type="hidden" name="edId">
         <div class='form-group'> 
                 <select id="pedido" name="id_pedido" class="form-control">
-                    <option selected hidden>Produtos</option>
+                    <option selected hidden value="">Produtos</option>
                     @foreach($pedidos as $pedido)
                         <option value="{{ $pedido->id }}">{{ $pedido->produto }}</option>
                     @endforeach
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group">
                 <select id="entregador" name="id_entregador" class="form-control">
-                    <option selected hidden>Entregador</option>
+                    <option selected hidden value="">Entregador</option>
                     @foreach($entregadores as $entregador)
                         <option value="{{ $entregador->id }}">{{ $entregador->email }}</option>                
                     @endforeach
@@ -80,7 +80,7 @@
             <input type="hidden" id="edId" name="id">
             <div class='form-group'> 
                 <select id="edPedido" name="id_pedido" class="form-control">
-                    <option selected hidden>Produto</option>
+                    <option selected hidden value="">Produto</option>
                     @foreach($pedidos as $pedido)
                         <option value="{{ $pedido->id }}">{{ $pedido->produto }}</option>
                     @endforeach
@@ -88,7 +88,7 @@
             </div>
             <div class="form-group">
                 <select id="edEntregador" name="id_entregador" class="form-control">
-                    <option selected hidden>Entregador</option>
+                    <option selected hidden value="">Entregador</option>
                     @foreach($entregadores as $entregador)
                         <option value="{{ $entregador->id }}">{{ $entregador->email }}</option>                
                     @endforeach

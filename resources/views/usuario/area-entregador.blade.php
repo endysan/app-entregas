@@ -7,7 +7,7 @@
 
 
 @section('content')
-    <div class="container container-cadastro">
+    <div class="container-cadastro">
 
         <ul class="lista">
             <li>
@@ -35,7 +35,7 @@
                 
                     @if($entregador == null)
                     <select name="veiculo" id="veiculo" class="form-item" required>
-                        <option selected hidden>Escolha</option>
+                        <option selected hidden value="">Escolha</option>
                         <option value="carro">Carro</option>
                         <option value="caminhao">Caminhão</option>
                         <option value="moto">Moto</option>

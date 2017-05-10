@@ -7,9 +7,7 @@
 
 
 @section('content')
-<div class="container-fluid">
-
-    <div class="container-cadastro">
+<div class="container-cadastro">
 
     <ul class="lista">
         <li>

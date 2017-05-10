@@ -9,7 +9,7 @@
 @section('content')
 
 </script>
-    <div class="container container-cadastro">
+    <div class="container-cadastro">
 
         <ul class="lista">
             <li>

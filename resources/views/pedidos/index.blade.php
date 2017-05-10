@@ -79,7 +79,7 @@
         $.getJSON('js/dados/estados-cidades.json', function (data) {
 				var items = [];
 				//var options = '<option value="">escolha um estado</option>';	
-                var options = '<option selected hidden>Estado</option>';
+                var options = '<option selected hidden value="">Estado</option>';
 				$.each(data, function (key, val) {
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
@@ -102,9 +102,7 @@
 						}
 					});
 					$("#cidades, #edCidades").html(options_cidades);
-					
 				}).change();	
-			
 			});
     });
 </script>

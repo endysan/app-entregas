@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <select name="id_usuario" class="form-control" required>
-                    <option selected hidden>Entregadores</option>
+                    <option selected hidden value="">Entregadores</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
                 <select id="veiculo" name="veiculo" class="form-control" required>
-                    <option selected hidden>Veículo</option>
+                    <option selected hidden value="">Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
                     <option value="moto">Moto</option>
@@ -86,7 +86,7 @@
             </div>
             <div class='form-group'> 
                 <select id="edVeiculo" name="veiculo" class="form-control">
-                    <option selected hidden>Veículo</option>
+                    <option selected hidden value="">Veículo</option>
                     <option value="carro">Carro</option>
                     <option value="caminhao">Caminhão</option>
                     <option value="moto">Moto</option>
@@ -94,7 +94,7 @@
             </div>
             <div class="form-group">
                 <select id="edStatus" name="status" class="form-control">
-                    <option selected hidden>Status</option>
+                    <option selected hidden value="">Status</option>
                     <option value="1">Reprovado</option>
                     <option value="2">Andamento</option>
                     <option value="3">Aprovado</option>

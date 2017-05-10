@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <select name="id_usuario" class="form-control" required>
-                    <option selected hidden>Usuario</option>
+                    <option selected hidden value="">Usuario</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -86,7 +86,7 @@
             
             <div class="form-group">
                 <select name="id_usuario" class="form-control" required>
-                    <option selected hidden>Usuario</option>
+                    <option selected hidden value="">Usuario</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach
@@ -133,7 +133,7 @@
         $.getJSON('js/dados/estados-cidades.json', function (data) {
 				var items = [];
 				//var options = '<option value="">escolha um estado</option>';	
-                var options = '<option selected hidden>Estado</option>';
+                var options = '<option selected hidden value="">Estado</option>';
 				$.each(data, function (key, val) {
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
