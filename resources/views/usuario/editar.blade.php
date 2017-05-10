@@ -46,7 +46,7 @@
                 </aside>
 
                 <div>
-                    <input id="data" type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
+                    <input id="dt_nasc" type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
                      value="{{ Auth::user()->dt_nasc }}" maxlength="10">
                 </div>
             </div>
@@ -80,14 +80,15 @@
         </div>
     </form>
     </div>
-    
-    @section('scripts')
-        <script>
-            $(document).ready(function(){
-                $('#dt_nasc').mask('00/00/0000');
-                $('#telefone').mask('(00) 0000-0000');
-                $('#whatsapp').mask('(00) 00000-0000');
-            });
-        </script>
-    @endsection
+
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#dt_nasc').mask('00/00/0000');
+            $('#telefone').mask('(00) 0000-0000');
+            $('#whatsapp').mask('(00) 00000-0000');
+        });
+    </script>
 @endsection

@@ -64,7 +64,6 @@
             </div>
         </div>
 
-        
 
         <div class="form-group-btn">
             <button id="btn-cadastro" class="button button-purple" type="submit">Salvar</button>
@@ -72,4 +71,52 @@
     </form>
     </div>
 </div>
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function(){
+    $.getJSON('js/dados/estados-cidades.json', function (data) {
+            var items = [];
+            //var options = '<option value="">escolha um estado</option>';	
+            var options = '<option selected hidden>Estado</option>';
+            $.each(data, function (key, val) {
+                options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+            });					
+            $("#estados, #edEstados").html(options);				
+            
+            $("#estados, #edEstados").change(function () {				
+            
+                var options_cidades = '';
+                var str = "";					
+                
+                $("#estados option:selected, #edDstados option:selected").each(function () {
+                    str += $(this).text();
+                });
+                
+                $.each(data, function (key, val) {
+                    if(val.nome == str) {							
+                        $.each(val.cidades, function (key_city, val_city) {
+                            options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+                        });							
+                    }
+                });
+                $("#cidades, #edCidades").html(options_cidades);
+                
+            }).change();	
+        
+        });
+});
+
+</script>
+
 @endsection

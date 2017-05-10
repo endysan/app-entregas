@@ -105,25 +105,7 @@ class PedidosController extends Controller
         ]);
 
         return "ok";
-        // $pedido = Pedido::findOrFail($id);
-        
-        // if($request->produto != null)
-        //     $pedido->produto = $request->produto;
-            
-        // if($request->descricao != null)
-        //     $pedido->descricao = $request->descricao;
-        
-        // if($request->estado != null)
-        //     $pedido->estado = $request->estado;
-            
-        // if($request->cidade != null)
-        //     $pedido->cidade = $request->cidade;
-
-        // if($request->bairro != null)
-        //     $pedido->bairro = $request->bairro;
-
-        // $pedido->save();
-        // return redirect()->action('PedidosController@listPedido');
+       
     }
     
     public function deletePedido($id)

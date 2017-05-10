@@ -128,9 +128,6 @@
     var editId = null;
 
     $(document).ready(function(){
-        var itensEstados;
-        var itensCidades;
-        var temp;
         var id = this.id;
 
         $.getJSON('js/dados/estados-cidades.json', function (data) {

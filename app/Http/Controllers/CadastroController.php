@@ -12,11 +12,8 @@ class CadastroController extends Controller
 {
 	public function __construct()
 	{	
-		if(!request()->is('cadastro')) { // se a pagina não é de cadastro
-			
-			if(!auth()->check()) {
-				return redirect('/login');
-			}
+		if(!request()->is('cadastro') && !auth()->check()) { // se a pagina não é de cadastro
+			return redirect('/login');
 		}
 	}
 	
@@ -99,20 +96,29 @@ class CadastroController extends Controller
 	{
 		$id = auth()->user()->id; //ID do usuario, recuperado pela sessão
 		
-		$usuario = User::findOrFail($id); //Encontre no Model User, o id
+		$usuario = User::find($id); //Encontre no Model User, o id
 
-		if ( request('estado') != null){
-			$usuario->estado = $request->estado;
+		$endereco = DB::table('enderecos')->where('id_usuario', $usuario->id)->get();
+
+		if ( $request->estado != null){
+			$endereco->estado = $request->estado;
 		}
-		if ( request('cidade') != null){
-			$usuario->cidade = $request->cidade; 
+		if ( $request->cidade != null){
+			$endereco->cidade = $request->cidade; 
 		}
-		if ( request('bairro') != null){
-			$usuario->bairro = $request->bairro;
+		if ( $request->bairro != null){
+			$endereco->bairro = $request->bairro;
 		}
-		$usuario->save();
 		
-		auth()->logout(); //funcionou =D
+		DB::table('enderecos')
+			->where('id_usuario', $usuario->id)
+			->update([
+				'estado' => $endereco->estado,
+				'cidade' => $endereco->cidade,
+				'bairro' => $endereco->bairro
+			]);
+		
+		auth()->logout(); 
 		auth()->loginUsingId($id);
 		
 		return redirect('/editarendereco');
@@ -129,11 +135,19 @@ class CadastroController extends Controller
 	//SOMENTE QUANDO CHAMAR POST
 	public function editarSenha(Request $request)
 	{
-		$this->validate($request, [
-			'oldpassword' => 'required',
+		$validator = Validator::make($request->all(), [
+            'oldpassword' => 'required',
 			'password' => 'required|confirmed'
+        ],
+		[
+			'required' => ':attribute é um campo obrigatório',
+			'confirmed' => 'As senhas não conferem'
 		]);
-		
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
 		$id = auth()->user()->id;
 		
 		$usuario = User::find($id);
@@ -145,8 +159,11 @@ class CadastroController extends Controller
 
 			User::where('id', $id)->update(['password' => $newPass]);
 			
+			session()->flash('success', 'Senha modificada com sucesso!');
 			return redirect('/editarsenha');
 		}
+		session()->flash('errorMessage', 'Ocorreu um erro ao modificadar a senha');
+		return redirect()->back();
 	}
 
 	public function areaEntregador()
