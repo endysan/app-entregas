@@ -37,8 +37,10 @@ Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDist
 
 //Pedidos
 Route::get('/pedidos', 'PedidosController@index');
+Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
+Route::post('/pedido/entrega', 'EntregasController@createEntrega');
 //CRUDs-------------------------------------------------------------------
 Route::get('/login-admin','CrudController@loginView');
 Route::post('/login-admin','CrudController@login');
@@ -75,6 +77,12 @@ Route::post('/create-endereco', 'EnderecosController@createEndereco');
 Route::get('/get-endereco/{id}', 'EntregasController@getEntregaById');
 Route::put('/edit-endereco/{id}', 'EntregasController@editEntrega');
 Route::delete('/delete-endereco/{id}', 'EntregasController@deleteEntrega');
+
+Route::get('/list-veiculo', 'VeiculosController@listVeiculo');
+Route::post('/create-veiculo', 'VeiculosController@createVeiculo');
+Route::get('/get-veiculo/{id}', 'VeiculosController@getVeiculoById');
+Route::put('/edit-veiculo/{id}', 'VeiculosController@editVeiculo');
+Route::delete('/delete-veiculo/{id}', 'VeiculosController@deleteVeiculo');
 //-------------------------------------------------------------------------
 
 

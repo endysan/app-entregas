@@ -4,7 +4,7 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="css/pedido.css">
+    <link rel="stylesheet" href="{{ url('css/pedido.css') }}">
 @endsection
 
 

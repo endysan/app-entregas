@@ -10,7 +10,7 @@
         </li>
         @if(Auth::check())
         <li class="nav-item">
-            <a class="nav-link" href="pedidos">Pedidos</a>
+            <a class="nav-link" href="{{ url('pedidos') }}">Pedidos</a>
         </li>
         @endif
     </div>
@@ -19,28 +19,28 @@
         @if(Auth::check())
             <li class="nav-item">
                 <!-- NOME DO USUARIO | LINK EDITAR PERFIL -->
-                <a class="nav-link" href="editar">{{ Auth::user()->name}}</a>
+                <a class="nav-link" href="{{ url('editar') }}">{{ Auth::user()->name}}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="logout">Sair</a>
+                <a class="nav-link" href="{{ url('logout') }}">Sair</a>
             </li>
         @else
             
             @if(session()->has('admin'))
                 <li class="nav-item">
-                    <a class="nav-link" href="logout-admin">Admin Logout</a>
+                    <a class="nav-link" href="{{ url('logout-admin') }}">Admin Logout</a>
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="login-admin">Admin</a>
+                    <a class="nav-link" href="{{ url('login-admin') }}">Admin</a>
                 </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link" href="login">Login</a>
+                <a class="nav-link" href="{{ url('login') }}">Login</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="cadastro">Cadastrar</a>
+                <a class="nav-link" href="{{ url('cadastro') }}">Cadastrar</a>
             </li>
         @endif
     </div> <!-- NAVBAR RIGHT-->

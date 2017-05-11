@@ -51,13 +51,25 @@ class EntregasController extends Controller
 			'id_entregador' => 'required',
 		]);
         
-        DB::table('entregas')->insert([
-            'id_pedido' => $request->id_pedido,
-            'id_entregador' => $request->id_entregador,
-        ]);
+        try {
+            DB::table('entregas')->insert([
+                'id_pedido' => $request->id_pedido,
+                'id_entregador' => $request->id_entregador,
+            ]);
+
+            if($request->is('pedido/{id}')) {
+                session()->flash('success', 'Pedido aceito, aguarde a confirmação');
+                return redirect('/');
+            }
+            return redirect('list-entrega');
+            
+        } catch(PDOException $ex) {
+            session()->flash('errorMessage', 'Problemas ao aceitar esse pedido');
+            return redirect()->back();
+        }
 		
 		//dd($request->all());
-        return redirect('list-entrega');
+        
     }
 
     public function editEntrega(Request $request, $id)

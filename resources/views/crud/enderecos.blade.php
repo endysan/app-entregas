@@ -131,34 +131,63 @@
     $(document).ready(function(){
         var id = this.id;
 
-         $.getJSON('js/dados/estados-cidades.json', function (data) {
+         $.getJSON('js/dados/estados-cidades.json', function (data){
 				var items = [];
-                var options = '<option selected value="" hidden>Estado</option>';
+                var options = '<option selected hidden value="">Estado</option>';
 				$.each(data, function (key, val) {
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
-				$("#estados, #edEstados").html(options);				
+				$("#estados").html(options);				
 				
-				$("#estados, #edEstados").change(function () {				
-				
+				$("#estados").change(function () {				
+                    
                     var options_cidades = '';
 					var str = "";					
 					
-					$("#estados option:selected, #edEstados option:selected").each(function () {
+					$("#estados option:selected").each(function () {
 						str += $(this).text();
 					});
 					
 					$.each(data, function (key, val) {
-						if(val.nome == str) {							
+                        
+						if(val.nome == str) {					
 							$.each(val.cidades, function (key_city, val_city) {
 								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
 							});							
 						}
 					});
-					$("#cidades, #edCidades").html(options_cidades);
+					$("#cidades").html(options_cidades);
 				}).change();	
 			});
-        
+
+        $.getJSON('js/dados/estados-cidades.json', function (data){
+				var items = [];
+                var options = '<option selected hidden value="">Estado</option>';
+				$.each(data, function (key, val) {
+					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+				});					
+				$("#edEstados").html(options);				
+				
+				$("#edEstados").change(function () {				
+                    
+                    var options_cidades = '';
+					var str = "";					
+					
+					$("#edEstados option:selected").each(function () {
+						str += $(this).text();
+					});
+					
+					$.each(data, function (key, val) {
+                        
+						if(val.nome == str) {						
+							$.each(val.cidades, function (key_city, val_city) {
+								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+							});							
+						}
+					});
+					$("#edCidades").html(options_cidades);
+				}).change();	
+			});
         $('#form-editar').on('submit', function(event){
             var endereco = $('#form-editar').serialize();
             $.ajax({

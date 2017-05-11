@@ -6,8 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
         <!-- CSS -->
-        <link rel="stylesheet" href="css/app.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="{{ url('css/app.css') }}">
+        <link rel="stylesheet" href="{{ url('css/main.css') }}">
         
         @yield('css')
         
@@ -22,8 +22,8 @@
         </div>
         @include('layouts.footer')
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.mask.min.js"></script>
+    <script src="{{ url('js/jquery.min.js') }}"></script>
+    <script src="{{ url('js/jquery.mask.min.js') }}"></script>
     @yield('script')
 </body>
 </html>
