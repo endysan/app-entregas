@@ -12,7 +12,7 @@
                 <h2>Seus pedidos feitos</h2>
                 @foreach($pedidos as $pedido)                    
                     @if($pedido->id_usuario == auth()->user()->id)
-                        <li class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
+                        <div class="item-pedido">{{ $pedido->produto }} - {{ $pedido->descricao }}</li>
                     @endif
                 @endforeach
             @else

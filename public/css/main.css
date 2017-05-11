@@ -133,3 +133,9 @@ textarea {
 .img-home {
     width: 100%;
 }
+.item-pedido{
+    font-size: x-large;
+    padding: 20px;
+    margin-left: 30px;
+    background: white;
+}
