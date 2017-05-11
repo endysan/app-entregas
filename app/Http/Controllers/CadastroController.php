@@ -206,12 +206,21 @@ class CadastroController extends Controller
         }
 
 		$id = auth()->user()->id;
-		$entregador = DB::table('entregadores')->insert([
-			'id_usuario' => $id,
-			'veiculo' => $request->veiculo,
-			'cnh' => $request->cnh
-		]);
+		
+		try{
+			$entregador = DB::table('entregadores')->insertGetId([
+				'id_usuario' => $id,
+				'veiculo' => $request->veiculo,
+				'cnh' => $request->cnh
+			]);
+			DB::table('users')
+				->where('id', $id)
+				->update([
+					'id_entregador' => $entregador
+				]);
+			return redirect('/areaentregador');
+		}
 
-		return redirect('/areaentregador');
+		
 	}
 }
