@@ -219,6 +219,10 @@ class CadastroController extends Controller
 					'id_entregador' => $entregador
 				]);
 			return redirect('/areaentregador');
+		} catch (PDOException $ex) {
+			
+			session()->flash('errorMessage', 'Ocorreu um erro ao se alistar como entregador');
+			return redirect()->back();
 		}
 
 		
