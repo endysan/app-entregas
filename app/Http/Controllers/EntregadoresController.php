@@ -29,7 +29,7 @@ class EntregadoresController extends Controller
 
         $entregadores = $this->getEntregador();
         
-        $users = DB::table('users')->select('id', 'email')->get();
+        $users = DB::table('users')->select('id', 'email', 'id_entregador')->get();
         
         //$deletedUsers = User::onlyTrashed()->get();
         

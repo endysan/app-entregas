@@ -27,7 +27,7 @@
             <td>{{ $entregador->id }}</td>
             
             @foreach ($users as $user)
-                @if($user->id_entregador != null && $user->id_entregador == $entregador->id)
+                @if($user->id_entregador == $entregador->id)
                 <td>{{ $user->email }}</td>
                 @endif
             @endforeach
