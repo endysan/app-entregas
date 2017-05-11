@@ -21,11 +21,11 @@
                             <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                                 {{ $pedido->produto }} - {{ $pedido->descricao }} - Status: 
                                 @if ( $pedido->status == 'aguardando')
-                                <div class="aguardando">Aguardando Entregador</div>
+                                <p class="aguardando">Aguardando Entregador</p>
                                 @elseif ($pedido->status == 'aceito')
-                                <div class="aceito">Confirme o Entregador</div>
+                                <p class="aceito">Confirme o Entregador</p>
                                 @elseif ($pedido->status == 'iniciado')
-                                <div class="aguardando">Aguardando Entregador</div>
+                                <p class="aguardando">Aguardando Entregador</p>
                                 @endif
                             </a>
                         </li>

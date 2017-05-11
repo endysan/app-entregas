@@ -15,8 +15,14 @@
         <img src="" alt="Imagem do produto"/>
 
         <div class="description-area">
-            Descrição: {{ $pedido->descricao }}
-            Status: {{ $pedido->status }}
+            Descrição: {{ $pedido->descricao }} <br>
+           @if ( $pedido->status == 'aguardando')
+                                <p class="aguardando">Aguardando Entregador</p>
+                                @elseif ($pedido->status == 'aceito')
+                                <p class="aceito">Confirme o Entregador</p>
+                                @elseif ($pedido->status == 'iniciado')
+                                <p class="aguardando">Aguardando Entregador</p>
+                                @endif
         </div>
 
         @if(auth()->user()->id_entregador != null)
