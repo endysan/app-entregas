@@ -3,9 +3,9 @@
     <div class="nav-left">
         <li class="nav-item">
         @if(session()->has('admin'))
-            <a class="nav-link" href="list">Home</a>
+            <a class="nav-link" href="list"><img class="logo" src="http://i.imgur.com/3hYytxT.png"/></a>
         @else
-            <a class="nav-link" href="home">Home</a>
+            <a class="nav-link" href="home"><img class="logo" src="http://i.imgur.com/3hYytxT.png"/></a>
         @endif
         </li>
         @if(Auth::check())

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+﻿@extends('layouts.master')
 
 @section('title', 'Home | AppEntrega')
 
@@ -42,9 +42,9 @@
             </div>
             @endif
 
-        <h2 class="title-home">Home App Entrega</h2>
+        <h2 class="title-home">Bem vindo ao nosso app de entregas!</h2>
         <hr/>
-        <img class="img-home" src="https://unsplash.it/1280/380?image=20">
+        <img class="img-home" src="http://i.imgur.com/weAQq8d.jpg">
         <p class="content">{{ $content }}</p>
     @endif
 @endsection

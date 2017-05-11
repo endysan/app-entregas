@@ -1,6 +1,15 @@
 *, *::before, *::after {
     box-sizing: inherit;
 }
+
+h2{
+text-align: center;
+}
+
+.logo{
+height: 25px;
+}
+
 html {
     box-sizing: border-box;
 }
