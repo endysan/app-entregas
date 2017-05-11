@@ -30,6 +30,7 @@
                 @if($user->id_entregador == $entregador->id)
                 <td>{{ $user->email }}</td>
                 @endif
+                
             @endforeach
             
             <td>{{ $entregador->veiculo }}</td>
