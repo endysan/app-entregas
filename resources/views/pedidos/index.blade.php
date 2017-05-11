@@ -83,14 +83,14 @@
 				$.each(data, function (key, val) {
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
-				$("#estados, #edEstados").html(options);				
+				$("#estados").html(options);				
 				
-				$("#estados, #edEstados").change(function () {				
+				$("#estados").change(function () {				
 				
                     var options_cidades = '';
 					var str = "";					
 					
-					$("#estados option:selected, #edDstados option:selected").each(function () {
+					$("#estados option:selected").each(function () {
 						str += $(this).text();
 					});
 					
@@ -101,7 +101,7 @@
 							});							
 						}
 					});
-					$("#cidades, #edCidades").html(options_cidades);
+					$("#cidades").html(options_cidades);
 				}).change();	
 			});
     });

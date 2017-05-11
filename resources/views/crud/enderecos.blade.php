@@ -62,11 +62,11 @@
                  placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
             </div>
             <div class="form-group">
-                <select name="estado" id="estados" class="form-control select-estado" required>
+                <select name="estado" id="estados" class="form-control" required>
                 </select>
             </div>
             <div class="form-group">
-                <select name="cidade" id="cidades" class="form-control select-cidade" required>
+                <select name="cidade" id="cidades" class="form-control" required>
                 </select>
             </div>
             <div class="form-group">
@@ -98,11 +98,11 @@
                  placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
             </div>
             <div class="form-group">
-                <select name="estado" id="edEstados" class="form-control select-estado" required>
+                <select name="estado" id="edEstados" class="form-control" required>
                 </select>
             </div>
             <div class="form-group">
-                <select name="cidade" id="edCidades" class="form-control select-cidade" required>
+                <select name="cidade" id="edCidades" class="form-control" required>
                 </select>
             </div>
             <div class="form-group">
@@ -120,8 +120,9 @@
     @endsection
         
 </div> <!--CONTAINER-->
+@endsection
 
-    @section('scripts')
+@section('scripts')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
     var deleteId = null;
@@ -130,10 +131,9 @@
     $(document).ready(function(){
         var id = this.id;
 
-        $.getJSON('js/dados/estados-cidades.json', function (data) {
+         $.getJSON('js/dados/estados-cidades.json', function (data) {
 				var items = [];
-				//var options = '<option value="">escolha um estado</option>';	
-                var options = '<option selected hidden value="">Estado</option>';
+                var options = '<option selected value="" hidden>Estado</option>';
 				$.each(data, function (key, val) {
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
@@ -144,7 +144,7 @@
                     var options_cidades = '';
 					var str = "";					
 					
-					$("#estados option:selected, #edDstados option:selected").each(function () {
+					$("#estados option:selected, #edEstados option:selected").each(function () {
 						str += $(this).text();
 					});
 					
@@ -156,11 +156,8 @@
 						}
 					});
 					$("#cidades, #edCidades").html(options_cidades);
-					
 				}).change();	
-			
 			});
-        
         
         $('#form-editar').on('submit', function(event){
             var endereco = $('#form-editar').serialize();
@@ -231,7 +228,4 @@
         xhttp.send();    
     }
 </script>
-
-    @endsection
-
 @endsection
