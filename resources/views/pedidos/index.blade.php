@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container-pedido">
-    <div clas='pedido'> <h2>Criar um pedido</h2> </div>
+    <div class='pedido'> <h2>Criar um pedido</h2> </div>
     
     <form method="POST" action="pedido">
         {{ csrf_field() }} <!-- Obrigatorio para segurança -->

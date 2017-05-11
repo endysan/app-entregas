@@ -62,7 +62,7 @@ class PedidosController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         }
-        $date = $request->dt_nasc;
+        $date = $request->dt_entrega;
 			
 		$formated_date = str_replace('/', '-', $date);
 		
@@ -86,7 +86,7 @@ class PedidosController extends Controller
 
     public function editPedido(Request $request, $id)
     {
-        $date = $request->dt_nasc;
+        $date = $request->dt_entrega;
 			
 		$formated_date = str_replace('/', '-', $date);
 		

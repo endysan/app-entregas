@@ -3,9 +3,9 @@
     <div class="nav-left">
         <li class="nav-item">
         @if(session()->has('admin'))
-            <a class="nav-link" href="list"><img class="logo" src="http://i.imgur.com/3hYytxT.png"/></a>
+            <a class="nav-link" href="{{ url('list') }}"><img class="logo" src="{{ url('img/logo.png') }}"/></a>
         @else
-            <a class="nav-link" href="home"><img class="logo" src="http://i.imgur.com/3hYytxT.png"/></a>
+            <a class="nav-link" href="{{ url('home') }}"><img class="logo" src="{{ url('img/logo.png') }}"/></a>
         @endif
         </li>
         @if(Auth::check())

@@ -49,7 +49,7 @@
 
         <h2 class="title-home">Bem vindo ao nosso app de entregas!</h2>
         <hr/>
-        <img class="img-home" src="http://i.imgur.com/weAQq8d.jpg">
+        <img class="img-home" src="{{ url('img/apresentacao.jpg') }}">
         <p class="content">{{ $content }}</p>
     @endif
 @endsection
