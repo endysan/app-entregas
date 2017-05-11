@@ -15,7 +15,8 @@
         <img src="" alt="Imagem do produto"/>
 
         <div class="description-area">
-            {{ $pedido->descricao }}
+            Descrição: {{ $pedido->descricao }}
+            Status: {{ $pedido->status }}
         </div>
 
         @if(auth()->user()->id_entregador != null)

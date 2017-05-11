@@ -15,3 +15,11 @@
     display: block;
     height: 100px;
 }
+
+.aguardando{
+    color: red;
+}
+
+.aceito{
+    color: #f4b942;
+}

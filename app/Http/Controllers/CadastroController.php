@@ -224,7 +224,6 @@ class CadastroController extends Controller
 			session()->flash('errorMessage', 'Ocorreu um erro ao se alistar como entregador');
 			return redirect()->back();
 		}
-
 		
 	}
 }

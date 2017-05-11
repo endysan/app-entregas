@@ -41,6 +41,7 @@ Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
 Route::post('/pedido/entrega', 'EntregasController@createEntrega');
+
 //CRUDs-------------------------------------------------------------------
 Route::get('/login-admin','CrudController@loginView');
 Route::post('/login-admin','CrudController@login');
