@@ -24,6 +24,8 @@
                                 <div class="aguardando">Aguardando Entregador</div>
                                 @elseif ($pedido->status == 'aceito')
                                 <div class="aceito">Confirme o Entregador</div>
+                                @elseif ($pedido->status == 'iniciado')
+                                <div class="aguardando">Aguardando Entregador</div>
                                 @endif
                             </a>
                         </li>
