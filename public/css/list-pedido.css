@@ -5,3 +5,13 @@
     height: 70%;
     color: rgb(20, 20, 20);
 }
+
+.lista-pedidos li{
+    list-style: none;
+}
+
+.item-pedido {
+    font-size: 16px;
+    display: block;
+    height: 100px;
+}

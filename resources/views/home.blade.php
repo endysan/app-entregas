@@ -2,6 +2,10 @@
 
 @section('title', 'Home | AppEntrega')
 
+@section('css')
+<link rel="stylesheet" href="{{ url('css/list-pedido.css') }}">
+@endsection
+
 @section('content')
         
     @if (Auth::check())
@@ -17,12 +21,13 @@
                 @endforeach
             @else
                 <h2>Pedidos disponíveis</h2>
-                @foreach($pedidos as $pedido)                    
-                        <li class="item-pedido">
-                            {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
-                            {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        </li>
-                        
+                @foreach($pedidos as $pedido)         
+                <li>
+                    <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
+                        {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
+                        {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
+                    </a>
+                </li>           
                 @endforeach
             @endif
         </ul>
