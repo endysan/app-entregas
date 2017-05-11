@@ -18,7 +18,7 @@ class CreateEntregasTable extends Migration
             $table->increments('id');
             $table->integer('id_pedido')->unsigned();
             $table->integer('id_entregador')->unsigned();
-            $table->enum('status', ['iniciado', 'aceito', 'finalizado', 'cancelado'])->default('iniciado');
+            $table->enum('status', ['aguardando', 'aceito', 'cancelado'])->default('aguardando');
             $table->timestamps();
         });
     }

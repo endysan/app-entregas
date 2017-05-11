@@ -32,9 +32,8 @@
             </aside>
 
             <div>
-                <input id="estado" name="estado" class="form-item" type="text" 
-                 placeholder="Estado"
-                 value="{{ Auth::user()->estado }}">
+                <select name="estado" id="estados" class="form-item" required>
+                </select>
             </div>
         </div>
             
@@ -44,9 +43,8 @@
             </aside>
 
             <div>
-                <input id="cidade" name="cidade" type="text"  
-                 placeholder="Cidade"
-                 value="{{ Auth::user()->cidade }}">
+                <select name="cidade" id="cidades" class="form-item" required>
+                </select>
             </div>
         </div>
 
@@ -87,41 +85,40 @@
     @endif
 @endsection
 
+
 @section('script')
 <script>
-$(document).ready(function(){
-    $.getJSON('js/dados/estados-cidades.json', function (data) {
-            var items = [];
-            //var options = '<option value="">escolha um estado</option>';	
-            var options = '<option selected hidden>Estado</option>';
-            $.each(data, function (key, val) {
-                options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-            });					
-            $("#estados, #edEstados").html(options);				
-            
-            $("#estados, #edEstados").change(function () {				
-            
-                var options_cidades = '';
-                var str = "";					
-                
-                $("#estados option:selected, #edDstados option:selected").each(function () {
-                    str += $(this).text();
-                });
-                
-                $.each(data, function (key, val) {
-                    if(val.nome == str) {							
-                        $.each(val.cidades, function (key_city, val_city) {
-                            options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-                        });							
-                    }
-                });
-                $("#cidades, #edCidades").html(options_cidades);
-                
-            }).change();	
-        
-        });
-});
+    $(document).ready(function(){
+        $('#dt_entrega').mask('00/00/0000');
 
+        $.getJSON('js/dados/estados-cidades.json', function (data) {
+				var items = [];
+				//var options = '<option value="">escolha um estado</option>';	
+                var options = '<option selected hidden value="">Estado</option>';
+				$.each(data, function (key, val) {
+					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+				});					
+				$("#estados").html(options);				
+				
+				$("#estados").change(function () {				
+				
+                    var options_cidades = '';
+					var str = "";					
+					
+					$("#estados option:selected").each(function () {
+						str += $(this).text();
+					});
+					
+					$.each(data, function (key, val) {
+						if(val.nome == str) {							
+							$.each(val.cidades, function (key_city, val_city) {
+								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+							});							
+						}
+					});
+					$("#cidades").html(options_cidades);
+				}).change();	
+			});
+    });
 </script>
-
 @endsection

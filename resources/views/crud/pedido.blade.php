@@ -118,10 +118,13 @@
                 <input type="text" id="edDt_entrega" class="form-control" name="dt_entrega" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group">
-                <input type="text" id="edEstado" class="form-control" name="estado" placeholder="Estado">
+        
+                <select name="estado" id="estados" class="form-item" required>
+                </select>
             </div>
             <div class="form-group">
-                <input type="text" id="edCidade" class="form-control" name="cidade" placeholder="Cidade">
+                <select name="cidade" id="cidades" class="form-item" required>
+                </select>
             </div>
             <div class="form-group">
                 <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
@@ -139,6 +142,8 @@
         
 </div> <!--CONTAINER-->
 
+@endsection
+
     @section('scripts')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
@@ -148,6 +153,34 @@
     $(document).ready(function(){
         $('#dt_entrega, #edDt_entrega').mask('00/00/0000');
 
+        $.getJSON('js/dados/estados-cidades.json', function (data) {
+				var items = [];
+				//var options = '<option value="">Escolha um estado</option>';	
+                var options = '<option selected hidden value="">Estado</option>';
+				$.each(data, function (key, val) {
+					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+				});					
+				$("#estados").html(options);				
+				
+				$("#estados").change(function () {				
+				
+                    var options_cidades = '';
+					var str = "";					
+					
+					$("#estados option:selected").each(function () {
+						str += $(this).text();
+					});
+					
+					$.each(data, function (key, val) {
+						if(val.nome == str) {							
+							$.each(val.cidades, function (key_city, val_city) {
+								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+							});							
+						}
+					});
+					$("#cidades").html(options_cidades);
+				}).change();	
+			});
         $('#form-editar').on('submit', function(event){
             var pedido = $('#form-editar').serialize();
             $.ajax({
@@ -222,4 +255,4 @@
 
     @endsection
 
-@endsection
+

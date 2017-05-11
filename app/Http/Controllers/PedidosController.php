@@ -26,7 +26,10 @@ class PedidosController extends Controller
     
     public function getPedidoById($id)
     {
-        return view('pedidos.pedido')->with(['pedido' => Pedido::find($id)]);
+        if(auth()->check()) {
+            return view('pedidos.pedido')->with(['pedido' => Pedido::find($id)]);
+        }
+        return redirect('/login');
         
     }
     public function getPedidoByUser($userId)
