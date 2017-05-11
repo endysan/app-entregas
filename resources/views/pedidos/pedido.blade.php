@@ -26,7 +26,7 @@
         </div>
 
         @if(auth()->user()->id_entregador != null)
-        <form method="POST" action="/entrega">
+        <form method="POST" action="{{ url('pedido/entrega') }}">
             {{ csrf_field() }}
             <input type="hidden" name="id_pedido" value="{{ $pedido->id }}">
             <input type="hidden" name="id_entregador" value="{{ auth()->user()->id }}">

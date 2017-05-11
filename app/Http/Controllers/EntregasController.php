@@ -70,7 +70,6 @@ class EntregasController extends Controller
         }
 		
 		//dd($request->all());
-        
     }
 
     public function editEntrega(Request $request, $id)
