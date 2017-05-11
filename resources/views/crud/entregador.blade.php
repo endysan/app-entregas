@@ -25,11 +25,13 @@
         @foreach($entregadores as $entregador)
         <tr>
             <td>{{ $entregador->id }}</td>
+            
             @foreach ($users as $user)
                 @if($user->id_entregador == $entregador->id)
-                <td>$user->email</td>
+                <td>{{ $user->email }}</td>
                 @endif
             @endforeach
+            
             <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>
             <td>{{ $entregador->status }}</td>
