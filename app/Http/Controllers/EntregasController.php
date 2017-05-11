@@ -57,11 +57,12 @@ class EntregasController extends Controller
                 'id_entregador' => $request->id_entregador,
             ]);
 
-            if($request->is('pedido/{id}')) {
-                session()->flash('success', 'Pedido aceito, aguarde a confirmação');
-                return redirect('/');
+            if($request->is('list-entrega')) {
+                return redirect('list-entrega');
             }
-            return redirect('list-entrega');
+            
+            session()->flash('success', 'Pedido aceito, aguarde a confirmação');
+            return redirect('/');
             
         } catch(PDOException $ex) {
             session()->flash('errorMessage', 'Problemas ao aceitar esse pedido');

@@ -11,7 +11,7 @@
 @section('content')
     <div class="pedido-container">
         <h3>{{ $pedido->produto }}</h3>
-        <p class="data-entrega">{{ $pedido->dt_entrega }}</p>
+        <p class="data-entrega">Data de Entrega: {{ $pedido->dt_entrega }}</p>
         <img src="" alt="Imagem do produto"/>
 
         <div class="description-area">

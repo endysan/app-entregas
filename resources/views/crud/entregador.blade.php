@@ -25,7 +25,11 @@
         @foreach($entregadores as $entregador)
         <tr>
             <td>{{ $entregador->id }}</td>
-            <td>{{ $entregador->id_usuario }}</td>
+            @foreach ($users as $user)
+                @if($user->id_entregador == $entregador->id)
+                <td>$user->email</td>
+                @endif
+            @endforeach
             <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>
             <td>{{ $entregador->status }}</td>
@@ -38,7 +42,7 @@
                 </button>
 
                 <button class="btn btn-danger" type="button"
-                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $entregador->id}}">
+                data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $entregador->id }}">
                     Excluir
                 </button>
             </td>
