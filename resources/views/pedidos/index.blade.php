@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container-pedido">
-    <h2>Criar um pedido</h2>
+    <div clas='pedido'> <h2>Criar um pedido</h2> </div>
     
     <form method="POST" action="pedido">
         {{ csrf_field() }} <!-- Obrigatorio para segurança -->
@@ -28,11 +28,6 @@
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea id="descricao" name="descricao" class="form-item" required></textarea>
             </div>  
-           <div class="form-group">
-                <label for="dt_entrega" class="form-label">Data de entrega</label>
-                <input id="dt_entrega" name="dt_entrega" class="form-item" type="text"
-                 placeholder="dd/mm/aaaa" maxlength="10" required>
-            </div>
         </div>
 
         <div class="bloco2">
@@ -51,6 +46,11 @@
             <div class="form-group">
                 <label for="bairro" class="form-label">Bairro</label>
                 <input type="text" class="form-item" name="bairro" placeholder="Bairro" required>
+            </div>
+            <div class="form-group">
+                <label for="dt_entrega" class="form-label">Data de entrega</label>
+                <input id="dt_entrega" name="dt_entrega" class="form-item" type="text"
+                 placeholder="dd/mm/aaaa" maxlength="10" required>
             </div>
         </div>
 

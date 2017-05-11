@@ -2,10 +2,6 @@
     box-sizing: inherit;
 }
 
-h2{
-text-align: center;
-}
-
 .logo{
 height: 25px;
 }
@@ -138,4 +134,11 @@ textarea {
     padding: 20px;
     margin-left: 30px;
     background: white;
+}
+p.muted{
+    color: #993399;
+}
+
+.pedido{
+    color: #003399;
 }
