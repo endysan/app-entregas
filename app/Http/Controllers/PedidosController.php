@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use App\Pedido;
+use App\User;
 
 class PedidosController extends Controller 
 {
@@ -27,7 +28,10 @@ class PedidosController extends Controller
     public function getPedidoById($id)
     {
         if(auth()->check()) {
-            return view('pedidos.pedido')->with(['pedido' => Pedido::find($id)]);
+            return view('pedidos.pedido')->with([
+                'user' => User::find(auth()->user()->id),
+                'pedido' => Pedido::find($id)
+            ]);
         }
         return redirect('/login');
         

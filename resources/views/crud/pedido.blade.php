@@ -23,6 +23,7 @@
             <th>Estado</th>
             <th>Cidade</th>
             <th>Bairro</th>
+            <th>Status</th>
             <th></th>
         </tr>
         @foreach($pedidos as $pedido)
@@ -35,6 +36,7 @@
             <td>{{ $pedido->estado }}</td>
             <td>{{ $pedido->cidade }}</td>
             <td>{{ $pedido->bairro }}</td>
+            <td>{{ $pedido->status }}</td>
             <td>
                 <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
                 <button class="btn btn-success" type="button"

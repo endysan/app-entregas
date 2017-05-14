@@ -63,7 +63,7 @@
             </div>
             <div class="form-group">
                 <select name="id_usuario" class="form-control" required>
-                    <option selected hidden value="">Entregadores</option>
+                    <option selected hidden value="">Usuários</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->email }}</option>
                     @endforeach

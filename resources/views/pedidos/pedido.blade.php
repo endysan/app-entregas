@@ -16,20 +16,21 @@
 
         <div class="description-area">
             Descrição: {{ $pedido->descricao }} <br>
-           @if ( $pedido->status == 'aguardando')
-                                <p class="aguardando">Aguardando Entregador</p>
-                                @elseif ($pedido->status == 'aceito')
-                                <p class="aceito">Confirme o Entregador</p>
-                                @elseif ($pedido->status == 'iniciado')
-                                <p class="aguardando">Aguardando Entregador</p>
-                                @endif
+
+            @if ( $pedido->status == 'aguardando')
+                <p class="aguardando">Aguardando Entregador</p>
+            @elseif ($pedido->status == 'aceito')
+                <p class="aceito">Confirme o Entregador</p>
+            @elseif ($pedido->status == 'iniciado')
+                <p class="aguardando">Aguardando Entregador</p>
+            @endif
         </div>
 
         @if(auth()->user()->id_entregador != null)
         <form method="POST" action="{{ url('pedido/entrega') }}">
             {{ csrf_field() }}
             <input type="hidden" name="id_pedido" value="{{ $pedido->id }}">
-            <input type="hidden" name="id_entregador" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="id_entregador" value="{{ auth()->user()->id_entregador }}">
             <button class="button button-purple" type="submit">Aceitar</button>
         </form>
         @endif
