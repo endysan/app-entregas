@@ -13,6 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        //ESSA LINHA NÃO!
+        DB::unprepared("SET @@auto_increment_increment=1;");
+        //NOO /\
+
         Schema::create('users', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id')->unsigned();
@@ -27,7 +31,10 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
+        
+        //SÓ ESSA LINHA !!!!!!!!!!
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
+        //ESSA /\
     }
 
     /**
