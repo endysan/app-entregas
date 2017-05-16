@@ -198,7 +198,7 @@
                     console.log(response);
                     console.log(endereco);
 
-                    setTimeout(location.reload(), 200);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function (response){
                     console.log("ERROR");
@@ -217,7 +217,7 @@
                     console.log("SUCESSO");
                     console.log(response);
 
-                    setTimeout(location.reload(), 200);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function(response){
                     console.log("ERRO");

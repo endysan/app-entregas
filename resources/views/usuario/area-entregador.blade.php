@@ -28,57 +28,46 @@
             {{ csrf_field() }}
             <div class="form-group">
                 <aside>
+                    <label for="cnh" class="form-label">Email</label>
+                </aside>
+                <div>
+                    <input type="text" class="form-item" maxlength="10"
+                     value="{{ auth()->user()->email }}" disabled>
+                </div>    
+            </div>
+            <div class="form-group">
+                <aside>
                     <label for="veiculo" class="form-label">Veículo</label>
                 </aside>
 
-                <div class="form-group">
                 
-                    @if($entregador == null)
+                <div class="form-group">    
+                @if($entregador == null)
                     <select name="veiculo" id="veiculo" class="form-item" required>
                         <option selected hidden value="">Escolha</option>
                         <option value="carro">Carro</option>
                         <option value="caminhao">Caminhão</option>
                         <option value="moto">Moto</option>
                     </select>
-                    @else 
+                @else 
                     <input type="text" class="form-item"
-                        value="{{ ucwords($entregador->veiculo) }}" disabled>
-                    @endif
+                     value="{{ ucwords($entregador->veiculo) }}" disabled>
+                @endif
                 </div>
+                
             </div>
             
+            @if($entregador != null)
             <div class="form-group">
-                @if($entregador != null)
                 <aside>
                     <label for="cnh" class="form-label">CNH</label>
                 </aside>
                 <div>
                     <input type="text" class="form-item" maxlength="10"
                      value="{{ $entregador->cnh }}" disabled>
-                </div>
-                @endif
+                </div>    
             </div>
-            <div class="form-group">
-                <aside>
-                    <label for="telefone" class="form-label">Telefone</label>
-                </aside>
-                
-                <div>
-                    <input id="telefone" class="form-item" type="text" 
-                     value="{{ Auth::user()->telefone }}" disabled>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <aside>
-                    <label for="whatsapp" class="form-label">WhatsApp</label>
-                </aside>
-                
-                <div>
-                    <input id="whatsapp" class="form-item" type="text"
-                     value="{{ Auth::user()->whatsapp }}" disabled>
-                </div>
-            </div>
+            @endif
             
             @if($entregador == null || $entregador->cnh == null)
             <div class="form-group">
@@ -90,6 +79,7 @@
                 </div>
             </div>
             @endif
+
             @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -108,7 +98,7 @@
     @section('script')
     <script>
         $(document).ready(function(){
-            $('#dt_nasc').mask('00/00/0000');
+            
         });
     </script>
     @endsection

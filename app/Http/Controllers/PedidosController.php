@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Validator;
+use App\PedidoHasEntregadores;
+use App\Entrega;
 use App\Pedido;
 use App\User;
-use App\Entrega;
 
 class PedidosController extends Controller 
 {
@@ -34,12 +35,7 @@ class PedidosController extends Controller
                 'user' => User::find(auth()->user()->id),
                 'pedido' => Pedido::find($id),
                 'entrega' => Entrega::where('id_pedido', $id)->first(),
-                'aceito' => DB::table('entregas')
-                        ->join('entregadores', 'entregas.id_entregador', '=', 'entregadores.id')
-                        ->join('users', 'users.id_entregador', '=', 'entregadores.id')
-                        ->where('id_pedido', $id)
-                        ->select('users.email', 'users.telefone', 'users.whatsapp', 'entregadores.*', 'entregas.*')
-                        ->first()
+                'aceitos' => PedidoHasEntregadores::where('id_pedido', $id)->get(),
             ]);
         }
         return redirect('/login');
@@ -95,6 +91,21 @@ class PedidosController extends Controller
             return redirect('/');
 
         return redirect('/list-pedido');
+    }
+
+    public function addEntregador(Request $request)
+    {
+        $aceito = DB::table('pedido_has_entregadores')->insertGetId([
+            'id_pedido' => $request->id_pedido,
+            'id_entregador' => $request->id_entregador,
+            'email' => $request->email
+        ]);
+        DB::table('pedidos')
+        ->where('id', $request->id_pedido)
+        ->update([
+            'status' => 'confirmaçao'
+        ]);
+        return "adicionado";
     }
 
     public function editPedido(Request $request, $id)
