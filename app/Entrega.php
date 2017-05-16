@@ -11,4 +11,5 @@ class Entrega extends Model
         'id_pedido', 'id_entregador', 'dt_entrega', 'status'
     ];
     protected $table = 'entregas';
+
 }

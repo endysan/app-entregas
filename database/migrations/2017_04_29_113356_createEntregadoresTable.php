@@ -22,6 +22,7 @@ class CreateEntregadoresTable extends Migration
             $table->enum('status', ['reprovado', 'andamento', 'aprovado'])->default('andamento');
             $table->timestamps();
         });
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
     }
 
     /**

@@ -21,6 +21,7 @@ class CreateEntregasTable extends Migration
             $table->enum('status', ['aguardando', 'aceito', 'cancelado'])->default('aguardando');
             $table->timestamps();
         });
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
     }
 
     /**

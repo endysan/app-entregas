@@ -10,4 +10,5 @@ class Endereco extends Model
     protected $fillable = [
         'id_usuario', 'estado', 'cidade', 'bairro'
     ];
+
 }

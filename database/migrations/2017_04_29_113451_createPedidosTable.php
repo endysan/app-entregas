@@ -26,6 +26,7 @@ class CreatePedidosTable extends Migration
             $table->enum('status', ['iniciado', 'cancelado'])->default('iniciado');
             $table->timestamps();
         });
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
     }
 
     /**

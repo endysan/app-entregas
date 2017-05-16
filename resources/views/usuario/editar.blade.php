@@ -47,7 +47,7 @@
 
                 <div>
                     <input id="dt_nasc" type="text" name="dt_nasc" placeholder="dd/mm/yyyy" 
-                     value="{{ Auth::user()->dt_nasc }}" maxlength="10">
+                     value="{{ Carbon\Carbon::parse(Auth::user()->dt_nasc)->format('d/m/Y') }}" maxlength="10">
                 </div>
             </div>
 

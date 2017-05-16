@@ -22,6 +22,7 @@ class CreateEnderecosTable extends Migration
             $table->string('bairro');
             $table->timestamps();
         });
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
     }
 
     /**

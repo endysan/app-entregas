@@ -20,12 +20,12 @@
                         <li>
                             <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                                 {{ $pedido->produto }} - {{ $pedido->descricao }} <br>
-                                @if ( $pedido->status == 'aguardando')
-                                <p class="aguardando">Status: Aguardando Entregador</p>
-                                @elseif ($pedido->status == 'aceito')
-                                <p class="aceito">Status: Confirme o Entregador</p>
-                                @elseif ($pedido->status == 'iniciado')
-                                <p class="aguardando">Status: Aguardando Entregador</p>
+                                @if(count($entrega))
+                                    @if ($entrega->status == 'aguardando')
+                                    <p class="aceito">Status: Confirme o Entregador</p>
+                                    @endif
+                                @else
+                                    <p class="aguardando">Status: Aguardando Entregador</p>
                                 @endif
                             </a>
                         </li>

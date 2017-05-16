@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Pedido;
 use App\User;
+use App\Entrega;
 
 class PedidosController extends Controller 
 {
@@ -30,7 +31,14 @@ class PedidosController extends Controller
         if(auth()->check()) {
             return view('pedidos.pedido')->with([
                 'user' => User::find(auth()->user()->id),
-                'pedido' => Pedido::find($id)
+                'pedido' => Pedido::find($id),
+                'entrega' => Entrega::where('id_pedido', $id)->first(),
+                'aceito' => DB::table('entregas')
+                        ->join('entregadores', 'entregas.id_entregador', '=', 'entregadores.id')
+                        ->join('users', 'users.id_entregador', '=', 'entregadores.id')
+                        ->where('id_pedido', $id)
+                        ->select('users.email', 'entregas.*')
+                        ->first()
             ]);
         }
         return redirect('/login');
