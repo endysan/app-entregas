@@ -23,7 +23,7 @@ class CreatePedidosTable extends Migration
             $table->string('cidade');
             $table->string('bairro');
             $table->date('dt_entrega');
-            $table->enum('status', ['iniciado', 'cancelado'])->default('iniciado');
+            $table->enum('status', ['iniciado', 'confirmaçao', 'aceito', 'finalizado', 'cancelado'])->default('iniciado');
             $table->timestamps();
         });
         DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');

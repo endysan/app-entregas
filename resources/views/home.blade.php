@@ -18,13 +18,11 @@
                     @if($pedido->id_usuario == auth()->user()->id)
                     <div class="item-pedido">
                         <li>
-                            <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
+                            <a id="{{ $pedido->id }}" href="{{ url('pedido/'.$pedido->id) }}">
                                 {{ $pedido->produto }} - {{ $pedido->descricao }} <br>
-                                @if(count($entrega))
-                                    @if ($entrega->status == 'aguardando')
+                                @if ($pedido->status == 'confirmaçao')
                                     <p class="aceito">Status: Confirme o Entregador</p>
-                                    @endif
-                                @else
+                                @elseif ($pedido->status == 'iniciado')
                                     <p class="aguardando">Status: Aguardando Entregador</p>
                                 @endif
                             </a>

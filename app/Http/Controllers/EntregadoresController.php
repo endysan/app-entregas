@@ -28,14 +28,12 @@ class EntregadoresController extends Controller
     {
 
         $entregadores = $this->getEntregador();
-        
-        $users = DB::table('users')->select('id', 'email', 'id_entregador')->get();
-        
+        $users = DB::table('users')->select('email')->get();
         //$deletedUsers = User::onlyTrashed()->get();
         
         $data = [
             'entregadores' => $entregadores,
-            'users' => $users,
+            'users' => $users
         ];
         return view('crud.entregador', $data);
     }
@@ -52,9 +50,11 @@ class EntregadoresController extends Controller
         
         //if($this->validaCnh($cnh))
             //echo "ok";
- 
+        $email = DB::table('users')->where('id', $request->id_usuario)->select('email')->first();
+
         $id_entregador = DB::table('entregadores')->insertGetId([
             'id_usuario' => $request->id_usuario,
+            'email' => $email,
             'cnh' => $request->cnh,
             'veiculo' => $request->veiculo
         ]);

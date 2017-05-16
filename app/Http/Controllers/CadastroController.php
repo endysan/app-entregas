@@ -66,8 +66,7 @@ class CadastroController extends Controller
 				$usuario->name = $request->name;
 			}
 			if ( $request->dt_nasc != null && strlen($request->dt_nasc) == 10){
-				$date = $request->dt_nasc;
-				$formated_date = str_replace('/', '-', $date);
+				$formated_date = str_replace('/', '-', $request->dt_nasc);
 				//$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
 				$date = Carbon::parse($formated_date)->format('Y-m-d');
 				$usuario->dt_nasc = $date;

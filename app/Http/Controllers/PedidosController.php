@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Validator;
 use App\Pedido;
 use App\User;
@@ -37,7 +38,7 @@ class PedidosController extends Controller
                         ->join('entregadores', 'entregas.id_entregador', '=', 'entregadores.id')
                         ->join('users', 'users.id_entregador', '=', 'entregadores.id')
                         ->where('id_pedido', $id)
-                        ->select('users.email', 'entregas.*')
+                        ->select('users.email', 'users.telefone', 'users.whatsapp', 'entregadores.*', 'entregas.*')
                         ->first()
             ]);
         }
@@ -77,11 +78,8 @@ class PedidosController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         }
-        $date = $request->dt_entrega;
-			
-		$formated_date = str_replace('/', '-', $date);
-		
-		$date = date('Y-m-d', strtotime($formated_date));
+        $formated_date = str_replace('/', '-', $request->dt_entrega);
+		$date = Carbon::parse($formated_date)->format('Y-m-d');
 
         DB::table('pedidos')->insert([
             'id_usuario' => $request->id_usuario,
