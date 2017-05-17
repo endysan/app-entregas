@@ -50,7 +50,7 @@
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
                 @if(!isset($isAceito) || $isAceito == false)
-                    <button id="bt_aceitar" class="button button-purple">Aceitar</button>
+                    <button id="bt_aceitar" class="button button-purple" type="submit">Aceitar</button>
                 @endif
             </form>
         @endif
@@ -112,16 +112,15 @@ function aceitarEntregador(){
 }
 
 $(document).ready(function(){
-    $('#bt_aceitar').on('click', function(event){
+    $('#bt_aceitar').on('submit', function(event){
         event.preventDefault();
         
-        var aceitando = $('#form-aceitar').serialize();
         $.ajax({
             type: "POST",
             url: "{{ url('pedido/addentregador') }}",
             data: { 
-                _token:"{{ csrf_token() }}",
-                $.toJSON(aceitando) 
+                _token: "{{ csrf_token() }}",
+                aceitando: $.toJSON($('#form-aceitar').serialize())
             },
             success: function(response){
                 console.log("ADD ENTREGADOR: ", response);
