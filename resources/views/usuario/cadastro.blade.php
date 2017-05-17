@@ -15,7 +15,7 @@ var erro = document.getElementById('erro');
 if (password != password_confirmation)
 {
 erro.innerHTML = 'Senhas não coincidem.';
-return false;
+event.preventDefault();
 }
 
 
