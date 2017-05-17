@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->date('dt_nasc')->nullable();
             $table->string('telefone')->nullable();
             $table->string('whatsapp')->nullable();
+            $table->string('estado');
+            $table->string('cidade');
+            $table->string('bairro');
             $table->integer('id_entregador')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();

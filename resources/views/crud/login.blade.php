@@ -33,7 +33,7 @@
                 @endif
             </form>
             
-            <p class="text-cadastrar">Se não possui cadastro clique <a href="cadastrar.html">aqui</a></p>
+            <p class="text-cadastrar">Se não possui cadastro clique <a href="cadastro.html">aqui</a></p>
         </div>
         
     </div>

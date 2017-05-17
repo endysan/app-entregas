@@ -100,7 +100,7 @@ class CadastroController extends Controller
 		
 		$usuario = User::find($id); //Encontre no Model User, o id
 
-		$endereco = DB::table('enderecos')->where('id_usuario', $usuario->id)->get();
+		$endereco = DB::table('users')->where('id_usuario', $usuario->id)->get();
 
 		if ( $request->estado != null){
 			$endereco->estado = $request->estado;
@@ -113,7 +113,7 @@ class CadastroController extends Controller
 		}
 		
 		try{
-			DB::table('enderecos')
+			DB::table('users')
 				->where('id_usuario', $usuario->id)
 				->update([
 					'estado' => $endereco->estado,
