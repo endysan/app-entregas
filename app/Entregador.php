@@ -11,4 +11,5 @@ class Entregador extends Model
         'id_usuario', 'cnh', 'veiculo'
     ];
     protected $table = 'entregadores';
+
 }

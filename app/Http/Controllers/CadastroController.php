@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Entregador;
 use Validator;
 use App\User;
@@ -65,12 +66,10 @@ class CadastroController extends Controller
 				$usuario->name = $request->name;
 			}
 			if ( $request->dt_nasc != null && strlen($request->dt_nasc) == 10){
-				$date = $request->dt_nasc;
-				
-				$formated_date = str_replace('/', '-', $date);
-				
-				$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
-
+				$formated_date = str_replace('/', '-', $request->dt_nasc);
+				//$usuario->dt_nasc = date('Y-m-d', strtotime($formated_date));
+				$date = Carbon::parse($formated_date)->format('Y-m-d');
+				$usuario->dt_nasc = $date;
 			}
 			if ( $request->telefone != null && strlen($request->telefone) == 14){
 				$usuario->telefone = $request->telefone;

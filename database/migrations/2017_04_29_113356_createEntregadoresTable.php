@@ -17,11 +17,13 @@ class CreateEntregadoresTable extends Migration
             $table->engine = "InnoDB";
             $table->increments('id');
             $table->integer('id_usuario')->unsigned()->unique();
+            $table->string('email');
             $table->string('veiculo');
             $table->string('cnh');
             $table->enum('status', ['reprovado', 'andamento', 'aprovado'])->default('andamento');
             $table->timestamps();
         });
+        DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
     }
 
     /**

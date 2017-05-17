@@ -16,7 +16,7 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
-            <th>ID Usuario</th>
+            <th>Email usuário</th>
             <th>Veículo</th>
             <th>CNH</th>
             <th>Status</th>
@@ -25,14 +25,7 @@
         @foreach($entregadores as $entregador)
         <tr>
             <td>{{ $entregador->id }}</td>
-            
-            @foreach ($users as $user)
-                @if($user->id_entregador == $entregador->id)
-                <td>{{ $user->email }}</td>
-                @endif
-                
-            @endforeach
-            
+            <td>{{ $entregador->email }}</td>
             <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>
             <td>{{ $entregador->status }}</td>

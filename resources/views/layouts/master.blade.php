@@ -11,7 +11,7 @@
         
         @yield('css')
         
-        <title>@yield('title')</title>
+        <title>@yield('title') - AppEntrega</title>
     </head>
     
 <body>
