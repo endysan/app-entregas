@@ -122,7 +122,7 @@
                     console.log(response);
                     console.log(user);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function (response){
                     console.log("ERROR");
@@ -141,7 +141,7 @@
                     console.log("SUCESSO");
                     console.log(response);
 
-                    setTimeout(location.reload(), 500);
+                    setTimeout(location.reload(), 50);
                 },
                 error: function(response){
                     console.log("ERRO");

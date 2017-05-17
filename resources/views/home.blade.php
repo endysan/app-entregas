@@ -21,10 +21,13 @@
                             <a id="{{ $pedido->id }}" href="{{ url('pedido/'.$pedido->id) }}">
                                 {{ $pedido->produto }} - {{ $pedido->descricao }} <br>
                                 @if ($pedido->status == 'confirmaçao')
-                                    <p class="aceito">Status: Confirme o Entregador</p>
+                                    <p class="confirmaçao">Status: Confirme o Entregador</p>
                                 @elseif ($pedido->status == 'iniciado')
-                                    <p class="aguardando">Status: Aguardando Entregador</p>
+                                    <p class="iniciado">Status: Aguardando Entregador</p>
+                                @elseif($pedido->status == 'aceito')
+                                    <p class="aceito">Status: Aguardando Entregador</p>
                                 @endif
+                                <p>Distância: <span class="distancia"></span></p>
                             </a>
                         </li>
                     </div>
@@ -37,6 +40,7 @@
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                         {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
                         {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
+                        <p>Distância: <span class="distancia"></span></p>
                     </a>
                 </li>           
                 @endforeach
@@ -63,4 +67,32 @@
         <img class="img-home" src="{{ url('img/apresentacao.jpg') }}">
         <p class="content">{{ $content }}</p>
     @endif
+@endsection
+
+@section('script')
+<script>
+$(document).ready(function(){
+    var elementDistancia = $('.distancia');
+    
+    @if(auth()->check())
+        var origin = "{{ auth()->user()->bairro }}, {{ auth()->user()->cidade }}, {{ auth()->user()->estado }}";
+        
+        @foreach($pedidos as $pedido)
+        var destination = "{{ $pedido->bairro }}, {{ $pedido->cidade }}, {{ $pedido->estado }}";
+
+            $.ajax({
+                type: "GET",
+                url: 'maps/distance/'+origin+'/'+destination,
+                success: function(response){
+                    console.log(response);
+                    elementDistancia.val(response.rows[0].elements[0].distance.text);
+                },
+                error: function(error){
+                    console.log("ERRO, mapa: ", error);
+                }
+            });
+        @endforeach
+    @endif
+});
+</script>
 @endsection

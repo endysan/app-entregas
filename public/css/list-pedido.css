@@ -16,10 +16,15 @@
     height: 100px;
 }
 
-.aguardando{
+.iniciado{
     color: red;
+    font-weight: 700;
 }
-
-.aceito{
-    color: #f4b942;
+.confirmaçao{
+    color: rgb(250,120,50);
+    font-weight: 700;
+}
+.aceito {
+    color: rgb(50, 210, 10);
+    font-weight: 700;
 }

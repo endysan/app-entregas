@@ -56,11 +56,11 @@ class EntregasController extends Controller
                 'id_pedido' => $request->id_pedido,
                 'id_entregador' => $request->id_entregador,
             ]);
-            // DB::table('pedidos')
-            //     ->where('id', $request->id_pedido)
-            //     ->update([
-            //         'status' => 
-            //     ]);
+            DB::table('pedidos')
+                ->where('id', $request->id_pedido)
+                ->update([
+                    'status' => 'aceito'
+                ]);
                 
             if($request->is('list-entrega')) {
                 return redirect('list-entrega');

@@ -10,8 +10,9 @@ class CreatePedidoHasEntregadoresTable extends Migration
     {
         Schema::create('pedido_has_entregadores', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_pedido')->unsigned();
+            $table->integer('id_pedido')->unsigned();            
             $table->integer('id_entregador')->unsigned();
+            $table->string('email');
             $table->timestamps();
         });
          DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');

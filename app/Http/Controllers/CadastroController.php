@@ -209,6 +209,7 @@ class CadastroController extends Controller
 		try{
 			$entregador = DB::table('entregadores')->insertGetId([
 				'id_usuario' => $id,
+				'email' => auth()->user()->email,
 				'veiculo' => $request->veiculo,
 				'cnh' => $request->cnh
 			]);

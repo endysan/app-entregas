@@ -23,6 +23,7 @@ Route::get('/pedidos', 'PedidosController@index');
 Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
+Route::post('/pedido/addentregador', 'PedidosController@addEntregador');
 Route::post('/pedido/entrega', 'EntregasController@createEntrega');
 
 //CRUDs-------------------------------------------------------------------
