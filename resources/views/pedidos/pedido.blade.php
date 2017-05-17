@@ -50,7 +50,7 @@
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
                 @if(!isset($isAceito) || $isAceito == false)
-                    <button id="bt_aceitar" class="button button-purple" onclick="addEntregador();">Aceitar</button>
+                    <button id="bt_aceitar" class="button button-purple">Aceitar</button>
                 @endif
             </form>
         @endif
@@ -110,25 +110,29 @@ function aceitarEntregador(){
         });
         setTimeout(location.reload(), 50);
 }
-function addEntregador(){
-    
-    var aceitando = $('#form-aceitar').serialize();
-    $.ajax({
-        type: "POST",
-        url: "{{ url('pedido/addentregador') }}",
-        data: { 
-            _token:"{{ csrf_token() }}",
-            $.toJSON(aceitando) 
-        },
-        success: function(response){
-            console.log("ADD ENTREGADOR: ", response);
-        },
-        error: function(error){
-            console.log("ERRO AJAX, ADD ENTREGADOR: ", error);
-        }
+
+$(document).ready(function(){
+    $('#bt_aceitar').on('click', function(event){
+        event.preventDefault();
+        
+        var aceitando = $('#form-aceitar').serialize();
+        $.ajax({
+            type: "POST",
+            url: "{{ url('pedido/addentregador') }}",
+            data: { 
+                _token:"{{ csrf_token() }}",
+                $.toJSON(aceitando) 
+            },
+            success: function(response){
+                console.log("ADD ENTREGADOR: ", response);
+            },
+            error: function(error){
+                console.log("ERRO AJAX, ADD ENTREGADOR: ", error);
+            }
+        });
+        setTimeout(location.reload(), 50);
     });
-    setTimeout(location.reload(), 50);
-}
+});
 </script>
 
 @endsection
