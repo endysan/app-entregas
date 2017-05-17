@@ -63,14 +63,14 @@
             <h5>Aceito por: </h5>
             @foreach($aceitos as $aceito)
                 
-                {{ $aceito->email }}<br/> 
+                {{ $aceito->email }}
                 
                 @if($pedido->id_usuario == auth()->user()->id)
                     <button class="button" onclick="idEntregador={{ $aceito->id_entregador }};
                         idPedido={{ $pedido->id }};
                         aceitarEntregador();">
                         Aceitar entregador
-                    </button>
+                    </button> <br/> 
                 @endif
             @endforeach
         @endif
@@ -98,17 +98,17 @@ var idEntregador = 0;
 var idPedido = 0;
 function aceitarEntregador(){
      $.ajax({
-            type: "POST",
-            url: "{{ url('pedido/entrega') }}",
-            data: {_token:'{{ csrf_token() }}',id_pedido:this.idPedido, id_entregador:this.idEntregador},
-            success: function(response){
-                console.log("SUCESSO ACEITAR: ", response);
-            },
-            error: function(error){
-                console.log("ERRO ACEITAR: ", error);
-            }
-        });
-        setTimeout(location.reload(), 50);
+        type: "POST",
+        url: "{{ url('pedido/entrega') }}",
+        data: {_token:'{{ csrf_token() }}', id_pedido:this.idPedido, id_entregador:this.idEntregador},
+        success: function(response){
+            console.log("SUCESSO ACEITAR: ", response);
+        },
+        error: function(error){
+            console.log("ERRO ACEITAR: ", error);
+        }
+    });
+    setTimeout(location.reload(), 100);
 }
 
 $(document).ready(function(){

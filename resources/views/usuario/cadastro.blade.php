@@ -5,7 +5,22 @@
 @section('css')
 <link rel="stylesheet" href="css/cadastro.css">
 @endsection
+<script>
+function confirmar()
+{
+var password = document.getElementById('password').value;
+var password_confirmation = document.getElementById('password_confirmation').value;
+var erro = document.getElementById('erro');
 
+if (password != password_confirmation)
+{
+erro.innerHTML = 'Senhas não coincidem.';
+return false;
+}
+
+
+}
+</script>
 @section('content')
         <div class="container-cadastro">
 
@@ -51,9 +66,9 @@
                             <input id="password_confirmation" name="password_confirmation" class="form-item" type="password" required>
                         </div>
                     </div>
-                
+                    <font color="red" id="erro"></font>
                     <div class="form-group-btn">
-                        <button id="btn" class="button button-purple" type="submit">Cadastrar</button>
+                        <button id="btn" class="button button-purple" type="submit" onClick="confirmar()">Cadastrar</button>
                     </div>
 
                     @if (count($errors) > 0)

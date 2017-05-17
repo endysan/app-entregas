@@ -41,9 +41,6 @@ class CadastroController extends Controller
 			return redirect()->back();
 		}
 
-		if ( $request->password != $request->password_confirmation){
-			session()->flash('errorMessage', 'Senhas não coincidem');
-		}
 		
 		$user = User::create([
 			'name' => request('name'),
