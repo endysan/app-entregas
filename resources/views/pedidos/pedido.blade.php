@@ -19,10 +19,16 @@
 
             @if($pedido->status == 'iniciado')
                 <p class="iniciado">Aguardando Entregador</p>
+                @php
+                    $isAceito = false;
+                @endphp
             @elseif ($pedido->status == 'confirmaçao')
                 <p class="confirmaçao">Confirme o Entregador</p>
             @elseif ($pedido->status == 'aceito')
                 <p class="aceito">Pedido aceito!</p>
+                @php
+                    $isAceito = true;
+                @endphp
             @endif
         </div>
 
@@ -43,7 +49,7 @@
                     @endif
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
-                @if(isset($isAceito) && $isAceito == false)
+                @if(!isset($isAceito) || $isAceito == false)
                     <button id="bt_aceitar" class="button button-purple" type="submit">Aceitar</button>
                 @endif
             </form>
