@@ -107,7 +107,7 @@ class PedidosController extends Controller
             ->update([
                 'status' => 'confirmaçao'
             ]);
-            
+            return "aceito";
         }
         catch (PDOException $ex)
         {

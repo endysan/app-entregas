@@ -34,7 +34,7 @@
 
         <!-- SE VOCE FOR UM ENTREGADOR -->
         @if(auth()->user()->id_entregador != null)
-            <form id="form-aceitar" method="POST" action="{{ url('pedido/addentregador') }}">
+            <form id="form-aceitar" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="id_pedido" value="{{ $pedido->id }}">
                 <input type="hidden" name="id_entregador" value="{{ auth()->user()->id_entregador }}">
@@ -50,7 +50,7 @@
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
                 @if(!isset($isAceito) || $isAceito == false)
-                    <button id="bt_aceitar" class="button button-purple" type="submit">Aceitar</button>
+                    <button id="bt_aceitar" class="button button-purple" onclick="addEntregador();">Aceitar</button>
                 @endif
             </form>
         @endif
@@ -62,8 +62,9 @@
         @if(count($aceitos) && $pedido->status != 'aceito')
             <h5>Aceito por: </h5>
             @foreach($aceitos as $aceito)
-                {{ $aceito->email }} 
-
+                
+                {{ $aceito->email }}<br/> 
+                
                 @if($pedido->id_usuario == auth()->user()->id)
                     <button class="button" onclick="idEntregador={{ $aceito->id_entregador }};
                         idPedido={{ $pedido->id }};
@@ -109,25 +110,22 @@ function aceitarEntregador(){
         });
         setTimeout(location.reload(), 50);
 }
-$(document).ready(function(){
-
-    $('#bt_aceitar').on('submit', function(event){
-        event.preventDefault();
-        var aceitando = $('#form-aceitar').serialize();
-        $.ajax({
-            type: "POST",
-            url: "{{ url('pedido/addentregador') }}",
-            data: aceitando,
-            success: function(response){
-                console.log("ADD ENTREGADOR: ", response);
-            },
-            error: function(error){
-                console.log("ERRO AJAX, ADD ENTREGADOR: ", error);
-            }
-        });
-        setTimeout(location.reload(), 50);
+function addEntregador(){
+    
+    var aceitando = $('#form-aceitar').serialize();
+    $.ajax({
+        type: "POST",
+        url: "{{ url('pedido/addentregador') }}",
+        data: aceitando,
+        success: function(response){
+            console.log("ADD ENTREGADOR: ", response);
+        },
+        error: function(error){
+            console.log("ERRO AJAX, ADD ENTREGADOR: ", error);
+        }
     });
-});
+    setTimeout(location.reload(), 50);
+}
 </script>
 
 @endsection
