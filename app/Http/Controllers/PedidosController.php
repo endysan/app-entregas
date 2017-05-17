@@ -107,7 +107,7 @@ class PedidosController extends Controller
             ->update([
                 'status' => 'confirmaçao'
             ]);
-            return redirect('/pedido/'+$request->id_pedido);
+            return redirect('/pedido/'.$request->id_pedido);
         }
         catch (PDOException $ex)
         {
