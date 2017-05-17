@@ -95,17 +95,24 @@ class PedidosController extends Controller
 
     public function addEntregador(Request $request)
     {
-        $aceito = DB::table('pedido_has_entregadores')->insertGetId([
-            'id_pedido' => $request->id_pedido,
-            'id_entregador' => $request->id_entregador,
-            'email' => $request->email
-        ]);
-        DB::table('pedidos')
-        ->where('id', $request->id_pedido)
-        ->update([
-            'status' => 'confirmaçao'
-        ]);
-        return "adicionado";
+        try {
+            $aceito = DB::table('pedido_has_entregadores')->insertGetId([
+                'id_pedido' => $request->id_pedido,
+                'id_entregador' => $request->id_entregador,
+                'email' => $request->email
+            ]);
+            
+            DB::table('pedidos')
+            ->where('id', $request->id_pedido)
+            ->update([
+                'status' => 'confirmaçao'
+            ]);
+            
+        }
+        catch (PDOException $ex)
+        {
+            Session::flash('errorMessage', 'Erro ao realizar essa ação');
+        }
     }
 
     public function editPedido(Request $request, $id)
