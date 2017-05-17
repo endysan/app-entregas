@@ -41,6 +41,10 @@ class CadastroController extends Controller
 			return redirect()->back();
 		}
 
+		if ( $request->password != $request->password_confirmation){
+			session()->flash('errorMessage', 'Senhas não coincidem');
+		}
+		
 		$user = User::create([
 			'name' => request('name'),
 			'email' => request('email'),
@@ -168,7 +172,7 @@ class CadastroController extends Controller
 			session()->flash('success', 'Senha modificada com sucesso!');
 			return redirect('/editarsenha');
 		}
-		session()->flash('errorMessage', 'Ocorreu um erro ao modificadar a senha');
+		session()->flash('errorMessage', 'Ocorreu um erro ao modificar a senha');
 		return redirect()->back();
 	}
 
