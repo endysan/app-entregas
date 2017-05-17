@@ -43,7 +43,7 @@
                     @endif
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
-                @if(!$isAceito)
+                @if(isset($isAceito) && $isAceito == false)
                     <button id="bt_aceitar" class="button button-purple" type="submit">Aceitar</button>
                 @endif
             </form>
