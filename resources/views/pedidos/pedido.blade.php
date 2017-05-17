@@ -34,7 +34,7 @@
 
         <!-- SE VOCE FOR UM ENTREGADOR -->
         @if(auth()->user()->id_entregador != null)
-            <form id="form-aceitar" method="POST">
+            <form id="form-aceitar" method="POST" action="{{ url('pedido/addentregador') }}">
                 {{ csrf_field() }}
                 <input type="hidden" name="id_pedido" value="{{ $pedido->id }}">
                 <input type="hidden" name="id_entregador" value="{{ auth()->user()->id_entregador }}">
@@ -116,7 +116,10 @@ function addEntregador(){
     $.ajax({
         type: "POST",
         url: "{{ url('pedido/addentregador') }}",
-        data: aceitando,
+        data: { 
+            _token:"{{ csrf_token() }}",
+            $.toJSON(aceitando) 
+        },
         success: function(response){
             console.log("ADD ENTREGADOR: ", response);
         },
