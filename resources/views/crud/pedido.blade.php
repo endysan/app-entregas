@@ -47,7 +47,7 @@
 
                 <button class="btn btn-danger" type="button"
                 data-toggle="modal" data-target="#modalDeletar" onclick="deleteId = {{ $pedido->id }}">
-                    Excluir
+                    Cancelar
                 </button>
             </td>
         </tr>
@@ -138,7 +138,7 @@
     @endsection
 
     @section('modal-deletar')
-        <h4>Você tem certeza que deseja excluir esse registro?</h4>
+        <h4>Você tem certeza que deseja cancelar esse pedido?</h4>
         <h5>Essa ação é irreversível</h5>
     @endsection
         
