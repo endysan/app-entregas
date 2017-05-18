@@ -25,9 +25,9 @@
                                 @elseif ($pedido->status == 'iniciado')
                                     <p class="iniciado">Status: Aguardando Entregador</p>
                                 @elseif($pedido->status == 'aceito')
-                                    <p class="aceito">Status: Aguardando Entregador</p>
+                                    <p class="aceito">Status: Pedido Aceito</p>
                                 @endif
-                                <p>Distância: <span class="distancia"></span></p>
+                                <p>Distância: <span id="distancia-{{ $pedido-id }}"></span></p>
                             </a>
                         </li>
                     </div>
@@ -40,7 +40,7 @@
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                         {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
                         {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        <p>Distância: <span id="pedido-{{$pedido->id}}-distancia"></span></p>
+                        <p>Distância: <span class="distancia"></span></p>
                     </a>
                 </li>           
                 @endforeach
@@ -87,12 +87,10 @@ $(document).ready(function(){
                 type: "GET",
                 url: 'maps/distance/'+origin+'/'+destination,
                 success: function(response){
-                    //console.log(response);
                     var data = JSON.parse(response);
                     
-                    console.log(data.rows[0].elements[0].distance.text);
-
-                    $('#pedido-{{$pedido->id}}-distancia').text(data.rows[0].elements[0].distance.text);
+                    //PARA CADA SPAM com classe distancia, colocar o texto
+                    $('#distancia{{$pedido->id}}').text(data.rows[0].elements[0].distance.text);
                 },
                 error: function(error){
                     console.log("ERRO, mapa: ", error);

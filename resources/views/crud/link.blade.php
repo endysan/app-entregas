@@ -11,6 +11,5 @@
     <h4><a href="list-entregador">Entregadores</a></h4>
     <h4><a href="list-entrega">Entregas</a></h4>
     <h4><a href="list-endereco">Endereços*</a></h4>
-    <h4><a href="#">Veículos*</a></h4>
 </div>
 @endsection
