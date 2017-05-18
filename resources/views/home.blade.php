@@ -27,7 +27,7 @@
                                 @elseif($pedido->status == 'aceito')
                                     <p class="aceito">Status: Pedido Aceito</p>
                                 @endif
-                                <p>Distância: <span id="distancia-{{ $pedido-id }}"></span></p>
+                                <p>Distância: <span id="distancia{{ $pedido-id }}"></span></p>
                             </a>
                         </li>
                     </div>
@@ -40,7 +40,7 @@
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                         {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
                         {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        <p>Distância: <span class="distancia"></span></p>
+                        <p>Distância: <span id="distancia{{$pedido->id}}"></span></p>
                     </a>
                 </li>           
                 @endforeach
@@ -90,7 +90,7 @@ $(document).ready(function(){
                     var data = JSON.parse(response);
                     
                     //PARA CADA SPAM com classe distancia, colocar o texto
-                    $('#distancia{{$pedido->id}}').text(data.rows[0].elements[0].distance.text);
+                    $('#distancia{{ $pedido->id }}').text(data.rows[0].elements[0].distance.text);
                 },
                 error: function(error){
                     console.log("ERRO, mapa: ", error);
