@@ -114,7 +114,7 @@ class CadastroController extends Controller
 		
 		try{
 			DB::table('users')
-				->where('id_usuario', $usuario->id)
+				->where('id', $usuario->id)
 				->update([
 					'estado' => $endereco->estado,
 					'cidade' => $endereco->cidade,
