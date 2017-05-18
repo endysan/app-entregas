@@ -90,7 +90,10 @@ class EntregasController extends Controller
     
     public function deleteEntrega($id)
     {
-        DB::table('entregas')->where('id', $id)->delete();
+        DB::table('entregas')->where('id', $id)
+            ->update([
+                'status' => 'cancelado'
+            ]);
 
         return "ok";
     }

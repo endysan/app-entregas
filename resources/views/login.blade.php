@@ -23,7 +23,7 @@
                 <button class="button button-purple" type="submit">Entrar</button>
 
                 
-                <div id="erro" class="alert alert-danger">
+                <div id="erro" class="alert alert-danger" style="display:none;">
                     <p></p>
                 </div>
                 
@@ -50,7 +50,6 @@ var erro = document.getElementById('erro');
     }
 }
 $(document).ready(function(){
-    $('#erro').hide();
     
     $('#form').on('submit', function(event){
         event.preventDefault();
@@ -64,7 +63,9 @@ $(document).ready(function(){
                   $('#erro').show();
                   $('#erro>p').text(response);
               }
-              window.location.href = "{{ url('/') }}";
+              else {
+                window.location.href = "{{ url('/') }}";
+              }
           },
           error: function(erro) {
               console.log("ERRO: ", erro);
