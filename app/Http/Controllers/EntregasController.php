@@ -66,8 +66,8 @@ class EntregasController extends Controller
                 return redirect('list-entrega');
             }
             
-            session()->flash('success', 'Pedido aceito, aguarde a confirmação');
-            return redirect('/');
+            session()->flash('success', 'Pedido aceito!');
+            return '{Entrega} criada';
             
         } catch(PDOException $ex) {
             session()->flash('errorMessage', 'Problemas ao aceitar esse pedido');

@@ -71,6 +71,8 @@
                         aceitarEntregador();">
                         Aceitar entregador
                     </button> <br/> 
+                @else
+                    <br/>
                 @endif
             @endforeach
         @endif
@@ -96,6 +98,7 @@
 <script>
 var idEntregador = 0;
 var idPedido = 0;
+
 function aceitarEntregador(){
      $.ajax({
         type: "POST",
@@ -103,13 +106,14 @@ function aceitarEntregador(){
         data: {_token:'{{ csrf_token() }}', id_pedido:this.idPedido, id_entregador:this.idEntregador },
         success: function(response){
             console.log("SUCESSO ACEITAR: ", response);
+            setTimeout(location.reload(), 100);
         },
         error: function(error){
             console.log("ERRO ACEITAR: ", error);
             console.log(data);
         }
     });
-    //setTimeout(location.reload(), 100);
+    
 }
 
 $(document).ready(function(){
@@ -125,12 +129,13 @@ $(document).ready(function(){
             },
             success: function(response){
                 console.log("ADD ENTREGADOR: ", response);
+                setTimeout(location.reload(), 50);
             },
             error: function(error){
                 console.log("ERRO AJAX, ADD ENTREGADOR: ", error);
             }
         });
-        setTimeout(location.reload(), 50);
+        
     });
 });
 </script>

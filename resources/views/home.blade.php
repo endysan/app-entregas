@@ -75,6 +75,10 @@ $(document).ready(function(){
     var elementDistancia = $('.distancia');
     
     @if(auth()->check())
+        //SE USUARIO ESTIVER LOGADO
+        //E SE OS VALORES DE ENDEREÇO DO USUARIO ESTIVEREM PREENCHIDOS
+        @if(isset(auth()->user()->bairro) && isset(auth()->user()->cidade) && isset(auth()->user()->estado))
+        
         var origin = "{{ auth()->user()->bairro }}, {{ auth()->user()->cidade }}, {{ auth()->user()->estado }}";
         
         @foreach($pedidos as $pedido)
@@ -92,7 +96,9 @@ $(document).ready(function(){
                 }
             });
         @endforeach
-    @endif
+        
+        @endif //FIM IF ISSET
+    @endif //FIM IF AUTH CHECK
 });
 </script>
 @endsection
