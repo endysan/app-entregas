@@ -40,7 +40,7 @@
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
                         {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
                         {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        <p>Distância: <span class="distancia"></span></p>
+                        <p>Distância: <span id="pedido-{{$pedido->id}}-distancia"></span></p>
                     </a>
                 </li>           
                 @endforeach
@@ -87,12 +87,12 @@ $(document).ready(function(){
                 type: "GET",
                 url: 'maps/distance/'+origin+'/'+destination,
                 success: function(response){
-                    console.log(response.rows[0].elements[0].distance.text);
+                    //console.log(response);
+                    var data = JSON.parse(response);
                     
-                    //PARA CADA SPAM com classe distancia, colocar o texto
-                    $('.distancia').each(function(){
-                        $(this).val(response.rows[0].elements[0].distance.text);
-                    });
+                    console.log(data.rows[0].elements[0].distance.text);
+
+                    $('#pedido-{{$pedido->id}}-distancia').text(data.rows[0].elements[0].distance.text);
                 },
                 error: function(error){
                     console.log("ERRO, mapa: ", error);

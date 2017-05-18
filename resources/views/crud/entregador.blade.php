@@ -24,7 +24,7 @@
         </tr>
         @foreach($entregadores as $entregador)
         <tr>
-            <td>{{ $entregador->id }}</td>
+            <!--<td>{{ $entregador->id }}</td>-->
             <td>{{ $entregador->email }}</td>
             <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>
@@ -170,36 +170,19 @@
     function getById(id)
     {
         $.ajax({
-                type: "GET",
-                url: 'get-entregador/'+id,
-                success: function(dados){
-                    console.log("{GET entregador} Sucesso");
-                    $('#edCnh').val(dados.cnh);
-                    // $('#edVeiculo[value="'+dados.veiculo+'"').prop('selected', 'selected');
-                    // $('#edStatus[value="'+dados.status+'"').prop('selected', 'selected');
-                },
-                error: function(error){
-                    console.log("{GET entregador} Erro");
-                    console.log(error);
-                }
-            });
-    //     clearEditText();
-    //     var xhttp = new XMLHttpRequest();
-    //     xhttp.onload = function() {
-    //         if(xhttp.readyState == 4 && xhttp.status == 200) {
-    //             var dados = JSON.parse(xhttp.responseText);
-    //             document.querySelector('#edCnh').value = dados.cnh;
-    //             document.querySelector('#edVeiculo').value = dados.veiculo;
-    //             document.querySelector('#edStatus').value = dados.status;
-    //             document.querySelector('#edId').value = id;
-    //             console.log(dados);
-    //         }
-    //         else {
-    //             console.log("Resposta ainda não chegou ou houve um erro");
-    //         }
-    //     }
-    //     xhttp.open('get', 'get-entregador/'+id, true);
-    //     xhttp.send();    
+            type: "GET",
+            url: 'get-entregador/'+id,
+            success: function(dados){
+                console.log("{GET entregador} Sucesso");
+                $('#edCnh').val(dados.cnh);
+                // $('#edVeiculo[value="'+dados.veiculo+'"').prop('selected', 'selected');
+                // $('#edStatus[value="'+dados.status+'"').prop('selected', 'selected');
+            },
+            error: function(error){
+                console.log("{GET entregador} Erro");
+                console.log(error);
+            }
+        });
     }
 </script>
 
