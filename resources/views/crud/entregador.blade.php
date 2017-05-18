@@ -24,7 +24,7 @@
         </tr>
         @foreach($entregadores as $entregador)
         <tr>
-            <!--<td>{{ $entregador->id }}</td>-->
+            <td>{{ $entregador->id }}</td>
             <td>{{ $entregador->email }}</td>
             <td>{{ $entregador->veiculo }}</td>
             <td>{{ $entregador->cnh }}</td>

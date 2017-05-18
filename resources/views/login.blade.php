@@ -6,11 +6,45 @@
 @endsection
 
 @section('content')
+<script>
+function confirmar()
+{
+var password = document.getElementById('password').value;
+var password_confirmation = document.getElementById('password_confirmation').value;
+var erro = document.getElementById('erro');
+
+    if (password != password_confirmation)
+    {
+        erro.innerHTML = 'Senhas não coincidem.';
+        event.preventDefault();
+    }
+}
+$(document).ready(function(){
+    $('#form').on('submit', function(event){
+        event.preventDefault();
+        
+        $.ajax({
+          type: "POST",
+          url: "{{ url('login') }}",
+          data: $('form').serialize(),
+          success: function(response){
+              console.log(response);
+          },
+          error: function(erro) {
+              console.log("ERRO: ", erro);
+          }
+          
+        });
+        
+    });
+});
+</script>
+
     <div class="container-login">
         <div class="signin">
             <h2>Comece agora!</h2>
 
-            <form action="login" method="POST" class="login-form">
+            <form id="form" action="login" method="POST" class="login-form">
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
                 <label for="email" class="form-label">Email</label>

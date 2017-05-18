@@ -42,7 +42,7 @@
                 <!-- VERIFICA SE VOCE JÁ ACEITOU ESSE PEDIDO -->
                 @foreach($aceitos as $aceito)
                     @if($aceito->id_entregador == auth()->user()->id_entregador)
-                        <p>Entrega já aceita</p>
+                        <p>Você já aceitou esse pedido</p>
                         @php
                             $isAceito = true;
                         @endphp
