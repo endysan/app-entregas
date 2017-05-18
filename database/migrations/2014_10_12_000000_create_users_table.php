@@ -13,9 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        //ESSA LINHA NÃO!
         DB::unprepared("SET @@auto_increment_increment=1;");
-        //NOO /\
 
         Schema::create('users', function (Blueprint $table) {
             $table->engine = "InnoDB";
@@ -26,24 +24,16 @@ class CreateUsersTable extends Migration
             $table->date('dt_nasc')->nullable();
             $table->string('telefone')->nullable();
             $table->string('whatsapp')->nullable();
-<<<<<<< HEAD
-            $table->string('estado');
-            $table->string('cidade');
-            $table->string('bairro');
-=======
             $table->string('estado')->nullable();
             $table->string('cidade')->nullable();
             $table->string('bairro')->nullable();
->>>>>>> dfa5c1325bd17b0d59f62d3982de07d3c4d32303
             $table->integer('id_entregador')->unsigned()->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
         
-        //SÓ ESSA LINHA !!!!!!!!!!
         DB::update('ALTER TABLE users AUTO_INCREMENT = 1;');
-        //ESSA /\
     }
 
     /**

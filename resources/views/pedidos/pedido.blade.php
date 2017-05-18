@@ -100,15 +100,16 @@ function aceitarEntregador(){
      $.ajax({
         type: "POST",
         url: "{{ url('pedido/entrega') }}",
-        data: {_token:'{{ csrf_token() }}', id_pedido:this.idPedido, id_entregador:this.idEntregador},
+        data: {_token:'{{ csrf_token() }}', id_pedido:this.idPedido, id_entregador:this.idEntregador },
         success: function(response){
             console.log("SUCESSO ACEITAR: ", response);
         },
         error: function(error){
             console.log("ERRO ACEITAR: ", error);
+            console.log(data);
         }
     });
-    setTimeout(location.reload(), 100);
+    //setTimeout(location.reload(), 100);
 }
 
 $(document).ready(function(){
