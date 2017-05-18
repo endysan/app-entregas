@@ -72,7 +72,6 @@
 @section('script')
 <script>
 $(document).ready(function(){
-    var elementDistancia = $('.distancia');
     
     @if(auth()->check())
         //SE USUARIO ESTIVER LOGADO
@@ -88,8 +87,12 @@ $(document).ready(function(){
                 type: "GET",
                 url: 'maps/distance/'+origin+'/'+destination,
                 success: function(response){
-                    console.log(response);
-                    elementDistancia.val(response.rows[0].elements[0].distance.text);
+                    console.log(response.rows[0].elements[0].distance.text);
+                    
+                    //PARA CADA SPAM com classe distancia, colocar o texto
+                    $('.distancia').each(function(){
+                        $(this).val(response.rows[0].elements[0].distance.text);
+                    });
                 },
                 error: function(error){
                     console.log("ERRO, mapa: ", error);
