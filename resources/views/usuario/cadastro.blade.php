@@ -28,7 +28,7 @@ event.preventDefault();
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
 
                 <div class="signup">
-                    <h2>Cadastra-se agora</h2>
+                    <h2>Cadastre-se agora</h2>
                     
                     <div class="form-group">
                         <aside>

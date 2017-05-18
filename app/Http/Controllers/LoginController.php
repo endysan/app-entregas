@@ -20,11 +20,10 @@ class LoginController extends Controller
             if(session()->has('admin')) {
                 session()->forget('admin');
             }
-            return redirect()->home();    
+            return "logado";    
         }
-        return back()->withErrors([
-            'message' => 'Por favor verifique seu Email ou Senha'
-        ]);
+        $errors = 'Por favor verifique seu Email ou Senha';
+        return $errors;
         
     }
 
