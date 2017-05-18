@@ -22,15 +22,11 @@
                 
                 <button class="button button-purple" type="submit">Entrar</button>
 
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                
+                <div id="erro" class="alert alert-danger">
+                    <p></p>
+                </div>
+                
             </form>
             
             <p class="text-cadastrar">Se não possui cadastro clique <a href="cadastro">aqui</a></p>
@@ -54,6 +50,8 @@ var erro = document.getElementById('erro');
     }
 }
 $(document).ready(function(){
+    $('#erro').hide();
+    
     $('#form').on('submit', function(event){
         event.preventDefault();
         
@@ -62,7 +60,11 @@ $(document).ready(function(){
           url: "{{ url('login') }}",
           data: $('form').serialize(),
           success: function(response){
-              console.log(response);
+              if(response != 'logado'){
+                  $('#erro').show();
+                  $('#erro>p').text(response);
+              }
+              window.location.href = "{{ url('/') }}";
           },
           error: function(erro) {
               console.log("ERRO: ", erro);

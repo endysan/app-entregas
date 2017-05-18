@@ -30,7 +30,7 @@
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->dt_nasc }}</td>
+            <td>{{ Carbon\Carbon::parse($user->dt_nasc)->format('d/m/Y') }}</td>
             <td>{{ $user->estado }}</td>
             <td>{{ $user->cidade }}</td>
             <td>{{ $user->bairro }}</td>
