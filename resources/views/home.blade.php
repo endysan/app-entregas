@@ -34,6 +34,7 @@
                 @endforeach
             @else
                 <h2>Pedidos disponíveis</h2>
+                <a href="mapa-pedidos">Quer uma visão melhor? Acesse o mapa</a>
                 @foreach($pedidos as $pedido)         
                 <li>
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
