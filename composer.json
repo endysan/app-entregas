@@ -10,7 +10,8 @@
         "laravel/tinker": "~1.0",
         "ext-mbstring": "*",
         "michael/laravelpagseguro": "dev-master",
-        "alexpechkarev/google-maps": "1.0.7"
+        "alexpechkarev/google-maps": "1.0.7",
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
