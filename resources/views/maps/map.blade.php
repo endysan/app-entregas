@@ -20,10 +20,7 @@
 
 @section('content')
     <div id="map"></div>
-@endsection
-
-@section('script')
-<script>
+    <script>
 
       function initMap() {
 
@@ -81,5 +78,9 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvWcoXd7hQ2ScSwx4JOzZ2YkZrFcYBWuY&callback=initMap">
     </script>
+
+@endsection
+
+@section('script')
 
 @endsection
