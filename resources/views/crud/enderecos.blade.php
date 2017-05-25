@@ -59,7 +59,8 @@
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="identificacao"
-                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
+                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" 
+                 maxlength="50" required>
             </div>
             <div class="form-group">
                 <select name="estado" id="estados" class="form-control" required>
@@ -70,7 +71,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro" required>
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" 
+                maxlength="50" required>
             </div>
 
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -95,7 +97,8 @@
             
             <div class="form-group">
                 <input type="text" id="edIdentificacao" class="form-control" name="identificacao"
-                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" required>
+                 placeholder="Identificação do seu endereço, Ex: Casa, Trabalho" 
+                 maxlength="50" required>
             </div>
             <div class="form-group">
                 <select name="estado" id="edEstados" class="form-control" required>
@@ -106,7 +109,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro" required>
+                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro" 
+                 maxlength="50" required>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>

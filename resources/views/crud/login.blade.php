@@ -21,7 +21,7 @@
                 <input id="password" class="form-item" type="password" name="senha">
                 
                 <button class="button button-purple" type="submit">Entrar</button>
-
+                <a href="">Esqueci minha senha!</a>
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>

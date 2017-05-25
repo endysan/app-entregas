@@ -32,7 +32,8 @@
                 <label for="oldpassword" class="form-label">Senha Atual</label>
             </aside>
             <div>
-                <input id="oldpassword" name="oldpassword" class="form-item" type="password">
+                <input id="oldpassword" name="oldpassword" class="form-item" type="password"
+                 maxlength="50">
             </div>
         </div>
         
@@ -41,7 +42,8 @@
                 <label for="password" class="form-label">Senha</label>
             </aside>
             <div>
-                <input id="password" name="password" class="form-item" type="password">
+                <input id="password" name="password" class="form-item" type="password"
+                 maxlength="50">
             </div>
         </div>
 
@@ -50,7 +52,8 @@
                 <label for="password_confirmation" class="form-label">Confirmar Senha</label>
             </aside>
             <div>
-                <input id="password_confirmation" name="password_confirmation" class="form-item" type="password">
+                <input id="password_confirmation" name="password_confirmation" class="form-item" type="password"
+                 maxlength="50">
             </div>
         </div> 
 
