@@ -40,15 +40,23 @@ class CadastroController extends Controller
 			session()->flash('errorMessage', 'Email já cadastrado');
 			return redirect()->back();
 		}
-
-		
+	
 		$user = User::create([
 			'name' => request('name'),
 			'email' => request('email'),
 			'password' => bcrypt(request('password'))
 		]);
-		session()->flash('success', 'Cadastrado com sucesso');
-		return redirect()->home();
+
+		//APOS CADASTRO SUCEDIDO
+		if( auth()->attempt(request(['email', 'password'])) )
+        {
+            if(session()->has('admin')) {
+                session()->forget('admin');
+            }
+            return redirect()->home();    
+        }
+        $errors = 'Por favor verifique seu Email ou Senha';
+        return $errors;
 	}
 	public function editarIndex()
 	{

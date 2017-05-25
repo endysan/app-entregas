@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cornford\Googlmapper\Mapper;
 use GoogleMaps\Facade\GoogleMapsFacade;
 
 class MapsController extends Controller
@@ -29,5 +30,10 @@ class MapsController extends Controller
         ];
 
         return $data['distancia'];
+    }
+    public function getMap()
+    {
+        \Mapper::map(-15.45, -47.57);
+        return view('maps.map');
     }
 }

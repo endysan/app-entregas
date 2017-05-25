@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
+        '*.google.com/*',
         '/list-usuario',
         '/create-usuario',
         '/get-usuario/*',

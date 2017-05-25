@@ -75,6 +75,10 @@ class PedidosController extends Controller
             return redirect()->back()->withErrors($validator);
         }
         $formated_date = str_replace('/', '-', $request->dt_entrega);
+        if(!strtotime($formated_date)){
+            session()->flash('errorMessage', 'formato de data incorreta');
+            return redirect()->back();
+        }
 		$date = Carbon::parse($formated_date)->format('Y-m-d');
 
         DB::table('pedidos')->insert([

@@ -16,9 +16,7 @@ Route::get('/areaentregador', 'CadastroController@areaEntregador');
 //APIs: Maps e PagSeguro
 Route::get('/checkout', 'CheckoutController@index');
 Route::get('/maps', 'MapsController@index');
-Route::get('/mapa-pedidos', function(){
-    return view('maps.map');
-});
+Route::get('/mapa-pedidos', 'MapsController@getMap');
 Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
 
 //Pedidos

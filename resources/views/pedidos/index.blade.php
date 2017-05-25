@@ -58,15 +58,9 @@
             <button id="btn-cadastro" class="button button-purple" type="submit">Criar Pedido</button>
         </div>
 
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
+        @if(session()->has('errorMessage'))
+            <p style="color: red;">{{ session()->get('errorMessage') }}</p>
+        @endif()
     </form>
 </div>
 @endsection
@@ -74,8 +68,22 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        $('#dt_entrega').mask('00/00/0000');
+        var dt_entrega = $('#dt_entrega');
+        dt_entrega.mask('00/00/0000');
 
+        dt_entrega.on('focusout', function(){
+            var reg = new RegExp("^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
+            if(reg.test(dt_entrega.val())){
+                console.log('{v} data valida');
+                console.log('{v} '+dt_entrega.val());
+            }
+            else {
+                console.log('{f} data invalida');
+                console.log('{f} '+dt_entrega.val());
+            }
+
+        });
+        
         $.getJSON('js/dados/estados-cidades.json', function (data) {
 				var items = [];
 				//var options = '<option value="">Escolha um estado</option>';	
