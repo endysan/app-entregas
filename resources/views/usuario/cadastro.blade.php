@@ -36,7 +36,8 @@ event.preventDefault();
                         </aside>
                         
                         <div>
-                            <input id="name" name="name" class="form-item" type="text" required>
+                            <input id="name" name="name" class="form-item" type="text" 
+                             maxlength="100" required>
                         </div>
                     </div>
 
@@ -45,7 +46,8 @@ event.preventDefault();
                             <label for="email" class="form-label">Email</label>
                         </aside>
                         <div>
-                            <input id="email" name="email" class="form-item" type="email" required>
+                            <input id="email" name="email" class="form-item" type="email" 
+                             maxlength="50" required>
                         </div>
                     </div>  
 
@@ -54,7 +56,8 @@ event.preventDefault();
                             <label for="password" class="form-label">Senha</label>
                         </aside>
                         <div>
-                            <input id="password" name="password" class="form-item" type="password" required>
+                            <input id="password" name="password" class="form-item" type="password" 
+                             maxlength="50" required>
                         </div>
                     </div>
 
@@ -63,7 +66,8 @@ event.preventDefault();
                             <label for="password_confirmation" class="form-label">Confirmar Senha</label>
                         </aside>
                         <div>
-                            <input id="password_confirmation" name="password_confirmation" class="form-item" type="password" required>
+                            <input id="password_confirmation" name="password_confirmation" class="form-item" type="password" 
+                             maxlength="50" required>
                         </div>
                     </div>
                     <font color="red" id="erro"></font>

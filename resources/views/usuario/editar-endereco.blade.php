@@ -56,7 +56,7 @@
             <div>
                 <input id="bairro" name="bairro" class="form-item" type="text" 
                  placeholder="Bairro"
-                 value="{{ Auth::user()->bairro }}">
+                 value="{{ Auth::user()->bairro }}" required maxlength="50">
             </div>
         </div>
 
