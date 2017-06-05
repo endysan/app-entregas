@@ -35,7 +35,7 @@
 
                 <div>
                     <input id="name" name="name" class="form-item" type="text"
-                     placeholder="João da Silva" maxlength="100"
+                     placeholder="João da Silva"
                      value="{{Auth::user()->name}}">
                 </div>
             </div>

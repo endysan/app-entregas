@@ -21,14 +21,12 @@
 
             <div class="form-group">
                 <label for="produto" class="form-label">Seu produto</label>
-                <input id="produto" name="produto" class="form-item" type="text" 
-                maxlength="50" required>
+                <input id="produto" name="produto" class="form-item" type="text" required>
             </div>
 
             <div class="form-group">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea id="descricao" name="descricao" class="form-item" 
-                maxlength="255" required></textarea>
+                <textarea id="descricao" name="descricao" class="form-item" required></textarea>
             </div>  
         </div>
 
@@ -47,8 +45,7 @@
             </div>
             <div class="form-group">
                 <label for="bairro" class="form-label">Bairro</label>
-                <input type="text" class="form-item" name="bairro" placeholder="Bairro" 
-                maxlength="50" required>
+                <input type="text" class="form-item" name="bairro" placeholder="Bairro" required>
             </div>
             <div class="form-group">
                 <label for="dt_entrega" class="form-label">Data de entrega</label>

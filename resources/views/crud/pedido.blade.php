@@ -76,20 +76,16 @@
             <hr/>
             <p>Informações de entrega</p>
             <div class="form-group">
-                <input type="text" id="dt_entrega" class="form-control" name="dt_entrega" 
-                maxlength="10" placeholder="dd/mm/aaaa">
+                <input type="text" id="dt_entrega" class="form-control" name="dt_entrega" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado" 
-                maxlength="50" required>
+                <input type="text" class="form-control" name="estado" placeholder="Estado" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="cidade" placeholder="Cidade" 
-                maxlength="50" required>
+                <input type="text" class="form-control" name="cidade" placeholder="Cidade" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="bairro" placeholder="Bairro" 
-                maxlength="50" required>
+                <input type="text" class="form-control" name="bairro" placeholder="Bairro" required>
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -115,15 +111,13 @@
                 <input type="text" id="edProduto" class="form-control" name="produto" placeholder="Produto">
             </div>
             <div class="form-group">
-                <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição"
-                maxlength="255"></textarea>
+                <textarea id="edDescricao" class="form-control" name="descricao" placeholder="Descrição"></textarea>
             </div>
             
             <hr/>
             <p>Informações de entrega</p>
             <div class="form-group">
-                <input type="text" id="edDt_entrega" class="form-control" name="dt_entrega" 
-                maxlength="10" placeholder="dd/mm/aaaa">
+                <input type="text" id="edDt_entrega" class="form-control" name="dt_entrega" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group">
         
@@ -135,8 +129,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" id="edBairro" class="form-control" name="bairro" 
-                 maxlength="50" placeholder="Bairro">
+                <input type="text" id="edBairro" class="form-control" name="bairro" placeholder="Bairro">
             </div>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             <button id="btn_editar" type="submit" class="btn btn-success">Editar</button>
