@@ -46,7 +46,8 @@ class MapsController extends Controller
 
     public function getCalculatedLatlng()
     {
-        $locais = DB::table('pedidos')->select('estado', 'cidade', 'bairro')->get();
+        $locais = DB::table('pedidos')->select('estado', 'cidade', 'bairro')
+                    ->where('status', 'iniciado')->orWhere('status', 'confirmaçao')->get();
         $geocoding = [];
         foreach($locais as $local) {
             $geocoding[] = $this->getLatLng($local->estado.','.$local->cidade.','.$local->bairro);

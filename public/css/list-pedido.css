@@ -11,9 +11,23 @@
 }
 
 .item-pedido {
+    text-decoration: none;
+    color: rgb(80, 80, 90);
     font-size: 16px;
     display: block;
     height: 100px;
+    border: 1px solid rgba(80, 80, 90, 0.1);
+    min-height: 70px
+}
+.item-pedido:hover {
+    color: rgb(80, 80, 90);
+    text-decoration: underline;
+}
+.item-pedido .pedido-owner{
+    background: radial-gradient(ellipse at center,#5e8 0%,#5e8 0%,#5e8 67%,rgba(0,0,0,0) 70%);
+}
+.item-pedido .titulo-pedido, .item-pedido .distancia{
+    font-weight: 600;
 }
 
 .iniciado{
@@ -27,4 +41,7 @@
 .aceito {
     color: rgb(50, 210, 10);
     font-weight: 700;
+}
+.pedido-owner {
+
 }

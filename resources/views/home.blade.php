@@ -15,7 +15,7 @@
             @if(auth()->user()->id_entregador == null)
                 <h2>Seus pedidos feitos</h2>
                 @foreach($pedidos as $pedido)                    
-                    @if($pedido->id_usuario == auth()->user()->id)
+                    @if($pedido->id_usuario == auth()->user()->id) 
                     <div class="item-pedido">
                         <li>
                             <a id="{{ $pedido->id }}" href="{{ url('pedido/'.$pedido->id) }}">
@@ -36,13 +36,24 @@
                 <h2>Pedidos disponíveis</h2>
                 <a href="mapa-pedidos">Quer uma visão melhor? Acesse o mapa</a>
                 @foreach($pedidos as $pedido)         
+
+                @if($pedido->status == 'iniciado' || $pedido->status == 'confirmaçao')
                 <li>
                     <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
-                        {{ $pedido->produto }} - {{ $pedido->descricao }} <br/>
+                        <span class="titulo-pedido">{{ $pedido->produto }}</span> - {{ $pedido->descricao }} 
+                        
+                        @if($pedido->id_usuario == auth()->user()->id) <!-- SE FOR DONO DO PEDIDO -->
+                            <svg height="25" width="25">
+                            <circle cx="10" cy="10" r="4" stroke="#33c66c" stroke-width="3" fill="#33c66c" />
+                            </svg>
+                        @endif <!-- FIM DONO PEDIDO -->
+                        <br/>
                         {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        <p>Distância: <span id="distancia{{ $pedido->id }}"></span></p>
-                    </a>
+                        <p class="distancia">Distância: <span id="distancia{{ $pedido->id }}"></span></p>
+                    </a>    
                 </li>           
+                @endif
+
                 @endforeach
             @endif
         </ul>
