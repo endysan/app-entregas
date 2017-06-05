@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Pedido;
 use Illuminate\Http\Request;
 use Cornford\Googlmapper\Mapper;
+use Illuminate\Support\Facades\DB;
 use GoogleMaps\Facade\GoogleMapsFacade;
 
 class MapsController extends Controller
@@ -12,11 +14,13 @@ class MapsController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $data = ['title' => 'Mapa'];
         return view('maps.index', $data);
     }
+
     public function calculateDistance($origin, $destination)
     {
         $distance = \GoogleMaps::load('distancematrix')
@@ -31,9 +35,28 @@ class MapsController extends Controller
 
         return $data['distancia'];
     }
-    public function getMap()
+
+    public function getLatLng($localString)
     {
-        \Mapper::map(-15.45, -47.57);
+        $latlng = \GoogleMaps::load('geocoding')
+            ->setParam(['address' => $localString])
+            ->get();
+        return $latlng;
+    }
+
+    public function getCalculatedLatlng()
+    {
+        $locais = DB::table('pedidos')->select('estado', 'cidade', 'bairro')->get();
+        $geocoding = [];
+        foreach($locais as $local) {
+            $geocoding[] = $this->getLatLng($local->estado.','.$local->cidade.','.$local->bairro);
+        }
+        $var = ['locais' => $geocoding];
+        
+        return $var;
+    }
+    public function viewMap()
+    {
         return view('maps.map');
     }
 }
