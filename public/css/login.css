@@ -45,3 +45,6 @@ h2 {
     padding: 14px;
     width: 90%;
 }
+#login-btn:disabled {
+    background-color: rgba(105, 40, 195, 0.7);
+}

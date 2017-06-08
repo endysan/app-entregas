@@ -26,6 +26,10 @@
 
     <form method="POST" action="editarendereco" >
         {{ csrf_field() }}
+        <div style="display: inline; margin-bottom: 15px">
+            <h3 style="margin-left: 10px; display:inline">Seu endereço</h3>
+            <image class="loading" />
+        </div>
         <div class="form-group">
             <aside>
                 <label for="estado" class="form-label">Estado</label>
@@ -90,6 +94,7 @@
 <script>
     $(document).ready(function(){
         $('#dt_entrega').mask('00/00/0000');
+        $('.loading').prop('src', '{{ url("img/loading_dots.gif") }}');
 
         $.getJSON('js/dados/estados-cidades.json', function (data) {
 				var items = [];
@@ -99,7 +104,8 @@
 					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
 				});					
 				$("#estados").html(options);				
-				
+				$('.loading').css('display', 'none');
+
 				$("#estados").change(function () {				
 				
                     var options_cidades = '';

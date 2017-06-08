@@ -20,7 +20,7 @@
                 <label for="password" class="form-label">Senha</label>
                 <input id="password" class="form-item" type="password" name="password">
                 
-                <button class="button button-purple" type="submit">Entrar</button>
+                <button id="login-btn" class="button button-purple" type="submit">Entrar</button>
 
                 
                 <div id="erro" class="alert alert-danger" style="display:none;">
@@ -53,23 +53,25 @@ $(document).ready(function(){
     
     $('#form').on('submit', function(event){
         event.preventDefault();
-        
+        $('#login-btn').prop("disabled", true);
         $.ajax({
           type: "POST",
           url: "{{ url('login') }}",
           data: $('form').serialize(),
           success: function(response){
               if(response != 'logado'){
+                  $('#login-btn').prop("disabled", false);
                   $('#erro').show();
                   $('#erro>p').text(response);
               }
               else {
                 window.location.href = "{{ url('/') }}";
               }
-          },
+          }, //Success
           error: function(erro) {
-              console.log("ERRO: ", erro);
-          }
+            console.log("ERRO: ", erro);
+            $('#login-btn').prop("disabled", false);
+          }//ERROR
           
         });
         

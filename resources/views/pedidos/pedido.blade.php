@@ -26,6 +26,17 @@
                 <p class="confirmaçao">Confirme o Entregador</p>
             @elseif ($pedido->status == 'aceito')
                 <p class="aceito">Pedido aceito!</p>
+                <p>
+                    {{ auth()->user()->name }}
+                    <span class="icon-whats"></span>{{ auth()->user()->whatsapp }}
+                    <span class="icon-tel"></span>{{ auth()->user()->telefone }}
+                </p>
+                <p>
+                    {{ auth()->user()->name }}
+                    <span class="icon-whats"></span>{{ auth()->user()->whatsapp }}
+                    <span class="icon-tel"></span>{{ auth()->user()->telefone }}
+                </p>
+                <br/>
                 @php
                     $isAceito = true;
                 @endphp
