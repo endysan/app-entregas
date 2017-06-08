@@ -33,29 +33,42 @@ function initMap() {
             type: 'GET',
             success: function(response){
                 //var data = JSON.parse(response);
+                var locations = [];
+                var infos = [];
+                var marker, infowindow = new google.maps.InfoWindow();
+
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 4,
                     center: new google.maps.LatLng(-23.533773, -46.625290),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
-                var locations = [];
+                var json;
                 for(var i = 0; i < response.locais.length; i++){
-                    var json = JSON.parse(response.locais[i]);
+                     json = JSON.parse(response.locais[i]);
                     if(json.status == "OK"){
                         var lat = parseFloat(json.results[0].geometry.location.lat);
-                        var long = parseFloat(json.results[0].geometry.location.lng)
-                        locations.push(new google.maps.LatLng(lat, long));
+                        var long = parseFloat(json.results[0].geometry.location.lng);
+                        var info = "<strong>"+json.results[0].formatted_address+"</strong>";
+                        locations.push([new google.maps.LatLng(lat, long), info]);
                     }
                 }
-                
-                var marker = locations.map(function(location, i){
-                    return new google.maps.Marker({
-                        position: location,
-                        map: map
-                    }); // NEW MAPS.MARKER
-                });
-                //FIM SUCESSO
-            },
+
+                for (i = 0; i < locations.length; i++){
+                    marker = new google.maps.Marker({
+                        position: locations[i][0],
+                        map: map,
+                        title: locations[i][1]
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                            infowindow.setContent(locations[i][1]);
+                            infowindow.open(map, marker);
+                        }
+                    })(marker, i));
+                } //FIM FOR
+
+            }, // FIM SUCESSO
             error: function(error){
                 console.log("ERRO LAT: ", error);
             }

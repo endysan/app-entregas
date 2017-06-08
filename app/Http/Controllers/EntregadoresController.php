@@ -26,7 +26,6 @@ class EntregadoresController extends Controller
     
     public function listEntregador()
     {
-
         $entregadores = $this->getEntregador();
         $users = DB::table('users')->select('id', 'email')->get();
         //$deletedUsers = User::onlyTrashed()->get();
@@ -56,13 +55,16 @@ class EntregadoresController extends Controller
             'id_usuario' => $request->id_usuario,
             'email' => $email,
             'cnh' => $request->cnh,
-            'veiculo' => $request->veiculo
+            'veiculo' => $request->veiculo,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now(),
         ]);
 
 		DB::table('users')
             ->where('id', $request->id_usuario)
             ->update([
-                'id_entregador' => $id_entregador
+                'id_entregador' => $id_entregador,
+                'updated_at' => Carbon\Carbon::now(),
             ]);
 		//dd($request->all());
         return redirect('list-entregador');
@@ -76,7 +78,8 @@ class EntregadoresController extends Controller
             ->update([
                 'cnh' => $request->cnh,
                 'veiculo' => $request->veiculo,
-                'status' => $request->status
+                'status' => $request->status,
+                'updated_at' => Carbon\Carbon::now(),
             ]);
         return "ok";
     }

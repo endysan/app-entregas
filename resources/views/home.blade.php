@@ -11,51 +11,25 @@
     @if (Auth::check())
         @if(isset($pedidos))
         <ul class="lista-pedidos">
-
-            @if(auth()->user()->id_entregador == null)
-                <h2>Seus pedidos feitos</h2>
-                @foreach($pedidos as $pedido)                    
-                    @if($pedido->id_usuario == auth()->user()->id) 
-                    <div class="item-pedido">
-                        <li>
-                            <a id="{{ $pedido->id }}" href="{{ url('pedido/'.$pedido->id) }}">
-                                {{ $pedido->produto }} - {{ $pedido->descricao }} <br>
-                                @if ($pedido->status == 'confirmaçao')
-                                    <p class="confirmaçao">Status: Confirme o Entregador</p>
-                                @elseif ($pedido->status == 'iniciado')
-                                    <p class="iniciado">Status: Aguardando Entregador</p>
-                                @elseif($pedido->status == 'aceito')
-                                    <p class="aceito">Status: Pedido Aceito</p>
-                                @endif
-                            </a>
-                        </li>
-                    </div>
-                    @endif
-                @endforeach
-            @else
-                <h2>Pedidos disponíveis</h2>
-                <a href="mapa-pedidos">Quer uma visão melhor? Acesse o mapa</a>
-                @foreach($pedidos as $pedido)         
-
-                @if($pedido->status == 'iniciado' || $pedido->status == 'confirmaçao')
-                <li>
-                    <a id="{{ $pedido->id }}" class="item-pedido" href="{{ url('pedido/'.$pedido->id) }}">
-                        <span class="titulo-pedido">{{ $pedido->produto }}</span> - {{ $pedido->descricao }} 
-                        
-                        @if($pedido->id_usuario == auth()->user()->id) <!-- SE FOR DONO DO PEDIDO -->
-                            <svg height="25" width="25">
-                            <circle cx="10" cy="10" r="4" stroke="#33c66c" stroke-width="3" fill="#33c66c" />
-                            </svg>
-                        @endif <!-- FIM DONO PEDIDO -->
-                        <br/>
-                        {{ $pedido->estado }} | {{ $pedido->cidade }} | {{ $pedido->bairro }}
-                        <p class="distancia">Distância: <span id="distancia{{ $pedido->id }}"></span></p>
-                    </a>    
-                </li>           
+            <h2>Seus pedidos feitos</h2>
+            @foreach($pedidos as $pedido)                    
+                @if($pedido->id_usuario == auth()->user()->id) 
+                <div class="item-pedido">
+                    <li>
+                        <a id="{{ $pedido->id }}" href="{{ url('pedido/'.$pedido->id) }}">
+                            {{ $pedido->produto }} - {{ $pedido->descricao }} <br>
+                            @if ($pedido->status == 'confirmaçao')
+                                <p class="confirmaçao">Status: Confirme o Entregador</p>
+                            @elseif ($pedido->status == 'iniciado')
+                                <p class="iniciado">Status: Aguardando Entregador</p>
+                            @elseif($pedido->status == 'aceito')
+                                <p class="aceito">Status: Pedido Aceito</p>
+                            @endif
+                        </a>
+                    </li>
+                </div>
                 @endif
-
-                @endforeach
-            @endif
+            @endforeach
         </ul>
         
         @else
@@ -64,14 +38,13 @@
         @endif
 
     @else
-
-            @if (session()->has('success'))
-            <div class="alert alert-success">
-                <ul>
-                    <li>{{ session()->get('success') }}</li>
-                </ul>
-            </div>
-            @endif
+        @if (session()->has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{{ session()->get('success') }}</li>
+            </ul>
+        </div>
+        @endif
 
         <h2 class="title-home">Bem vindo ao nosso app de entregas!</h2>
         <hr/>
@@ -81,36 +54,5 @@
 @endsection
 
 @section('script')
-<script>
-$(document).ready(function(){
-    
-    @if(auth()->check())
-        //SE USUARIO ESTIVER LOGADO
-        //E SE OS VALORES DE ENDEREÇO DO USUARIO ESTIVEREM PREENCHIDOS
-        @if(isset(auth()->user()->bairro) && isset(auth()->user()->cidade) && isset(auth()->user()->estado))
-        
-        var origin = "{{ auth()->user()->bairro }}, {{ auth()->user()->cidade }}, {{ auth()->user()->estado }}";
-        
-        @foreach($pedidos as $pedido)
-        var destination = "{{ $pedido->bairro }}, {{ $pedido->cidade }}, {{ $pedido->estado }}";
 
-            $.ajax({
-                type: "GET",
-                url: 'maps/distance/'+origin+'/'+destination,
-                success: function(response){
-                    var data = JSON.parse(response);
-                    
-                    //PARA CADA SPAM com classe distancia, colocar o texto
-                    $("#distancia{{ $pedido->id }}").text(data.rows[0].elements[0].distance.text);
-                },
-                error: function(error){
-                    console.log("ERRO, mapa: ", error);
-                }
-            });
-        @endforeach
-        
-        @endif //FIM IF ISSET
-    @endif //FIM IF AUTH CHECK
-});
-</script>
 @endsection

@@ -10,7 +10,10 @@
         </li>
         @if(Auth::check())
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('pedidos') }}">Pedidos</a>
+            <a class="nav-link" href="{{ url('pedidos') }}">Fazer pedido</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('pedidos/all') }}">Realizar entrega</a>
         </li>
         @endif
     </div>

@@ -55,11 +55,14 @@ class EntregasController extends Controller
             DB::table('entregas')->insert([
                 'id_pedido' => $request->id_pedido,
                 'id_entregador' => $request->id_entregador,
+                'created_at' => Carbon\Carbon::now(),
+                'updated_at' => Carbon\Carbon::now(),
             ]);
             DB::table('pedidos')
                 ->where('id', $request->id_pedido)
                 ->update([
-                    'status' => 'aceito'
+                    'status' => 'aceito',
+                    'updated_at' => Carbon\Carbon::now(),
                 ]);
                 
             if($request->is('list-entrega')) {
@@ -84,6 +87,7 @@ class EntregasController extends Controller
             ->update([
                 'id_pedido' => $request->id_pedido,
                 'id_entregador' => $request->id_entregador,
+                'updated_at' => Carbon\Carbon::now()
             ]);
         return "ok";
     }
@@ -92,7 +96,8 @@ class EntregasController extends Controller
     {
         DB::table('entregas')->where('id', $id)
             ->update([
-                'status' => 'cancelado'
+                'status' => 'cancelado',
+                'updated_at' => Carbon\Carbon::now(),
             ]);
 
         return "ok";

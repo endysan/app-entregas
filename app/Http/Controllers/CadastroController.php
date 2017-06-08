@@ -126,7 +126,8 @@ class CadastroController extends Controller
 				->update([
 					'estado' => $endereco->estado,
 					'cidade' => $endereco->cidade,
-					'bairro' => $endereco->bairro
+					'bairro' => $endereco->bairro,
+            		'updated_at' => Carbon\Carbon::now(),
 				]);
 		} catch(PDOException $ex) {
 			return redirect()->back()->withErrors(['errors' => 'Erro inesperado ao editar']);
@@ -220,12 +221,15 @@ class CadastroController extends Controller
 				'id_usuario' => $id,
 				'email' => auth()->user()->email,
 				'veiculo' => $request->veiculo,
-				'cnh' => $request->cnh
+				'cnh' => $request->cnh,
+				'created_at' => Carbon\Carbon::now(),
+            	'updated_at' => Carbon\Carbon::now(),
 			]);
 			DB::table('users')
 				->where('id', $id)
 				->update([
-					'id_entregador' => $entregador
+					'id_entregador' => $entregador,
+            		'updated_at' => Carbon\Carbon::now(),
 				]);
 			return redirect('/areaentregador');
 			

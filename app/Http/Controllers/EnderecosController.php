@@ -29,7 +29,9 @@ class EnderecosController extends Controller
             'id_usuario' => $request->id_usuario,
             'estado' => $request->estado,
             'cidade' => $request->cidade,
-            'bairro' => $request->bairro
+            'bairro' => $request->bairro,
+            'created_at' => Carbon\Carbon::now(),
+            'updated_at' => Carbon\Carbon::now()
         ]);
 
         return redirect('/list-endereco');

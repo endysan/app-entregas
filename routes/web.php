@@ -23,6 +23,7 @@ Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDist
 
 //Pedidos
 Route::get('/pedidos', 'PedidosController@index');
+Route::get('/pedidos/all', 'PedidosController@allPedidos');
 Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 

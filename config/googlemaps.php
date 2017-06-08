@@ -2,18 +2,6 @@
 
 return [
         
-
-    /*
-    |--------------------------------------------------------------------------
-    | API Key
-    |--------------------------------------------------------------------------
-    |
-    | Will be used for all web services, 
-    | unless overwritten bellow using 'key' parameter
-    |
-    |
-    */
-    
     'key'       => 'AIzaSyAaDtrxc9hN7v_FsAEcIkIQnAAsLsANgIM',
         
     /*
@@ -53,7 +41,7 @@ return [
                                                     'bounds'        => null,
                                                     'key'           => null,
                                                     'region'        => null,
-                                                    'language'      => null,
+                                                    'language'      => 'pt-BR',
                                                     'result_type'   => null,
                                                     'location_type' => null,
                                                     'latlng'        => null,
@@ -67,8 +55,6 @@ return [
                                                         ] 
                                                     ]
         ],
-        
-        
         
         'directions' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/directions/',
@@ -95,7 +81,6 @@ return [
                                                     ]
         ],
         
-        
         'distancematrix' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/distancematrix/',
                         'type'                  => 'GET',
@@ -118,7 +103,6 @@ return [
                                                     ]
         ],
         
-        
         'elevation' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/elevation/',
                         'type'                  => 'GET',
@@ -132,7 +116,6 @@ return [
                                                     'key'           => null,
                                                     ]
         ],
-        
         
         'geolocate' => [
                         'url'                   => 'https://www.googleapis.com/geolocation/v1/geolocate?',
@@ -165,8 +148,6 @@ return [
                                                     ]
         ],
         
-        
-        
         'snapToRoads' => [
                         'url'                   => 'https://roads.googleapis.com/v1/snapToRoads?',
                         'type'                  => 'GET',
@@ -180,7 +161,6 @@ return [
                                                     'key'           => null,
                                                     ]
         ],
-        
         
         'speedLimits' => [
                         'url'                   => 'https://roads.googleapis.com/v1/speedLimits?',
@@ -196,7 +176,6 @@ return [
                                                     ]
         ],
         
-        
         'timezone' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/timezone/',
                         'type'                  => 'GET',
@@ -211,8 +190,6 @@ return [
 
                                                     ]
         ],
-        
-        
         
         'nearbysearch' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/nearbysearch/',
@@ -237,8 +214,6 @@ return [
                                                     ]           
         ],
         
-        
-        
         'textsearch' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/textsearch/',
                         'type'                  => 'GET',
@@ -260,8 +235,6 @@ return [
                                                    ]           
         ],
         
-        
-        
         'radarsearch' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/radarsearch/',
                         'type'                  => 'GET',
@@ -282,8 +255,6 @@ return [
                                                     ]           
         ],
         
-        
-        
         'placedetails' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/details/',
                         'type'                  => 'GET',
@@ -297,8 +268,7 @@ return [
                                                     'language'      => null,
                                                     ]           
         ],
-        
-        
+          
         'placeadd' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/add/',
                         'type'                  => 'POST',
@@ -321,7 +291,6 @@ return [
                                                     ]           
         ],
         
-        
         'placedelete' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/delete/',
                         'type'                  => 'POST',
@@ -335,9 +304,6 @@ return [
                                                     ]           
         ],        
 
-        
-        
-        
         'placephoto' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/photo?',
                         'type'                  => 'GET',
@@ -351,10 +317,6 @@ return [
                                                     'maxwidth'      => null,
                                                     ]           
         ],  
-        
-        
-        
-        
         
         'placeautocomplete' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/autocomplete/',
@@ -375,8 +337,6 @@ return [
                                                     ]           
         ],  
         
-        
-        
         'placequeryautocomplete' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/place/queryautocomplete/',
                         'type'                  => 'GET',
@@ -395,22 +355,10 @@ return [
         
     ],    
 
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | End point
-    |--------------------------------------------------------------------------
-    |
-    |
-    */
-
     'endpoint' => [
         'xml'           => 'xml?',
         'json'          => 'json?',
     ],
     
-    	
-
+    
 ];

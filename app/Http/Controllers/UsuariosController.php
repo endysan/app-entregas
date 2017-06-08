@@ -54,7 +54,7 @@ class UsuariosController extends Controller
 			'name' => $request->nome,
 			'email' => $request->email,
 			'password' => bcrypt($request->senha),
-            'dt_nasc' => $date
+            'dt_nasc' => $date,
         ]);
         return redirect('list-usuario');
     }
@@ -74,14 +74,18 @@ class UsuariosController extends Controller
             ->update([
                 'name' => $request->nome,
                 'email' => $request->email,
-                'dt_nasc' => $date
+                'dt_nasc' => $date,
+                'created_at' => Carbon\Carbon::now(),
+                'updated_at' => Carbon\Carbon::now(),
             ]);
         DB::table('enderecos')
             ->where('id_usuario', $id)
             ->update([
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,
-                'bairro' => $request->bairro
+                'bairro' => $request->bairro,
+                'created_at' => Carbon\Carbon::now(),
+                'updated_at' => Carbon\Carbon::now(),
             ]);
         // if($request->nome != null)
         //     $user->name = $request->nome;

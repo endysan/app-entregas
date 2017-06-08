@@ -39,7 +39,10 @@ class MapsController extends Controller
     public function getLatLng($localString)
     {
         $latlng = \GoogleMaps::load('geocoding')
-            ->setParam(['address' => $localString])
+            ->setParam([
+                'address' => $localString,
+                'region' => 'pt-BR'
+            ])
             ->get();
         return $latlng;
     }

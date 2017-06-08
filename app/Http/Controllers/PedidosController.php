@@ -28,6 +28,17 @@ class PedidosController extends Controller
         return view('pedidos.index');   
     }
     
+    public function selectPedidos()
+    {
+        $pedidos = DB::table('pedidos')->orderBy('created_at', 'ASC')->get();
+        $users = DB::table('users')->select('id', 'email')->get();
+        $data = [
+            'pedidos' => $pedidos,
+            'users' => $users
+        ];
+        return $data;
+    }
+
     public function getPedidoById($id)
     {
         if(auth()->check()) {
@@ -44,21 +55,17 @@ class PedidosController extends Controller
     public function getPedidoByUser($userId)
     {
         $pedidosUsuario = DB::table('pedido')->where('id_usuario', $userId)-get();
-        
-        dd($pedidosUsuario);
+        return $pedidosUsuario;
     }
     public function listPedido()
     {
-        $pedidos = Pedido::all();
-        $users = DB::table('users')->select('id', 'email')->get();
-        $data = [
-            'pedidos' => $pedidos,
-            'users' => $users
-        ];
-        //$deletedUsers = User::onlyTrashed()->get();
-        return view('crud.pedido', $data);
+        return view('crud.pedido', $this->selectPedidos());
     }
-    
+    public function allPedidos()
+    {
+        return view('pedidos.lista', $this->selectPedidos());
+    }
+
     public function createPedido(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -88,7 +95,9 @@ class PedidosController extends Controller
             'estado' => $request->estado,
             'cidade' => $request->cidade,
             'bairro' => $request->bairro,
-            'dt_entrega' => $date
+            'dt_entrega' => $date,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
 
         if(auth()->check())
@@ -103,13 +112,16 @@ class PedidosController extends Controller
             $aceito = DB::table('pedido_has_entregadores')->insertGetId([
                 'id_pedido' => $request->id_pedido,
                 'id_entregador' => $request->id_entregador,
-                'email' => $request->email
+                'email' => $request->email,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
             
             DB::table('pedidos')
             ->where('id', $request->id_pedido)
             ->update([
-                'status' => 'confirmaçao'
+                'status' => 'confirmaçao',
+                'updated_at' => Carbon::now(),
             ]);
             return redirect('/pedido/'.$request->id_pedido);
         }
@@ -136,7 +148,8 @@ class PedidosController extends Controller
                 'estado' => $request->estado,
                 'cidade' => $request->cidade,
                 'bairro' => $request->bairro,
-                'dt_entrega' => $date
+                'dt_entrega' => $date,
+                'updated_at' => Carbon::now(),
         ]);
 
         return "ok";
@@ -148,7 +161,8 @@ class PedidosController extends Controller
         //DB::table('pedidos')->where('id', $id)->delete();
 
         DB::table('pedidos')->where('id', $id)->update([
-            'status' => 'Cancelado'
+            'status' => 'Cancelado',
+            'updated_at' => Carbon::now(),
         ]);
         //return "[PedidosController] Delete - OK";
         return "ok";
