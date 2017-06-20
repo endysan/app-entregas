@@ -45,3 +45,16 @@
 .pedido-owner {
 
 }
+.icon {
+    display: inline-block;
+    width: 20px;
+    height: 18px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.icon-whats {
+    background-image: url('../img/icon-whatsapp.png');
+}
+.icon-tel {
+    background-image: url('../img/icon-telefone.png');
+}

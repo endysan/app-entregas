@@ -26,16 +26,41 @@
                 <p class="confirmaçao">Confirme o Entregador</p>
             @elseif ($pedido->status == 'aceito')
                 <p class="aceito">Pedido aceito!</p>
-                <p>
-                    {{ auth()->user()->name }}
-                    <span class="icon-whats"></span>{{ auth()->user()->whatsapp }}
-                    <span class="icon-tel"></span>{{ auth()->user()->telefone }}
-                </p>
-                <p>
-                    {{ auth()->user()->name }}
-                    <span class="icon-whats"></span>{{ auth()->user()->whatsapp }}
-                    <span class="icon-tel"></span>{{ auth()->user()->telefone }}
-                </p>
+                <div>
+                    @php
+                        $dono = App\User::where('id', $pedido->id_usuario)->first();
+                    @endphp
+
+                    <p><strong>Solicitado por: {{ $dono->name }}</strong></p>
+                    <p>
+                        <span class="icon icon-whats"></span>
+                        @if($dono->whatsapp == null) Não possui
+                            @else {{ $dono->whatsapp }}
+                        @endif
+                    </p>
+                    <p>
+                    <span class="icon icon-tel"></span>
+                    @if($dono->telefone == null) Não possui
+                        @else {{ $dono->telefone }}
+                    @endif
+                    </p>
+                </div>
+                <hr/>
+                <div>
+                    <p><strong>Entregador: {{ auth()->user()->name }}</strong></p>
+                    <p>
+                        <span class="icon icon-whats"></span>
+                        @if (auth()->user()->whatsapp == null) Não possui
+                        @else {{ auth()->user()->whatsapp }}
+                        @endif
+                    </p>
+                    <p>
+                        <span class="icon icon-tel"></span>
+                        @if (auth()->user()->telefone == null) Não possui
+                        @else {{ auth()->user()->telefone }}
+                        @endif
+                    </p>
+                </div>
                 <br/>
                 @php
                     $isAceito = true;
