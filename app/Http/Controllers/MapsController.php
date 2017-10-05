@@ -61,6 +61,7 @@ class MapsController extends Controller
     }
     public function viewMap()
     {
-        return view('maps.map');
+        $pedidos = DB::table('pedidos')->select('id', 'produto')->get();
+        return view('maps.map')->with(['pedidos' => $pedidos]);
     }
 }

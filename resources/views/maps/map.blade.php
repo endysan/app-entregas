@@ -48,7 +48,18 @@ function initMap() {
                     if(json.status == "OK"){
                         var lat = parseFloat(json.results[0].geometry.location.lat);
                         var long = parseFloat(json.results[0].geometry.location.lng);
-                        var info = "<strong>"+json.results[0].formatted_address+"</strong>";
+
+                        var content = [];
+                        // COLOCA janelas de informações com o título do pedido
+                        //  endereço e um link para acessar rapidamente
+                        @foreach($pedidos as $pedido)
+                            content.push("<div class='info-window'>"+
+                        "<strong class='info-window_title'>Pedido:</strong><p class='info-window_content'>{{$pedido->produto}}</p>"+
+                        "<strong class='info-window_title'>Endereço: "+json.results[0].formatted_address+"</strong><br/>"+
+                        "<a href='{{ url('pedido/') . '/' . $pedido->id }}'>Abrir pedido</a>"+
+                        "</div>");
+                        @endforeach
+                        var info = content[i];
                         locations.push([new google.maps.LatLng(lat, long), info]);
                     }
                 }
