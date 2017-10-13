@@ -15,7 +15,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::all();
+        return view('ver2/index');
+    }
+    public function dashboard()
+    {
+        $this->loginCheck();
+        return view('ver2/dashboard');
+    }
+
+    public function historico()
+    {
+        $this->loginCheck();
+
+        $pedidos = Pedido::where('id_usuario', auth()->id())->get();
+        //dd($pedidos->first());
         $entregas = Entrega::all();
 
         foreach($pedidos as $pedido){
@@ -30,6 +43,13 @@ class HomeController extends Controller
             'pedidos' => $pedidos,
             'entrega' => $entrega
         ];
-        return view('home', $data);
+        //dd($data);
+        return view('ver2/historico_pedidos', $data);
+    }
+    public function loginCheck()
+    {
+        if(!auth()->check()){
+            return redirect('login');
+        }
     }
 }

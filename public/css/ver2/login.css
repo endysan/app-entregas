@@ -1,0 +1,32 @@
+.login-container {
+    width: 30rem;
+    height:25rem; 
+    border: 1px solid rgba(140,140,140,0.2);
+    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
+    background-color: rgb(253,253,253);
+}
+.login-background {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 98.7vw;
+    background-size: cover;
+}
+
+form button[type=submit] {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(140, 70, 60);
+    /* boa cor para desativado: #bfa58b */
+    border-radius: 1px;
+    text-transform: uppercase;
+}
+form button[type=submit]:focus {
+    outline: 0;
+}
+.container-fluid {
+    margin: 0 !important;
+    padding: 0;
+}

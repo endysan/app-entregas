@@ -13,7 +13,7 @@
             <a class="nav-link" href="{{ url('pedidos') }}">Fazer pedido</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('pedidos/all') }}">Realizar entrega</a>
+            <a class="nav-link" href="{{ url('entregar') }}">Realizar entrega</a>
         </li>
         @endif
     </div>

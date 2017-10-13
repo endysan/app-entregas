@@ -1,0 +1,105 @@
+/*# sourceURL=/css/page/news/index.min.css?2017092609 */
+/*@ sourceURL=/css/page/news/index.min.css?2017092609 */
+section {
+    position:relative;
+    background:#fafafa
+   }
+   #section-pedidos {
+       margin: 4rem 0;
+   }
+   #section_news {
+    background-color:#fafafa;
+    width:100%;
+    padding:122px 0 162px
+   }
+   #section_news h1 {
+    font-size:36px;
+    font-weight:100;
+    margin-bottom:30px
+   }
+   #news_box_wrap {
+    display:flex;
+    width:100%;
+    flex-wrap:wrap
+   }
+   .news_box {
+    background-color:#fff;
+    width:376px;
+    height:420px;
+    margin:12px 0;
+    border-radius:2px;
+    box-shadow:2px 2px 3px 0 rgba(50,50,50,.2);
+    transition:all .3s ease
+   }
+   .news_box:nth-child(3n-1) {
+    margin:12px 15px
+   }
+   figure {
+    position:relative;
+    height:215px;
+    background-color:#336;
+    border-radius:2px 2px 0 0;
+    overflow:hidden
+   }
+   figure img {
+    position:absolute;
+    left:50%;
+    margin-left:-300px
+   }
+   .figure_read {
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,.4);
+    height:215px;
+    padding-top:105px;
+    color:#fff;
+    font-size:12px;
+    text-align:center;
+    border-radius:2px 2px 0 0;
+    opacity:0;
+    transition:all .5s ease
+   }
+   .news_box:hover .figure_read {
+    opacity:1
+   }
+   @media screen and (max-width:1200px) {
+    .news_box {
+     width:32.1%
+    }
+   }
+   @media screen and (max-width:910px) {
+    .news_box {
+     width:49%
+    }
+    .news_box:nth-child(3n-1) {
+     margin:12px 0
+    }
+    .news_box:nth-child(odd) {
+     margin-right:2%
+    }
+    #story_text {
+     position:absolute;
+     bottom:20px;
+     right:20px;
+     background:#002a3a;
+     padding:20px
+    }
+   }
+   @media screen and (max-width:650px) {
+    .news_box {
+     width:100%
+    }
+    #news_box_wrap {
+     flex-direction:column
+    }
+    .news_box:nth-child(2) {
+     margin:15px 0 0
+    }
+    #story_text {
+     width:100%;
+     position:static
+    }
+   }
+   

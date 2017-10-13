@@ -10,21 +10,17 @@ class LoginController extends Controller
     public function index()
     {
         $data = ['title' => 'Login'];
-        return view('login', $data);
+        return view('ver2/login', $data);
     }
     
     public function enter(Request $request) 
     {
         if( auth()->attempt(request(['email', 'password'])) )
         {
-            if(session()->has('admin')) {
-                session()->forget('admin');
-            }
-            return "logado";    
+            return redirect('dashboard');    
         }
         $errors = 'Por favor verifique seu Email ou Senha';
-        return $errors;
-        
+        return redirect('login')->with('errors', $errors);
     }
 
     public function destroy()

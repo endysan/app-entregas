@@ -18,7 +18,7 @@ class MapsController extends Controller
     public function index()
     {
         $data = ['title' => 'Mapa'];
-        return view('maps.index', $data);
+        return view('ver2.mapa_pedidos', $data);
     }
 
     public function calculateDistance($origin, $destination)
@@ -62,6 +62,6 @@ class MapsController extends Controller
     public function viewMap()
     {
         $pedidos = DB::table('pedidos')->select('id', 'produto')->get();
-        return view('maps.map')->with(['pedidos' => $pedidos]);
+        return view('ver2.mapa_pedidos')->with(['pedidos' => $pedidos]);
     }
 }

@@ -31,7 +31,24 @@
                 @endif
             @endforeach
         </ul>
+        <!-- PEDIDOS CANCELADOS -->
+        <hr/>
         
+        @if(isset($cancelados))
+        <ul class="lista-pedidos">
+            <h2>Pedidos Cancelados</h2>
+            @foreach($cancelados as $cancelado)                    
+                @if($cancelado->id_usuario == auth()->user()->id) 
+                <div class="item-pedido">
+                    <li>
+                        {{ $cancelado->produto }} - {{ $cancelado->descricao }} <br>
+                        <p class="iniciado">Pedido cancelado</p>
+                    </li>
+                </div>
+                @endif
+            @endforeach
+        </ul>
+        @endif
         @else
             <p class="no-pedidos">Você não fez nenhum pedido</p>
             <a class="button button-white" href="#">Criar Agora</a>

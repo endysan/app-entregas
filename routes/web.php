@@ -2,10 +2,11 @@
 
 //Criar sessão, usuário, logout
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/historico', 'HomeController@historico');
 Route::get('/login', 'LoginController@index');
 Route::get('/logout', 'LoginController@destroy');
-Route::get('/cadastro', 'CadastroController@index');
+Route::get('/signup', 'CadastroController@index');
 
 //Editar usuario
 Route::get('/editar', 'CadastroController@editarIndex');
@@ -23,13 +24,14 @@ Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDist
 
 //Pedidos
 Route::get('/pedidos', 'PedidosController@index');
-Route::get('/pedidos/all', 'PedidosController@allPedidos');
+Route::get('/entregar', 'PedidosController@allPedidos');
 Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
 Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
 
 Route::post('/pedido/addentregador', 'PedidosController@addEntregador');
 Route::post('/pedido/entrega', 'EntregasController@createEntrega');
 
+Route::get('/deletepedido/{id}', 'PedidosController@deletePedido');
 //CRUDs-------------------------------------------------------------------
 Route::get('/login-admin','CrudController@loginView');
 Route::post('/login-admin','CrudController@login');

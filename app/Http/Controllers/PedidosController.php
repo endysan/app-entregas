@@ -25,15 +25,17 @@ class PedidosController extends Controller
 
     public function index()
     {
-        return view('pedidos.index');   
+        return view('ver2.create_pedido');   
     }
     
     public function selectPedidos()
     {
-        $pedidos = DB::table('pedidos')->orderBy('created_at', 'ASC')->get();
+        $pedidos = DB::table('pedidos')->whereNotIn('status', ['cancelado'])->orderBy('created_at', 'ASC')->get();
+        $cancelados = DB::table('pedidos')->where('status', ['cancelado'])->orderBy('created_at', 'ASC')->get();
         $users = DB::table('users')->select('id', 'email')->get();
         $data = [
             'pedidos' => $pedidos,
+            'cancelados' => $cancelados,
             'users' => $users
         ];
         return $data;
@@ -42,7 +44,7 @@ class PedidosController extends Controller
     public function getPedidoById($id)
     {
         if(auth()->check()) {
-            return view('pedidos.pedido')->with([
+            return view('ver2.pedido')->with([
                 'user' => User::find(auth()->user()->id),
                 'pedido' => Pedido::find($id),
                 'entrega' => Entrega::where('id_pedido', $id)->first(),
@@ -54,8 +56,21 @@ class PedidosController extends Controller
     }
     public function getPedidoByUser($userId)
     {
-        $pedidosUsuario = DB::table('pedido')->where('id_usuario', $userId)-get();
-        return $pedidosUsuario;
+        $pedidosUsuario = DB::table('pedido')->where([
+            ['id_usuario', $userId],
+            ['status', '!=', 'cancelado'],
+        ])->get();
+        $pedidosCancelados = DB::table('pedido')->where([
+            ['id_usuario', $userId],
+            ['status', '=', 'cancelado'],
+        ])->get();
+
+        $data = [
+            'pedidos' => $pedidosUsuario,
+            'cancelados' => $pedidosCancelados
+        ];
+
+        return $data;
     }
     public function listPedido()
     {

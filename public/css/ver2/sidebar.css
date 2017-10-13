@@ -1,0 +1,54 @@
+#sidebar-main {
+    width: 98.7vw; 
+    height: 100%; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(140,140,150, 0.4);
+}
+.card-header {
+    border-bottom: 0;
+}
+.card, .card-header, .card-body {
+    background-color: rgb(255,255,255);
+}
+
+.sb-hidden {
+    transform: translateX(-100vw); 
+}
+.sb-active {
+    display: block;
+    transform: translateX(0vw); 
+}
+
+.perfil-sidebar {
+    width: 230px;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-top: 10px;
+    border-right: 1px solid rgba(140,140,150, 0.4);
+    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
+}
+
+.perfil-img {
+    width: 110px;
+    height: 100px; 
+    border-radius: 50%;
+}
+
+.perfil-name {
+    
+}
+
+.perfil-conteudo {
+    height: 500px;
+    width: 300px;
+}
+.sidebar-main .list-group-item {
+    background-color: rgba(225,115,104, 0.3);
+    color: white;
+}

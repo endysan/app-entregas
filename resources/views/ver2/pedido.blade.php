@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('ver2.template.master')
 
 @section('title')
-{{ $pedido->produto }}
+    {{ $pedido->produto }}
 @endsection
 
 @section('css')
@@ -36,13 +36,13 @@
 
                     <p><strong>Solicitado por: {{ $dono->name }}</strong></p>
                     <p>
-                        <span class="icon icon-whats"></span>
+                        <i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>
                         @if($dono->whatsapp == null) Não possui
                             @else {{ $dono->whatsapp }}
                         @endif
                     </p>
                     <p>
-                    <span class="icon icon-tel"></span>
+                    <i class="fa fa-phone fa-lg fa-fw"></i>
                     @if($dono->telefone == null) Não possui
                         @else {{ $dono->telefone }}
                     @endif
@@ -52,13 +52,13 @@
                 <div>
                     <p><strong>Entregador: {{ auth()->user()->name }}</strong></p>
                     <p>
-                        <span class="icon icon-whats"></span>
+                        <i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>
                         @if (auth()->user()->whatsapp == null) Não possui
                         @else {{ auth()->user()->whatsapp }}
                         @endif
                     </p>
                     <p>
-                        <span class="icon icon-tel"></span>
+                        <i class="fa fa-phone fa-lg fa-fw"></i>
                         @if (auth()->user()->telefone == null) Não possui
                         @else {{ auth()->user()->telefone }}
                         @endif
@@ -89,10 +89,10 @@
                 @endforeach
                 <!-- FIM VERIFICAÇAO -->
                 @if(!isset($isAceito) || $isAceito == false)
-                    <button id="bt_aceitar" class="button button-purple" type="submit">Aceitar</button>
+                    <button id="bt_aceitar" class="btn btn-success" type="submit">Aceitar</button>
                 @endif
             </form>
-            <button id="bt_cancelar" class="button button-red">Cancelar</button>
+            <button id="bt_cancelar" class="btn btn-danger">Cancelar</button>
         @endif
         <!-- FIM SE FOR ENTREGADOR -->
 
