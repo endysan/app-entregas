@@ -15,7 +15,7 @@
           <div class="sk-cube3 sk-cube"></div>
         </div>
     </div>
-<div id="map" class="mx-auto" style="width: 800px; height: 500px;"></div>
+<div id="map" class="mx-auto" style="width: 100%; height: 500px;"></div>
 
 </div>
 @endsection
