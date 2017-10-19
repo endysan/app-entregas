@@ -2,11 +2,12 @@
 
 //Criar sessão, usuário, logout
 Route::get('/', 'HomeController@index');
+Route::get('/index', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/historico', 'HomeController@historico');
-Route::get('/login', 'LoginController@index');
+Route::get('/login', 'HomeController@login');
 Route::get('/logout', 'LoginController@destroy');
-Route::get('/signup', 'CadastroController@index');
+Route::get('/signup', 'HomeController@signup');
 
 //Editar usuario
 Route::get('/editar', 'CadastroController@editarIndex');
@@ -84,7 +85,7 @@ Route::get('/googled7bc6b7efc8f1591.html', function(){
 
 //POST REQUESTS
 Route::post('/login', 'LoginController@enter');
-Route::post('/cadastro', 'CadastroController@store');
+Route::post('/signup', 'CadastroController@store');
 Route::post('/checkout', 'CheckoutController@create');
 Route::post('/pedido', 'PedidosController@createPedido');
 Route::post('/editar', 'CadastroController@editar');

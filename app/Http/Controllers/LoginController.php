@@ -9,8 +9,7 @@ class LoginController extends Controller
     //
     public function index()
     {
-        $data = ['title' => 'Login'];
-        return view('ver2/login', $data);
+        //
     }
     
     public function enter(Request $request) 
@@ -27,6 +26,6 @@ class LoginController extends Controller
     {
     	auth()->logout();
 
-        return redirect()->home();
+        return redirect('index');
     }
 }
