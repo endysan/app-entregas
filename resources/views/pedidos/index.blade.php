@@ -9,7 +9,7 @@
 
 
 @section('content')
-<div class="container-pedido">
+
     <div class='pedido'> <h2>Criar um pedido</h2> </div>
     
     <form method="POST" action="pedido">
@@ -62,7 +62,7 @@
             <p style="color: red;">{{ session()->get('errorMessage') }}</p>
         @endif()
     </form>
-</div>
+
 @endsection
 
 @section('script')

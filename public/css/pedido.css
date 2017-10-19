@@ -3,7 +3,17 @@
     padding: 25px 50px;
     margin: 10px 20px;
 }
+@media (max-width: 870px) {
+    .container-pedido{
+        padding: 10px 20px;
+    }
+}
+@media (max-width: 576px) {
+    .form-control {
+        width: 100% !important;
+    }
+}
 
 textarea{
-resize:none;
+    resize:none;
 }

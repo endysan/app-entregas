@@ -1,10 +1,17 @@
 .login-container {
     width: 30rem;
-    height:25rem; 
+    padding: 10px 20px;
+    height: 25rem; 
     border: 1px solid rgba(140,140,140,0.2);
     box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
     background-color: rgb(253,253,253);
 }
+@media (max-width: 575px) {
+    .login-container {
+        min-width: 100%;
+    }
+}
+
 .login-background {
     padding: 0;
     margin: 0;
@@ -12,7 +19,11 @@
     width: 98.7vw;
     background-size: cover;
 }
-
+@media (min-width: 576px) {
+    .login-background {
+        background-image: url('img/img_background_entrega_01.jpg');
+    }
+}
 form button[type=submit] {
     font-size: 14px;
     font-weight: 700;
