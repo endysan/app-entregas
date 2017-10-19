@@ -102,3 +102,13 @@ Route::post('/pagseguro/notification', [
     'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
     'as' => 'pagseguro.notification',
 ]);
+
+Route::prefix('api')->group(function(){
+    Route::post('login', function(Request $request){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->intended('dashboard');
+            response()->json(['status' => 'OK'], 200);
+        }
+        response()->json(['status' => 'FAIL'], 401);
+    });
+});
