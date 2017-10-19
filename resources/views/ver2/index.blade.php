@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>AppEntrega</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -69,7 +69,7 @@
 	                </div>
 	                <div class="note_st">
 	                	<span class="editContent" style="">
-	                		<a href="#">
+	                		<a href="{{ url('signup') }}">
                                 <span class="pix_text" style="color: rgb(218, 177, 162); font-size: 13px; background-color: rgba(0, 0, 0, 0); font-family: &quot;Open Sans&quot;,sans-serif;" src="images/uploads/3.png">Cadastre-se</span>
                             </a>
 	                	</span>
@@ -146,7 +146,7 @@
 			<div class="container">
 				<div class="sixteen columns">
 					<div class="four columns  alpha">
-						<img src="{{ url('img/home/um.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+						<img src="{{ url('img/home/notepad.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 						<div class="head_style">
 							<span class="editContent" style="">
 								<span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Faça o pedido</span>
@@ -161,7 +161,7 @@
             			</div>
 	       			</div>
 					<div class="four columns  ">
-					    <img src="{{ url('img/home/dois.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ url('img/home/relogio.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent" 
                         style=""><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Aguarde</span></span></div>
 					    <div class="c_style">
@@ -169,7 +169,7 @@
 					    </div>
 					</div>
 					<div class="four columns  ">
-					    <img src="{{ url('img/home/tres.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ url('img/home/mao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent" 
                         style=""><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Escolha</span></span></div>
 					    <div class="c_style">
@@ -178,7 +178,7 @@
 					</div>
 
 					<div class="four columns  omega">
-					    <img src="{{ url('img/home/quatro.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ url('img/home/caminhao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent"><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Receba</span></span></div>
 					    <div class="c_style">
 					        <span class="editContent"><span class="pix_text" style="color: rgb(105, 109, 115); font-size: 14px;">Após a entrega ser concluída, confirme o pagamento e avalie o entregador.</span></span>
