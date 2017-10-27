@@ -10,10 +10,19 @@
     }
     .tipo-cadastro img {
         height: 80px;
-        border: 1px solid rgb(140,140,140); 
         border-radius: 10px; 
         padding: 5px;
-        
+    }
+    label > input {
+        visibility: hidden;
+        position: absolute;
+    }
+    label > input + img {
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+    label > input:checked + img {
+        border: 2px solid rgb(40,40,40); 
     }
 </style>
 @endsection
@@ -31,15 +40,19 @@
                     <div class="row">
                         <div class="tipo-cadastro col-6">
                             <h3>Cliente</h3>
-                            <input type="radio" name="radioTipoCadastro" value="cliente">
-                            <img src="{{ url('img/home/mao.png') }}" style="height: 80px; border: 1px solid rgb(140,140,140); border-radius: 10px; padding: 5px;" alt="">
+                            <label>
+                                <input type="radio" name="radioTipoCadastro" value="cliente">
+                                <img src="{{ url('img/home/mao.png') }}" alt="">
+                            </label>
                             <p class="text-muted">Desejo fazer pedidos de entrega.</p>
                         </div>
 
                         <div class="tipo-cadastro col-6">
                             <h3>Entregador</h3>
-                            <input type="radio" name="radioTipoCadastro" value="entregador">
-                            <img src="{{ url('img/home/caminhao.png') }}" alt="">
+                            <label>
+                                <input type="radio" name="radioTipoCadastro" value="entregador">
+                                <img src="{{ url('img/home/caminhao.png') }}" alt="">
+                            </label>
                             <p class="text-muted">Desejo realizar entregas para outros</p>
                         </div>
                     </div>

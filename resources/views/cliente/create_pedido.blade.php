@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ url('css/pedido.css') }}">
+    <link rel="stylesheet" href="{{ url('css/plugin/jquery-ui.min.css') }}">
     <style>
         #btn-criar {
             cursor: pointer;
@@ -41,7 +42,7 @@
             
             <div class="form-group col-md-6">
                 <label for="dt_entrega">Quando será coletado?</label>
-                <input class="form-control" id="dt_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa">
+                <input class="form-control" id="data_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group col-md-6">
                 <label for="periodo_entrega">Quando será coletado?</label>
@@ -144,12 +145,23 @@
 @endsection
 
 @section('script')
+<script src="{{ url('js/jquery-ui.min.js') }}"></script>
 <script>
 $(document).ready(function(){
     //var cep_origem = $('#cep_origem');
     //var cep_destino = $('#cep_destino');
+    $.datepicker.setDefaults( $.datepicker.regional[ "pt-br" ] );
+    $("#data_entrega").datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        nextText: 'Proximo',
+        prevText: 'Anterior'
+    });
 
-    $("#dt_entrega").mask('00/00/0000');
     $("#cep_origem, #cep_destino").mask('00000-000');
 
     $('#dt_entrega').blur(function(){
@@ -258,4 +270,5 @@ $(document).ready(function(){
     });
 });
 </script>
+
 @endsection

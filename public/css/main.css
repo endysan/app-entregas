@@ -19,9 +19,6 @@ body {
     background-color: #fafafa;
     padding-bottom: 150px;;
 }
-body > *{
-    font-weight: 600;
-}
 
 .main-site {
     height: 100%;
