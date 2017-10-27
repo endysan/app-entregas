@@ -1,114 +1,47 @@
 <?php
 
-//Criar sessão, usuário, logout
-Route::get('/', 'HomeController@index');
-Route::get('/index', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@dashboard');
-Route::get('/historico', 'HomeController@historico');
-Route::get('/login', 'HomeController@login');
-Route::get('/logout', 'LoginController@destroy');
-Route::get('/signup', 'HomeController@signup');
-
-//Editar usuario
-Route::get('/editar', 'CadastroController@editarIndex');
-Route::get('/editarendereco', 'CadastroController@editarEnderecoView');
-Route::get('/editarsenha', 'CadastroController@editarSenhaView');
-Route::get('/areaentregador', 'CadastroController@areaEntregador');
-
-//APIs: Maps e PagSeguro
-Route::get('/checkout', 'CheckoutController@index');
-Route::get('/maps', 'MapsController@index');
-Route::get('/mapa-pedidos', 'MapsController@viewMap');
-//PARA API
-Route::get('/api/mapa_latlgn', 'MapsController@getCalculatedLatlng');
-Route::get('maps/distance/{origin}/{destination}', 'MapsController@calculateDistance');
-
-//Pedidos
-Route::get('/pedidos', 'PedidosController@index');
-Route::get('/entregar', 'PedidosController@allPedidos');
-Route::get('/pedido/{id}', 'PedidosController@getPedidoById');
-Route::get('/historico-pedido/{id}', 'PedidosController@getPedidoByUser');
-
-Route::post('/pedido/addentregador', 'PedidosController@addEntregador');
-Route::post('/pedido/entrega', 'EntregasController@createEntrega');
-
-Route::get('/deletepedido/{id}', 'PedidosController@deletePedido');
-//CRUDs-------------------------------------------------------------------
-Route::get('/login-admin','CrudController@loginView');
-Route::post('/login-admin','CrudController@login');
-Route::get('/logout-admin','CrudController@logout');
-
-Route::get('/list', 'CrudController@list');
-
-Route::get('/list-usuario', 'UsuariosController@listUsuario');
-Route::post('/create-usuario', 'UsuariosController@createUsuario');
-Route::get('/get-usuario/{id}', 'UsuariosController@getUsuarioById');
-Route::put('/edit-usuario/{id}', 'UsuariosController@editUsuario');
-Route::delete('/delete-usuario/{id}', 'UsuariosController@deleteUsuario');
-
-Route::get('/list-pedido', 'PedidosController@listPedido');
-Route::post('/create-pedido', 'PedidosController@createPedido');
-Route::get('/get-pedido/{id}', 'PedidosController@getPedidoById');
-Route::put('/edit-pedido/{id}', 'PedidosController@editPedido');
-Route::delete('/delete-pedido/{id}', 'PedidosController@deletePedido');
-
-Route::get('/list-entregador', 'EntregadoresController@listEntregador');
-Route::post('/create-entregador', 'EntregadoresController@createEntregador');
-Route::get('/get-entregador/{id}', 'EntregadoresController@getEntregadorById');
-Route::put('/edit-entregador/{id}', 'EntregadoresController@editEntregador');
-Route::delete('/delete-entregador/{id}', 'EntregadoresController@deleteEntregador');
-
-Route::get('/list-entrega', 'EntregasController@listEntrega');
-Route::post('/create-entrega', 'EntregasController@createEntrega');
-Route::get('/get-entrega/{id}', 'EntregasController@getEntregaById');
-Route::put('/edit-entrega/{id}', 'EntregasController@editEntrega');
-Route::delete('/delete-entrega/{id}', 'EntregasController@deleteEntrega');
-
-Route::get('/list-endereco', 'EnderecosController@listEnderecos');
-Route::post('/create-endereco', 'EnderecosController@createEndereco');
-Route::get('/get-endereco/{id}', 'EntregasController@getEntregaById');
-Route::put('/edit-endereco/{id}', 'EntregasController@editEntrega');
-Route::delete('/delete-endereco/{id}', 'EntregasController@deleteEntrega');
-
-Route::get('/list-veiculo', 'VeiculosController@listVeiculo');
-Route::post('/create-veiculo', 'VeiculosController@createVeiculo');
-Route::get('/get-veiculo/{id}', 'VeiculosController@getVeiculoById');
-Route::put('/edit-veiculo/{id}', 'VeiculosController@editVeiculo');
-Route::delete('/delete-veiculo/{id}', 'VeiculosController@deleteVeiculo');
-//-------------------------------------------------------------------------
+// PAGINAS
+Route::view('/', 'index');
+Route::view('/index', 'index')->name('home');
+Route::view('/login', 'login')->name('login');
+Route::view('/signup', 'signup')->name('signup');
 
 
-//GOOGLE MAPS
-Route::get('/googled7bc6b7efc8f1591.html', function(){
-    return view('googled7bc6b7efc8f1591.html');
-});
+// AuthControl
+Route::post('/login', 'AuthController@postLogin');
+Route::get('/logout', 'AuthController@getLogout');
+Route::post('/signup', 'AuthController@postSignup');
 
-//POST REQUESTS
-Route::post('/login', 'LoginController@enter');
-Route::post('/signup', 'CadastroController@store');
-Route::post('/checkout', 'CheckoutController@create');
-Route::post('/pedido', 'PedidosController@createPedido');
-Route::post('/editar', 'CadastroController@editar');
-Route::post('/editarendereco', 'CadastroController@editarEndereco');
-Route::post('/editarsenha', 'CadastroController@editarSenha');
-Route::post('/areaentregador', 'CadastroController@createEntregador'); //TEMPORARIO, MUDAR
+// Grupo de páginas que necessitam estar logado
+Route::middleware(['auth'])->group(function(){
 
-// PAGSEGURO
-Route::post('/pagseguro/redirect', [
-    'uses' => 'CheckoutController@redirect',
-    'as' => 'pagseguro.redirect',
-]);
-Route::post('/pagseguro/notification', [
-    'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
-    'as' => 'pagseguro.notification',
-]);
+    // Pagina dashboard
+    Route::prefix('cliente')->group(function(){
+        // url = /cliente/dashboard
+        Route::view('/dashboard', 'cliente.dashboard')->name('cliente.home');
+        Route::view('/perfil', 'cliente.editar_perfil');
+        Route::get('/historico', 'PedidosController@getPedidos');
 
-Route::prefix('api')->group(function(){
-    Route::post('login', function(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('dashboard');
-            response()->json(['status' => 'OK'], 200);
-        }
-        response()->json(['status' => 'FAIL'], 401);
+        // Rotas relacionadas aos pedidos    
+        
+
+
+        Route::prefix('pedido')->group(function(){
+            // url = cliente/pedido/criar
+            Route::get('/id={id}', 'PedidosController@getPedidoById');
+            Route::get('/criar', 'PagesController@createPedido');
+            Route::post('/criar', 'PedidosController@postCreatePedido');
+            Route::post('/editar', 'PedidosController@editar');
+        });
+        
+            
+    }); // PREFIX CLIENTE
+
+    // PREFIX ENTREGADOR TODO
+    Route::prefix('entregador')->group(function(){
+        Route::view('/dashboard', 'entregador.dashboard')->name('entregador.home');
+        Route::view('/perfil', 'entregador.editar_perfil');
+        Route::view('/mapa-pedidos', 'entregador.mapa_pedidos');
     });
-});
+
+}); // MIDDLEWARE AUTH

@@ -1,0 +1,48 @@
+.signup-background {
+    padding: 0;
+    margin: 0;
+    width: 98.7vw;
+}
+
+@media(min-width: 801px) {
+    .signup-background {
+        background-image: url('../img/img_background_entrega_01.jpg');
+        background-size: cover;
+    }
+}
+@media(max-width: 767px) {
+    .signup-container {
+        padding: 15px 20px;
+    }
+}
+.signup-container {
+    width:100%;
+    height: 100%; 
+    border: 1px solid rgba(140,140,140,0.2);
+    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
+    background-color: rgb(253,253,253);
+}
+@media (min-width: 660px) {
+    .signup-container {
+        width: 50rem;
+    }
+}
+
+
+form button[type=submit] {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(140, 70, 60);
+    /* boa cor para desativado: #bfa58b */
+    border-radius: 1px;
+    text-transform: uppercase;
+}
+form button[type=submit]:focus {
+    outline: 0;
+}
+.container-fluid {
+    margin: 0 !important;
+    padding: 0;
+}

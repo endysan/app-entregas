@@ -3,13 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pedido extends Model
 {
-    protected $fillable = ['id_usuario', 'produto', 'descricao', 'estado', 'cidade', 'bairro'];
+    use SoftDeletes;
 
-    public function scopeCancelados($query)
+    protected $table = 'pedido'; // verificar
+
+    protected $dates = ['deleted_at'];
+
+    public function cliente()
     {
-        return $query->where('status', 'cancelado');
+        return $this->belongsTo('App\Cliente');
+    }
+
+    public function categoria()
+    {
+        return $this->belongsToMany('App\CategoriaPedido')->using('App\PedidoHasCategoria');
     }
 }

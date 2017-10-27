@@ -1,50 +1,43 @@
-body {
-    background-color: rgb(241, 243, 244);
-    color: rgb(116, 124, 129);
+.login-container {
+    max-width: 30rem;
+    height: 25rem; 
+    border: 1px solid rgba(140,140,140,0.2);
+    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
+    background-color: rgb(253,253,253);
 }
-.container-login {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
+@media(min-width: 768px) {
+    .login-background {
+        background-image: url('../img/img_background_entrega_01.jpg');
+        background-size: cover;
+    }
 }
-.signin {
-    background-color: rgb(255, 255, 255); 
-    margin: 42px 0 0 0;
-    width: 50%;
-    max-width: 500px;
-    min-width: 330px;
-    padding: 42px;
-    line-height: 20px;
-    height: 450px;
-}
-h2 {
-    font-size: 28px;
-    line-height: 35px;
+.login-background {
+    padding: 0 0 10px 0;
     margin: 0;
-    padding: 0;
-    text-align: center;
-}
-.login-form {
-    margin-top: 40px;
+    min-height: 100%;
+    width: 98.7vw;
+    background-size: cover;
 }
 
-.login-form * {
-    display: block;
-    font-size: 15px;
-    margin: 5px;
+@media(max-width: 767px) {
+    .login-container {
+        padding: 15px 20px;
+    }
 }
-.form-label {
-    color: rgb(116, 124, 129);
-    text-align: left;
+form button[type=submit] {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(140, 70, 60);
+    /* boa cor para desativado: #bfa58b */
+    border-radius: 1px;
+    text-transform: uppercase;
 }
-.form-item { 
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 3px;
-    margin: 0 0 0 14;
-    padding: 14px;
-    width: 90%;
+form button[type=submit]:focus {
+    outline: 0;
 }
-#login-btn:disabled {
-    background-color: rgba(105, 40, 195, 0.7);
+.container-fluid {
+    margin: 0 !important;
+    padding: 0;
 }

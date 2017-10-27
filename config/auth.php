@@ -38,12 +38,18 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'cliente',
+        ],
+
+        // Teste de multiplos usuarios
+        'entregador' => [
+            'driver' => 'session',
+            'provider' => 'entregador'
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'cliente',
         ],
     ],
 
@@ -65,11 +71,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'cliente' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Cliente::class,
         ],
 
+        'entregador' => [
+            'driver' => 'eloquent',
+            'model' => App\Entregador::class,
+        ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -92,8 +102,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'cliente' => [
+            'provider' => 'cliente',
             'table' => 'password_resets',
             'expire' => 60,
         ],

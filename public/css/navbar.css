@@ -1,0 +1,40 @@
+.navbar {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    padding: 5px 10px;
+    border-bottom: 1px solid rgba(230,230,230,0.9);
+    background-color: white;
+}
+.nav-toggle {
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 50%;
+}
+.nav-toggle:hover {
+    background-color: rgb(230,230,230,0.4); 
+} .nav-toggle:active {
+    background-color: rgb(210,210,210,0.4); 
+}
+
+.nav-item, .nav-item a{
+    display: inline-block;
+    margin: 0 5px;
+}
+.nav-item a:hover {
+    text-decoration: none;
+    color: rgb(189, 115, 69);    
+}
+
+.navbar-logo {
+    line-height: 65px;
+}
+.logo h2 {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+.navbar-logo img {
+    width: 45px;
+    height: 45px;
+}

@@ -1,81 +1,36 @@
-@extends('layouts.master')
+@extends('template.simple_master')
+
 @section('title', 'Login')
 
 @section('css')
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="{{ url('css/login.css') }}">
 @endsection
 
 @section('content')
-
-    <div class="container-login">
-        <div class="signin">
-            <h2>Comece agora!</h2>
-
-            <form id="form" action="login" method="POST" class="login-form">
+    <div class="login-background d-md-flex flex-md-row-reverse">
+        <div class="login-container mt-md-5 p-md-5 mx-auto">
+            <h3 class="text-center mb-4">Entre para começar a usar!</h3>
+            <form action="login" method="POST">
                 {{ csrf_field() }} <!-- Obrigatorio para segurança -->
-
-                <label for="email" class="form-label">Email</label>
-                <input id="email" class="form-item" type="email" name="email">
-                
-                <label for="password" class="form-label">Senha</label>
-                <input id="password" class="form-item" type="password" name="password">
-                
-                <button id="login-btn" class="button button-purple" type="submit">Entrar</button>
-
-                
-                <div id="erro" class="alert alert-danger" style="display:none;">
-                    <p></p>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" class="form-control p-3" placeholder="exemplo@email.com">
+                </div>    
+                <div class="mt-2">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" name="password" class="form-control p-3" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                </div>    
+                <div class="d-flex justify-content-between align-items-end">
+                    <div class="p-2"><a href="#" class="text-muted">Esqueci minha <span class="text-appentrega">senha</span></a></div>
+                    <div>
+                        <button type="submit" class="btn btn-default btn-lg bg-appentrega mt-4">Login
+                            <i class="fa fa-chevron-right fa-fw"></i>
+                        </button>
+                    </div>
                 </div>
-                
+                <div class="p-3 text-center"><a href="#" class="text-muted text-appentrega">Criar conta</a></div>
             </form>
-            
-            <p class="text-cadastrar">Se não possui cadastro clique <a href="cadastro">aqui</a></p>
         </div>
-        
     </div>
-@endsection
-
-@section('script')
-<script>
-function confirmar()
-{
-var password = document.getElementById('password').value;
-var password_confirmation = document.getElementById('password_confirmation').value;
-var erro = document.getElementById('erro');
-
-    if (password != password_confirmation)
-    {
-        erro.innerHTML = 'Senhas não coincidem.';
-        event.preventDefault();
-    }
-}
-$(document).ready(function(){
-    
-    $('#form').on('submit', function(event){
-        event.preventDefault();
-        $('#login-btn').prop("disabled", true);
-        $.ajax({
-          type: "POST",
-          url: "{{ url('login') }}",
-          data: $('form').serialize(),
-          success: function(response){
-              if(response != 'logado'){
-                  $('#login-btn').prop("disabled", false);
-                  $('#erro').show();
-                  $('#erro>p').text(response);
-              }
-              else {
-                window.location.href = "{{ url('/') }}";
-              }
-          }, //Success
-          error: function(erro) {
-            console.log("ERRO: ", erro);
-            $('#login-btn').prop("disabled", false);
-          }//ERROR
-          
-        });
-        
-    });
-});
-</script>
+</div>
 @endsection
