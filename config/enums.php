@@ -2,8 +2,14 @@
 
 return [
     'status_pedido' => [
-        'AGUARDANDO' => 'Aguardando orçamento',
-        'ACEITO' => 'Pedido foi aceito',
-        'FINALIZADO' => 'Pedido foi finalizado'
+        'aguardando' => 'Aguardando orçamento',
+        'aceito' => 'Pedido foi aceito',
+        'finalizado' => 'Pedido foi finalizado'
+    ],
+    'tipo_veiculo' => [
+        1 => 'moto',
+        2 => 'carro', 
+        3 => 'caminhonete',
+        4 => 'caminhão'
     ]
 ];

@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function(){
         Route::view('/dashboard', 'entregador.dashboard')->name('entregador.home');
         Route::view('/perfil', 'entregador.editar_perfil');
         Route::view('/mapa-pedidos', 'entregador.mapa_pedidos');
+        Route::get('/veiculos', 'VeiculosController@index');
     });
 
 }); // MIDDLEWARE AUTH

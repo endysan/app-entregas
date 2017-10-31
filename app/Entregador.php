@@ -23,4 +23,8 @@ class Entregador extends Authenticatable
     {
         return $this->belongsTo('App\Entregador');
     }
+    public function veiculo()
+    {
+        return $this->hasOne('App\Veiculo');
+    }
 }
