@@ -32,7 +32,7 @@ class CreatePedidoTable extends Migration
             $table->string('estado_origem');
             $table->string('cep_destino');
             $table->string('logradouro_destino');
-            $table->string('logradouro_destino')->nullable();
+            $table->string('complemento_destino')->nullable();
             $table->string('bairro_destino');
             $table->string('cidade_destino');
             $table->string('estado_destino');
@@ -50,6 +50,8 @@ class CreatePedidoTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('pedido');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

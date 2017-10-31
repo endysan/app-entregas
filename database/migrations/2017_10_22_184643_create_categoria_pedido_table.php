@@ -38,6 +38,8 @@ class CreateCategoriaPedidoTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('categoria_pedido');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

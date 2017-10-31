@@ -24,9 +24,9 @@ class CreateForeignKeys extends Migration
         Schema::table('pedido', function($table) {
             $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
         });
-        Schema::table('pedido_has_categoria', function(){
+        Schema::table('pedido_has_categoria', function($table){
             $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
-            $table->integer('categoria_pedido_id')->references('id')->on('categoria_pedido')->onDelete('cascade');
+            $table->foreign('categoria_pedido_id')->references('id')->on('categoria_pedido')->onDelete('cascade');
         });
 
         Schema::table('disputa' ,function($table){

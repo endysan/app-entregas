@@ -20,6 +20,11 @@
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="password" class="form-control p-3" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
                 </div>    
+                @if($errors->any())
+                    @foreach($errors->all() as $error)
+                        <p class="text-danger">{{ $error }}</p>
+                    @endforeach
+                @endif
                 <div class="d-flex justify-content-between align-items-end">
                     <div class="p-2"><a href="#" class="text-muted">Esqueci minha <span class="text-appentrega">senha</span></a></div>
                     <div>
@@ -28,7 +33,6 @@
                         </button>
                     </div>
                 </div>
-                <div class="p-3 text-center"><a href="#" class="text-muted text-appentrega">Criar conta</a></div>
             </form>
         </div>
     </div>

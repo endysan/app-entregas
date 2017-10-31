@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisputaHasEntregadorTable extends Migration
+class CreateVeiculosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateDisputaHasEntregadorTable extends Migration
      */
     public function up()
     {
-        Schema::create('disputa_has_entregador', function (Blueprint $table) {
-            $table->engine = "InnoDB";
+        Schema::create('veiculos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pedido_id')->unsigned();
+            $table->string('placa');
+            $table->string('renavam');
+            $table->string('tipo_veiculo'); // Usa o enum que está em config/enum.php
             $table->integer('entregador_id')->unsigned();
-            $table->double('valor_sugerido')->unsigned();
             $table->timestamps();
+
+            $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -31,7 +34,7 @@ class CreateDisputaHasEntregadorTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('disputa_has_entregador');
+        Schema::dropIfExists('veiculos');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

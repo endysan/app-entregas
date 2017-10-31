@@ -19,7 +19,7 @@ class AuthController extends Controller
             return redirect()->route('entregador.home');
         }
         
-        return redirect()->back()->withInput();
+        return redirect('login')->withErrors('Email ou senha inválidos')->withInput();
         //response()->json(['status' => 'FAIL'], 401);
     }
     
@@ -39,7 +39,7 @@ class AuthController extends Controller
         ]);
         
         if($validator->fails()) {
-            return redirect('signup')->with(['error' => $validator])->withInput();
+            return redirect('signup')->with(['errors' => $validator])->withInput();
         }
         
         // Validação passou =============
