@@ -104,12 +104,18 @@ h2.title * {
 }
 .text-appentrega {
     color: rgb(160, 99, 78);
+} .text-appentrega:hover {
+    color: rgb(140, 75, 65);
 }
 .bg-appentrega-light {
     background-color: rgb(221, 198, 175);
 }
 .bg-appentrega {
     background-color: rgb(160, 89, 78);
+}
+.border-appentrega {
+    border: 1px solid rgba(140,140,140, 0.2);
+    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
 }
 .navbar {
     width: 100%;

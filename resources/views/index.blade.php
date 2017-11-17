@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{{ url('css/index/skeleton.css') }}">
     <link rel="stylesheet" href="{{ url('css/index/landings.css') }}">
     <link rel="stylesheet" href="{{ url('css/index/main_landing.css') }}">
-    <link rel="stylesheet" href="{{ url('css/index/landings_layouts.css') }}">
-    <link rel="stylesheet" href="{{ url('css/index/pixicon.css') }}">
     <style>
         h2 .logo {
             text-transform: uppercase;
@@ -56,7 +54,7 @@
 					<div class="subtitle_style">
 						<span class="editContent" style="">
 							<span class="pix_text">
-								More than 10 unique unbounce templates in one bundle isn't that awesome with a lot of features and great design brought to you by PixFort.
+								Com o AppEntrega você rapidamente vai se livrar daquilo que "é pra entrega". <br/>Se você é um entregador, ganhe dinheiro ajudando.
 							</span>
 						</span>
 					</div>

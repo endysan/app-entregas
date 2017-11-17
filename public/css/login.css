@@ -1,13 +1,10 @@
 .login-container {
     max-width: 30rem;
     height: 25rem; 
-    border: 1px solid rgba(140,140,140,0.2);
-    box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
     background-color: rgb(253,253,253);
 }
 @media(min-width: 768px) {
     .login-background {
-        background-image: url('../img/img_background_entrega_01.jpg');
         background-size: cover;
     }
 }
@@ -38,6 +35,14 @@ form button[type=submit]:focus {
     outline: 0;
 }
 .container-fluid {
-    margin: 0 !important;
+    margin: 0 0 70px !important;
     padding: 0;
+}
+.logo {
+    
+}
+#login_cadastro_section div {
+    width: 400px;
+    text-align: center;
+    background-color: white;
 }

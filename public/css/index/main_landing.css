@@ -5,13 +5,6 @@
 * 29/01/2016
 */
 
-
-
-/*--- Part 0:  #Misc      ---*/
-.desk_right { text-align: right; }
-.desk_left { text-align: left; }
-
-
 /*Pix 1*/
 	.pixfort_pix_1 .tesi_style { background: #5ca4fc;padding: 40px 0;text-align: center; }
 	.pixfort_pix_1 .q-icon { padding-bottom: 30px; }
@@ -25,15 +18,6 @@
 		font-wight:bold;
 		line-height: 35px;
 	}
-	
-	/* Quote Dots */
-	.pixfort_pix_1 .quote-dots{
-		color:rgba(255,255,255,0.7);
-		font-size:28px;
-		font-wight:bold;
-		line-height: 35px;
-	}
-	
 	/* Quote Title */
 .pixfort_pix_1 .quote-title{
 		color:#fff;
@@ -41,77 +25,9 @@
 		font-wight:bold;
 		line-height: 30px;
 }
-	
-/* Quote Link */
-.pixfort_pix_1 .quote-link{
-		color: rgba(255,255,255,0.8);
-		font-size:14px;
-}
-	
-/* Quote Icon Image */
-.pixfort_pix_1 #lp-pom-image-84{ opacity:0.5; }
-
-
-
+		
 /*Pix 2*/
 .pixfort_pix_2 .header_1_style { background: #fff;box-shadow: 0 -3px 0 0 rgba(0,0,0,0.1) inset; }
-
-.test .pix_video_div{
-		position: fixed;
-		z-index: -200 !important;  
-		top: 0; right: 0; bottom: 0; left: 0;
-		overflow: hidden;
-}
-.test video { 
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		min-width: 100%;
-		min-height: 100%;
-		width: auto;
-		height: auto;
-		z-index: -200 !important;
-		background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
-		background-attachment: scroll !important;
-		object-fit: cover;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		overflow: hidden;
-}
-
-
-
-	
-
-/* #Video Section
-================================================== */
-		.has-video { position:relative; overflow:hidden; }
-		.pix_full_screen {min-height: 100% !important;}
-		.has-video .section_video { position: absolute; top: 0; left: 0; min-height: 100%; min-width: 100%; overflow: hidden;  z-index: 10; background: #eee;  }
-		.has-video .section_video .mask { position: absolute; top: 0; left: 0;  height: 100%; width: 100%; z-index: 3; background:url(../images/videomask.png) repeat center;}
-		.has-video .section_wrapper { position:relative; z-index:10; }
-		.has-video .section_video video { position: absolute; top: 0; left: 0; min-height: 100%; min-width: 100%; z-index: 2;-webkit-background-size:cover; 
-   -moz-background-size:cover; 
-   -o-background-size:cover; 
-   background-size:cover;
-   background-position: scroll;
-}
-		@media only screen and (min-device-width:481px) and (max-device-width:1024px){ 
-			.has-video .section_video { display: none !important; }
-		}
-		.video_warper { background:#000;}
-		.pix_video_bg_1 {
-				overflow: hidden;
-				position: relative;
-		}
-
-
-
-
 
 		.pixfort_sticky{
 			position: fixed;
@@ -121,24 +37,11 @@
 		}
 
 
-
-		
-
-
 		/*Slider*/
 		.pixfort_pix_slider {
 			padding: 80px 0;
 			background: #eee;
 		}
-
-
-
-
-
-
-
-
-
 
 
 /*Icons*/
