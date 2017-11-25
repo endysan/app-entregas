@@ -41,9 +41,7 @@ class AuthController extends Controller
         if($validator->fails()) {
             return redirect('signup')->with(['errors' => $validator])->withInput();
         }
-        
         // Validação passou =============
-
         $cliente = new Cliente;
         $cliente->nome = $request->nome;
         $cliente->email = $request->email;
@@ -51,18 +49,14 @@ class AuthController extends Controller
         $cliente->save();
 
         if($request->radioTipoCadastro == 'entregador') {
-            // Cliente temporario para adquirir o ID do usuario
-            $temp = Cliente::where('email', $request->email)->first(); // Objeto collection
-            $cliente = Cliente::find($temp->id); // Objeto Cliente
-
+            
+            // Precisa criar registro na tabela entregador
             $entregador = new Entregador;
             $entregador->cliente_id = $cliente->id;
             $entregador->save();
-
-            $entregadorTemporario = Entregador::where('cliente_id', $cliente->id)->first();
-            // Atualiza com id do entregador
-            $cliente->entregador_id = $entregadorTemporario->id;
-
+            
+            // Atualiza cliente, dando ele um ID de entregador
+            $cliente->entregador_id = $entregador->id;
             $cliente->save();
         }
         

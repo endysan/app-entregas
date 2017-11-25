@@ -2,7 +2,6 @@
     background-color: rgb(255, 255, 255);
     padding: 15px;
     border-radius: 10px;
-    height: 70%;
     color: rgb(20, 20, 20);
 }
 
@@ -52,9 +51,23 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
-.icon-whats {
-    background-image: url('../img/icon-whatsapp.png');
+.titulo {
+    font-size: 26px;
+    font-weight: 600;
 }
-.icon-tel {
-    background-image: url('../img/icon-telefone.png');
+.titulo h3 {
+    font-size: 22px !important;
+}
+.orçamento_info {
+    margin: auto;
+    text-align: center;
+}
+.proposta_valor {
+    font-size: 28px;
+}
+.entregador_proposta img {
+    height: 96px;
+}
+.classificacao {
+    color: orange;
 }

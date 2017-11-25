@@ -36,6 +36,7 @@
     }
 </style>
 @endsection
+@include('template.partials.navbar')
 
 @section('content')
 

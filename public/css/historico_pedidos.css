@@ -30,10 +30,35 @@ section {
     margin:12px 0;
     border-radius:2px;
     box-shadow:2px 2px 3px 0 rgba(50,50,50,.2);
-    transition:all .3s ease
+    transition:all .3s ease;
+    cursor: pointer;
    }
+   .news_box figure {
+       margin: 0;
+   }
+   .pedido_link:hover {
+    text-decoration: none;
+   }
+   .pedido_link:hover ~ .contents p {
+    color: rgb(190,99,78);
+   }
+   #pedido_status p {
+    text-align: center;
+    font-weight: bold;
+    color:  
+   }
+   .status_aceito {
+       color: green;
+   }
+   .status_pendente {
+       color: orange;
+   }
+   .status_cancelado {
+       color: orangered;
+   }
+
    .news_box {
-    margin:12px 15px
+    
    }
    figure {
     position:relative;
@@ -104,18 +129,25 @@ section {
     }
    }
     .box_inner {
-        height: 205px;
-        padding: 20px;
+        min-height: 205px;
+        max-height: 260px;
+        padding: 5px 10px;
     }
     .contents {
-        height: 142px;
+        height: 130px;
     }
     .contents h3 {
-        color: #8a8a8a;
+        color: #333;
         font-size: 20px;
         font-weight: 500;
-        margin-bottom: 10px;
-        height: 50px;
+        min-height: 40px;
+    }
+    .contents h3:hover {
+        color: rgb(160,99,78);
+    }
+    .contents p {
+        margin: 0;
+        color: #333;
     }
     .ellipsis {
         max-height: 50px;
@@ -126,6 +158,9 @@ section {
         -webkit-box-orient: vertical;
         word-wrap: break-word;
     }
+    .contents {
+        line-height: 1.2;
+    }
     .contents p {
         font-size: 16px;
         font-weight: 300;
@@ -135,7 +170,7 @@ section {
         padding-bottom: 10px;
     }
     .category {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
     }
     .left {

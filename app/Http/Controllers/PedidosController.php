@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Pedido;
-use App\Disputa;
+use App\Imagem;
+use App\Proposta;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+
 
 class PedidosController extends Controller
 {
@@ -20,7 +22,7 @@ class PedidosController extends Controller
         
         $pedido->titulo = $request->titulo;
         $pedido->descricao = $request->descricao;
-        $pedido->data_entrega = Carbon::createFromFormat('d/m/Y', $request->data_entrega)->toDateString();
+        $pedido->data_entrega = Carbon::createFromFormat('d/m/Y', $request->dt_entrega)->toDateString();
         $pedido->periodo_entrega = $request->periodo_entrega;
         $pedido->cep_origem = $request->cep_origem;
         $pedido->logradouro_origem = $request->rua_origem . ', '. $request->numero_origem;
@@ -32,24 +34,54 @@ class PedidosController extends Controller
         $pedido->bairro_destino = $request->bairro_destino;
         $pedido->cidade_destino = $request->cidade_destino;
         $pedido->estado_destino = $request->uf_destino;
-        $pedido->status_pedido = 1; // AGUARDANDO
+        $pedido->status_pedido = Pedido::$categoriaPedido['pendente']; // arquivo raiz/config/enum.php
         $pedido->cliente_id = auth()->user()->id;
         $pedido->save();
 
+        if(!empty($request->img)){
+            $path = $request->file('img')->storeAs(
+                'uploads/pedido',
+                ImagemController::formatImageName('pedido', $request->img)
+            );
+            $image = new Imagem();
+            $image->local_imagem = $path;
+            $image->pedido_id = $pedido->id;
+        }
+        
         return redirect()->route('cliente.home');
     }
 
     public function getPedidos()
     {
         $pedidos = Pedido::where('cliente_id', auth()->user()->id)->get();
-
+        
         //usar compact('pedidos') é igual a ['pedidos' => $pedidos]
+
         return view('cliente.historico_pedidos', compact('pedidos'));
     }
-    public function getPedidoById($id)
+    public function getPedidoCliente($id)
     {
-        $pedido = Pedido::find($id);
+        // "SELECT E.NM_Entregador, Pe.DS_Titulo, Pr.VL_Proposta, ""
+        // FROM Entregador E
+        // JOIN Proposta Pr ON ( Pr.CD_Entregador = E.CD_Entregador )
+        // JOIN Pedido Pe ON ( Pr.CD_Pedido = Pe.CD_Pedido )
+        // WHERE Pe.CD_Requisitante = $_SESSION['LoggedUser'] &&
+        //       Pe.CD_Pedido = $_SESSION['CD_Pedido'];"
 
-        return view('pedido_page', compact('pedido'));
+        // $pedido = Pedido::find($id);
+        // $aceitos = Proposta::where('pedido_id', $id)->get();
+        // $entregadores = [];
+        // foreach($aceitos as $aceito) {
+        //     $entregadores[] = Entregador::find($aceito->entregador_id);
+        // }
+        
+
+        return view('cliente/pedido_page');
+    }
+    public function getPedidoEntregador($id)
+    {
+        //$pedido = Pedido::find($id);
+        
+        return view('entregador/pedido_page');
     }
 }

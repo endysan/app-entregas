@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriaPedidoTable extends Migration
+class CreateClienteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,19 @@ class CreateCategoriaPedidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_pedido', function (Blueprint $table) {
+        Schema::create('cliente', function (Blueprint $table) {
             $table->engine = "InnoDB";
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('nome');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('telefone')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('imagem_perfil', 255)->nullable();
+            $table->integer('entregador_id')->unsigned()->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
-
-        DB::table('categoria_pedido')->insert(array(
-            // Inserir as categorias
-            ['nome' => 'Cabe em um envelope'],
-            ['nome' => 'Leve até 5kg'],
-            ['nome' => 'Moderado até 20kg'],
-            ['nome' => 'Pesado 50kg~100kg'],
-            ['nome' => 'Muito 200kg'],
-            ['nome' => 'Mudanças (Carreto)'],
-        ));
     }
 
     /**
@@ -39,7 +36,7 @@ class CreateCategoriaPedidoTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::dropIfExists('categoria_pedido');
+        Schema::dropIfExists('cliente');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

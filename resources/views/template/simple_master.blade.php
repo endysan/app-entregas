@@ -24,7 +24,6 @@
 </head>
     
 <body>
-    @include('template.partials.navbar')
 
     <div class="container-fluid">
         @yield('content')  

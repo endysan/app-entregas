@@ -36,8 +36,9 @@ class CreatePedidoTable extends Migration
             $table->string('bairro_destino');
             $table->string('cidade_destino');
             $table->string('estado_destino');
-            $table->integer('status_pedido')->unsigned(); // TODO
+            $table->string('status_pedido'); // TODO
             $table->integer('cliente_id')->unsigned();
+            $table->string('imagem', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

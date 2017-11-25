@@ -8,31 +8,18 @@
 
 @section('content')
 
-<div class="container-editar mx-2 my-4">
-
-    <ul id="side_list" class="lista">
-        <li>
-            <a class="_barra is-active" href="editar">Editar perfil</a>
-        </li>
-        <li>
-            <a class="_barra" href="editarsenha">Alterar senha</a>
-        </li>
-        <li>
-            <a class="_barra" href="editarendereco">Editar endereço</a>
-        </li>
-        <li>
-            <a class="_barra" href="areaentregador">Área do entregador</a>
-        </li>
-    </ul>
-
+<div class="container-editar mx-3 my-4">
+    
     <form method="POST" action="editar" class="ml-5">
         {{ csrf_field() }}
+        <h1 class="titulo p-2">Informações básicas</h1>
         <div class="form-group">
-            <aside>
-                <label for="nome" class="form-label">Nome</label>
-            </aside>
-
-            <div>
+            <div class="col-4 my-auto">
+                <label for="nome" class="form-label">
+                    <i class="fa fa-user-o fa-fw"></i>Nome
+                </label>
+            </div>
+            <div class="col-8">
                 <input id="nome" name="nome" class="form-control" type="text"
                     placeholder="João da Silva"
                     value="{{Auth::user()->nome}}">
@@ -40,24 +27,27 @@
         </div>
 
         <div class="form-group">
-            <aside>
-                <label for="email" class="form-label">email</label>
-            </aside>
+            <div class="col-4 my-auto">
+                <label for="email" class="form-label">
+                    <i class="fa fa-envelope-o fa-fw"></i>Email
+                </label>
+            </div>
 
-            <div>
+            <div class="col-8">
                 <input id="email" name="email" class="form-control" type="text"
                     placeholder="joao@email.com"
                     value="{{Auth::user()->email}}" disabled>
             </div>
         </div>
+
         <div class="form-group">
-            <aside>
+             <div class="col-4 my-auto">
                 <label for="telefone" class="form-label">
                     <i class="fa fa-phone fa-fw"></i>Telefone
                 </label>
-            </aside>
+            </div>
             
-            <div>
+            <div class="col-8">
                 <input id="telefone" name="telefone" class="form-control" type="text" 
                     placeholder="(00) 0000-0000" maxlength="14"
                     value="{{ Auth::user()->telefone }}">
@@ -65,13 +55,13 @@
         </div>
 
         <div class="form-group">
-            <aside>
+            <div class="col-4 my-auto">
                 <label for="whatsapp" class="form-label">
                     <i class="fa fa-whatsapp fa-fw"></i>WhatsApp
                 </label>
-            </aside>
+            </div>
             
-            <div>
+            <div class="col-8">
                 <input id="whatsapp" name="whatsapp" class="form-control"  type="text"
                     placeholder="(00) 00000-0000" maxlength="15"
                     value="{{ Auth::user()->whatsapp }}">

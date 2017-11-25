@@ -22,7 +22,7 @@
 @section('content')
 <section id="section-form">
     <div class='pedido'> <h2 class="text-appentrega">Criar um pedido</h2> </div>
-    <form class="form" action="{{ url('cliente/pedido/criar') }}" method="POST">
+    <form class="form" action="{{ url('cliente/pedido/criar') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }} <!-- Obrigatorio para segurança -->
         <fieldset>
             <!-- BOTAR LEGENDA -->
@@ -32,8 +32,13 @@
                 <input class="form-control" id="titulo" name="titulo" type="text" placeholder="Titulo do anúncio">
             </div>
             <div class="form-group">
-                <label for="">Descreva o que será transportado (opcional)</label>
-                <textarea class="form-control" name="descricao" placeholder="Descrição"></textarea>
+                <label for="descricao">Descreva o que será transportado (opcional)</label>
+                <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição" maxlength="255"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="titulo">Imagem do que deseja enviar (opcional)</label><br/>
+                <input type="file" id="img" name="img">
             </div>
         </fieldset>
 
@@ -42,7 +47,7 @@
             
             <div class="form-group col-md-6">
                 <label for="dt_entrega">Quando será coletado?</label>
-                <input class="form-control" id="data_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa">
+                <input class="form-control" id="dt_entrega" name="dt_entrega" type="text" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group col-md-6">
                 <label for="periodo_entrega">Quando será coletado?</label>
@@ -94,8 +99,6 @@
                     </select> -->
                     <input type="text" id="uf_origem" class="form-control" name="uf_origem" required>
                 </div>
-                
-                
             </div>
 
             <div class="col-md-1 my-auto"><i class="fa fa-arrow-right fa-lg"></i></div>
@@ -127,8 +130,6 @@
                     </select> -->
                     <input type="text" id="uf_destino" class="form-control" name="uf_destino">
                 </div>
-                
-                
             </div>
             <div class="form-group-btn">
                 <button id="btn-criar" class="btn btn-default bg-appentrega text-light" type="submit">Criar Pedido</button>
@@ -151,7 +152,7 @@ $(document).ready(function(){
     //var cep_origem = $('#cep_origem');
     //var cep_destino = $('#cep_destino');
     $.datepicker.setDefaults( $.datepicker.regional[ "pt-br" ] );
-    $("#data_entrega").datepicker({
+    $("#dt_entrega").datepicker({
         dateFormat: 'dd/mm/yy',
         dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
         dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
@@ -164,49 +165,17 @@ $(document).ready(function(){
 
     $("#cep_origem, #cep_destino").mask('00000-000');
 
-    $('#dt_entrega').blur(function(){
-        var reg = new RegExp("^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
-        if(reg.test($(this).val())){
-            console.log('{v} data valida');
-            console.log('{v} '+$(this).val());
-        }
-        else {
-            console.log('{f} data invalida');
-            console.log('{f} '+$(this).val());
-        }
-    });
-    //FIM DATA
-
-    //GET JSON ESTADOS
-    /*$.getJSON('{{url("js/dados/estados-cidades.json") }}', function (data) {
-        var items = [];
-        //var options = '<option value="">Escolha um estado</option>';	
-        var options = '<option selected hidden value="">Estado</option>';
-        $.each(data, function (key, val) {
-            options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-        });					
-        $("#estados_origem").add("#estados_destino").html(options);						
-        
-        $("#estados_origem").add("#estados_destino").change(function () {				
-        
-            var options_cidades = '';
-            var str = "";					
-            
-            $("#estados_origem option:selected").add("#estados_destino option:selected").each(function () {
-                str += $(this).text();
-            });
-            
-            $.each(data, function (key, val) {
-                if(val.nome == str) {							
-                    $.each(val.cidades, function (key_city, val_city) {
-                        options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
-                    });							
-                }
-            });
-            $("#cidades_origem").add("#cidades_destino").html(options_cidades);
-        }).change();	
-    });
-*/
+    // $('#dt_entrega').blur(function(){
+    //     var reg = new RegExp("^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
+    //     if(reg.test($(this).val())){
+    //         console.log('{v} data valida');
+    //         console.log('{v} '+$(this).val());
+    //     }
+    //     else {
+    //         console.log('{f} data invalida');
+    //         console.log('{f} '+$(this).val());
+    //     }
+    // });
 
     function limpa_formulário_cep(local) {
         // Limpa valores do formulário de cep.
@@ -220,13 +189,11 @@ $(document).ready(function(){
 
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
-
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
 
             //Valida o formato do CEP.
             if(validacep.test(cep)) {
-
                 //Preenche os campos com "..." enquanto consulta webservice.
                 $("#rua_"+local).val("...");
                 $("#bairro_"+local).val("...");

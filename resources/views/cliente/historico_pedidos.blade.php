@@ -14,32 +14,31 @@
             <div id="news_box_wrap" class="">
             @if(count($pedidos) >= 1)
                 @foreach ($pedidos as $pedido)
+                <a class="pedido_link" href="{{ url('cliente/pedido/id=') . $pedido->id }}">    
                     <div id="" class="news_box">
+                        <div id="pedido_status" 
 
-                        <a href="{{ url('cliente/pedido/id=') . $pedido->id }}">
-
+                            class="p-2 status_pendente">
+                            <p style="margin: 0">Status: Pendente</p>
+                        </div>
                             <figure>
-                                <img src="img/placeholder.png">
+                                <img src="{{ url('img/sofa.jpg') }}">
                                 <div id="" class="figure_read">
                                     Mais detalhes
                                 </div>
                             </figure>
-                        </a>
+                        
                         <div id="" class="box_inner">
                             <div id="" class="contents">
                                 <h3 class="ellipsis">{{ $pedido->titulo }}</h3>
                                 <p class="ellipsis">{{ $pedido->descricao }}</p>
                             </div>
-                            <div id="" class="bottom">
-                                <div id="" class="category left announce text-appentrega">
-                                    Distância: <?= "59km" ?>
-                                </div>
-                                <div id="" class="date right">
-                                    {{ Carbon\Carbon::parse($pedido->dt_entrega)->format('d/m/Y') }}
-                                </div>
+                            <div id="" class="category left announce text-appentrega">
+                                <p>Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
                             </div>
                         </div><!-- box_inner -->
                     </div><!-- newsbox -->
+                </a>
                 @endforeach
 
                 @else
@@ -60,7 +59,5 @@
             <!-- endforeach -->
         </div>
         </section>
-    
-
 </div>
 @endsection

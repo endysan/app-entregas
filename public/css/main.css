@@ -19,7 +19,10 @@ body {
     background-color: #fafafa;
     padding-bottom: 150px;;
 }
-
+.titulo {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+}
 .main-site {
     height: 100%;
     padding: 10px;
@@ -114,11 +117,11 @@ h2.title * {
     background-color: rgb(160, 89, 78);
 }
 .border-appentrega {
-    border: 1px solid rgba(140,140,140, 0.2);
+    border: 1px solid rgba(140,140,140,0.2);
     box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
 }
 .navbar {
-    width: 100%;
+    width: 99.8vw;
     height: 65px;
     display: flex;
     padding: 5px 10px;

@@ -19,7 +19,10 @@ body {
     background-color: #fafafa;
     padding-bottom: 150px;;
 }
-
+.titulo {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+}
 .main-site {
     height: 100%;
     padding: 10px;

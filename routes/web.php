@@ -14,8 +14,8 @@ Route::post('/signup', 'AuthController@postSignup');
 
 // Grupo de páginas que necessitam estar logado
 Route::middleware(['auth'])->group(function(){
-
-    // Pagina dashboard
+        
+    // Pagina dashboard 
     Route::prefix('cliente')->group(function(){
         // url = /cliente/dashboard
         Route::view('/dashboard', 'cliente.dashboard')->name('cliente.home');
@@ -23,12 +23,10 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/historico', 'PedidosController@getPedidos');
 
         // Rotas relacionadas aos pedidos    
-        
-
 
         Route::prefix('pedido')->group(function(){
             // url = cliente/pedido/criar
-            Route::get('/id={id}', 'PedidosController@getPedidoById');
+            Route::get('/id={id}', 'PedidosController@getPedidoCliente');
             Route::get('/criar', 'PagesController@createPedido');
             Route::post('/criar', 'PedidosController@postCreatePedido');
             Route::post('/editar', 'PedidosController@editar');
@@ -41,8 +39,18 @@ Route::middleware(['auth'])->group(function(){
     Route::prefix('entregador')->group(function(){
         Route::view('/dashboard', 'entregador.dashboard')->name('entregador.home');
         Route::view('/perfil', 'entregador.editar_perfil');
-        Route::view('/mapa-pedidos', 'entregador.mapa_pedidos');
+        Route::get('/mapa-pedidos', 'MapaController@getMapa');
+
+        Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador');
+
+        Route::get('/pedido-latlng', 'MapaController@getMarcarEndereco');
+
         Route::get('/veiculos', 'VeiculosController@index');
+        Route::prefix('veiculo')->group(function(){
+            Route::post('/criar', 'VeiculosController@postCreateVeiculo');
+            Route::post('/remover/id={id}', 'VeiculosController@removeVeiculo');
+        });
+        
     });
 
 }); // MIDDLEWARE AUTH

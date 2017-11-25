@@ -13,14 +13,16 @@ class CreateVeiculosTable extends Migration
      */
     public function up()
     {
-        Schema::create('veiculos', function (Blueprint $table) {
+        Schema::create('veiculo', function (Blueprint $table) {
             $table->increments('id');
             $table->string('placa');
             $table->string('renavam');
-            $table->string('tipo_veiculo'); // Usa o enum que está em config/enum.php
+            $table->string('tipo_veiculo'); // Usa o codigo que está em config/enum.php
             $table->integer('entregador_id')->unsigned();
+            $table->string('imagem', 255)->nullable();
             $table->timestamps();
-
+            $table->softDeletes();
+            
             $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
         });
 

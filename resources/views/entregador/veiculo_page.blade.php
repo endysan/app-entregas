@@ -40,9 +40,9 @@
 <section id="section_veiculo">
 
     <!-- ==== Exibe veiculo cadastrado do entregador === -->
-    @if(count($veiculos) >= 1)
-    <div class="row">
-        <div class="offset-3 col-6">
+    <h3 class="text-center p-2">Meus veículos</h3>
+    @if(count($veiculos) > 0)
+    <div class="col-6  mx-auto">
         <table class="table">
             <tr>
                 <th>ID</th>
@@ -52,14 +52,18 @@
             </tr>
         @foreach($veiculos as $veiculo)
             <tr>
-                <p>{{ $veiculo->id }}</p>
-                <p>{{ $veiculo->marca }}</p>
-                <p>{{ $veiculo->placa }}</p>
-                <p>{{ $veiculo->renavam }}</p>
-            <tr>
+                <td>{{ $veiculo->id }}</td>
+                <td>{{ $veiculo->marca }}</td>
+                <td>{{ $veiculo->placa }}</td>
+                <td>{{ $veiculo->renavam }}</td>
+                <td>
+                    <span style="cursor:pointer" onclick="removeVeiculo({{ $veiculo->id }})"><i title="Remover" class="fa fa-trash fa-lg"></i></span>
+                </td>
+            </tr>
+            
+
         @endforeach
         </table>    
-        </div>
     </div>
         
     @else 
@@ -70,8 +74,10 @@
             </div>
         </div>
     @endif
-    <div class="">
-        <form action="" method="POST" class="p-4 ml-5 mr-5">
+    <div class="col-md-8 mx-auto">
+        <form action="{{ url('entregador/veiculo/criar') }}" method="POST" class="p-4 ml-5 mr-5">
+            {{ csrf_field() }}
+            <input type="hidden" name="entregador_id" value="{{ auth()->user()->entregador_id }}">
             <div class="form-group">
                 <label for="placa">Placa</label>
                 <input type="text" class="form-control" id="placa" name="placa" placeholder="xxx-xxxx" max-length="8" required>
@@ -106,4 +112,20 @@
     <!-- === Fim listagem dos veiculos do entregador === -->
 
 </section>
+@endsection
+
+@section('script')
+<script>
+    function removeVeiculo(id) {
+        var isRemovable = confirm("Essa ação é irreversível, deseja continuar?");
+        if (isRemovable) {
+            window.location.href = "{{ url('entregador/veiculo/remover/id=') }}"+id;
+        }
+
+    }
+$(document).ready(function(){
+    $('#placa').mask('AAA-0000');
+    $('#renavam').mask('000000000');
+});
+</script>
 @endsection
