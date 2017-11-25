@@ -30,7 +30,7 @@
 function initMap() {
     $(document).ready(function(){
         $.ajax({
-            url: '{{ url("/api/mapa_latlgn") }}',
+            url: '{{ url("entregador/pedido-latlng") }}',
             type: 'GET',
             success: function(response){
                 //var data = JSON.parse(response);
@@ -53,13 +53,17 @@ function initMap() {
                         var content = [];
                         // COLOCA janelas de informações com o título do pedido
                         //  endereço e um link para acessar rapidamente
-                        @foreach($pedidos as $pedido)
-                            content.push("<div class='info-window'>"+
-                        "<strong class='info-window_title'>Pedido:</strong><p class='info-window_content'>{{$pedido->produto}}</p>"+
-                        "<strong class='info-window_title'>Endereço: "+json.results[0].formatted_address+"</strong><br/>"+
-                        "<a href='{{ url('pedido/') . '/' . $pedido->id }}'>Abrir pedido</a>"+
-                        "</div>");
-                        @endforeach
+                            @foreach($pedidos as $pedido)
+                                content.push("<div class='info-window'>"+
+                            "<strong class='info-window_title'>Pedido:</strong>"+
+                                "<p class='info-window_content'>{{$pedido->titulo}}</p>"+
+                            "<strong class='info-window_title'>Endereço origem: </strong>"+
+                                "<p>{{$pedido->bairro_origem . ', '. $pedido->cidade_origem . ', ' . $pedido->estado_origem }}</p>"+
+                            "<strong class='info-window_title'>Endereço destino: </strong>"+
+                            "<p>{{$pedido->bairro_destino . ', '. $pedido->cidade_destino . ', ' . $pedido->estado_destino }}</p>"+
+                            "<a href='{{ url('entregador/pedido/id=' . $pedido->id }}'>Abrir pedido</a>"+
+                            "</div>");
+                            @endforeach
                         var info = content[i];
                         locations.push([new google.maps.LatLng(lat, long), info]);
 
