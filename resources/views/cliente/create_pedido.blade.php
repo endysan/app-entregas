@@ -5,7 +5,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ url('css/pedido.css') }}">
     <link rel="stylesheet" href="{{ url('css/plugin/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ url('css/tipo_veiculo.css') }}">
+    <link rel="stylesheet" href="{{ url('css/categoria_veiculo.css') }}">
     <style>
         #btn-criar {
             cursor: pointer;
@@ -69,7 +69,7 @@
         <!-- -->
         <p class="text-muted">Tipo de veículo<i class="fa fa-truck fa-fw"></i></p>
         
-            <div id="tipo_veiculo_section" class="form-group">
+            <div id="categoria_veiculo_section" class="form-group">
                 <label for="radio_moto">
                     <input type="radio" name="categoria_veiculo" value="moto" id="radio_moto">
                     <i class="fa fa-motorcycle fa-lg" style="font-size: 38px"></i>
