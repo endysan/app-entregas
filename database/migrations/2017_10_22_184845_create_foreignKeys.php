@@ -12,11 +12,7 @@ class CreateForeignKeys extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::table('cliente', function($table){
-            $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
-        });
-        
+    {        
         Schema::table('entregador', function($table) {
             $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
         });
@@ -24,19 +20,7 @@ class CreateForeignKeys extends Migration
         Schema::table('pedido', function($table) {
             $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
         });
-        Schema::table('pedido_has_categoria', function($table){
-            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
-            $table->foreign('categoria_pedido_id')->references('id')->on('categoria_pedido')->onDelete('cascade');
-        });
 
-        Schema::table('disputa' ,function($table){
-            $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
-            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
-        });
-        Schema::table('disputa_has_entregador' ,function($table){
-            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
-            $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
-        });
     }
 
     /**

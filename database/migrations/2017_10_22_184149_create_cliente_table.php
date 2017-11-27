@@ -21,8 +21,7 @@ class CreateClienteTable extends Migration
             $table->string('password');
             $table->string('telefone')->nullable();
             $table->string('whatsapp')->nullable();
-            $table->string('imagem_perfil', 255)->nullable();
-            $table->integer('entregador_id')->unsigned()->nullable();
+            $table->string('img_perfil', 255)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

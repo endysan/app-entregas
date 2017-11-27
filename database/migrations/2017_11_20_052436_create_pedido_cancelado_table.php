@@ -16,7 +16,7 @@ class CreatePedidoCanceladoTable extends Migration
         Schema::create('pedido_cancelado', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pedido_id');
-            $table->string('motivo');
+            $table->string('motivo_cancelamento');
             $table->timestamps();
         });
     }

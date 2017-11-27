@@ -18,12 +18,9 @@ class CreatePedidoTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('descricao', 255)->nullable();
-            $table->date('data_entrega');
-            $table->enum('periodo_entrega', [
-                1 => 'Dia todo entre 8:00 e 18:00',
-                2 => 'Manhã entre 8:00 e 12:00',
-                3 => 'Tarde entre 13:00 e 18:00'
-            ]);
+            $table->string('img_pedido', 255)->nullable();
+            $table->date('data_coleta');
+            $table->string('periodo_coleta'); 
             $table->string('cep_origem');
             $table->string('logradouro_origem');
             $table->string('complemento_origem')->nullable();
@@ -38,7 +35,6 @@ class CreatePedidoTable extends Migration
             $table->string('estado_destino');
             $table->string('status_pedido'); // TODO
             $table->integer('cliente_id')->unsigned();
-            $table->string('imagem', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

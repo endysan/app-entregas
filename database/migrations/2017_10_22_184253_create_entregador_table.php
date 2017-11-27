@@ -16,9 +16,10 @@ class CreateEntregadorTable extends Migration
         Schema::create('entregador', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
-            $table->integer('cliente_id')->unsigned();
             $table->string('cpf')->nullable();
+            $table->string('cnh')->nullable();
             $table->double('classificacao')->nullable();
+            $table->integer('cliente_id')->unsigned();
             $table->timestamps();
         });
     }
