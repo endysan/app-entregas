@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function postLogin(Request $request)
     {
         if(auth()->attempt(['email' => $request->email, 'password' => $request->password])) {
-            if(auth()->user()->entregador_id == null){
+            if(auth()->user()->entregador == null){
                 return redirect()->route('cliente.home');
             }
             return redirect()->route('entregador.home');
@@ -54,10 +54,7 @@ class AuthController extends Controller
             $entregador = new Entregador;
             $entregador->cliente_id = $cliente->id;
             $entregador->save();
-            
-            // Atualiza cliente, dando ele um ID de entregador
-            $cliente->entregador_id = $entregador->id;
-            $cliente->save();
+       
         }
         
         return redirect('login');

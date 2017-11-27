@@ -28,8 +28,5 @@ class ClienteTableSeeder extends Seeder
         DB::table('entregador')->insert([
             'cliente_id' => 2,
         ]);
-        DB::table('cliente')->where('id', 2)->update([
-            'entregador_id' => 1
-        ]);
     }
 }

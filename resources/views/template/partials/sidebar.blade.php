@@ -1,7 +1,8 @@
 @if(Auth::check())
     @php 
-        $isEntregador = Auth::user()->isEntregador;
-        $urlPrefix = Auth::user()->entregador_id == null ? 'cliente' : 'entregador';
+    
+        $isEntregador = Auth::user()->entregador != null ? true : false;
+        $urlPrefix = Auth::user()->entregador == null ? 'cliente' : 'entregador';
     @endphp
 <div id="sidebar-main" class="sidebar-main sb-hidden">
 
@@ -11,8 +12,16 @@
     </div>
         <div class="card-body">
             <div style="display: inline-block;">
-                <a href="{{ url($urlPrefix . '/perfil') }}">
-                <img src="img/morgana.png" class="rounded-circle" style="width: 65px; height: 65px;">
+                <a href="{{ url('/perfil/id='.auth()->user()->id) }}">
+                @php
+                    if(auth()->user()->img_perfil == null) {
+                        $avatarUrl = asset('storage/avatar/user_icon.png');
+                    }
+                    else {
+                        $avatarUrl = asset('storage' . auth()->user()->img_perfil);
+                    }
+                @endphp
+                <img src="{{ $avatarUrl }}" class="rounded-circle" style="width: 65px; height: 65px;">
                 </a>
                 
                 <p class="card-text">{{ Auth::user()->nome }}</p>
@@ -45,6 +54,12 @@
            <a href="{{ url($urlPrefix . '/mapa-pedidos') }}" class="text-dark card-link"><i class="fa fa-truck fa-fw fa-lg mr-1"></i>Realizar Entregas</a> 
         </div>
         @endif
+        <div class="card-body">
+            <a href="{{ url('/perfil/id='.auth()->user()->id) }}" class="text-dark card-link">
+                <i class="fa fa-gear fa-fw fa-lg mr-1"></i>
+                Conta
+            </a> 
+        </div>
         <div class="card-body">
            <a href="{{ url('logout') }}" class="text-dark card-link"><i class="fa fa-sign-out fa-fw fa-lg mr-1"></i>Sair</a> 
         </div>
