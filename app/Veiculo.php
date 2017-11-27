@@ -11,14 +11,10 @@ class Veiculo extends Model
     protected $table = 'veiculo';
     protected $dates = ['deleted_at'];
 
-    protected $categoriaVeiculo = ['moto' => 'moto', 'carro' => 'carro', 'caminhao' => 'caminhao'];
+    const categoriaVeiculo = ['moto' => 'moto', 'carro' => 'carro', 'caminhao' => 'caminhao'];
 
     public function entregador()
     {
         return $this->belongsTo('App\Entregador');
-    }
-    public function getCategoriaVeiculoAttribute($value)
-    {
-        return Arr::get($this->categoriaVeiculo, $value);
     }
 }
