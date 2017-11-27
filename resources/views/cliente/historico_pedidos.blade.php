@@ -9,20 +9,19 @@
 @section('content')
     <section id="section-pedidos">
         <div class="section-inner">
-            <h3 class="text-muted mt-2 ml-2"><span class="fa fa-truck fa-fw"></span>Todos os pedidos</h3>
+            <h3 class="titulo mt-2 ml-2"><span class="fa fa-truck fa-fw"></span>Todos os pedidos</h3>
 
             <div id="news_box_wrap" class="">
             @if(count($pedidos) >= 1)
                 @foreach ($pedidos as $pedido)
                 <a class="pedido_link" href="{{ url('cliente/pedido/id=') . $pedido->id }}">    
                     <div id="" class="news_box">
-                        <div id="pedido_status" 
-
-                            class="p-2 status_pendente">
+                        <div id="pedido_status" class="p-2 status_pendente">
                             <p style="margin: 0">Status: Pendente</p>
                         </div>
                             <figure>
-                                <img src="{{ url('img/sofa.jpg') }}">
+                                <img src="{{ asset('storage/' . $pedido->img_pedido) }}">
+                                
                                 <div id="" class="figure_read">
                                     Mais detalhes
                                 </div>

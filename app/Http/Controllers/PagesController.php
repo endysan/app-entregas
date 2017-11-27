@@ -27,7 +27,6 @@ class PagesController extends Controller
     }
     public function createPedido()
     {
-        $categorias = CategoriaPedido::select('nome')->get();
         return view('cliente.create_pedido', compact('categorias'));
     }
 }

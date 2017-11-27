@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('title')
-    {{ $pedido->titulo }}
+Sofá de 2 lugares
 @endsection
 
 @section('css')
@@ -13,11 +13,11 @@
 <div class="pedido-container">
     <div class="row">
         <div class="col-md-4 col-12">
-            <img src="{{ asset('storage/' . $pedido->img_pedido) }}" style="max-width: 400px">
+            <img src="{{ url('img/sofa.jpg') }}" alt="" style="max-width: 400px">
         </div>    
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
-                <h1 class="titulo pt-1">{{ $pedido->titulo }}</h1>
+                <h1 class="titulo pt-1">Sofá de 2 lugares</h1>
                 <span title="Cancelar pedido" id="cancelar" onclick="" class="ml-4" style="cursor:pointer">
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
@@ -25,10 +25,10 @@
                     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente cancelar o seu pedido?</p>
                 </div>
             </div>
-            <p class="data-coleta text-muted">Data de coleta: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
+            <p class="data-coleta text-muted">Data de coleta: 21/11/2017</p>
             <!-- <img src="" alt="Imagem do produto"/> -->
             <div class="description-area">
-                <p style="font-size: 18px">{{ $pedido->descricao }}</p>
+                <p style="font-size: 18px">Sofá de couro, cuidado ao transportar</p>
                 <p class="text-muted">Período de coleta: <span class="text-dark">Dia todo entre 8:00 e 18:00</span></p>
             </div>
             <div class="contact-area">
@@ -40,9 +40,10 @@
                 <div class="row">
                     <div class="col-6">
                         <p class="text-muted">Informação de entrega:</p>
-                        <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
-                        <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
+                        <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>Itaóca, Mongaguá, SP</p>
+                        <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>Boqueirão, Santos, SP</p>
                         <p>Distância: 59km</p>
+                        <button class="btn btn-success btn-lg">Enviar orçamento</button>
                     </div>
                     <div class="col-6">
                         <p class="text-muted">Tipo de veículo:</p>

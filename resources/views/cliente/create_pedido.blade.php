@@ -5,23 +5,30 @@
 @section('css')
     <link rel="stylesheet" href="{{ url('css/pedido.css') }}">
     <link rel="stylesheet" href="{{ url('css/plugin/jquery-ui.min.css') }}">
+    <link rel="stylesheet" href="{{ url('css/tipo_veiculo.css') }}">
     <style>
         #btn-criar {
             cursor: pointer;
         }
         #section-form {
             padding: 20px; 
-            max-width: 1260px;
+            max-width: 1000px;
             margin: auto;
             background-color: white;
             border: 1px solid rgba(140,140,140,0.4);
+        }
+        .form-group-btn {
+            width: 100%;
+        }
+        .form-group-btn btn {
+            width: 100%;
         }
     </style>
 @endsection
 
 @section('content')
 <section id="section-form">
-    <div class='pedido'> <h2 class="text-appentrega">Criar um pedido</h2> </div>
+    <div class='pedido'> <h2 class="titulo text-appentrega">Criar um pedido</h2> </div>
     <form class="form" action="{{ url('cliente/pedido/criar') }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }} <!-- Obrigatorio para segurança -->
         <fieldset>
@@ -46,12 +53,12 @@
         <div class="form-row">
             
             <div class="form-group col-md-6">
-                <label for="dt_entrega">Quando será coletado?</label>
-                <input class="form-control" id="dt_entrega" name="dt_entrega" type="text" placeholder="dd/mm/aaaa">
+                <label for="data_coleta">Quando será coletado?</label>
+                <input class="form-control" id="data_coleta" name="data_coleta" type="text" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group col-md-6">
-                <label for="periodo_entrega">Quando será coletado?</label>
-                <select class="form-control" name="periodo_entrega" id="periodo_entrega">
+                <label for="periodo_coleta">Quando será coletado?</label>
+                <select class="form-control" name="periodo_coleta" id="periodo_coleta">
                     <option value="1">Dia todo entre 8:00 e 18:00</option>
                     <option value="2">Manhã entre 8:00 e 12:00</option>
                     <option value="3">Tarde entre 13:00 e 18:00</option>
@@ -61,14 +68,25 @@
 
         <!-- -->
         <p class="text-muted">Tipo de veículo<i class="fa fa-truck fa-fw"></i></p>
-        <div class="form-group">
-            <label for="categoria_pedido">Categoria do pedido</label>
-            <select class="form-control" name="categoria_pedido" id="categoria_pedido">
-                @foreach($categorias as $i => $categoria)
-                    <option value="{{ $i+1 }}">{{ $categoria->nome }}</option>
-                @endforeach
-            </select>
-        </div>
+        
+            <div id="tipo_veiculo_section" class="form-group">
+                <label for="radio_moto">
+                    <input type="radio" name="categoria_veiculo" value="moto" id="radio_moto">
+                    <i class="fa fa-motorcycle fa-lg" style="font-size: 38px"></i>
+                    <p>Moto</p>
+                </label>
+                <label for="radio_carro">
+                    <input type="radio" name="categoria_veiculo" value="carro" id="radio_carro">
+                    <i class="fa fa-car fa-lg" style="font-size: 38px"></i>
+                    <p>Carro</p>
+                </label>
+                <label for="radio_caminhao">
+                    <input type="radio" name="categoria_veiculo" value="caminhao" id="radio_caminhao">
+                    <i class="fa fa-truck fa-lg" style="font-size: 38px"></i>
+                    <p>Caminhão</p>
+                </label>
+            </div>
+            
         <div class="row d-flex mt-4">
             <hr/>
             <div class="col-12 col-md-5">
@@ -152,7 +170,7 @@ $(document).ready(function(){
     //var cep_origem = $('#cep_origem');
     //var cep_destino = $('#cep_destino');
     $.datepicker.setDefaults( $.datepicker.regional[ "pt-br" ] );
-    $("#dt_entrega").datepicker({
+    $("#data_coleta").datepicker({
         dateFormat: 'dd/mm/yy',
         dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
         dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
@@ -164,18 +182,6 @@ $(document).ready(function(){
     });
 
     $("#cep_origem, #cep_destino").mask('00000-000');
-
-    // $('#dt_entrega').blur(function(){
-    //     var reg = new RegExp("^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
-    //     if(reg.test($(this).val())){
-    //         console.log('{v} data valida');
-    //         console.log('{v} '+$(this).val());
-    //     }
-    //     else {
-    //         console.log('{f} data invalida');
-    //         console.log('{f} '+$(this).val());
-    //     }
-    // });
 
     function limpa_formulário_cep(local) {
         // Limpa valores do formulário de cep.

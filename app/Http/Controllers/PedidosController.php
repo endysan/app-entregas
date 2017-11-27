@@ -22,8 +22,8 @@ class PedidosController extends Controller
         
         $pedido->titulo = $request->titulo;
         $pedido->descricao = $request->descricao;
-        $pedido->data_entrega = Carbon::createFromFormat('d/m/Y', $request->dt_entrega)->toDateString();
-        $pedido->periodo_entrega = $request->periodo_entrega;
+        $pedido->data_coleta = Carbon::createFromFormat('d/m/Y', $request->data_coleta)->toDateString();
+        $pedido->periodo_coleta = $request->periodo_coleta;
         $pedido->cep_origem = $request->cep_origem;
         $pedido->logradouro_origem = $request->rua_origem . ', '. $request->numero_origem;
         $pedido->bairro_origem = $request->bairro_origem;
@@ -34,18 +34,18 @@ class PedidosController extends Controller
         $pedido->bairro_destino = $request->bairro_destino;
         $pedido->cidade_destino = $request->cidade_destino;
         $pedido->estado_destino = $request->uf_destino;
-        $pedido->status_pedido = Pedido::$categoriaPedido['pendente']; // arquivo raiz/config/enum.php
+        $pedido->status_pedido = Pedido::$statusPedido['pendente']; // arquivo raiz/config/enum.php
         $pedido->cliente_id = auth()->user()->id;
         $pedido->save();
 
         if(!empty($request->img)){
             $path = $request->file('img')->storeAs(
-                'uploads/pedido',
+                'public/pedido',
                 ImagemController::formatImageName('pedido', $request->img)
             );
-            $image = new Imagem();
-            $image->local_imagem = $path;
-            $image->pedido_id = $pedido->id;
+            
+            $pedido->img_pedido = $path;
+            $pedido->save();
         }
         
         return redirect()->route('cliente.home');
@@ -68,7 +68,7 @@ class PedidosController extends Controller
         // WHERE Pe.CD_Requisitante = $_SESSION['LoggedUser'] &&
         //       Pe.CD_Pedido = $_SESSION['CD_Pedido'];"
 
-        // $pedido = Pedido::find($id);
+        $pedido = Pedido::find($id);
         // $aceitos = Proposta::where('pedido_id', $id)->get();
         // $entregadores = [];
         // foreach($aceitos as $aceito) {
@@ -76,7 +76,7 @@ class PedidosController extends Controller
         // }
         
 
-        return view('cliente/pedido_page');
+        return view('cliente/pedido_page', compact('pedido'));
     }
     public function getPedidoEntregador($id)
     {

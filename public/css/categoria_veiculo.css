@@ -1,0 +1,18 @@
+#categoria_veiculo_section label > input {
+    visibility: hidden;
+    position: absolute;
+}
+#categoria_veiculo_section label > input + i {
+    cursor: pointer;
+    color: rgb(140,141,142);
+    border: 2px solid transparent;
+    padding: 10px 5px;
+    border-radius: 7px;
+}
+#categoria_veiculo_section label > input:checked + i{
+    color: rgb(40,41,42);
+    border: 2px solid rgb(40,40,40); 
+}
+#categoria_veiculo_section label > p {
+    text-align: center;
+}

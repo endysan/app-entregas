@@ -53,17 +53,19 @@ function initMap() {
                         var content = [];
                         // COLOCA janelas de informações com o título do pedido
                         //  endereço e um link para acessar rapidamente
-                            @foreach($pedidos as $pedido)
-                                content.push("<div class='info-window'>"+
+                        @if(isset($pedidos))
+                        @foreach($pedidos as $pedido)
+                            content.push("<div class='info-window'>"+
                             "<strong class='info-window_title'>Pedido:</strong>"+
-                                "<p class='info-window_content'>{{$pedido->titulo}}</p>"+
+                                "<p class='info-window_content'>{{ $pedido->titulo }}</p>"+
                             "<strong class='info-window_title'>Endereço origem: </strong>"+
-                                "<p>{{$pedido->bairro_origem . ', '. $pedido->cidade_origem . ', ' . $pedido->estado_origem }}</p>"+
+                                "<p>{{ $pedido->bairro_origem . ', ' . $pedido->cidade_origem . ', ' . $pedido->estado_origem }}</p>"+
                             "<strong class='info-window_title'>Endereço destino: </strong>"+
-                            "<p>{{$pedido->bairro_destino . ', '. $pedido->cidade_destino . ', ' . $pedido->estado_destino }}</p>"+
-                            "<a href='{{ url('entregador/pedido/id=' . $pedido->id }}'>Abrir pedido</a>"+
-                            "</div>");
-                            @endforeach
+                            "<p>{{ $pedido->bairro_destino . ', '. $pedido->cidade_destino . ', ' . $pedido->estado_destino }}</p>"+
+                            "<a href='{{ url('entregador/pedido/id=' . $pedido->id) }}'>Abrir pedido</a>"+
+                            "</div>")
+                        @endforeach
+                        @endif
                         var info = content[i];
                         locations.push([new google.maps.LatLng(lat, long), info]);
 
@@ -93,6 +95,7 @@ function initMap() {
                 console.log("ERRO LAT: ", error);
             }
         });
+        
     });      
     
 }//function initMap

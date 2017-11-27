@@ -67,32 +67,88 @@
                     value="{{ Auth::user()->whatsapp }}">
             </div>
         </div>
-        <h2 class="titulo">Informações de endereço</h2>
+        <!-- -->
+
+        <h2 class="titulo">Informações do entregador</h2>
+        
         <div class="form-group">
-        <label for="cep_origem" class="form-label">CEP</label>
-        <input type="text" class="form-control" id="cep_origem" name="cep_origem" placeholder="00000-000" required>
+            <div class="col-4 my-auto">
+                <label for="cpf" class="form-label">
+                    <i class="fa fa-address-card-o fa-fw"></i>CPF
+                </label>
+            </div>
+            <div class="col-8">
+                <input id="cpf" name="cpf" class="form-control"  type="text"
+                    placeholder="000.000.000-00" maxlength="14"
+                    value="{{ Auth::user()->entregador->cpf }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-4 my-auto">
+                <label for="cnh" class="form-label">
+                    <i class="fa fa-address-book fa-fw"></i>CNH
+                </label>
+            </div>
+            <div class="col-8">
+                <input id="cnh" name="cnh" class="form-control"  type="text"
+                    placeholder="00000000000" maxlength="11"
+                    value="{{ Auth::user()->entregador->cnh }}">
+            </div>
+        </div>
+        <!-- -->
+        <h2 class="titulo">Informações de endereço</h2>
+            
+        <div class="form-group">
+            <div class="col-1 my-auto">
+                <label for="cep" class="form-label">CEP</label>
+            </div>
+            <div class="col-11 my-auto">
+            <input type="text" class="form-control" id="cep" name="cep" placeholder="00000-000" required>
+            </div>
+        </div>
+    <div class="form-group">
+        <div class="col-1">
+            <label for="rua" class="form-label">Rua</label>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" id="rua" name="rua" required>
+        </div>
+        <div class="col-2">
+            <label for="numero" class="form-label">Número</label>
+        </div>
+        <div class="col-3">
+            <input type="text" class="form-control" id="numero" name="numero">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-1 my-auto">
+            <label for="bairro" class="form-label">Bairro</label>
+        </div>
+        <div class="col-11 my-auto">
+            <input type="text" class="form-control" id="bairro" name="bairro" required>
+        </div>
     </div>
     <div class="form-group">
-        <label for="rua_origem" class="form-label">Rua</label>
-        <input type="text" class="form-control" id="rua_origem" name="rua_origem" placeholder="" required>
-        <label for="numero_origem" class="form-label">Número</label>
-        <input type="text" class="form-control" id="numero_origem" name="numero_origem" placeholder="">
-    </div>
-    <div class="form-group">
-        <label for="bairro_origem" class="form-label">Bairro</label>
-        <input type="text" class="form-control" id="bairro_origem" name="bairro_origem" placeholder="Bairro" required>
-    </div>
-    <div class="form-group">
-        <label for="cidade_origem" class="form-label">Cidade</label>
+        <div class="col-1 my-auto">
+            <label for="cidade" class="form-label">Cidade</label>
+        </div>
         <!-- <select name="cidade_origem" id="cidades_origem" class="form-control" required>
         </select> -->
-        <input type="text" id="cidade_origem" class="form-control" name="cidade_origem" required>
+        <div class="col-11 my-auto">
+            <input type="text" id="cidade" class="form-control" name="cidade" required>
+        </div>
     </div>
     <div class="form-group">
-        <label for="uf_origem" class="form-label">Estado</label>
+        <div class="col-1 my-auto">
+            <label for="uf" class="form-label">Estado</label>
+        </div>
         <!-- <select name="estado_origem" id="estados_origem" class="form-control" required>
         </select> -->
-        <input type="text" id="uf_origem" class="form-control" name="uf_origem" required>
+        <div class="col-11 my-auto">
+            <input type="text" id="uf" class="form-control" name="uf" required>
+        </div>
     </div>
         <div class="form-group-btn">
             <button id="btn-cadastro" class="btn btn-default bg-appentrega text-light" type="submit">Salvar</button>
@@ -107,6 +163,7 @@
         $(document).ready(function(){
             $('#telefone').mask('(00) 0000-0000');
             $('#whatsapp').mask('(00) 00000-0000');
+            $('#cpf').mask('(000.000.000-00');
         });
     </script>
 @endsection

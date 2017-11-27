@@ -6,11 +6,16 @@ Route::view('/index', 'index')->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/signup', 'signup')->name('signup');
 
-
 // AuthControl
 Route::post('/login', 'AuthController@postLogin');
 Route::get('/logout', 'AuthController@getLogout');
 Route::post('/signup', 'AuthController@postSignup');
+
+Route::view('/orcamento', 'entregador.orcamento');
+Route::get('/perfil/id={id}', function($id){
+    $cliente = App\Cliente::find($id);
+    return view('perfil', compact('cliente'));
+});
 
 // Grupo de páginas que necessitam estar logado
 Route::middleware(['auth'])->group(function(){
