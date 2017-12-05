@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
     <meta http-equiv="x-ua-compatible" content="IE=9">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('css/plugin/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/plugin/font-awesome.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/index/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index/skeleton.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index/landings.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/index/main_landing.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/index/base.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/index/skeleton.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/index/landings.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/index/main_landing.css') }}">
     <style>
         h2 .logo {
             text-transform: uppercase;
@@ -83,7 +83,7 @@
                     <div class="one-third column onethird_style alpha">
                         <div class="f1_box">
                             <div class="margin_bottom">
-                                <img src="{{ asset('img/home/1.png') }}" alt="" 
+                                <img src="{{ secure_asset('img/home/1.png') }}" alt="" 
                                 style="border-radius: 0px; border-style: none; border-width: 1px; width: 150px; height: 150px;">
                             </div>
                             <div class="margin_bottom">
@@ -95,7 +95,7 @@
                     <div class="one-third column onethird_style alpha">
                         <div class="f1_box">
                             <div class="margin_bottom">
-                                <img src="{{ asset('img/home/2.png') }}" alt="" 
+                                <img src="{{ secure_asset('img/home/2.png') }}" alt="" 
                                 style="border-radius: 0px; border-style: none; border-width: 1px; width: 150px; height: 150px;">
                             </div>
                             <div class="margin_bottom">
@@ -107,7 +107,7 @@
                     <div class="one-third column onethird_style alpha">
                         <div class="f1_box">
                             <div class="margin_bottom">
-                                <img src="{{ asset('img/home/3.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 150px; height: 150px;">
+                                <img src="{{ secure_asset('img/home/3.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 150px; height: 150px;">
                             </div>
                             <div class="margin_bottom">
                                 <span class="small_title bold_text"><span class="editContent"><span class="pix_text">Economia</span></span></span><br>
@@ -124,7 +124,7 @@
             <div class="container">
                 <div class="sixteen columns">
                     <div class="eight columns  alpha">
-                        <img src="{{ asset('img/fon.jpg') }}" class="img_style" alt="">
+                        <img src="{{ secure_asset('img/fon.jpg') }}" class="img_style" alt="">
                     </div>
                     <div class="eight columns  omega">
                         <div class="gtext_style">
@@ -144,7 +144,7 @@
 			<div class="container">
 				<div class="sixteen columns">
 					<div class="four columns  alpha">
-						<img src="{{ asset('img/home/notepad.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+						<img src="{{ secure_asset('img/home/notepad.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 						<div class="head_style">
 							<span class="editContent" style="">
 								<span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Faça o pedido</span>
@@ -159,7 +159,7 @@
             			</div>
 	       			</div>
 					<div class="four columns  ">
-					    <img src="{{ asset('img/home/relogio.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ secure_asset('img/home/relogio.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent" 
                         style=""><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Aguarde</span></span></div>
 					    <div class="c_style">
@@ -167,7 +167,7 @@
 					    </div>
 					</div>
 					<div class="four columns  ">
-					    <img src="{{ asset('img/home/mao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ secure_asset('img/home/mao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent" 
                         style=""><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Escolha</span></span></div>
 					    <div class="c_style">
@@ -176,7 +176,7 @@
 					</div>
 
 					<div class="four columns  omega">
-					    <img src="{{ asset('img/home/caminhao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
+					    <img src="{{ secure_asset('img/home/caminhao.png') }}" alt="" style="border-radius: 0px; border-style: none; border-width: 1px; width: 120px; height: 120px;">
 					    <div class="head_style"><span class="editContent"><span class="pix_text" style="color: rgb(160, 99, 78); font-size: 22px;">Receba</span></span></div>
 					    <div class="c_style">
 					        <span class="editContent"><span class="pix_text" style="color: rgb(105, 109, 115); font-size: 14px;">Após a entrega ser concluída, confirme o pagamento e avalie o entregador.</span></span>
