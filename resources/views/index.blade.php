@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
     <meta http-equiv="x-ua-compatible" content="IE=9">
     <!-- Font Awesome -->
-    <link href="stylesheets/font-awesome.css" rel="stylesheet">
+    <link href="{{ url('css/plugin/font-awesome.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url('css/index/base.css') }}">
     <link rel="stylesheet" href="{{ url('css/index/skeleton.css') }}">

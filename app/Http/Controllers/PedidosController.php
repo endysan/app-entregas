@@ -22,8 +22,8 @@ class PedidosController extends Controller
         
         $pedido->titulo = $request->titulo;
         $pedido->descricao = $request->descricao;
-        $pedido->data_coleta = Carbon::createFromFormat('d/m/Y', $request->data_coleta)->toDateString();
-        $pedido->periodo_coleta = $request->periodo_coleta;
+        $pedido->data_entrega = Carbon::createFromFormat('d/m/Y', $request->data_entrega)->toDateString();
+        $pedido->periodo_entrega = $request->periodo_entrega;
         $pedido->cep_origem = $request->cep_origem;
         $pedido->logradouro_origem = $request->rua_origem . ', '. $request->numero_origem;
         $pedido->bairro_origem = $request->bairro_origem;
@@ -40,7 +40,7 @@ class PedidosController extends Controller
 
         if(!empty($request->img)){
             $path = $request->file('img')->storeAs(
-                'public/pedido',
+                'uploads/pedido',
                 ImagemController::formatImageName('pedido', $request->img)
             );
             

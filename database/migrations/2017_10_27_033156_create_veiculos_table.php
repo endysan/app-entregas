@@ -18,8 +18,8 @@ class CreateVeiculosTable extends Migration
             $table->string('placa');
             $table->string('renavam');
             $table->string('categoria_veiculo'); // Usa o codigo que está em config/enum.php
+            $table->string('img_veiculo', 255)->nullable();
             $table->integer('entregador_id')->unsigned();
-            $table->string('imagem', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
             

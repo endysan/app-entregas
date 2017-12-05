@@ -18,7 +18,7 @@
 <section id="section_dashboard">
     <div id="section_inner" class="p-4">
     <div class="row col-12">
-        <h2>Olá, Adilson Alves</h2>
+        <h2>Olá, {{ auth()->user()->nome }}</h2>
     </div>
 
     <div class="row" id="info-section">

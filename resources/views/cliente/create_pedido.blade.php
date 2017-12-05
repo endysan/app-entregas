@@ -53,12 +53,12 @@
         <div class="form-row">
             
             <div class="form-group col-md-6">
-                <label for="data_coleta">Quando será coletado?</label>
-                <input class="form-control" id="data_coleta" name="data_coleta" type="text" placeholder="dd/mm/aaaa">
+                <label for="data_entrega">Data de entrega</label>
+                <input class="form-control" id="data_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa">
             </div>
             <div class="form-group col-md-6">
-                <label for="periodo_coleta">Quando será coletado?</label>
-                <select class="form-control" name="periodo_coleta" id="periodo_coleta">
+                <label for="periodo_entrega">Período de entrega</label>
+                <select class="form-control" name="periodo_entrega" id="periodo_entrega">
                     <option value="1">Dia todo entre 8:00 e 18:00</option>
                     <option value="2">Manhã entre 8:00 e 12:00</option>
                     <option value="3">Tarde entre 13:00 e 18:00</option>
@@ -170,7 +170,7 @@ $(document).ready(function(){
     //var cep_origem = $('#cep_origem');
     //var cep_destino = $('#cep_destino');
     $.datepicker.setDefaults( $.datepicker.regional[ "pt-br" ] );
-    $("#data_coleta").datepicker({
+    $("#data_entrega").datepicker({
         dateFormat: 'dd/mm/yy',
         dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
         dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],

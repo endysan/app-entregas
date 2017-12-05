@@ -13,10 +13,14 @@ class CreatePedidoAceitoTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedido_aceito', function (Blueprint $table) {
+        Schema::create('entrega_aceita', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pedido_id')->unsigned();
+            $table->integer('proposta_id')->unsigned();
             $table->timestamps();
         });
+        $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
+        $table->foreign('proposta_id')->references('id')->on('proposta')->onDelete('cascade');
     }
 
     /**
