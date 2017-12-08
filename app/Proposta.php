@@ -15,6 +15,6 @@ class Proposta extends Model
     }
     public function entregador()
     {
-        return $this->hasMany('App\Pedido');
+        return $this->hasMany('App\Entregador');
     }
 }

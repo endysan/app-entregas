@@ -5,15 +5,15 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ url('css/list-pedido.css') }}">
-<link rel="stylesheet" href="{{ url('css/plugin/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/list-pedido.css') }}">
+<link rel="stylesheet" href="{{ asset('css/plugin/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
 <div class="pedido-container">
     <div class="row">
         <div class="col-md-4 col-12">
-            <img src="{{ asset('storage/' . $pedido->img_pedido) }}" style="max-width: 400px">
+            <img src="{{ asset('storage/pedido' . $pedido->img_pedido) }}" style="max-width: 400px">
         </div>    
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
@@ -22,6 +22,30 @@
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
                 <div id="dialog-confirm" style="display: none" title="Empty the recycle bin?">
+                    <form method="POST" action="">
+                        <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                        <p>Motivo de cancelamento</p>
+                        <div class="form-check">
+                            <label class="form-check-label" for="">
+                                <input class="form-check-input" type="radio">Informações do pedido estão incorretas
+                            </label>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="">
+                                <input class="form-check-input" type="radio">Problemas com o entregador
+                            </label>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="">
+                                <input class="form-check-input" type="radio">Extravio
+                            </label>
+                        </div>
+                        <div>
+                            <label class="form-check-label" for="">
+                                <input class="form-check-input" type="radio">Outros
+                            </label>
+                        </div>
+                    </form>
                     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente cancelar o seu pedido?</p>
                 </div>
             </div>
@@ -81,9 +105,11 @@
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
+        @if(isset($propostas))
+            @foreach($propostas as $proposta)
             <div class="col-4">
                 <div class="entregador_proposta">
-                    <p><strong>Marcelo Henrique</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
+                    <p><strong>{{ $proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
                         <!-- codigo -->
@@ -94,30 +120,13 @@
                         <i class="fa fa-star-half-o"></i>
                     </div>
                 </div>
-                <p class="proposta_valor">R$40</p>
-                <button class="btn btn-success text-light" onclick="">
-                    Aceitar proposta
-                </button>
-            </div><div class="col-4">
-                <div class="entregador_proposta">
-                    <p><strong>Wenndy Sandy</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
-                    <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
-                    <div class="classificacao">
-                        <!-- codigo -->
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                </div>
-                <p class="proposta_valor">R$36</p>
+                <p class="proposta_valor">{{ 'R$' . $proposta->valor_proposta }}</p>
                 <button class="btn btn-success text-light" onclick="">
                     Aceitar proposta
                 </button>
             </div>
-        </div>
-        
+            @endforeach
+        @endif
     </div> <!-- #proposta_section -->
         <!-- 
                 <p class="status_aceito">Entregador e orçamento combinados</p>

@@ -39,12 +39,13 @@ class PedidosController extends Controller
         $pedido->save();
 
         if(!empty($request->img)){
+            $imgName = ImagemController::formatImageName('pedido', $request->img);
             $path = $request->file('img')->storeAs(
                 'uploads/pedido',
-                ImagemController::formatImageName('pedido', $request->img)
+                $imgName
             );
             
-            $pedido->img_pedido = $path;
+            $pedido->img_pedido = $imgName;
             $pedido->save();
         }
         
@@ -69,6 +70,7 @@ class PedidosController extends Controller
         //       Pe.CD_Pedido = $_SESSION['CD_Pedido'];"
 
         $pedido = Pedido::find($id);
+        $propostas = Proposta::where('pedido_id', $pedido->id)->get();
         // $aceitos = Proposta::where('pedido_id', $id)->get();
         // $entregadores = [];
         // foreach($aceitos as $aceito) {
@@ -76,7 +78,7 @@ class PedidosController extends Controller
         // }
         
 
-        return view('cliente/pedido_page', compact('pedido'));
+        return view('cliente/pedido_page', compact(['pedido', 'propostas']));
     }
     public function getPedidoEntregador($id)
     {
