@@ -13,7 +13,7 @@
 <div class="pedido-container">
     <div class="row">
         <div class="col-md-4 col-12">
-            <img src="{{ asset('storage/pedido' . $pedido->img_pedido) }}" style="max-width: 400px">
+            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 400px">
         </div>    
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
@@ -49,11 +49,11 @@
                     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente cancelar o seu pedido?</p>
                 </div>
             </div>
-            <p class="data-coleta text-muted">Data de coleta: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
+            <p class="data-coleta text-muted">Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
             <!-- <img src="" alt="Imagem do produto"/> -->
             <div class="description-area">
                 <p style="font-size: 18px">{{ $pedido->descricao }}</p>
-                <p class="text-muted">Período de coleta: <span class="text-dark">Dia todo entre 8:00 e 18:00</span></p>
+                <p class="text-muted">Período de entrega: <span class="text-dark">{{ App\Pedido::periodoEntrega($pedido->periodo_entrega) }}</span></p>
             </div>
             <div class="contact-area">
                 <p class="text-muted">Contato:</p>
@@ -71,8 +71,16 @@
                     <div class="col-6">
                         <p class="text-muted">Tipo de veículo:</p>
                         <div class="ml-2" style="color: #333;">
-                            <i class="fa fa-truck fa-lg ml-2" style="font-size: 38px"></i>
-                            <p>Caminhão</p>
+                            @if($pedido->categoria_veiculo == 'moto')
+                                <i class="fa fa-motorcycle fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Moto</p>
+                            @elseif($pedido->categoria_veiculo == 'carro')
+                                <i class="fa fa-car fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Carro</p>
+                            @elseif($pedido->categoria_veiculo == 'caminhao')
+                                <i class="fa fa-truck fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Caminhão</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -81,8 +89,10 @@
         </div>
         
         <div class="col-md-4 col-12 pt-4 border-appentrega">
+            
             <div class="orçamento_info d-flex flex-column">
                 <h2 class="titulo">Responsável pela entrega</h2>
+                @if(isset($entrega))
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
                 <div class="entregador_proposta">
                     <p><strong>Wenndy Sandy</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
@@ -98,14 +108,23 @@
                 </div>
                 <p class="proposta_valor">R$36</p>
                 <button class="btn btn-primary">Entrega realizada</button>
+                @else
+                <div class="my-5" style="color: rgb(140,140,140); text-align:center; font-size: 16px;">
+                    <p>Esse pedido ainda não possui um entregador</p>
+                </div>
+
+            @endif
             </div>
+            
         </div>   
 
     </div> <!-- PEDIDO CONTAINER -->
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
-        @if(isset($propostas))
+        @if(!isset($propostas))
+            <p style="color: rgb(140,140,140)">Ainda não foram propostos orçamentos para esse pedido </p>
+        @else
             @foreach($propostas as $proposta)
             <div class="col-4">
                 <div class="entregador_proposta">
@@ -141,7 +160,6 @@
 <script src="{{ url('js/jquery-ui.min.js') }}"></script>
 <script>
 
-    
 var aceitarEntregador = function(pedido, entregador){
      $.ajax({
         type: "POST",
@@ -215,5 +233,4 @@ $(document).ready(function(){
     });
 }); // FIM
 </script>
-
 @endsection

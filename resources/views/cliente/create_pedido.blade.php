@@ -59,9 +59,9 @@
             <div class="form-group col-md-6">
                 <label for="periodo_entrega">Período de entrega</label>
                 <select class="form-control" name="periodo_entrega" id="periodo_entrega">
-                    <option value="1">Dia todo entre 8:00 e 18:00</option>
-                    <option value="2">Manhã entre 8:00 e 12:00</option>
-                    <option value="3">Tarde entre 13:00 e 18:00</option>
+                    <option value="dia">Dia todo entre 8:00 e 18:00</option>
+                    <option value="manha">Manhã entre 8:00 e 12:00</option>
+                    <option value="tarde">Tarde entre 13:00 e 18:00</option>
                 </select>
             </div>
         </div>

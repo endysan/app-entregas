@@ -10,13 +10,13 @@ class Pedido extends Model
     use SoftDeletes;
     protected $table = 'pedido'; // verificar
     protected $dates = ['deleted_at'];
-    public static $statusPedido = ['pendente' => 'pendente', 'aceito' => 'aceito'];
-    protected $periodoEntrega = [
+    public static $statusPedido = ['pendente' => 'Pendente', 'aceito' => 'Aceito'];
+    public static $periodoEntrega = [
         'dia' => 'Dia todo entre 8:00 e 18:00',
         'manha' => 'Manhã entre 8:00 e 12:00',
         'tarde' => 'Tarde entre 13:00 e 18:00'
     ];
-    protected $categoriaVeiculo = [
+    public static $categoriaVeiculo = [
         'moto' => 'Moto',
         'carro' => 'Carro',
         'caminhao' => 'Caminhão'
@@ -35,14 +35,14 @@ class Pedido extends Model
     {
         return self::$statusPedido[$value];
     }
-    public function periodoEntrega($value)
+    public static function periodoEntrega($value)
     {
-        return $this->$periodoEntrega[$value];
+        return self::$periodoEntrega[$value];
     }
 
-    public function categoriaVeiculo($value)
+    public static function categoriaVeiculo($value)
     {
-        return $this->$cagetoriaVeiculo[$value];
+        return self::$cagetoriaVeiculo[$value];
     }
 
 }

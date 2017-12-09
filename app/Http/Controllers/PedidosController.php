@@ -42,7 +42,7 @@ class PedidosController extends Controller
         if(!empty($request->img)){
             $imgName = ImagemController::formatImageName('pedido', $request->img);
             $path = $request->file('img')->storeAs(
-                'uploads/pedido',
+                'public/pedido',
                 $imgName
             );
             

@@ -17,10 +17,10 @@
                 <a class="pedido_link" href="{{ url('cliente/pedido/id=') . $pedido->id }}">    
                     <div id="" class="news_box">
                         <div id="pedido_status" class="p-2 status_pendente">
-                            <p style="margin: 0">Status: Pendente</p>
+                            <p style="margin: 0">Status: {{ ucfirst($pedido->status_pedido) }}</p>
                         </div>
                             <figure>
-                                <img src="{{ asset('storage/' . $pedido->img_pedido) }}">
+                                <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}">
                                 
                                 <div id="" class="figure_read">
                                     Mais detalhes

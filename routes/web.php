@@ -12,10 +12,11 @@ Route::get('/logout', 'AuthController@getLogout');
 Route::post('/signup', 'AuthController@postSignup');
 
 Route::view('/orcamento', 'entregador.orcamento');
+
 Route::get('/perfil/id={id}', function($id){
     $cliente = App\Cliente::find($id);
     return view('perfil', compact('cliente'));
-})->name('pedido');
+});
 
 // Grupo de páginas que necessitam estar logado
 Route::middleware(['auth'])->group(function(){
@@ -31,7 +32,7 @@ Route::middleware(['auth'])->group(function(){
 
         Route::prefix('pedido')->group(function(){
             // url = cliente/pedido/criar
-            Route::get('/id={id}', 'PedidosController@getPedidoCliente');
+            Route::get('/id={id}', 'PedidosController@getPedidoCliente')->name('cliente.pedido');
             Route::get('/criar', 'PagesController@createPedido');
             Route::post('/criar', 'PedidosController@postCreatePedido');
             Route::post('/editar', 'PedidosController@editar');
@@ -46,7 +47,7 @@ Route::middleware(['auth'])->group(function(){
         Route::view('/perfil', 'entregador.editar_perfil');
         Route::get('/mapa-pedidos', 'MapaController@getMapa');
 
-        Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador');
+        Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador')->name('entregador.pedido');
 
         Route::get('/pedido-latlng', 'MapaController@getMarcarEndereco');
 
