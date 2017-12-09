@@ -15,7 +15,7 @@ Route::view('/orcamento', 'entregador.orcamento');
 Route::get('/perfil/id={id}', function($id){
     $cliente = App\Cliente::find($id);
     return view('perfil', compact('cliente'));
-});
+})->name('pedido');
 
 // Grupo de páginas que necessitam estar logado
 Route::middleware(['auth'])->group(function(){

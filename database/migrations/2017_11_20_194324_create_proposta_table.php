@@ -19,9 +19,11 @@ class CreatePropostaTable extends Migration
             $table->integer('entregador_id');
             $table->double('valor_proposta');
             $table->timestamps();
+
+            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
+            $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
         });
-        $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
-        $table->foreign('entregador_id')->references('id')->on('entregador')->onDelete('cascade');
+        
     }
 
     /**

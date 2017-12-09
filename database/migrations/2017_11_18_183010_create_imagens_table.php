@@ -19,9 +19,10 @@ class CreateImagensTable extends Migration
             $table->string('nome_imagem')->nullable();
             $table->integer('pedido_id')->unsigned()->nullable();
             $table->integer('veiculo_id')->unsigned()->nullable();
+            $table->timestamps();
+
             $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('veiculo_id')->references('id')->on('veiculo')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->timestamps();
         });
     }
 

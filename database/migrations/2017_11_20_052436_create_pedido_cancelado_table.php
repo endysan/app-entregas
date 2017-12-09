@@ -18,6 +18,8 @@ class CreatePedidoCanceladoTable extends Migration
             $table->integer('pedido_id');
             $table->string('motivo_cancelamento');
             $table->timestamps();
+
+            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

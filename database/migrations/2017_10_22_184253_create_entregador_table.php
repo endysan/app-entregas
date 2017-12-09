@@ -21,6 +21,8 @@ class CreateEntregadorTable extends Migration
             $table->double('classificacao')->nullable();
             $table->integer('cliente_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
         });
     }
 

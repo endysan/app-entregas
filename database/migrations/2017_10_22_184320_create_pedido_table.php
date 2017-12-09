@@ -36,6 +36,8 @@ class CreatePedidoTable extends Migration
             $table->integer('cliente_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade');
         });
     }
 

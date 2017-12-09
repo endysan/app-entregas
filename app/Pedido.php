@@ -11,10 +11,15 @@ class Pedido extends Model
     protected $table = 'pedido'; // verificar
     protected $dates = ['deleted_at'];
     public static $statusPedido = ['pendente' => 'pendente', 'aceito' => 'aceito'];
-    public static $categoriaPedido = [
+    protected $periodoEntrega = [
         'dia' => 'Dia todo entre 8:00 e 18:00',
         'manha' => 'Manhã entre 8:00 e 12:00',
         'tarde' => 'Tarde entre 13:00 e 18:00'
+    ];
+    protected $categoriaVeiculo = [
+        'moto' => 'Moto',
+        'carro' => 'Carro',
+        'caminhao' => 'Caminhão'
     ];
 
     public function cliente()
@@ -30,8 +35,14 @@ class Pedido extends Model
     {
         return self::$statusPedido[$value];
     }
-    public static function categoriaPedido($value)
+    public function periodoEntrega($value)
     {
-        return self::$cagetoriaPedido[$value];
+        return $this->$periodoEntrega[$value];
     }
+
+    public function categoriaVeiculo($value)
+    {
+        return $this->$cagetoriaVeiculo[$value];
+    }
+
 }

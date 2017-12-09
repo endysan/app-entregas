@@ -24,6 +24,7 @@ class PedidosController extends Controller
         $pedido->descricao = $request->descricao;
         $pedido->data_entrega = Carbon::createFromFormat('d/m/Y', $request->data_entrega)->toDateString();
         $pedido->periodo_entrega = $request->periodo_entrega;
+        $pedido->categoria_veiculo = $request->categoria_veiculo;
         $pedido->cep_origem = $request->cep_origem;
         $pedido->logradouro_origem = $request->rua_origem . ', '. $request->numero_origem;
         $pedido->bairro_origem = $request->bairro_origem;
@@ -49,7 +50,7 @@ class PedidosController extends Controller
             $pedido->save();
         }
         
-        return redirect()->route('cliente.home');
+        return redirect()->route('cliente.pedido', ['id' => $pedido->id]);
     }
 
     public function getPedidos()
