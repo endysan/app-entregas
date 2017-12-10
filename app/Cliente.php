@@ -37,4 +37,14 @@ class Cliente extends Authenticatable
         // 
         return $this->entregador_id != null;
     }
+
+    public function getTelefone()
+    {
+        return isset($this->telefone) ? $this->telefone : "Não possui";
+    }
+
+    public function getWhatsapp()
+    {
+        return isset($this->whatsapp) ? $this->whatsapp : "Não possui";
+    }
 }

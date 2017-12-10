@@ -59,4 +59,20 @@ class AuthController extends Controller
         
         return redirect('login');
     }
+
+    public function imgPerfil(Request $request)
+    {
+        $cliente = Cliente::find($request->cliente_id);
+        if(!empty($request->img_perfil)){
+            
+            $imgName = ImagemController::formatImageName('avatar', $request->img_perfil);
+            $path = $request->file('img_perfil')->storeAs(
+                'public/avatar',
+                $imgName
+            );   
+            $cliente->img_perfil = $imgName;
+            $cliente->save();
+        }
+        return redirect()->route('cliente.home');
+    }
 }

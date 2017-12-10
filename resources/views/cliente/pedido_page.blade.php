@@ -21,7 +21,7 @@
                 <span title="Cancelar pedido" id="cancelar" onclick="" class="ml-4" style="cursor:pointer">
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
-                <div id="dialog-confirm" style="display: none" title="Empty the recycle bin?">
+                <div id="dialog-confirm" style="display: none" title="Cancelar este pedido?">
                     <form method="POST" action="">
                         <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
                         <p>Motivo de cancelamento</p>

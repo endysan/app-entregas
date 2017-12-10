@@ -18,7 +18,7 @@
                         $avatarUrl = asset('storage/avatar/user_icon.png');
                     }
                     else {
-                        $avatarUrl = asset('storage' . auth()->user()->img_perfil);
+                        $avatarUrl = asset('storage/avatar/' . auth()->user()->img_perfil);
                     }
                 @endphp
                 <img src="{{ $avatarUrl }}" class="rounded-circle" style="width: 65px; height: 65px;">
@@ -55,9 +55,9 @@
         </div>
         @endif
         <div class="card-body">
-            <a href="{{ url('/perfil/id='.auth()->user()->id) }}" class="text-dark card-link">
+            <a href="{{ url($urlPrefix . '/editar') }}" class="text-dark card-link">
                 <i class="fa fa-gear fa-fw fa-lg mr-1"></i>
-                Conta
+                Editar informações
             </a> 
         </div>
         <div class="card-body">

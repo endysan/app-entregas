@@ -13,23 +13,30 @@ Route::post('/signup', 'AuthController@postSignup');
 
 Route::view('/orcamento', 'entregador.orcamento');
 
+// PAGINA DE EXIBIR PERFIL------------------------------------
 Route::get('/perfil/id={id}', function($id){
     $cliente = App\Cliente::find($id);
     return view('perfil', compact('cliente'));
 });
 
+// UPLOAD IMG PERFIL DO USUARIO
+Route::post('/perfil/upload', 'AuthController@imgPerfil');
+// -----------------------------------------------------------
+
 // Grupo de páginas que necessitam estar logado
 Route::middleware(['auth'])->group(function(){
         
-    // Pagina dashboard 
     Route::prefix('cliente')->group(function(){
         // url = /cliente/dashboard
         Route::view('/dashboard', 'cliente.dashboard')->name('cliente.home');
         Route::view('/perfil', 'cliente.editar_perfil');
         Route::get('/historico', 'PedidosController@getPedidos');
+        
+        //Rotas de editar informações
+        Route::view('/editar', 'cliente.editar_perfil');
+        Route::post('/editar', 'ClienteController@postEditar');
 
         // Rotas relacionadas aos pedidos    
-
         Route::prefix('pedido')->group(function(){
             // url = cliente/pedido/criar
             Route::get('/id={id}', 'PedidosController@getPedidoCliente')->name('cliente.pedido');
@@ -41,10 +48,12 @@ Route::middleware(['auth'])->group(function(){
             
     }); // PREFIX CLIENTE
 
-    // PREFIX ENTREGADOR TODO
     Route::prefix('entregador')->group(function(){
         Route::view('/dashboard', 'entregador.dashboard')->name('entregador.home');
-        Route::view('/perfil', 'entregador.editar_perfil');
+
+        Route::view('/editar', 'entregador.editar_perfil');
+        Route::post('/editar', 'ClienteController@postEditarEntregador');
+
         Route::get('/mapa-pedidos', 'MapaController@getMapa');
 
         Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador')->name('entregador.pedido');
@@ -52,11 +61,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/pedido-latlng', 'MapaController@getMarcarEndereco');
 
         Route::get('/veiculos', 'VeiculosController@index');
+
         Route::prefix('veiculo')->group(function(){
             Route::post('/criar', 'VeiculosController@postCreateVeiculo');
             Route::post('/remover/id={id}', 'VeiculosController@removeVeiculo');
         });
         
-    });
+    }); //PREFIX ENTREGADOR
 
 }); // MIDDLEWARE AUTH
