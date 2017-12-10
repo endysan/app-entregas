@@ -31,4 +31,8 @@ class Entregador extends Authenticatable
     {
         return $this->belongsTo('App\Proposta');
     }
+    public function endereco()
+    {
+        return $this->hasOne('App\Endereco');
+    }
 }

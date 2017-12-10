@@ -26,12 +26,12 @@ class PedidosController extends Controller
         $pedido->periodo_entrega = $request->periodo_entrega;
         $pedido->categoria_veiculo = $request->categoria_veiculo;
         $pedido->cep_origem = $request->cep_origem;
-        $pedido->logradouro_origem = $request->rua_origem . ', '. $request->numero_origem;
+        $pedido->logradouro_origem = $request->rua_origem . ', nº '. $request->numero_origem;
         $pedido->bairro_origem = $request->bairro_origem;
         $pedido->cidade_origem = $request->cidade_origem;
         $pedido->estado_origem = $request->uf_origem;
         $pedido->cep_destino = $request->cep_destino;
-        $pedido->logradouro_destino = $request->rua_destino . ', '. $request->numero_destino;
+        $pedido->logradouro_destino = $request->rua_destino . ', nº '. $request->numero_destino;
         $pedido->bairro_destino = $request->bairro_destino;
         $pedido->cidade_destino = $request->cidade_destino;
         $pedido->estado_destino = $request->uf_destino;
