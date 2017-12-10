@@ -3,6 +3,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ url('css/editar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugin/jquery-ui.min.css') }}">
 @endsection
 
 
@@ -10,9 +11,10 @@
 
 <div class="container-editar mx-3 my-4">
     
-    <form method="POST" action="editar" class="ml-5">
+    <form id="form_editar" method="POST" action="editar" class="ml-5">
         {{ csrf_field() }}
         <h1 class="titulo p-2">Informações básicas</h1>
+        <input type="hidden" name="cliente_id" value="{{ auth()->user()->id }}">
         <div class="form-group">
             <div class="col-4 my-auto">
                 <label for="nome" class="form-label">
@@ -22,7 +24,7 @@
             <div class="col-8">
                 <input id="nome" name="nome" class="form-control" type="text"
                     placeholder="João da Silva"
-                    value="{{Auth::user()->nome}}">
+                    value="{{ auth()->user()->nome }}">
             </div>
         </div>
 
@@ -36,7 +38,7 @@
             <div class="col-8">
                 <input id="email" name="email" class="form-control" type="text"
                     placeholder="joao@email.com"
-                    value="{{Auth::user()->email}}" disabled>
+                    value="{{ auth()->user()->email }}" disabled>
             </div>
         </div>
 
@@ -50,7 +52,7 @@
             <div class="col-8">
                 <input id="telefone" name="telefone" class="form-control" type="text" 
                     placeholder="(00) 0000-0000" maxlength="14"
-                    value="{{ Auth::user()->telefone }}">
+                    value="{{ auth()->user()->telefone }}">
             </div>
         </div>
 
@@ -64,7 +66,7 @@
             <div class="col-8">
                 <input id="whatsapp" name="whatsapp" class="form-control"  type="text"
                     placeholder="(00) 00000-0000" maxlength="15"
-                    value="{{ Auth::user()->whatsapp }}">
+                    value="{{ auth()->user()->whatsapp }}">
             </div>
         </div>
         <!-- -->
@@ -80,7 +82,7 @@
             <div class="col-8">
                 <input id="cpf" name="cpf" class="form-control"  type="text"
                     placeholder="000.000.000-00" maxlength="14"
-                    value="{{ Auth::user()->entregador->cpf }}">
+                    value="{{ auth()->user()->entregador->cpf }}">
             </div>
         </div>
 
@@ -93,7 +95,7 @@
             <div class="col-8">
                 <input id="cnh" name="cnh" class="form-control"  type="text"
                     placeholder="00000000000" maxlength="11"
-                    value="{{ Auth::user()->entregador->cnh }}">
+                    value="{{ auth()->user()->entregador->cnh }}">
             </div>
         </div>
         <!-- -->
@@ -150,20 +152,54 @@
             <input type="text" id="uf" class="form-control" name="uf" required>
         </div>
     </div>
-        <div class="form-group-btn">
-            <button id="btn-cadastro" class="btn btn-default bg-appentrega text-light" type="submit">Salvar</button>
-        </div>
+    
+    <!-- TELA DE CONFIRMAÇÃO -->
+    <div id="dialog-confirm" title="Editar informações?" style="display: none">
+        <p><span class="fa fa-warning" style="float:left; margin:5px 12px 10px 0;"></span>Deseja realmente atualizar seus dados?
+        </p>
+    </div>
+    <div class="form-group-btn">
+        <button id="btn_editar" style="cursor: pointer" class="btn btn-default bg-appentrega text-light" type="button">Salvar</button>
+    </div>
+    <!-- FIM TELA DE CONFIRMAÇÃO -->
+
     </form>
 </div>
 
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function(){
-            $('#telefone').mask('(00) 0000-0000');
-            $('#whatsapp').mask('(00) 00000-0000');
-            $('#cpf').mask('(000.000.000-00');
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/cep.js') }}"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#telefone').mask('(00) 0000-0000');
+        $('#whatsapp').mask('(00) 00000-0000');
+        $('#cpf').mask('000.000.000-00');
+        $('#cep').mask('00000-000');
+       
+        $("#cep").blur(function() {
+            preenche_cep();
+            console.log("cep enviado");
         });
-    </script>
+        
+        $('#btn_editar').click(function(){
+            $( "#dialog-confirm" ).dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "OK": function() {
+                        $('#form_editar').submit();
+                    },
+                    "Cancelar": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        });
+    });
+</script>
 @endsection

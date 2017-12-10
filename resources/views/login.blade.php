@@ -30,12 +30,14 @@
                 <div class="mt-2">
                     <label for="password">Senha</label>
                     <input type="password" id="password" name="password" class="form-control p-3" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+
+                    @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <p class="text-danger">{{ $error }}</p>
+                        @endforeach
+                    @endif
                 </div>    
-                @if($errors->any())
-                    @foreach($errors->all() as $error)
-                        <p class="text-danger">{{ $error }}</p>
-                    @endforeach
-                @endif
+                
                 <div class="button-login">
                     <button type="submit" style="width: 100%" class="btn btn-default btn-lg bg-appentrega mt-4">Login
                         <i class="fa fa-chevron-right fa-fw"></i>

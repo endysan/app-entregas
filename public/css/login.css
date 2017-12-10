@@ -1,6 +1,6 @@
 .login-container {
     max-width: 30rem;
-    height: 25rem; 
+    height: 26.5rem; 
     background-color: rgb(253,253,253);
 }
 @media(min-width: 768px) {
