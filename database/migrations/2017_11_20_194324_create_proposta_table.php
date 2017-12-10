@@ -15,8 +15,8 @@ class CreatePropostaTable extends Migration
     {
         Schema::create('proposta', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pedido_id');
-            $table->integer('entregador_id');
+            $table->integer('pedido_id')->unsigned();
+            $table->integer('entregador_id')->unsigned();
             $table->double('valor_proposta');
             $table->timestamps();
 
