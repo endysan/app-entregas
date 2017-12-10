@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function(){
 
         Route::prefix('veiculo')->group(function(){
             Route::post('/criar', 'VeiculosController@postCreateVeiculo');
-            Route::post('/remover/id={id}', 'VeiculosController@removeVeiculo');
+            Route::get('/remover/id={id}', 'VeiculosController@removeVeiculo');
         });
         
     }); //PREFIX ENTREGADOR

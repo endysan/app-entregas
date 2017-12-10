@@ -21,7 +21,10 @@ class VeiculosController extends Controller
     public function removeVeiculo($id)
     {
         $veiculo = Veiculo::find($id);
-        $veiculo->delete();
+        if(auth()->user()->entregador->id == $veiculo->entregador->id){
+            $veiculo->delete();
+        }
+        return redirect('entregador/veiculos');
     }
 
     public function postCreateVeiculo(Request $request)

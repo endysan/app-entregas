@@ -3,7 +3,7 @@
 @section('title', 'Gerenciar Veículos')
 
 @section('css')
-<link rel="stylesheet" href="{{ url('css/categoria_veiculo.css') }}">
+<link rel="stylesheet" href="{{ asset('css/categoria_veiculo.css') }}">
 <style>
     .no-veiculos {
         text-align: center;
@@ -101,13 +101,12 @@
 
 @section('script')
 <script>
-    function removeVeiculo(id) {
-        var isRemovable = confirm("Essa ação é irreversível, deseja continuar?");
-        if (isRemovable) {
-            window.location.href = "{{ url('entregador/veiculo/remover/id=') }}"+id;
-        }
-
+var removeVeiculo = function(id) {
+    var isRemovable = confirm("Essa ação é irreversível, deseja continuar?");
+    if (isRemovable) {
+        window.location.href = "{{ url('entregador/veiculo/remover/id=') }}"+id;
     }
+}
 $(document).ready(function(){
     $('#placa').mask('AAA-0000');
     $('#renavam').mask('000000000');
