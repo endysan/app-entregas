@@ -55,7 +55,9 @@ body {
     background-color: white;
     border: 1px solid rgb(230,230,230, 0.8);
 }
-
+button {
+    cursor: pointer;
+}
 /* ============== */
 h2.title * {
     color: rgb(40,40,40);

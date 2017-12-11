@@ -14,3 +14,17 @@
      content: "\2605";
      position: absolute;
   }
+
+/* ============================================ */
+.estrelas input[type=radio] {
+  display: none;
+}
+.estrelas label i.fa:before {
+  content: '\f005';
+  font-size: 22px;
+  cursor: pointer;
+  color: #FC0;
+}
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+  color: #CCC;
+}

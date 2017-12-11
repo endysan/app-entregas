@@ -7,6 +7,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/list-pedido.css') }}">
 <link rel="stylesheet" href="{{ asset('css/plugin/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/ratings.css') }}">
 @endsection
 
 @section('content')
@@ -92,7 +93,7 @@
             
             <div class="orçamento_info d-flex flex-column">
                 <h2 class="titulo">Responsável pela entrega</h2>
-                @if(isset($entrega))
+                @if(!isset($entrega))
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
                 <div class="entregador_proposta">
                     <p><strong>Wenndy Sandy</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
@@ -107,7 +108,32 @@
                     </div>
                 </div>
                 <p class="proposta_valor">R$36</p>
-                <button class="btn btn-primary">Entrega realizada</button>
+                <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
+
+                <div id="dialog-avaliacao" style="display: none" title="Cancelar este pedido?">
+                    <form id="form-avaliacao" action="" method="POST">
+                        {{ csrf_field() }}
+                        <h2 class="titulo">Classifique o entregador</h2>
+                        <div class="estrelas">
+                            <input type="radio" name="estrela" value="" checked>
+
+                            <label for="estrela_um"><i class="fa"></i></label>
+                            <input id="estrela_um" type="radio" name="estrela" value="1">
+                            
+                            <label for="estrela_dois"><i class="fa"></i></label>
+                            <input id="estrela_dois" type="radio" name="estrela" value="2">
+
+                            <label for="estrela_tres"><i class="fa"></i></label>
+                            <input id="estrela_tres" type="radio" name="estrela" value="3">
+
+                            <label for="estrela_quatro"><i class="fa"></i></label>
+                            <input id="estrela_quatro" type="radio" name="estrela" value="4">
+
+                            <label for="estrela_cinco"><i class="fa"></i></label>
+                            <input id="estrela_cinco" type="radio" name="estrela" value="5">
+                        </div>
+                    </form>
+                </div>
                 @else
                 <div class="my-5" style="color: rgb(140,140,140); text-align:center; font-size: 16px;">
                     <p>Esse pedido ainda não possui um entregador</p>
@@ -128,7 +154,12 @@
             @foreach($propostas as $proposta)
             <div class="col-4">
                 <div class="entregador_proposta">
-                    <p><strong>{{ $proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
+                    
+                    <a href="{{ url('perfil/id=' . $proposta->entregador->id) }}">
+                        <strong>{{ $proposta->entregador->cliente->nome }}</strong>
+                        <i class="fa fa-external-link pl-1" style="font-size: 12px"></i>
+                    </a>
+                    
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
                         <!-- codigo -->
@@ -157,7 +188,7 @@
 @endsection
 
 @section('script')
-<script src="{{ url('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script>
 
 var aceitarEntregador = function(pedido, entregador){
@@ -231,6 +262,27 @@ $(document).ready(function(){
 
         });
     });
+
+    $('#btn_entrega').click(function(){
+        $('#dialog-avaliacao').dialog({
+            resizable: false,
+            modal: true,
+            width: 500,
+            title: "Avaliar entregador",
+            buttons: {
+                "Enviar": function(){
+                    console.log("sim");
+                    $(this).dialog('close')
+                    $('#form-avaliacao').submit();
+                },
+                "Cancelar": function(){
+                    console.log("nao");
+                    $(this).dialog('close')
+                },
+            }
+        });
+    });
+
 }); // FIM
 </script>
 @endsection
