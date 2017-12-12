@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/criar', 'PagesController@createPedido');
             Route::post('/criar', 'PedidosController@postCreatePedido');
             Route::post('/editar', 'PedidosController@editar');
+            Route::post('aceitar-orcamento', 'PedidosController@postAceitarOrcamento');
         });
         
             
@@ -57,7 +58,7 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/mapa-pedidos', 'MapaController@getMapa');
 
         Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador')->name('entregador.pedido');
-
+        Route::post('pedido/proposta', 'PedidosController@postProposta');
         Route::get('/pedido-latlng', 'MapaController@getMarcarEndereco');
 
         Route::get('/veiculos', 'VeiculosController@index');

@@ -31,6 +31,12 @@ class Pedido extends Model
     {
         return $this->belongsTo('App\Proposta');
     }
+
+    public function entrega()
+    {
+        return $this->hasOne('App\Entrega');
+    }
+    
     public static function statusPedido($value)
     {
         return self::$statusPedido[$value];

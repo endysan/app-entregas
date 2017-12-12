@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cliente;
 use App\Endereco;
+use App\Entregador;
+use App\EntregadorClassificacao;
 
 class ClienteController extends Controller
 {
@@ -46,5 +48,18 @@ class ClienteController extends Controller
         $endereco->save();
 
         return redirect('entregador/editar');
+    }
+
+    public function postClassificarEntregador(Request $request)
+    {
+        $classificacao = new EntregadorClassificacao();
+        $classificacao->entregador_id = $request->entregador_id;
+        $classificacao->avaliacao = $request->estrela;
+    }
+    public function getClassificacao($id)
+    {
+        $classificacao = DB::table('entregador_classificacao')->where('entregador_id', $id)->avg('avaliacao');
+
+        return $classificacao;
     }
 }

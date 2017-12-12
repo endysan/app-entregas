@@ -15,6 +15,10 @@ class Proposta extends Model
     }
     public function entregador()
     {
-        return $this->hasMany('App\Entregador');
+        return $this->belongsTo('App\Entregador');
+    }
+    public function entrega()
+    {
+        return $this->hasOne('App\Entrega');
     }
 }

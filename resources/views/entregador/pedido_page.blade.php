@@ -27,13 +27,13 @@ Sofá de 2 lugares
     <div class="row">
         <!-- IMAGEM PEDIDO -->
         <div class="col-md-4 col-12">
-            <img src="{{ url('img/sofa.jpg') }}" alt="" style="max-width: 400px">
+            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 400px">
         </div>    
         <!-- FIM IMG PEDIDO -->
 
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
-                <h1 class="titulo pt-1">Sofá de 2 lugares</h1>
+                <h1 class="titulo pt-1">{{ $pedido->titulo }}</h1>
                 <span title="Cancelar pedido" id="cancelar" onclick="" class="ml-4" style="cursor:pointer">
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
@@ -41,35 +41,38 @@ Sofá de 2 lugares
                     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente cancelar o seu pedido?</p>
                 </div>
             </div>
-            <p class="data-coleta text-muted">Data de coleta: 21/11/2017</p>
+            <p class="data-coleta text-muted">Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
             <!-- <img src="" alt="Imagem do produto"/> -->
             <div class="description-area">
-                <p style="font-size: 18px">Sofá de couro, cuidado ao transportar</p>
-                <p class="text-muted">Período de coleta: <span class="text-dark">Dia todo entre 8:00 e 18:00</span></p>
+                <p style="font-size: 18px">{{ $pedido->descricao }}</p>
+                <p class="text-muted">Período de entrega: <span class="text-dark">{{ App\Pedido::periodoEntrega($pedido->periodo_entrega) }}</span></p>
             </div>
             <div class="contact-area">
                 <p class="text-muted">Contato:</p>
-                <p><i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>(13) 99999-8888</p>
-                <p><i class="fa fa-phone fa-lg fa-fw"></i>Não possui</p>
+                <p><i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>{{ isset($pedido->cliente->whatsapp) ? $pedido->cliente->whatsapp : "Não possui" }}</p>
+                <p><i class="fa fa-phone fa-lg fa-fw"></i>{{ isset($pedido->cliente->telefone) ? $pedido->cliente->telefone : "Não possui" }}</p>
             </div>
             <div class="address-area">
                 <div class="row">
                     <div class="col-6">
                         <p class="text-muted">Informação de entrega:</p>
-                        <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>Itaóca, Mongaguá, SP</p>
-                        <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>Boqueirão, Santos, SP</p>
+                        <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
+                        <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
                         <p>Distância: 59km</p>
                         <button id="btn_orcamento" class="btn btn-success btn-lg">Enviar orçamento</button>
                         
                         <div id="dialog-orcamento" style="display: none" title="Cancelar este pedido?">
                             <h2 class="titulo"></h2>
-                            <form action="{{ url('entregador/pedido/criar-orcamento') }}" method="POST">
+                            <form action="{{ url('entregador/pedido/proposta') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                                <input type="hidden" name="entregador_id" value="{{ auth()->user()->entregador->id }}">
                                 <div class="align-items-center mt-4">
                                     <div class="col-auto valor_div" style="width: 70%;">
                                         <label class="sr-only" for="valor">Username</label>
                                         <div class="input-group mb-2 mb-sm-0">
                                             <div class="input-group-addon">R$</div>
-                                                <input type="text" class="form-control" id="valor" placeholder="00,00">
+                                                <input type="text" class="form-control" id="valor" name="valor" placeholder="00,00">
                                             </div>
                                         </div>
                                     </div>
@@ -82,8 +85,16 @@ Sofá de 2 lugares
                     <div class="col-6">
                         <p class="text-muted">Tipo de veículo:</p>
                         <div class="ml-2" style="color: #333;">
-                            <i class="fa fa-truck fa-lg ml-2" style="font-size: 38px"></i>
-                            <p>Caminhão</p>
+                            @if($pedido->categoria_veiculo == 'moto')
+                                <i class="fa fa-motorcycle fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Moto</p>
+                            @elseif($pedido->categoria_veiculo == 'carro')
+                                <i class="fa fa-car fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Carro</p>
+                            @elseif($pedido->categoria_veiculo == 'caminhao')
+                                <i class="fa fa-truck fa-lg ml-2" style="font-size: 38px"></i>
+                                <p class="ml-2">Caminhão</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -95,10 +106,14 @@ Sofá de 2 lugares
             
             <div class="orçamento_info d-flex flex-column">
                 <h2 class="titulo">Responsável pela entrega</h2>
-                @if(!isset($entrega))
+                @if(!empty($entrega))
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
                 <div class="entregador_proposta">
-                    <p><strong>Wenndy Sandy</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
+                    <p>
+                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->id) }}">
+                        <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i>
+                        </a>
+                    </p>
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
                         <!-- codigo -->
@@ -109,33 +124,9 @@ Sofá de 2 lugares
                         <i class="fa fa-star-o"></i>
                     </div>
                 </div>
-                <p class="proposta_valor">R$36</p>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
                 <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
 
-                <div id="dialog-avaliacao" style="display: none" title="Cancelar este pedido?">
-                    <form id="form-avaliacao" action="" method="POST">
-                        {{ csrf_field() }}
-                        <h2 class="titulo">Classifique o entregador</h2>
-                        <div class="estrelas">
-                            <input type="radio" name="estrela" value="" checked>
-
-                            <label for="estrela_um"><i class="fa"></i></label>
-                            <input id="estrela_um" type="radio" name="estrela" value="1">
-                            
-                            <label for="estrela_dois"><i class="fa"></i></label>
-                            <input id="estrela_dois" type="radio" name="estrela" value="2">
-
-                            <label for="estrela_tres"><i class="fa"></i></label>
-                            <input id="estrela_tres" type="radio" name="estrela" value="3">
-
-                            <label for="estrela_quatro"><i class="fa"></i></label>
-                            <input id="estrela_quatro" type="radio" name="estrela" value="4">
-
-                            <label for="estrela_cinco"><i class="fa"></i></label>
-                            <input id="estrela_cinco" type="radio" name="estrela" value="5">
-                        </div>
-                    </form>
-                </div>
                 @else
                 <div class="my-5" style="color: rgb(140,140,140); text-align:center; font-size: 16px;">
                     <p>Esse pedido ainda não possui um entregador</p>
@@ -150,10 +141,19 @@ Sofá de 2 lugares
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
+        @if(empty($propostas) || !isset($propostas))
+            <p style="color: rgb(140,140,140)">Ainda não foram propostos orçamentos para esse pedido </p>
+        @else
+        @foreach($propostas as $proposta)
+        
             <div class="col-4">
                 <div class="entregador_proposta">
-                    <p><strong>Marcelo Henrique</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
-                    <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
+                    <p>
+                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}" target="_blank">
+                        <strong>{{ $proposta->entregador->cliente->nome }}</strong>
+                        <i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
+                    </p>
+                    <img class="border-rounded" src="{{ asset('storage/avatar/' . $proposta->entregador->cliente->img_perfil) }}">
                     <div class="classificacao">
                         <!-- codigo -->
                         <i class="fa fa-star"></i>
@@ -163,10 +163,12 @@ Sofá de 2 lugares
                         <i class="fa fa-star-half-o"></i>
                     </div>
                 </div>
-                <p class="proposta_valor">R$40</p>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
             </div>
         </div>
-        
+        @endforeach
+
+        @endif
     </div> <!-- #proposta_section -->
         <!-- 
                 <p class="status_aceito">Entregador e orçamento combinados</p>

@@ -58,8 +58,8 @@
             </div>
             <div class="contact-area">
                 <p class="text-muted">Contato:</p>
-                <p><i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>(13) 99999-8888</p>
-                <p><i class="fa fa-phone fa-lg fa-fw"></i>Não possui</p>
+                <p><i class="fa fa-whatsapp fa-lg fa-fw" style="color: #01C501"></i>{{ isset($pedido->cliente->whatsapp) ? $pedido->cliente->whatsapp : "Não possui" }}</p>
+                <p><i class="fa fa-phone fa-lg fa-fw"></i>{{ isset($pedido->cliente->telefone) ? $pedido->cliente->telefone : "Não possui" }}</p>
             </div>
             <div class="address-area">
                 <div class="row">
@@ -67,7 +67,7 @@
                         <p class="text-muted">Informação de entrega:</p>
                         <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
                         <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
-                        <p>Distância: 59km</p>
+                        <p>Distância: {{ "" }}</p>
                     </div>
                     <div class="col-6">
                         <p class="text-muted">Tipo de veículo:</p>
@@ -93,27 +93,27 @@
             
             <div class="orçamento_info d-flex flex-column">
                 <h2 class="titulo">Responsável pela entrega</h2>
-                @if(!isset($entrega))
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
+               @if(!empty($entrega))
                 <div class="entregador_proposta">
-                    <p><strong>Wenndy Sandy</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></p>
+                    <p>
+                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->cliente->id) }}">
+                        <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
+                    </p>
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
                         <!-- codigo -->
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
+                                           
                     </div>
                 </div>
-                <p class="proposta_valor">R$36</p>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
                 <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
 
                 <div id="dialog-avaliacao" style="display: none" title="Cancelar este pedido?">
                     <form id="form-avaliacao" action="" method="POST">
                         {{ csrf_field() }}
                         <h2 class="titulo">Classifique o entregador</h2>
+                        <input type="hidden" name="entregador_id" value="{{ $entrega->proposta->entregador->id }}" />
                         <div class="estrelas">
                             <input type="radio" name="estrela" value="" checked>
 
@@ -145,39 +145,44 @@
         </div>   
 
     </div> <!-- PEDIDO CONTAINER -->
+
+    <!-- SE JA FOI ACEITO, NÃO LISTA OS ORÇAMENTOS -->
+    @if(empty($entrega))
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
-        @if(!isset($propostas))
+        @if(!isset($propostas) || empty($propostas))
             <p style="color: rgb(140,140,140)">Ainda não foram propostos orçamentos para esse pedido </p>
         @else
             @foreach($propostas as $proposta)
             <div class="col-4">
                 <div class="entregador_proposta">
                     
-                    <a href="{{ url('perfil/id=' . $proposta->entregador->id) }}">
+                    <p>
+                        <a href="{{ url('perfil/id=' . $proposta->entregador->id) }}">
                         <strong>{{ $proposta->entregador->cliente->nome }}</strong>
-                        <i class="fa fa-external-link pl-1" style="font-size: 12px"></i>
-                    </a>
-                    
+                        <i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
+                    </p>
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
-                        <!-- codigo -->
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
+                                                
                     </div>
                 </div>
-                <p class="proposta_valor">{{ 'R$' . $proposta->valor_proposta }}</p>
-                <button class="btn btn-success text-light" onclick="">
-                    Aceitar proposta
-                </button>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
+                <form action="{{ url('cliente/pedido/aceitar-orcamento') }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
+                    <input type="hidden" name="proposta_id" value="{{ $proposta->id }}">
+                    <button class="btn btn-success text-light" type="submit">
+                        Aceitar proposta
+                    </button>
+                </form>
+                
             </div>
             @endforeach
-        @endif
+        @endif<!-- IF !empty(Proposta) -->
     </div> <!-- #proposta_section -->
+    @endif <!-- IF empty(Entrega)-->
         <!-- 
                 <p class="status_aceito">Entregador e orçamento combinados</p>
                 <p>Entregador responsável: <strong></strong></p>
@@ -195,7 +200,7 @@ var aceitarEntregador = function(pedido, entregador){
      $.ajax({
         type: "POST",
         url: "{{ url('pedido/entrega') }}",
-        data: {_token:'{{ csrf_token() }}', id_pedido:pedido, id_entregador:entregador },
+        data: { _token:'{{ csrf_token() }}', id_pedido:pedido, id_entregador:entregador },
         success: function(response){
             console.log("SUCESSO ACEITAR: ", response);
             setTimeout(location.reload(), 100);

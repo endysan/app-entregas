@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pedido;
 use App\Imagem;
 use App\Proposta;
+use App\Entrega;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 
@@ -72,19 +73,34 @@ class PedidosController extends Controller
 
         $pedido = Pedido::find($id);
         $propostas = Proposta::where('pedido_id', $pedido->id)->get();
-        // $aceitos = Proposta::where('pedido_id', $id)->get();
-        // $entregadores = [];
-        // foreach($aceitos as $aceito) {
-        //     $entregadores[] = Entregador::find($aceito->entregador_id);
-        // }
-        
-
-        return view('cliente/pedido_page', compact(['pedido', 'propostas']));
+        $entrega = Entrega::where('pedido_id', $pedido->id)->first();
+        return view('cliente/pedido_page', compact(['pedido', 'propostas', 'entrega']));
     }
     public function getPedidoEntregador($id)
     {
-        //$pedido = Pedido::find($id);
+        $pedido = Pedido::find($id);
+        $propostas = Proposta::where('pedido_id', $pedido->id)->get();
         
-        return view('entregador/pedido_page');
+        return view('entregador/pedido_page', compact(['pedido', 'propostas']));
+    }
+    public function postProposta(Request $request)
+    {
+        $proposta = new Proposta();
+        $proposta->pedido_id = $request->pedido_id;
+        $proposta->entregador_id = $request->entregador_id;
+        $proposta->valor_proposta = str_replace(',', '.', $request->valor);
+        $proposta->save();
+
+        return redirect()->route('entregador.pedido', ['id' => $request->pedido_id]);
+    }
+
+    public function postAceitarOrcamento(Request $request)
+    {
+        $entrega = new Entrega();
+        $entrega->pedido_id = $request->pedido_id;
+        $entrega->proposta_id = $request->proposta_id;
+        $entrega->save();
+        
+        return redirect()->route('cliente.pedido', ['id' => $request->pedido_id]);
     }
 }
