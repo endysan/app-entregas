@@ -11,47 +11,58 @@
         <div class="section-inner">
             <h3 class="titulo mt-2 ml-2"><span class="fa fa-truck fa-fw"></span>Todos os pedidos</h3>
 
-            <div id="news_box_wrap" class="">
-            @if(count($pedidos) >= 1)
+            <div id="pedidos-container" class="">
+            <div class="row">
+            @if(!empty($pedidos))
                 @foreach ($pedidos as $pedido)
-                <a class="pedido_link" href="{{ url('cliente/pedido/id=') . $pedido->id }}">    
-                    <div id="" class="news_box">
-                        <div id="pedido_status" class="p-2 status_pendente">
-                            <p style="margin: 0">Status: {{ ucfirst($pedido->status_pedido) }}</p>
-                        </div>
-                            <figure>
-                                <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}">
-                                
-                                <div id="" class="figure_read">
-                                    Mais detalhes
-                                </div>
-                            </figure>
-                        
-                        <div id="" class="box_inner">
-                            <div id="" class="contents">
-                                <h3 class="ellipsis">{{ $pedido->titulo }}</h3>
-                                <p class="ellipsis">{{ $pedido->descricao }}</p>
-                            </div>
-                            <div id="" class="category left announce text-appentrega">
-                                <p>Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
-                            </div>
-                        </div><!-- box_inner -->
-                    </div><!-- newsbox -->
-                </a>
-                @endforeach
-
-                @else
-                    <div class="no-pedidos mx-auto p-5">
-                        <div class="text-muted text-center" style="font-size: 24px;">
-                            <p>Você ainda não fez pedidos</p>
-                            <p>(;-;)</p>
-                            <a href="{{ url('cliente/pedido/criar') }}" class="btn btn-light text-dark mt-5" style="border: 1px solid #888">Fazer pedido</a>
-                        </div>
-                        
+                <div class="pedido-item">
+                <a href="">
+                <div class="row">
+                    <div class="col-3">
+                        <img class="pedido-img" src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" alt="">
                     </div>
-                @endif
-                </div><!-- news_wrap -->
-                
+                    <div class="col-6">
+                        <div class="pedido-info">
+                            <p class="pedido-title ellipsis">{{ $pedido->titulo }}</p>
+                            <p class="pedido-description ellipsis">Descrição: {{ $pedido->descricao }}</p>
+                            <p class="pedido-date">Data entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                    <div class="col-3 my-auto">
+                    @if(strtolower($pedido->status_pedido) == 'pendente')    
+                        <div class="status-container status-pendente">
+                            
+                            <p class="status">Pendente</p>
+                        </div>
+                    @elseif(strtolower($pedido->status_pedido) == 'aceito')
+                        <div class="status-container status-aceito">
+                            
+                            <p class="status">Aceito</p>
+                        </div>
+                    @elseif(strtolower($pedido->status_pedido) == 'cancelado')
+                        <div class="status-container status-cancelado">
+                            
+                            <p class="status">Cancelado</p>
+                        </div>
+                    @endif
+                    </div>
+                </div> <!-- ROW -->
+                </a>
+            </div> <!-- Pedido-item -->
+            @endforeach
+
+            @else
+                <div class="no-pedidos mx-auto p-5">
+                    <div class="text-muted text-center" style="font-size: 24px;">
+                        <p>Você ainda não fez pedidos</p>
+                        <p>(;-;)</p>
+                        <a href="{{ url('cliente/pedido/criar') }}" class="btn btn-light text-dark mt-5" style="border: 1px solid #888">Fazer pedido</a>
+                    </div>
+                    
+                </div>
+            @endif
+            </div><!-- news_wrap -->
+        </div>    
                 
             <!-- foreach itens as item -->
                 <!-- <div id="i-100" class="pedido-item"></div> -->

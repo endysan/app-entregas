@@ -25,6 +25,7 @@
   cursor: pointer;
   color: #FC0;
 }
+
 .estrelas input[type=radio]:checked ~ label i.fa:before {
-  color: #CCC;
+  color: #bbb;
 }
