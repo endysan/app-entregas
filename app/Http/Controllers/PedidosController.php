@@ -6,9 +6,9 @@ use App\Pedido;
 use App\Imagem;
 use App\Proposta;
 use App\Entrega;
-use Illuminate\Support\Carbon;
+use App\EntregadorClassificacao;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Carbon;
 
 class PedidosController extends Controller
 {
@@ -74,7 +74,12 @@ class PedidosController extends Controller
         $pedido = Pedido::find($id);
         $propostas = Proposta::where('pedido_id', $pedido->id)->get();
         $entrega = Entrega::where('pedido_id', $pedido->id)->first();
-        return view('cliente/pedido_page', compact(['pedido', 'propostas', 'entrega']));
+        foreach($propostas as $i => $proposta)
+        {
+            $classificacoes[$i] = EntregadorClassificacao::where('entregador_id', $proposta->entregador_id)->avg('avaliacao');
+        }
+
+        return view('cliente/pedido_page', compact(['pedido', 'propostas', 'entrega', 'classificacoes']));
     }
     public function getPedidoEntregador($id)
     {
@@ -112,12 +117,14 @@ class PedidosController extends Controller
     public function postClassificacaoEntrega(Request $request)
     {
         $entrega = Entrega::find($request->entrega_id);
-        $entrega->status_entrega = 'realizada';
+        $entrega->status = 'realizada';
         $entrega->save();
 
         $classificacao = new EntregadorClassificacao();
         $classificacao->avaliacao = $request->estrela;
         $classificacao->entregador_id = $request->entregador_id;
+        $classificacao->save();
 
+        return redirect()->route('cliente.pedido', ['id' => $entrega->pedido_id]);
     }
 }

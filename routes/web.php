@@ -45,7 +45,8 @@ Route::middleware(['auth'])->group(function(){
             Route::post('/editar', 'PedidosController@editar');
             Route::post('aceitar-orcamento', 'PedidosController@postAceitarOrcamento');
         });
-        Route::post('avaliar-entregador', 'PedidosController@postClassificacaoEntrega');
+        Route::post('/avaliar-entregador', 'PedidosController@postClassificacaoEntrega');
+        Route::get('/get-avaliacao/id={id}', 'ClienteController@getClassificacao');
             
     }); // PREFIX CLIENTE
 

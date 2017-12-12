@@ -23,31 +23,32 @@
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
                 <div id="dialog-confirm" style="display: none" title="Cancelar este pedido?">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ url('cliente/pedido/cancelar') }}">
+                        {{ csrf_field() }}
                         <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
-                        <p>Motivo de cancelamento</p>
+                        <p><span class="ui-icon ui-icon-alert" style="margin:12px 12px 20px 0;"></span>Escolha o motivo do cancelamento</p>
+
                         <div class="form-check">
                             <label class="form-check-label" for="">
-                                <input class="form-check-input" type="radio">Informações do pedido estão incorretas
+                                <input class="form-check-input" type="radio" name="motivo" value="incorreto">Informações do pedido estão incorretas
                             </label>
                         </div>
                         <div>
                             <label class="form-check-label" for="">
-                                <input class="form-check-input" type="radio">Problemas com o entregador
+                                <input class="form-check-input" type="radio" name="motivo" value="entregador">Problemas com o entregador
                             </label>
                         </div>
                         <div>
                             <label class="form-check-label" for="">
-                                <input class="form-check-input" type="radio">Extravio
+                                <input class="form-check-input" type="radio" name="motivo" value="extravio">Extravio
                             </label>
                         </div>
                         <div>
                             <label class="form-check-label" for="">
-                                <input class="form-check-input" type="radio">Outros
+                                <input class="form-check-input" type="radio" name="motivo" value="outro">Outros
                             </label>
                         </div>
                     </form>
-                    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente cancelar o seu pedido?</p>
                 </div>
             </div>
             <p class="data-coleta text-muted">Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
@@ -103,12 +104,16 @@
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
                         <!-- codigo -->
-                                           
+                        <?php $class = new App\Http\Controllers\ClienteController(); ?>
+                        <p>{{ $class->getClassificacao($entrega->proposta->entregador->id) }}/5</p>
                     </div>
                 </div>
                 <p class="proposta_valor">R${{ str_replace('.', ',', $entrega->proposta->valor_proposta) }}</p>
-                <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
-
+                @if($entrega->status != 'realizada')
+                    <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
+                @else
+                    <p style="font-weight: 600; color:rgb(10,50,150);">Entrega realizada!</p>
+                @endif
                 <div id="dialog-avaliacao" style="display: none" title="Cancelar este pedido?">
                     <form id="form-avaliacao" action="{{ url('cliente/avaliar-entregador') }}" method="POST">
                         {{ csrf_field() }}
@@ -166,7 +171,8 @@
                     </p>
                     <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
                     <div class="classificacao">
-                                                
+                        <?php $class = new App\Http\Controllers\ClienteController(); ?>
+                        {{ $class->getClassificacao($proposta->entregador->id) }} / 5
                     </div>
                 </div>
                 <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
@@ -196,7 +202,6 @@
 @section('script')
 <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script>
-
 var aceitarEntregador = function(pedido, entregador){
      $.ajax({
         type: "POST",
@@ -214,6 +219,8 @@ var aceitarEntregador = function(pedido, entregador){
 }
 
 $(document).ready(function(){
+    // AQUI
+     
     $('#bt_aceitar').on('submit', function(event){
         event.preventDefault();
         
@@ -255,6 +262,7 @@ $(document).ready(function(){
         $('#dialog-confirm').dialog({
             resizable: false,
             modal: true,
+            width: 400,
             title: "Cancelar pedido",
             buttons: {
                 "Sim": function(){

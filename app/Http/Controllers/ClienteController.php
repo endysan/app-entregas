@@ -52,8 +52,8 @@ class ClienteController extends Controller
 
     public function getClassificacao($id)
     {
-        $classificacao = DB::table('entregador_classificacao')->where('entregador_id', $id)->avg('avaliacao');
+        $classificacao = EntregadorClassificacao::where('entregador_id', $id)->avg('avaliacao');
 
-        return $classificacao;
+        return round($classificacao);
     }
 }
