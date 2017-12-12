@@ -99,8 +99,25 @@ class PedidosController extends Controller
         $entrega = new Entrega();
         $entrega->pedido_id = $request->pedido_id;
         $entrega->proposta_id = $request->proposta_id;
+        $entrega->status = 'iniciado';
         $entrega->save();
         
+        $pedido = Pedido::find($request->pedido_id);
+        $pedido->status_pedido = 'aceito';
+        $pedido->save();
+
         return redirect()->route('cliente.pedido', ['id' => $request->pedido_id]);
+    }
+
+    public function postClassificacaoEntrega(Request $request)
+    {
+        $entrega = Entrega::find($request->entrega_id);
+        $entrega->status_entrega = 'realizada';
+        $entrega->save();
+
+        $classificacao = new EntregadorClassificacao();
+        $classificacao->avaliacao = $request->estrela;
+        $classificacao->entregador_id = $request->entregador_id;
+
     }
 }

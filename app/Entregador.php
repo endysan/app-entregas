@@ -35,7 +35,8 @@ class Entregador extends Authenticatable
     {
         return $this->hasOne('App\Endereco');
     }
-    public function classificacao(){
+    public function classificacao()
+    {
         return $this->hasOne('App\EntregadorClassificacao');
     }
 }

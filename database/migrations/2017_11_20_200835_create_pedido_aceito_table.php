@@ -17,6 +17,7 @@ class CreatePedidoAceitoTable extends Migration
             $table->increments('id');
             $table->integer('pedido_id')->unsigned();
             $table->integer('proposta_id')->unsigned();
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');

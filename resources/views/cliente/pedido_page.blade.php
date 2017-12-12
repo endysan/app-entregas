@@ -106,14 +106,15 @@
                                            
                     </div>
                 </div>
-                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $entrega->proposta->valor_proposta) }}</p>
                 <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
 
                 <div id="dialog-avaliacao" style="display: none" title="Cancelar este pedido?">
-                    <form id="form-avaliacao" action="" method="POST">
+                    <form id="form-avaliacao" action="{{ url('cliente/avaliar-entregador') }}" method="POST">
                         {{ csrf_field() }}
                         <h2 class="titulo">Classifique o entregador</h2>
                         <input type="hidden" name="entregador_id" value="{{ $entrega->proposta->entregador->id }}" />
+                        <input type="hidden" name="entrega_id" value="{{ $entrega->id }}">
                         <div class="estrelas">
                             <input type="radio" name="estrela" value="" checked>
 

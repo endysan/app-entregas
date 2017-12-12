@@ -16,7 +16,7 @@
             @if(!empty($pedidos))
                 @foreach ($pedidos as $pedido)
                 <div class="pedido-item">
-                <a href="">
+                <a href="{{ url('cliente/pedido/id=' . $pedido->id) }}">
                 <div class="row">
                     <div class="col-3">
                         <img class="pedido-img" src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" alt="">

@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="row p-4 mt-2">
-    <div class="col-4">
+    <div class="col-md-4 col-12">
         <h1 class="titulo">{{ $cliente->nome }}</h1>
         @if($cliente->img_perfil == null)
             <img src="{{ asset('storage/avatar/user_icon.png') }}" height="256" width="256">
@@ -25,7 +25,7 @@
         @endif
     </div>
 
-    <div class="col-5 mt-2">
+    <div class="col-md-5 col-12 mt-2">
         <h2 class="titulo">Informações do usuário</h2>
         <p><i class="fa fa-envelope-open-o fa-fw" aria-hidden="true"></i>{{ $cliente->email }}</p> 
         <p><i class="fa fa-phone fa-fw" aria-hidden="true"></i>{{ $cliente->getTelefone() }}</p>
@@ -41,7 +41,7 @@
         </p>
     </div>
     @if(isset($cliente->entregador))
-    <div class="col-3 mt-2">
+    <div class="col-md-3 col-12 mt-2">
         <p>
             <i class="fa fa-line-chart fa-fw"></i>
             <span>Classificação</span>
