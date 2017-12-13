@@ -30,17 +30,17 @@
                     </div>
                     <div class="col-3 my-auto">
                     @if(strtolower($pedido->status_pedido) == 'pendente')    
-                        <div class="status-container status-pendente">
+                        <div class="status-container status_pendente">
                             
                             <p class="status">Pendente</p>
                         </div>
                     @elseif(strtolower($pedido->status_pedido) == 'aceito')
-                        <div class="status-container status-aceito">
+                        <div class="status-container status_aceito">
                             
                             <p class="status">Aceito</p>
                         </div>
-                    @elseif(strtolower($pedido->status_pedido) == 'cancelado')
-                        <div class="status-container status-cancelado">
+                    @elseif(strtolower($pedido->status_pedido) == 'cancelado' || $pedido->deleted_at != null)
+                        <div class="status-container status_cancelado">
                             
                             <p class="status">Cancelado</p>
                         </div>

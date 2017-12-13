@@ -6,6 +6,7 @@ use App\Pedido;
 use App\Imagem;
 use App\Proposta;
 use App\Entrega;
+use App\PedidoCancelado;
 use App\EntregadorClassificacao;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -56,7 +57,7 @@ class PedidosController extends Controller
 
     public function getPedidos()
     {
-        $pedidos = Pedido::where('cliente_id', auth()->user()->id)->get();
+        $pedidos = Pedido::withTrashed()->where('cliente_id', auth()->user()->id)->get();
         
         //usar compact('pedidos') é igual a ['pedidos' => $pedidos]
 
@@ -71,7 +72,7 @@ class PedidosController extends Controller
         // WHERE Pe.CD_Requisitante = $_SESSION['LoggedUser'] &&
         //       Pe.CD_Pedido = $_SESSION['CD_Pedido'];"
 
-        $pedido = Pedido::find($id);
+        $pedido = Pedido::withTrashed()->find($id);
         $propostas = Proposta::where('pedido_id', $pedido->id)->get();
         $entrega = Entrega::where('pedido_id', $pedido->id)->first();
         foreach($propostas as $i => $proposta)
@@ -83,11 +84,28 @@ class PedidosController extends Controller
     }
     public function getPedidoEntregador($id)
     {
-        $pedido = Pedido::find($id);
+        $pedido = Pedido::withTrashed()->find($id);
         $propostas = Proposta::where('pedido_id', $pedido->id)->get();
         
         return view('entregador/pedido_page', compact(['pedido', 'propostas']));
     }
+
+    public function postCancelar(Request $request)
+    {
+        $pedido = Pedido::find($request->pedido_id);
+        $pedido->status_pedido = 'cancelado';
+        $pedido->save();
+        
+        $pedidoCancelado = new PedidoCancelado();
+        $pedidoCancelado->pedido_id = $pedido->id;
+        $pedidoCancelado->motivo_cancelamento = $request->motivo;
+
+        $pedidoCancelado->save();
+        $pedido->delete();
+
+        return redirect('cliente/historico');
+    }
+
     public function postProposta(Request $request)
     {
         $proposta = new Proposta();

@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/id={id}', 'PedidosController@getPedidoCliente')->name('cliente.pedido');
             Route::get('/criar', 'PagesController@createPedido');
             Route::post('/criar', 'PedidosController@postCreatePedido');
-            Route::post('/editar', 'PedidosController@editar');
+            Route::post('/cancelar', 'PedidosController@postCancelar');
             Route::post('aceitar-orcamento', 'PedidosController@postAceitarOrcamento');
         });
         Route::post('/avaliar-entregador', 'PedidosController@postClassificacaoEntrega');

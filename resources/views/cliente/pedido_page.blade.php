@@ -19,11 +19,18 @@
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
                 <h1 class="titulo pt-1">{{ $pedido->titulo }}</h1>
+                <?php 
+                    $cancelavel = true;
+                    if((isset($entrega) && $entrega->status == 'realizada') || $pedido->status_pedido == 'cancelado'){
+                        $cancelavel = false;
+                    }
+                ?>
+                @if($cancelavel)
                 <span title="Cancelar pedido" id="cancelar" onclick="" class="ml-4" style="cursor:pointer">
                     <i class="fa fa-trash fa-lg"></i>
                 </span>
                 <div id="dialog-confirm" style="display: none" title="Cancelar este pedido?">
-                    <form method="POST" action="{{ url('cliente/pedido/cancelar') }}">
+                    <form id="form-cancelar" method="POST" action="{{ url('cliente/pedido/cancelar') }}">
                         {{ csrf_field() }}
                         <input type="hidden" name="pedido_id" value="{{ $pedido->id }}">
                         <p><span class="ui-icon ui-icon-alert" style="margin:12px 12px 20px 0;"></span>Escolha o motivo do cancelamento</p>
@@ -50,6 +57,7 @@
                         </div>
                     </form>
                 </div>
+                @endif
             </div>
             <p class="data-coleta text-muted">Data de entrega: {{ Carbon\Carbon::parse($pedido->data_entrega)->format('d/m/Y') }}</p>
             <!-- <img src="" alt="Imagem do produto"/> -->
@@ -267,7 +275,7 @@ $(document).ready(function(){
             buttons: {
                 "Sim": function(){
                     $(this).dialog('close')
-                    alert('cancelado');
+                    $('#form-cancelar').submit();
                 },
                 "Não": function(){
                     $(this).dialog('close')
