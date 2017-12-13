@@ -30,7 +30,7 @@ Sofá de 2 lugares
     <div class="row">
         <!-- IMAGEM PEDIDO -->
         <div class="col-md-4 col-12">
-             @if($pedido->img != null)
+             @if($pedido->img_pedido != null)
             <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 100%">
             @else
             <img src="{{ asset('storage/pedido/produto-sem-imagem.gif') }}" style="max-width: 100%">
@@ -66,10 +66,25 @@ Sofá de 2 lugares
                         <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
                         <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
                         
-                        <p>Distância até o cliente: <span class="distancia" id="distancia-1"></span></p>
+                        <p>Distância até o cliente: <br> <span class="distancia" id="distancia-1"></span></p>
                         <p>Deslocamento do pedido: <span class="distancia" id="distancia-2"></span></p>
 
-                        <button id="btn_orcamento" class="btn btn-success btn-lg">Enviar orçamento</button>
+                        <?php $isProposto = false; ?>
+
+                        @if(count($propostas) > 0)
+
+                            @foreach($propostas as $proposta)
+                                @if($proposta->entregador_id == auth()->user()->entregador->id)
+                                    <?php $isProposto = true; ?>                  
+
+                                @endif
+                            @endforeach
+                            
+                        @endif
+
+                        <?php if($isProposto == false) : ?>            
+                            <button id="btn_orcamento" class="btn btn-success btn-lg">Enviar orçamento</button>                
+                        <?php endif; ?>
                         
                         <div id="dialog-orcamento" style="display: none" title="Cancelar este pedido?">
                             <h2 class="titulo"></h2>
@@ -85,8 +100,10 @@ Sofá de 2 lugares
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    
                                     <div class="col-auto mt-4">
-                                        <button type="submit" class="btn btn-success">Enviar proposta</button>
+                                            <button type="submit" class="btn btn-success">Enviar proposta</button>
                                     </div>
                                 </div>
                             </form>
@@ -119,7 +136,7 @@ Sofá de 2 lugares
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
                 <div class="entregador_proposta">
                     <p>
-                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->cliente->id) }}">
+                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->cliente->id) }}" target="_blank">
                         <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
                       @if($entrega->proposta->entregador->cliente->img_perfil == null)
@@ -173,7 +190,7 @@ Sofá de 2 lugares
                 <div class="entregador_proposta">
                     
                     <p>
-                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}">
+                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}" target="_blank">
                         <strong>{{ $proposta->entregador->cliente->nome }}</strong>
                         <i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
@@ -238,7 +255,7 @@ var aceitarEntregador = function(pedido, entregador){
 }
 
 $(document).ready(function(){
-    $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+    $('#valor').mask('0000,00', {reverse: true});
 
     $('#bt_aceitar').on('submit', function(event){
         event.preventDefault();

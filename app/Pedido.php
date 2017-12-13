@@ -29,7 +29,7 @@ class Pedido extends Model
     
     public function proposta()
     {
-        return $this->belongsTo('App\Proposta');
+        return $this->hasMany('App\Proposta');
     }
 
     public function entrega()

@@ -63,6 +63,8 @@ class PedidosController extends Controller
 
         return view('cliente.historico_pedidos', compact('pedidos'));
     }
+
+
     public function getPedidoCliente($id)
     {
         // "SELECT E.NM_Entregador, Pe.DS_Titulo, Pr.VL_Proposta, ""
@@ -148,5 +150,11 @@ class PedidosController extends Controller
         $pedido->save();
 
         return redirect()->route('cliente.pedido', ['id' => $entrega->pedido_id]);
+    }
+
+    public function getPedidosEntregador()
+    {
+        $propostas = Proposta::where('entregador_id', auth()->user()->entregador->id)->get();
+        return view('entregador.historico_pedidos', compact('propostas'));
     }
 }

@@ -115,7 +115,7 @@ a:hover {
 }
 .pedido-item {
     overflow: hidden;
-    width: 45%;
+    width: 48%;
     height: 150px;
     margin: 10px 1%;
     background-color: rgb(252,252,252);
@@ -123,11 +123,13 @@ a:hover {
 }
 .pedido-item, .status-container {
     border: 1px solid rgb(140,140,140,0.4);
+
 }
 
     
 .pedido-img {
     width: 100%;
+    border-radius: 2px;
 }
 .pedido-info {
     margin-left: 10px;
@@ -154,4 +156,7 @@ p.pedido-date {
     font-size: 14px;
     color: white;
     font-weight: 600;
+}
+.row {
+    width: 100% !important;
 }

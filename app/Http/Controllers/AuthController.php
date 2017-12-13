@@ -81,6 +81,6 @@ class AuthController extends Controller
             $cliente->img_perfil = $imgName;
             $cliente->save();
         }
-        return redirect()->route('cliente.home');
+        return redirect('perfil/id=' . $request->cliente_id);
     }
 }

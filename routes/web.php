@@ -59,6 +59,8 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('/mapa-pedidos', 'MapaController@getMapa');
 
+        Route::get('/acompanhar-pedidos', 'PedidosController@getPedidosEntregador');
+
         Route::get('pedido/id={id}', 'PedidosController@getPedidoEntregador')->name('entregador.pedido');
         Route::post('pedido/proposta', 'PedidosController@postProposta');
         Route::get('/pedido-latlng', 'MapaController@getMarcarEndereco');

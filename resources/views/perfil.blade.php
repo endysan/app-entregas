@@ -21,7 +21,6 @@
             {{ csrf_field() }}
             <input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
             <input type="file" id="img" name="img_perfil" onchange="form.submit()" class="inputfile"/>
-            <label for="img">Choose a file</label>
         </form>
         @endif
     </div>
@@ -62,6 +61,18 @@
                     <i class="fa fa-star-o"></i>
                 @endfor
             </div>
+        </p>
+        <p>
+                <i class="fa fa-vcard fa-fw"></i><span> Veiculos<span><br><br>
+                @foreach($cliente->entregador->veiculo as $veiculo)
+                    @if($veiculo->categoria_veiculo == 'moto')
+                        <p class="ml-2"><i class="fa fa-motorcycle fa-lg ml-2" style="font-size: 38px; margin-right: 10px;"></i>Moto</p>
+                    @elseif($veiculo->categoria_veiculo == 'carro')
+                        <p class="ml-2"><i class="fa fa-car fa-lg ml-2" style="font-size: 38px; margin-right: 10px;"></i>Carro</p>
+                    @elseif($veiculo->categoria_veiculo == 'caminhao')
+                        <p class="ml-2"><i class="fa fa-truck fa-lg ml-2" style="font-size: 38px; margin-right: 10px;"></i>Caminhão</p>
+                    @endif
+                @endforeach
         </p>
     </div>
     @endif

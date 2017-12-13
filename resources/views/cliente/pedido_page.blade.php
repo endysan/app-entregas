@@ -14,7 +14,7 @@
 <div class="pedido-container">
     <div class="row">
         <div class="col-md-4 col-12">
-            @if($pedido->img != null)
+            @if($pedido->img_pedido != null)
             <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 100%">
             @else
             <img src="{{ asset('storage/pedido/produto-sem-imagem.gif') }}" style="max-width: 100%">
@@ -24,6 +24,10 @@
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
                 <h1 class="titulo pt-1">{{ $pedido->titulo }}</h1>
+                @if($pedido->status_pedido == 'cancelado')
+                    <br/><h2 class="titulo" style='color: red; margin-left: 10px;'>Cancelado</h2>
+                @endif
+
                 <?php 
                     $cancelavel = true;
                     if((isset($entrega) && $entrega->status == 'realizada') || $pedido->status_pedido == 'cancelado'){

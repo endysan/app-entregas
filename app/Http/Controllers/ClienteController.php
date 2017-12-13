@@ -29,12 +29,14 @@ class ClienteController extends Controller
         $cliente->nome = $request->nome;
         $cliente->telefone = $request->telefone;
         $cliente->whatsapp = $request->whatsapp;
+        $cliente->save();
         
         //ESPECIFICO DE ENTREGADOR
-        $cliente->entregador->cpf = $request->cpf;
-        $cliente->entregador->cnh = $request->cnh;
-
-        $cliente->save();
+        $entregador = Entregador::find($cliente->entregador->id);
+        $entregador->cpf = $request->cpf;
+        $entregador->cnh = $request->cnh;
+        $entregador->save();
+        
 
         // ENDEREÇO
         $endereco = new Endereco();

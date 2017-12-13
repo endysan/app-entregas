@@ -45,7 +45,7 @@
         <!-- IF entregador -->
         @elseif($isEntregador)
         <div class="card-body">
-           <a href="{{ url($urlPrefix . '/entregas-aceitas') }}" class="text-dark card-link"><i class="fa fa-file-text fa-fw fa-lg mr-1"></i>Entregas aceitas</a> 
+           <a href="{{ url($urlPrefix . '/acompanhar-pedidos') }}" class="text-dark card-link"><i class="fa fa-file-text fa-fw fa-lg mr-1"></i>Acompanhar pedidos</a> 
         </div>
         <div class="card-body">
            <a href="{{ url($urlPrefix . '/veiculos') }}" class="text-dark card-link"><i class="fa fa-car fa-fw fa-lg mr-1"></i>Seus Veiculos</a> 
