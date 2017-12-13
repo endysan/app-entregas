@@ -29,3 +29,6 @@
 .estrelas input[type=radio]:checked ~ label i.fa:before {
   color: #bbb;
 }
+.classificacao i {
+  color: #FC0;
+}

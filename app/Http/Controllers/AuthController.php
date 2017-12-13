@@ -54,10 +54,18 @@ class AuthController extends Controller
             $entregador = new Entregador;
             $entregador->cliente_id = $cliente->id;
             $entregador->save();
-       
+            
+        }
+        auth()->login($cliente);
+        
+        if(isset($entregador)){
+            return redirect('entregador/editar');    
+        }
+        else {
+            return redirect('cliente/editar');
         }
         
-        return redirect('login');
+        
     }
 
     public function imgPerfil(Request $request)

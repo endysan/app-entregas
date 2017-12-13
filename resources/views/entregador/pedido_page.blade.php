@@ -19,6 +19,9 @@ Sofá de 2 lugares
     font-size: 24px;
     color: #444;
 }
+.distancia{
+    font-weight: 600;
+}
 </style>
 @endsection
 
@@ -27,7 +30,11 @@ Sofá de 2 lugares
     <div class="row">
         <!-- IMAGEM PEDIDO -->
         <div class="col-md-4 col-12">
-            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 400px">
+             @if($pedido->img != null)
+            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 100%">
+            @else
+            <img src="{{ asset('storage/pedido/produto-sem-imagem.gif') }}" style="max-width: 100%">
+            @endif
         </div>    
         <!-- FIM IMG PEDIDO -->
 
@@ -58,7 +65,10 @@ Sofá de 2 lugares
                         <p class="text-muted">Informação de entrega:</p>
                         <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
                         <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
-                        <p>Distância: 59km</p>
+                        
+                        <p>Distância até o cliente: <span class="distancia" id="distancia-1"></span></p>
+                        <p>Deslocamento do pedido: <span class="distancia" id="distancia-2"></span></p>
+
                         <button id="btn_orcamento" class="btn btn-success btn-lg">Enviar orçamento</button>
                         
                         <div id="dialog-orcamento" style="display: none" title="Cancelar este pedido?">
@@ -69,7 +79,6 @@ Sofá de 2 lugares
                                 <input type="hidden" name="entregador_id" value="{{ auth()->user()->entregador->id }}">
                                 <div class="align-items-center mt-4">
                                     <div class="col-auto valor_div" style="width: 70%;">
-                                        <label class="sr-only" for="valor">Username</label>
                                         <div class="input-group mb-2 mb-sm-0">
                                             <div class="input-group-addon">R$</div>
                                                 <input type="text" class="form-control" id="valor" name="valor" placeholder="00,00">
@@ -110,22 +119,37 @@ Sofá de 2 lugares
                 <!-- <p class="status_pendente text-muted mt-4">Aguardando orçamentos</p> -->
                 <div class="entregador_proposta">
                     <p>
-                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->id) }}">
-                        <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i>
-                        </a>
+                        <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->cliente->id) }}">
+                        <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
-                    <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
+                      @if($entrega->proposta->entregador->cliente->img_perfil == null)
+                        <img src="{{ asset('storage/avatar/user_icon.png') }}">
+                    @else
+                        <img src="{{ asset('storage/avatar/' . $entrega->proposta->entregador->cliente->img_perfil) }}" class="border-rounded">
+                    @endif
                     <div class="classificacao">
                         <!-- codigo -->
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
+                        <?php $class = new App\Http\Controllers\ClienteController();
+                       
+                        $value = $class->getClassificacao($entrega->proposta->entregador->id);
+                        $whiteStars = 5 - $value;
+                        ?>
+
+                        @for($i = 0; $i < $value; $i++)
+
+                            <i class="fa fa-star"></i>
+                        @endfor
+                        
+                        @for($i = 0; $i < $whiteStars; $i++)
+                            <i class="fa fa-star-o"></i>
+                        @endfor
+
                     </div>
                 </div>
-                <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
-                <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
+                <p class="proposta_valor">R${{ str_replace('.', ',', $entrega->proposta->valor_proposta) }}</p>
+                @if($entrega->status == 'realizada')
+                    <p style="font-weight: 600; color:rgb(10,50,150);">Entrega realizada!</p>
+                @endif
 
                 @else
                 <div class="my-5" style="color: rgb(140,140,140); text-align:center; font-size: 16px;">
@@ -141,34 +165,46 @@ Sofá de 2 lugares
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
-        @if(empty($propostas) || !isset($propostas))
+        @if(count($propostas) == 0)
             <p style="color: rgb(140,140,140)">Ainda não foram propostos orçamentos para esse pedido </p>
         @else
-        @foreach($propostas as $proposta)
-        
+            @foreach($propostas as $proposta)
             <div class="col-4">
                 <div class="entregador_proposta">
+                    
                     <p>
-                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}" target="_blank">
+                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}">
                         <strong>{{ $proposta->entregador->cliente->nome }}</strong>
                         <i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
-                    <img class="border-rounded" src="{{ asset('storage/avatar/' . $proposta->entregador->cliente->img_perfil) }}">
+                      @if($proposta->entregador->cliente->img_perfil == null)
+                        <img src="{{ asset('storage/avatar/user_icon.png') }}">
+                    @else
+                        <img src="{{ asset('storage/avatar/' . $proposta->entregador->cliente->img_perfil) }}" class="border-rounded">
+                    @endif
                     <div class="classificacao">
-                        <!-- codigo -->
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
+                       
+                        <?php 
+                        $class = new App\Http\Controllers\ClienteController();
+                        $value = $class->getClassificacao($proposta->entregador->id);
+                        $whiteStars = 5 - $value;
+                        ?>
+                        @for($i = 0; $i < $value; $i++)
+
+                            <i class="fa fa-star"></i>
+                        @endfor
+                        
+                        @for($i = 0; $i < $whiteStars; $i++)
+                            <i class="fa fa-star-o"></i>
+                        @endfor
                     </div>
                 </div>
                 <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>
+                
             </div>
-        </div>
-        @endforeach
-
-        @endif
+            @endforeach
+    </div> <!-- #proposta_section -->
+    @endif <!-- IF empty(Entrega)-->
     </div> <!-- #proposta_section -->
         <!-- 
                 <p class="status_aceito">Entregador e orçamento combinados</p>
@@ -183,7 +219,8 @@ Sofá de 2 lugares
 <script src="{{ url('js/jquery-ui.min.js') }}"></script>
 <script>
 
-    
+
+
 var aceitarEntregador = function(pedido, entregador){
      $.ajax({
         type: "POST",
@@ -266,6 +303,45 @@ $(document).ready(function(){
 
         });
     });
+
+    @if(auth()->user()->entregador->endereco)
+    var origem_1 = "{{ ucfirst($pedido->logradouro_origem) . ', ' . ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}";
+    var destino_1 = "{{ ucfirst(auth()->user()->entregador->endereco->rua) . ', nº ' . ucfirst(auth()->user()->entregador->endereco->numero) . ', ' . ucfirst(auth()->user()->entregador->endereco->bairro) . ', '. ucfirst(auth()->user()->entregador->endereco->cidade) . ', '. ucfirst(auth()->user()->entregador->endereco->estado) }}";
+    $.ajax({
+        url: "{{ url('api/distancia') }}" + "/origem="+origem_1+"/destino="+destino_1,
+        method: "GET",
+        success: function(response){
+            var data = JSON.parse(response);
+            console.log(data.rows[0].elements[0].distance.text);
+                    
+            $("#distancia-1").text(data.rows[0].elements[0].distance.text);
+        },
+        error: function(error){
+
+        }
+    });
+
+    @endif  
+    
+
+    var origem_2 = "{{ ucfirst($pedido->logradouro_origem) . ', ' . ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}";
+    var destino_2 = "{{ ucfirst($pedido->logradouro_destino) . ', ' . ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}";
+
+    //DISTANCIA
+    $.ajax({
+        url: "{{ url('api/distancia') }}" + "/origem="+origem_2+"/destino="+destino_2,
+        method: "GET",
+        success: function(response){
+            var data = JSON.parse(response);
+            console.log(data.rows[0].elements[0].distance.text);
+                    
+            $("#distancia-2").text(data.rows[0].elements[0].distance.text);
+        },
+        error: function(error){
+
+        }
+    });
+
 }); // FIM
 </script>
 

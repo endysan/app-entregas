@@ -11,7 +11,8 @@ Route::post('/login', 'AuthController@postLogin');
 Route::get('/logout', 'AuthController@getLogout');
 Route::post('/signup', 'AuthController@postSignup');
 
-Route::view('/orcamento', 'entregador.orcamento');
+Route::get('/api/distancia/origem={origem}/destino={destino}', 'MapController@calculateDistance');
+
 
 // PAGINA DE EXIBIR PERFIL------------------------------------
 Route::get('/perfil/id={id}', function($id){

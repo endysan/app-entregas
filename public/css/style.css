@@ -122,3 +122,23 @@ h2.title * {
     border: 1px solid rgba(140,140,140,0.2);
     box-shadow: 1px 1px 5px -2px rgba(150, 150, 150, 0.60);
 }
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('css')
-<link rel="stylesheet" href="{{ url('css/historico_pedidos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/historico_pedidos.css') }}">
 @endsection
 
 @section('content')
@@ -39,6 +39,12 @@
                             
                             <p class="status">Aceito</p>
                         </div>
+                    @elseif(strtolower($pedido->status_pedido == 'entregue'))
+                        <div class="status-container status_entregue">
+                            
+                            <p class="status">Entregue</p>
+                        </div>
+
                     @elseif(strtolower($pedido->status_pedido) == 'cancelado' || $pedido->deleted_at != null)
                         <div class="status-container status_cancelado">
                             

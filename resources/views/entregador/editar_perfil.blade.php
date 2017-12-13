@@ -8,7 +8,14 @@
 
 
 @section('content')
-
+@if(auth()->user()->telefone == null && auth()->user()->whatsapp == null)
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  Favor preencher os dados de contato para começar a fazer pedidos!
+  <button id="alert-dismiss" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
 <div class="container-editar mx-3 my-4">
     
     <form id="form_editar" method="POST" action="editar" class="ml-5">

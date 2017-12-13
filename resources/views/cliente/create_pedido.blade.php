@@ -36,7 +36,7 @@
             <p class="text-muted">Detalhes<i class="fa fa-envelope-open-o fa-fw"></i></p>
             <div class="form-group">
                 <label for="titulo">O que será transportado?</label>
-                <input class="form-control" id="titulo" name="titulo" type="text" placeholder="Titulo do anúncio">
+                <input class="form-control" id="titulo" name="titulo" type="text" placeholder="Titulo do anúncio" required>
             </div>
             <div class="form-group">
                 <label for="descricao">Descreva o que será transportado (opcional)</label>
@@ -54,11 +54,11 @@
             
             <div class="form-group col-md-6">
                 <label for="data_entrega">Data de entrega</label>
-                <input class="form-control" id="data_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa">
+                <input class="form-control" id="data_entrega" name="data_entrega" type="text" placeholder="dd/mm/aaaa" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="periodo_entrega">Período de entrega</label>
-                <select class="form-control" name="periodo_entrega" id="periodo_entrega">
+                <select class="form-control" name="periodo_entrega" id="periodo_entrega" required>
                     <option value="dia">Dia todo entre 8:00 e 18:00</option>
                     <option value="manha">Manhã entre 8:00 e 12:00</option>
                     <option value="tarde">Tarde entre 13:00 e 18:00</option>
@@ -71,7 +71,7 @@
         
             <div id="categoria_veiculo_section" class="form-group">
                 <label for="radio_moto">
-                    <input type="radio" name="categoria_veiculo" value="moto" id="radio_moto">
+                    <input type="radio" name="categoria_veiculo" value="moto" id="radio_moto" checked>
                     <i class="fa fa-motorcycle fa-lg" style="font-size: 38px"></i>
                     <p>Moto</p>
                 </label>
@@ -99,7 +99,7 @@
                     <label for="rua_origem" class="form-label">Rua</label>
                     <input type="text" class="form-control" id="rua_origem" name="rua_origem" placeholder="" required>
                     <label for="numero_origem" class="form-label">Número</label>
-                    <input type="text" class="form-control" id="numero_origem" name="numero_origem" placeholder="">
+                    <input type="text" class="form-control" id="numero_origem" name="numero_origem" placeholder="" required>
                 </div>
                 <div class="form-group">
                     <label for="bairro_origem" class="form-label">Bairro</label>
@@ -130,7 +130,7 @@
                     <label for="rua_destino" class="form-label">Rua</label>
                     <input type="text" class="form-control" id="rua_destino" name="rua_destino" placeholder="" required>
                     <label for="numero_destino" class="form-label">Número</label>
-                    <input type="text" class="form-control" id="numero_destino" name="numero_destino" placeholder="">
+                    <input type="text" class="form-control" id="numero_destino" name="numero_destino" placeholder="" required>
                 </div>
                 <div class="form-group">
                     <label for="bairro_destino" class="form-label">Bairro</label>

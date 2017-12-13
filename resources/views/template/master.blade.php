@@ -14,9 +14,9 @@
     </script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url('css/plugin/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ url('css/main.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url('css/plugin/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugin/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/plugin/font-awesome.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> 
     @yield('css')
         
@@ -32,9 +32,10 @@
     </div>
 
     @include('template.partials.footer')        
-    <script src="{{ url('js/jquery.min.js') }}"></script>
-    <script src="{{ url('js/jquery.mask.min.js') }}"></script>
-    <script src="{{ url('js/sidebar.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/sidebar.js') }}"></script>
     @yield('script')
 </body>
 </html>

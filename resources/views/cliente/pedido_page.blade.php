@@ -14,7 +14,12 @@
 <div class="pedido-container">
     <div class="row">
         <div class="col-md-4 col-12">
-            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 400px">
+            @if($pedido->img != null)
+            <img src="{{ asset('storage/pedido/' . $pedido->img_pedido) }}" style="max-width: 100%">
+            @else
+            <img src="{{ asset('storage/pedido/produto-sem-imagem.gif') }}" style="max-width: 100%">
+            @endif
+
         </div>    
         <div class="col-md-4 col-12 pt-4">
             <div class="d-flex align-items-center">
@@ -76,7 +81,6 @@
                         <p class="text-muted">Informação de entrega:</p>
                         <p title="Origem"><i class="fa fa-map-marker fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_origem) . ', '. ucfirst($pedido->cidade_origem) . ', '. ucfirst($pedido->estado_origem) }}</p>
                         <p title="Destino"><i class="fa fa-flag fa-fw mr-2"></i>{{ ucfirst($pedido->bairro_destino) . ', '. ucfirst($pedido->cidade_destino) . ', '. ucfirst($pedido->estado_destino) }}</p>
-                        <p>Distância: {{ "" }}</p>
                     </div>
                     <div class="col-6">
                         <p class="text-muted">Tipo de veículo:</p>
@@ -109,16 +113,33 @@
                         <a href="{{ url('perfil/id=' . $entrega->proposta->entregador->cliente->id) }}">
                         <strong>{{ $entrega->proposta->entregador->cliente->nome }}</strong><i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
-                    <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
+                      @if($entrega->proposta->entregador->cliente->img_perfil == null)
+                        <img src="{{ asset('storage/avatar/user_icon.png') }}">
+                    @else
+                        <img src="{{ asset('storage/avatar/' . $entrega->proposta->entregador->cliente->img_perfil) }}" class="border-rounded">
+                    @endif
                     <div class="classificacao">
                         <!-- codigo -->
-                        <?php $class = new App\Http\Controllers\ClienteController(); ?>
-                        <p>{{ $class->getClassificacao($entrega->proposta->entregador->id) }}/5</p>
+                        <?php $class = new App\Http\Controllers\ClienteController();
+                       
+                        $value = $class->getClassificacao($entrega->proposta->entregador->id);
+                        $whiteStars = 5 - $value;
+                        ?>
+
+                        @for($i = 0; $i < $value; $i++)
+
+                            <i class="fa fa-star"></i>
+                        @endfor
+                        
+                        @for($i = 0; $i < $whiteStars; $i++)
+                            <i class="fa fa-star-o"></i>
+                        @endfor
+
                     </div>
                 </div>
                 <p class="proposta_valor">R${{ str_replace('.', ',', $entrega->proposta->valor_proposta) }}</p>
                 @if($entrega->status != 'realizada')
-                    <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Entrega realizada</button>
+                    <button id="btn_entrega" style="cursor: pointer" class="btn btn-primary">Confirmar entrega</button>
                 @else
                     <p style="font-weight: 600; color:rgb(10,50,150);">Entrega realizada!</p>
                 @endif
@@ -165,7 +186,7 @@
     <h3 class="titulo mt-4">Orçamentos propostos</h3>
     <div id="propostas_section" class="p-2 ml-4">
         <div class="row">
-        @if(!isset($propostas) || empty($propostas))
+        @if(count($propostas) == 0)
             <p style="color: rgb(140,140,140)">Ainda não foram propostos orçamentos para esse pedido </p>
         @else
             @foreach($propostas as $proposta)
@@ -173,14 +194,30 @@
                 <div class="entregador_proposta">
                     
                     <p>
-                        <a href="{{ url('perfil/id=' . $proposta->entregador->id) }}">
+                        <a href="{{ url('perfil/id=' . $proposta->entregador->cliente->id) }}">
                         <strong>{{ $proposta->entregador->cliente->nome }}</strong>
                         <i class="fa fa-external-link pl-1" style="font-size: 12px"></i></a>
                     </p>
-                    <img class="border-rounded" src="{{ url('img/user_icon.png') }}" alt="">
+                      @if($proposta->entregador->cliente->img_perfil == null)
+                        <img src="{{ asset('storage/avatar/user_icon.png') }}">
+                    @else
+                        <img src="{{ asset('storage/avatar/' . $proposta->entregador->cliente->img_perfil) }}" class="border-rounded">
+                    @endif
                     <div class="classificacao">
-                        <?php $class = new App\Http\Controllers\ClienteController(); ?>
-                        {{ $class->getClassificacao($proposta->entregador->id) }} / 5
+                       
+                        <?php 
+                        $class = new App\Http\Controllers\ClienteController();
+                        $value = $class->getClassificacao($proposta->entregador->id);
+                        $whiteStars = 5 - $value;
+                        ?>
+                        @for($i = 0; $i < $value; $i++)
+
+                            <i class="fa fa-star"></i>
+                        @endfor
+                        
+                        @for($i = 0; $i < $whiteStars; $i++)
+                            <i class="fa fa-star-o"></i>
+                        @endfor
                     </div>
                 </div>
                 <p class="proposta_valor">R${{ str_replace('.', ',', $proposta->valor_proposta) }}</p>

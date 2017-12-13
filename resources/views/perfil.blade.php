@@ -20,7 +20,8 @@
         <form action="{{ url('/perfil/upload') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="cliente_id" value="{{ $cliente->id }}">
-            <input type="file" id="img" name="img_perfil" onchange="form.submit()" />
+            <input type="file" id="img" name="img_perfil" onchange="form.submit()" class="inputfile"/>
+            <label for="img">Choose a file</label>
         </form>
         @endif
     </div>
@@ -45,12 +46,21 @@
         <p>
             <i class="fa fa-line-chart fa-fw"></i>
             <span>Classificação</span>
-            <div class="rating">
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
+            <div class="classificacao">
+                        <!-- codigo -->
+                <?php 
+                $class = new App\Http\Controllers\ClienteController();
+                $value = $class->getClassificacao($cliente->entregador->id);
+                $whiteStars = 5 - $value;
+                ?>
+                @for($i = 0; $i < $value; $i++)
+
+                    <i class="fa fa-star"></i>
+                @endfor
+                
+                @for($i = 0; $i < $whiteStars; $i++)
+                    <i class="fa fa-star-o"></i>
+                @endfor
             </div>
         </p>
     </div>

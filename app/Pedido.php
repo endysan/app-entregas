@@ -10,7 +10,7 @@ class Pedido extends Model
     use SoftDeletes;
     protected $table = 'pedido'; // verificar
     protected $dates = ['deleted_at'];
-    public static $statusPedido = ['pendente' => 'pendente', 'aceito' => 'aceito'];
+    public static $statusPedido = ['pendente' => 'pendente', 'aceito' => 'aceito', 'cancelado' => 'cancelado', 'entregue' => 'entregue'];
     public static $periodoEntrega = [
         'dia' => 'Dia todo entre 8:00 e 18:00',
         'manha' => 'Manhã entre 8:00 e 12:00',

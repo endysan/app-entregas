@@ -34,6 +34,9 @@ section {
 .status_cancelado {
     background-color: rgb(200, 0, 10) !important;
 }
+.status_entregue {
+    background-color: rgb(14, 76, 175) !important;
+}
 
 @media screen and (max-width:1200px) {
     .pedido-item {

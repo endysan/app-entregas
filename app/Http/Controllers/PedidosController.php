@@ -57,7 +57,7 @@ class PedidosController extends Controller
 
     public function getPedidos()
     {
-        $pedidos = Pedido::withTrashed()->where('cliente_id', auth()->user()->id)->get();
+        $pedidos = Pedido::withTrashed()->where('cliente_id', auth()->user()->id)->latest()->get();
         
         //usar compact('pedidos') é igual a ['pedidos' => $pedidos]
 
@@ -142,6 +142,10 @@ class PedidosController extends Controller
         $classificacao->avaliacao = $request->estrela;
         $classificacao->entregador_id = $request->entregador_id;
         $classificacao->save();
+
+        $pedido = Pedido::find($entrega->pedido_id);
+        $pedido->status_pedido = 'entregue';
+        $pedido->save();
 
         return redirect()->route('cliente.pedido', ['id' => $entrega->pedido_id]);
     }
