@@ -1,7 +1,12 @@
-**Banco**
-> DB_CONNECTION=mysql
-> DB_HOST=us-cdbr-iron-east-03.cleardb.net
-> DB_PORT=3306
-> DB_DATABASE=heroku_2bca34f12ef7c6e
-> DB_USERNAME=ba424d6f7a1501
-> DB_PASSWORD=64b7ec13
+**Projeto Laravel**
+
+Desenvolvido para Trabalho de conclusão de curso na Fatec Praia Grande
+
+HTML, CSS, JS
+PHP
+MySql
+
+**O que é o projeto?**
+
+Um site desenvolvido em PHP usando a Framework Laravel que facilita a contratação de fretes avulsos.
+Clientes podem fazer anuncios de seus fretes e Entregadores podem aceitar realizar uma entrega por meio do site.
